@@ -11,11 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
   },
   {
-    url: SITE_ORIGIN + "/404",
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  {
     url: SITE_ORIGIN + "/about",
     changeFrequency: "weekly",
     priority: 0.7,
@@ -34,6 +29,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: SITE_ORIGIN + "/ticket",
     changeFrequency: "weekly",
     priority: 0.7,
+  },
+  {
+    url: SITE_ORIGIN + "/privacy",
+    changeFrequency: "yearly",
+    priority: 0.2,
+  },
+  {
+    url: SITE_ORIGIN + "/terms",
+    changeFrequency: "yearly",
+    priority: 0.2,
   },
   ];
 }

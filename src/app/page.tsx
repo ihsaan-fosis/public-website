@@ -26,8 +26,8 @@ const FeatureCard_data = [
     { title: "Talent" }
 ];
 const Logo_data = [
-    { ariaposinset: "3", style: { maskImage: "url(\"/assets/cloned/svg/6deb7455b097.svg\")", maskSize: "contain", maskPosition: "50%", maskRepeat: "no-repeat" }, height: "1000", imgSrc: "/media/faithful-talent.jpg", srcSet: "/media/faithful-talent.jpg 512w, /media/faithful-talent.jpg 1024w, /media/faithful-talent.jpg 1500w", width: "1500", height2: "1000", imgSrc2: "/media/faithful-talent.jpg", srcSet2: "/media/faithful-talent.jpg 512w, /media/faithful-talent.jpg 1024w, /media/faithful-talent.jpg 1500w", width2: "1500" },
-    { ariaposinset: "4", style: { maskImage: "url(\"/assets/cloned/svg/e6c5046b897b.svg\")", maskSize: "contain", maskPosition: "50%", maskRepeat: "no-repeat" }, height: "1334", imgSrc: "/media/career-conference.jpg", srcSet: "/media/career-conference.jpg 512w, /media/career-conference.jpg 1024w, /media/career-conference.jpg 1500w", width: "1500", height2: "1000", imgSrc2: "/media/career-conference.jpg", srcSet2: "/media/career-conference.jpg 512w, /media/career-conference.jpg 1024w, /media/career-conference.jpg 1500w", width2: "1500" },
+    { ariaposinset: "3", style: { maskImage: "url(\"/assets/cloned/svg/6deb7455b097.svg\")", maskSize: "contain", maskPosition: "50%", maskRepeat: "no-repeat" }, height: "1000", imgSrc: "/media/faithful-talent.webp", srcSet: "/media/faithful-talent.webp 512w, /media/faithful-talent.webp 1024w, /media/faithful-talent.webp 1500w", width: "1500", height2: "1000", imgSrc2: "/media/faithful-talent.webp", srcSet2: "/media/faithful-talent.webp 512w, /media/faithful-talent.webp 1024w, /media/faithful-talent.webp 1500w", width2: "1500" },
+    { ariaposinset: "4", style: { maskImage: "url(\"/assets/cloned/svg/e6c5046b897b.svg\")", maskSize: "contain", maskPosition: "50%", maskRepeat: "no-repeat" }, height: "1334", imgSrc: "/media/career-conferences.webp", srcSet: "/media/career-conferences.webp 512w, /media/career-conferences.webp 1024w, /media/career-conferences.webp 1500w", width: "1500", height2: "1000", imgSrc2: "/media/career-conferences.webp", srcSet2: "/media/career-conferences.webp 512w, /media/career-conferences.webp 1024w, /media/career-conferences.webp 1500w", width2: "1500" },
     { ariaposinset: "5", style: { maskImage: "url(\"/assets/cloned/svg/6e91d2ce8640.svg\")", maskSize: "contain", maskPosition: "50%", maskRepeat: "no-repeat" }, height: "900", imgSrc: "/media/hero-poster.webp", srcSet: "/media/hero-poster.webp 512w, /media/hero-poster.webp 1024w, /media/hero-poster.webp 1500w", width: "1500", height2: "900", imgSrc2: "/media/hero-poster.webp", srcSet2: "/media/hero-poster.webp 512w, /media/hero-poster.webp 1024w, /media/hero-poster.webp 1500w", width2: "1500" }
 ];
 const FeatureCard2_data = [
@@ -36,17 +36,17 @@ const FeatureCard2_data = [
     { title: "200", description: "Programmes & Attendees" }
 ];
 const MediaCard_data = [
-    { imgSrc: "/media/hero-poster.webp", description: "Flagship events", title: "Career Conferences" },
-    { imgSrc: "/media/impact.jpg", description: "Internships", title: "Faithful Talent" },
-    { imgSrc: "/partners/CubeNetwork.webp", description: "Build with purpose", title: "Hackathons" },
-    { imgSrc: "/partners/AOME.png", description: "Flagship events", title: "Mentorship" },
-    { imgSrc: "/media/photo-collage.jpg", description: "Jobs & placements", title: "Opportunities" },
-    { imgSrc: "/partners/DeenDeveleopers.webp", description: "1:1 mentors", title: "Career Conferences" }
+    { imgSrc: "/media/career-conferences.webp", description: "Flagship events", title: "Career Conferences" },
+    { imgSrc: "/media/faithful-talent.webp", description: "Internships", title: "Faithful Talent" },
+    { imgSrc: "/media/haqqathons.webp", description: "Build with purpose", title: "Hackathons" },
+    { imgSrc: "/media/mmm.webp", description: "1:1 mentors", title: "Mentorship" },
+    { imgSrc: "/media/opp-tracker.webp", description: "Jobs & placements", title: "Opportunities" },
+    { imgSrc: "/media/career-guides.webp", description: "Resources", title: "Career Guides" }
 ];
 const Logo2_data = [
-    { imgSrc: "/media/hero-poster.webp" },
-    { imgSrc: "/media/logo.webp" },
-    { imgSrc: "/media/logo.webp" }
+    { imgSrc: "/media/career-conferences.webp" },
+    { imgSrc: "/media/faithful-talent.webp" },
+    { imgSrc: "/media/haqqathons.webp" }
 ];
 const Logo3_data = [
     {  },
@@ -54,26 +54,26 @@ const Logo3_data = [
     {  }
 ];
 const Logo4_data = [
-    { height: "40", imgSrc: "/assets/cloned/svg/c46eb97652ac.svg", width: "207" },
-    { height: "50", imgSrc: "/assets/cloned/svg/2b764251ba48.svg", width: "66" },
-    { height: "30", imgSrc: "/assets/cloned/svg/169843bdbea4.svg", width: "132" },
-    { height: "40", imgSrc: "/assets/cloned/svg/3f7fef2775d8.svg", width: "214" }
+    { height: "40", imgSrc: "/partners/accenture.webp", width: "207" },
+    { height: "50", imgSrc: "/partners/PWC.webp", width: "66" },
+    { height: "30", imgSrc: "/partners/CubeNetwork.webp", width: "132" },
+    { height: "40", imgSrc: "/partners/Wahed.webp", width: "214" }
 ];
 const Logo5_data = [
-    { height: "40", imgSrc: "/assets/cloned/svg/ceb6754cb727.svg", width: "100" },
-    { height: "34", imgSrc: "/assets/cloned/svg/717b70699b93.svg", width: "144" },
-    { height: "40", imgSrc: "/assets/cloned/svg/ac3f4009b030.svg", width: "104" }
+    { height: "40", imgSrc: "/partners/DeenDeveleopers.webp", width: "100" },
+    { height: "34", imgSrc: "/partners/My-Fridays.webp", width: "144" },
+    { height: "40", imgSrc: "/partners/Greentech.webp", width: "104" }
 ];
 const Logo4_data2 = [
-    { height: "34", imgSrc: "/assets/cloned/svg/5f73ced2edf1.svg", width: "178" },
-    { height: "50", imgSrc: "/assets/cloned/svg/0bd7139fb181.svg", width: "80" },
-    { height: "30", imgSrc: "/assets/cloned/svg/63fd02932c38.svg", width: "215" },
-    { height: "30", imgSrc: "/assets/cloned/svg/f25db531fe83.svg", width: "191" }
+    { height: "34", imgSrc: "/partners/SMBF.webp", width: "178" },
+    { height: "50", imgSrc: "/partners/MIPP.webp", width: "80" },
+    { height: "30", imgSrc: "/partners/MIRE.webp", width: "215" },
+    { height: "30", imgSrc: "/partners/MuslimsatAmazon.webp", width: "191" }
 ];
 const Logo6_data = [
-    { height: "40", imgSrc: "/assets/cloned/svg/b24801c3b365.svg", width: "168" },
-    { height: "34", imgSrc: "/assets/cloned/svg/e429817810ea.svg", width: "195" },
-    { height: "34", imgSrc: "/assets/cloned/svg/47227c89058e.svg", width: "189" }
+    { height: "40", imgSrc: "/partners/MTF-Finance.webp", width: "168" },
+    { height: "34", imgSrc: "/partners/Rail.webp", width: "195" },
+    { height: "34", imgSrc: "/partners/WharfSisters.webp", width: "189" }
 ];
 const Tile2_data = [
     { description: "Career guides & resources" },
@@ -108,14 +108,12 @@ const Faq_data: FaqItem[] = [
     { question: "How can my organisation partner with IHSAAN?", answer: "Partnership routes include sponsoring or hosting a career conference, providing mentors through our mentorship programmes, sharing internships and graduate roles via the Opportunities Tracker, and co-delivering workshops, panels or skills sessions." }
 ];
 const Tile6_data = [
-    { href: "https://facebook.com/", description: "Instagram" },
-    { href: "https://linkedin.com/", description: "LinkedIn" },
-    { href: "https://instagram.com/", description: "Instagram" },
-    { href: "https://youtube.com/", description: "LinkedIn" }
+    { href: "https://www.instagram.com/ihsaan.network/", description: "Instagram" },
+    { href: "https://www.linkedin.com/company/ihsaan-network/", description: "LinkedIn" }
 ];
 const Tile7_data = [
     { href: "/about", description: "Our story" },
-    { href: "/", description: "Our story" },
+    { href: "/#programmes", description: "Programmes" },
     { href: "/ticket", description: "Get involved" },
     { href: "/gallery", description: "Gallery" },
     { href: "/contact", description: "Contact" }
@@ -123,7 +121,6 @@ const Tile7_data = [
 const Tile8_data = [
     { href: "https://ihsaan.network/", target: "_blank", description: "UK & Ireland" },
     { href: "mailto:ihsaan@fosis.org.uk", description: "ihsaan@fosis.org.uk" },
-    { href: "tel:ihsaan@fosis.org.uk", description: "ihsaan@fosis.org.uk" }
 ];
 const Logo_meta: string[][] = [
     ["n192", "n193", "n194", "n195", "n196", "n197", "n198", "style-svg1040630239-739", "n200", "n201", "style-div-26", "n203"],
@@ -276,16 +273,19 @@ export default function Page() {
         <div className="h-[min-content] min-h-screen flex relative flex-col justify-start items-center content-center overflow-clip bg-background">
           <div className="h-[min-content] min-h-screen contents relative min-w-0 flex-col justify-start items-center content-center overflow-clip bg-background">
             <section className="w-full flex relative pt-[13.4375rem] pb-30 px-7.5 justify-center items-center content-center shrink-0 gap-2.5 overflow-clip bg-accent max-md:pt-35 max-md:pb-15 max-md:px-5 md:max-lg:pt-40">
-              <div className="contents min-w-0">
-                <div className="w-41 h-41 block absolute top-[30.1875rem] left-[16.8rem] z-1 opacity-50 shrink-0 overflow-clip aspect-square transform-[matrix(1,0,0,1,-82,-82)] max-md:w-10 max-md:h-10 max-md:top-[237.3px] max-md:left-[52.5px] max-md:transform-[matrix(1,0,0,1,-20,-20)] md:max-lg:w-24.5 md:max-lg:h-24.5 md:max-lg:top-[21.675rem] md:max-lg:left-[130.5px] md:max-lg:transform-[matrix(1,0,0,1,-49,-49)] 2xl:left-[25.2rem]">
-                  <div className="h-full block absolute top-0 inset-x-0">
-                    <img className="w-full h-41 block overflow-clip object-cover aspect-[auto_656/656] max-md:h-10 md:max-lg:h-24.5" data-component="image" alt="" height="656" sizes="164px" src="/assets/cloned/images/3b4b44e3ca6d.png" srcSet="/assets/cloned/images/6d1db70bcf96.png 512w, /assets/cloned/images/3b4b44e3ca6d.png 656w" width="656" />
-                  </div>
-                </div>
-              </div>
-              <div className="h-full block absolute top-0 inset-x-0 z-0 min-w-0 shrink-0 overflow-clip [filter:grayscale(1)]">
+              <div className="h-full block absolute top-0 inset-x-0 z-0 min-w-0 shrink-0 overflow-clip">
                 <div className="h-full block absolute top-0 inset-x-0">
-                  <img className="w-full h-335.5 block overflow-clip object-cover aspect-[auto_1600/1338] max-md:h-174.5 md:max-lg:h-[60.1875rem]" data-component="image" alt="BG Image" height="1338" sizes="(min-width: 1200px) 100vw, (min-width: 768px) and (max-width: 1199.98px) 100vw, (max-width: 767.98px) 100vw" src="/media/photo-collage.jpg" srcSet="/assets/cloned/images/f22422f6deed.png 512w, /assets/cloned/images/8ab42f227609.png 1024w, /media/photo-collage.jpg 1600w" width="1600" />
+                  <video
+                    className="w-full h-335.5 block overflow-clip object-cover aspect-[auto_1600/1338] max-md:h-174.5 md:max-lg:h-[60.1875rem]"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    poster="/media/hero-poster.webp"
+                    src="/media/hero-video.mp4"
+                    aria-label="IHSAAN hero background"
+                  />
                 </div>
                 <div className="h-full block absolute top-0 inset-x-0 shrink-0 overflow-clip bg-clr-1" />
                 <div className="h-full block absolute top-0 inset-x-0 shrink-0 overflow-clip" style={{ backgroundImage: "radial-gradient(60rem 30rem at 50% 0%, rgba(76,120,184,0.35), transparent 60%), linear-gradient(180deg, rgba(4,20,38,0.2) 0%, transparent 35%, rgba(4,20,38,0.55) 100%)" }} />
@@ -301,35 +301,23 @@ export default function Page() {
                         </p>
                       </div>
                     </div>
-                    <div className="flex relative max-w-255 flex-wrap justify-center items-center content-center shrink-0 gap-y-2.5 gap-x-8 max-md:gap-y-2 max-md:gap-x-[0.8125rem] md:max-lg:max-w-153.5 md:max-lg:gap-x-5.5">
+                    <div className="flex relative w-full max-w-300 flex-wrap justify-center items-center content-center shrink-0 gap-y-2.5 gap-x-8 max-md:max-w-255 max-md:gap-y-2 max-md:gap-x-[0.8125rem] md:max-lg:max-w-153.5 md:max-lg:gap-x-5.5">
                       {FeatureCard_data.map((d, i) => <FeatureCard key={i} d={d} styles={FeatureCard_styles[i]} />)}
                       <div className="w-[4.6875rem] block relative rounded-sm shrink-0 aspect-square bg-color-003 transform-[matrix(0.707107,0.707107,-0.707107,0.707107,0,0)] origin-[37.5px_37.5px] max-md:hidden md:max-lg:w-[2.8125rem] md:max-lg:origin-[22.5px_22.5px]" />
                       <div className="flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
-                        <h1 className="block font-extrabold text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-[6.25rem] leading-27.5 tracking-[-3px] uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11'] max-md:text-[2.5rem] max-md:leading-11 max-md:tracking-[-2.4px] md:max-lg:text-6xl md:max-lg:leading-16.5 md:max-lg:tracking-[-1.8px]" data-component="heading" dir="auto">
+                        <h1 className="block font-extrabold text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-[5.875rem] leading-[6.875rem] tracking-[-2.8px] uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11'] max-md:text-[2.5rem] max-md:leading-11 max-md:tracking-[-2.4px] md:max-lg:text-6xl md:max-lg:leading-16.5 md:max-lg:tracking-[-1.8px]" data-component="heading" dir="auto">
                           IHSAAN
                         </h1>
                       </div>
                       <div className="w-[3.4375rem] h-[3.4375rem] block absolute -top-[0.5625rem] left-255 z-0 min-w-0 shrink-0 aspect-square bg-color-002 transform-[matrix(-0.258819,0.965926,-0.965926,-0.258819,-27.5,0)] origin-[27.5px_27.5px] max-md:hidden md:max-lg:w-[2.8125rem] md:max-lg:h-[2.8125rem] md:max-lg:left-153.5 md:max-lg:transform-[matrix(-0.258819,0.965926,-0.965926,-0.258819,-22.5,0)] md:max-lg:origin-[22.5px_22.5px] [mask-position:center] [mask-repeat:no-repeat]" style={{ maskImage: "url(\"data:image/svg+xml,<svg display=\\\"block\\\" role=\\\"presentation\\\" viewBox=\\\"0 0 20 20\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\"><g d=\\\"M 0 20 L 0 0 L 19.298 0 L 19.298 20 Z M 19.298 0 C 19.298 2.761 17.138 5 14.474 5 C 17.138 5 19.298 7.239 19.298 10 C 19.298 12.761 17.138 15 14.474 15 C 17.138 15 19.298 17.239 19.298 20 L 0 20 C 0 17.239 2.16 15 4.825 15 C 2.16 15 0 12.761 0 10 C 0 7.239 2.16 5 4.825 5 C 2.16 5 0 2.761 0 0 Z\\\" fill=\\\"transparent\\\" height=\\\"20px\\\" id=\\\"YmhTDTXeF\\\" transform=\\\"translate(0.35 0)\\\" width=\\\"19.298245614035086px\\\"><path d=\\\"M 0 20 L 0 0 L 19.298 0 L 19.298 20 Z\\\" fill=\\\"transparent\\\" height=\\\"20px\\\" id=\\\"E_t4BgoCm\\\" width=\\\"19.298245614035086px\\\"/><path d=\\\"M 19.298 0 C 19.298 2.761 17.138 5 14.474 5 C 17.138 5 19.298 7.239 19.298 10 C 19.298 12.761 17.138 15 14.474 15 C 17.138 15 19.298 17.239 19.298 20 L 0 20 C 0 17.239 2.16 15 4.825 15 C 2.16 15 0 12.761 0 10 C 0 7.239 2.16 5 4.825 5 C 2.16 5 0 2.761 0 0 Z\\\" fill=\\\"var(--otv0lo, var(--token-1dfd736c-b13f-4cf0-98cf-8cb076809793, var(--accent)))\\\" height=\\\"20px\\\" id=\\\"pBA3_IH6o\\\" width=\\\"19.298245614035086px\\\"/></g></svg>\"), none" }} />
                     </div>
                   </div>
-                  <div className="flex relative py-5 px-6.5 rounded-[10px] justify-center items-center content-center shrink-0 gap-5.5 max-md:py-3 max-md:px-4 max-md:gap-4 after:content-[''] after:block after:absolute after:inset-0 after:rounded-[10px] after:border after:border-clr-6">
-                    <div className="flex relative flex-col justify-center shrink-0 whitespace-pre text-nowrap">
-                      <h2 className="block text-color-003 [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-5xl leading-[3.625rem] tracking-[-1.44px] uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11'] max-md:text-[1.5625rem] max-md:leading-7.5 max-md:tracking-[-1px] md:max-lg:text-4xl md:max-lg:leading-[2.6875rem]" data-ditto-id="style-div-9" data-component="heading" dir="auto">
-                        UK · IE
-                      </h2>
-                    </div>
-                    <div className="w-px block relative self-stretch shrink-0 bg-clr-6" />
-                    <div className="flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
-                      <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                        Year-round programmes
-                      </p>
-                    </div>
-                  </div>
+
                 </div>
                 <div className="contents min-w-0" data-ditto-id="style-div-10">
                   <div className="w-full flex relative justify-start items-center content-center shrink-0 gap-5 max-md:gap-4">
                     <Ticker className="flex relative max-w-full max-h-full justify-start items-center gap-5 [list-style-type:none] list-outside max-md:gap-4">
-                      <li className="list-item relative shrink-0" data-ditto-id="style-image-2" aria-hidden="false" aria-posinset="1" aria-setsize="5">
+                      <li className="list-item relative shrink-0" data-ditto-id="style-image-2" aria-hidden="false" aria-posinset={1} aria-setsize={5}>
                         <div className="flex relative z-0 rounded-2xl justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-square [mask-size:contain] [mask-position:50%] [mask-repeat:no-repeat]" style={{ maskImage: "url(\"/assets/cloned/svg/94f64ec45e16.svg\")" }}>
                           <div className="contents min-w-0 max-md:w-40 max-md:h-40 max-md:block max-md:relative max-md:z-1 max-md:grow max-md:shrink-0 max-md:basis-0 max-md:gap-2.5 max-md:overflow-clip">
                             <div className="w-[26.9375rem] h-full block relative z-1 grow shrink-0 basis-0 gap-2.5 overflow-clip md:max-lg:w-70">
@@ -340,7 +328,7 @@ export default function Page() {
                           </div>
                         </div>
                       </li>
-                      <li className="list-item relative shrink-0" data-ditto-id="style-li" aria-hidden="false" aria-posinset="2" aria-setsize="5">
+                      <li className="list-item relative shrink-0" data-ditto-id="style-li" aria-hidden="false" aria-posinset={2} aria-setsize={5}>
                         <div className="w-[26.9375rem] flex relative z-0 rounded-2xl justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-square [mask-size:contain] [mask-position:50%] [mask-repeat:no-repeat] max-md:w-40 md:max-lg:w-70" style={{ maskImage: "url(\"/assets/cloned/svg/516eea3ebd7a.svg\")" }}>
                           <div className="contents min-w-0 max-md:w-40 max-md:h-40 max-md:block max-md:relative max-md:z-1 max-md:grow max-md:shrink-0 max-md:basis-0 max-md:gap-2.5 max-md:overflow-clip">
                             <div className="w-[26.9375rem] h-full block relative z-1 grow shrink-0 basis-0 gap-2.5 overflow-clip md:max-lg:w-70">
@@ -404,7 +392,7 @@ export default function Page() {
                   <div className="contents min-w-0">
                     <div className="w-196 block relative max-w-196 rounded-[10px] self-stretch grow shrink-0 basis-0 overflow-clip max-md:w-[20.9375rem] max-md:aspect-[0.977654/1] max-md:max-w-none max-md:[align-self:initial] max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-83.5">
                       <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                        <img className="w-full h-122 block rounded-[10px] overflow-clip object-cover aspect-[auto_1176/732] max-md:h-[21.4375rem] md:max-lg:h-[21.9375rem]" data-component="image" alt="" height="732" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 80px) / 2, 1px), 784px)" src="/assets/cloned/images/da1053bdbc84.png" srcSet="/assets/cloned/images/f074de5334dd.png 512w, /assets/cloned/images/f16afdf5bce9.png 1024w, /assets/cloned/images/da1053bdbc84.png 1176w" width="1176" />
+                        <img className="w-full h-122 block rounded-[10px] overflow-clip object-cover aspect-[auto_1176/732] max-md:h-[21.4375rem] md:max-lg:h-[21.9375rem]" data-component="image" alt="" height="732" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 80px) / 2, 1px), 784px)" src="/media/photo-collage.jpg" srcSet="/media/career-conferences.webp 512w, /media/faithful-talent.webp 1024w, /media/photo-collage.jpg 1176w" width="1176" />
                       </div>
                     </div>
                   </div>
@@ -438,9 +426,9 @@ export default function Page() {
                 </div>
               </div>
             </section>
-            <section className="w-full flex relative py-35 px-7.5 justify-center items-center content-center shrink-0 overflow-clip bg-surface max-md:py-15 max-md:px-5 md:max-lg:py-20" id="Programmes">
+            <section className="w-full flex relative py-35 px-7.5 justify-center items-center content-center shrink-0 overflow-clip bg-surface max-md:py-15 max-md:px-5 md:max-lg:py-20" id="programmes">
               <div className="w-full max-w-300 flex relative flex-col flex-wrap justify-center items-end content-end grow shrink-0 basis-0 gap-20 overflow-clip max-md:gap-10 md:max-lg:gap-12.5">
-                <div className="w-full flex relative justify-center items-center content-center shrink-0 gap-5 overflow-clip max-md:flex-col max-md:items-start max-md:content-start max-md:gap-6">
+                <div className="w-full flex relative min-h-[10.5625rem] justify-center items-center content-center shrink-0 gap-5 overflow-clip max-md:min-h-0 max-md:flex-col max-md:items-start max-md:content-start max-md:gap-6">
                   <div className="w-[82.5%] flex relative flex-col justify-start items-start content-start grow shrink-0 basis-0 gap-5 max-md:w-full max-md:gap-4 max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[70.5%]">
                     <div className="w-[142.5px] block relative shrink-0">
                       <div className="flex relative py-[0.3125rem] px-3 rounded-sm justify-start items-center content-center gap-1.5 after:content-[''] after:block after:absolute after:inset-0 after:w-[142.5px] after:h-8.5 after:rounded-tl-sm">
@@ -486,7 +474,7 @@ export default function Page() {
                       <div className="contents min-w-0">
                         <div className="w-92.5 block relative rounded-md shrink-0 overflow-clip aspect-[1.01093/1] max-md:w-[19.6875rem] max-md:aspect-[1.17857/1] md:max-lg:w-172 md:max-lg:aspect-[1.26937/1]">
                           <div className="h-full block absolute top-0 inset-x-0 rounded-md">
-                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_1134/1110] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="1110" sizes="370px" src="/assets/cloned/images/efd6ee51acaf.png" srcSet="/assets/cloned/images/c59e7c4f0ad5.png 512w, /assets/cloned/images/62358e47698c.png 1024w, /assets/cloned/images/efd6ee51acaf.png 1134w" width="1134" />
+                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_1134/1110] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="1110" sizes="370px" src="/media/career-conferences.webp" srcSet="/media/opp-tracker.webp 512w, /media/impact.jpg 1024w, /media/career-conferences.webp 1134w" width="1134" />
                           </div>
                         </div>
                       </div>
@@ -535,7 +523,7 @@ export default function Page() {
                           <div className="w-[79%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[75.5%]">
                             <div className="w-[9.2375rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" data-ditto-id="style-div-11" dir="auto">
-                                10:30 AM – 11:30 AM
+                                10:30 AM - 11:30 AM
                               </p>
                             </div>
                             <div className="w-[36.5875rem] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[29.5875rem]">
@@ -581,7 +569,7 @@ export default function Page() {
                       <div className="contents min-w-0">
                         <div className="w-92.5 block relative rounded-md shrink-0 overflow-clip aspect-[1.01093/1] max-md:w-[19.6875rem] max-md:aspect-[1.17857/1] md:max-lg:w-172 md:max-lg:aspect-[1.26937/1]">
                           <div className="h-full block absolute top-0 inset-x-0 rounded-md">
-                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/assets/cloned/images/8c9d9e8565fb.png" width="378" />
+                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/media/mmm.webp" width="378" />
                           </div>
                         </div>
                       </div>
@@ -590,7 +578,7 @@ export default function Page() {
                           <div className="w-[68%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[62%]">
                             <div className="w-[146.3px] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                11:30 AM – 12:30 PM
+                                11:30 AM - 12:30 PM
                               </p>
                             </div>
                             <div className="w-[31.4rem] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[24.4rem]">
@@ -621,7 +609,7 @@ export default function Page() {
                           <div className="w-[73.5%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[68.5%]">
                             <div className="w-[9.325rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                12:30 PM – 01:30 PM
+                                12:30 PM - 01:30 PM
                               </p>
                             </div>
                             <div className="w-[33.925rem] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[26.925rem]">
@@ -672,7 +660,7 @@ export default function Page() {
                       <div className="contents min-w-0">
                         <div className="w-92.5 block relative rounded-md shrink-0 overflow-clip aspect-[1.01093/1] max-md:w-[19.6875rem] max-md:aspect-[1.17857/1] md:max-lg:w-172 md:max-lg:aspect-[1.26937/1]">
                           <div className="h-full block absolute top-0 inset-x-0 rounded-md">
-                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/assets/cloned/images/6303457bb351.png" width="378" />
+                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/media/career-guides.webp" width="378" />
                           </div>
                         </div>
                       </div>
@@ -681,7 +669,7 @@ export default function Page() {
                           <div className="w-[81.5%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[78%]">
                             <div className="w-[9.5625rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                01:30 PM – 02:30 PM
+                                01:30 PM - 02:30 PM
                               </p>
                             </div>
                             <div className="w-[602.5px] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[490.5px]">
@@ -718,7 +706,7 @@ export default function Page() {
                           <div className="w-[68%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[62%]">
                             <div className="w-[9.7625rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                02:30 PM – 03:30 PM
+                                02:30 PM - 03:30 PM
                               </p>
                             </div>
                             <div className="w-[31.4rem] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[24.4rem]">
@@ -760,7 +748,7 @@ export default function Page() {
                       <div className="contents min-w-0">
                         <div className="w-92.5 block relative rounded-md shrink-0 overflow-clip aspect-[1.01093/1] max-md:w-[19.6875rem] max-md:aspect-[1.17857/1] md:max-lg:w-172 md:max-lg:aspect-[1.26937/1]">
                           <div className="h-full block absolute top-0 inset-x-0 rounded-md">
-                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/assets/cloned/images/2faa2e4c0705.png" width="378" />
+                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_378/370] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="370" src="/media/faithful-talent.webp" width="378" />
                           </div>
                         </div>
                       </div>
@@ -769,7 +757,7 @@ export default function Page() {
                           <div className="w-[74.5%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[70%]">
                             <div className="w-[9.85rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                03:30 PM – 04:00 PM
+                                03:30 PM - 04:00 PM
                               </p>
                             </div>
                             <div className="w-[552.7px] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[440.7px]">
@@ -790,7 +778,7 @@ export default function Page() {
                               <div className="w-15 h-15 flex relative p-[0.9375rem] rounded-[30px] justify-center items-center content-center shrink-0 gap-2.5 bg-color-001">
                                 <div className="w-10 block relative shrink-0 aspect-square">
                                   <div className="w-10 h-full block absolute top-0">
-                                    <img className="w-full h-10 block overflow-clip object-cover aspect-[auto_512/512]" data-component="image" alt="" height="512" src="/assets/cloned/images/160549288419.png" width="512" />
+                                    <img className="w-full h-10 block overflow-clip object-cover aspect-[auto_512/512]" data-component="image" alt="" height="512" src="/media/ig-profile.jpg" width="512" />
                                   </div>
                                 </div>
                               </div>
@@ -806,7 +794,7 @@ export default function Page() {
                           <div className="w-[79%] flex relative flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:w-full max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[75.5%]">
                             <div className="w-[9.9rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                               <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                                04:00 PM – 05:00 PM
+                                04:00 PM - 05:00 PM
                               </p>
                             </div>
                             <div className="w-[36.5875rem] flex relative flex-col justify-start items-start content-start shrink-0 gap-3 max-md:w-[17.1875rem] md:max-lg:w-[29.5875rem]">
@@ -901,7 +889,7 @@ export default function Page() {
               <div className="w-full max-w-300 flex relative flex-col justify-center items-center content-center grow shrink-0 basis-0 gap-20 overflow-clip max-md:gap-10 md:max-lg:gap-12.5">
                 <div className="w-full flex relative rounded-[10px] justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-[1.71429/1] transform-[matrix(0.508717,0,0,0.508717,0,0)] origin-[600px_349.992px] max-md:aspect-[1.4/1] max-lg:transform-[matrix(0.5,0,0,0.5,0,0)] max-md:origin-[167.5px_119.641px] md:max-lg:origin-[354px_206.492px] 2xl:transform-[matrix(0.5,0,0,0.5,0,0)]">
                   <div className="basis-0 shrink-0 h-full block relative grow">
-                    <video className="w-full h-175 block overflow-clip object-cover max-md:h-[14.9375rem] md:max-lg:h-[25.8125rem]" autoPlay loop muted playsInline poster="/assets/cloned/images/9f72f3de7a6b.jpg" preload="auto" src="/assets/cloned/videos/e3e634312b11.mp4" />
+                    <video className="w-full h-175 block overflow-clip object-cover max-md:h-[14.9375rem] md:max-lg:h-[25.8125rem]" autoPlay loop muted playsInline poster="/media/hero-poster.webp" preload="auto" src="/media/hero-video.mp4" />
                   </div>
                 </div>
               </div>
@@ -943,8 +931,8 @@ export default function Page() {
                 </div>
                 <div className="contents min-w-0">
                   <div className="w-full block relative shrink-0">
-                    <div className="contents max-md:w-[20.9375rem] max-md:h-[66.65rem] max-md:flex max-md:relative max-md:flex-col max-md:justify-center max-md:items-center max-md:content-center max-md:gap-6 max-md:overflow-clip">
-                      <div className="w-300 flex relative justify-center items-center content-center gap-10 overflow-clip max-md:w-[20.9375rem] max-lg:flex-col max-md:shrink-0 max-md:gap-[initial] md:max-lg:w-177 md:max-lg:gap-8">
+                    <div className="contents max-md:w-[20.9375rem] max-md:flex max-md:relative max-md:flex-col max-md:justify-center max-md:items-center max-md:content-center max-md:gap-6 max-md:overflow-clip">
+                      <div className="w-300 flex relative justify-center items-center content-center gap-10 overflow-clip max-md:w-[20.9375rem] max-lg:flex-col max-md:shrink-0 max-md:gap-6 md:max-lg:w-177 md:max-lg:gap-8">
                         <div className="w-[48.5%] flex relative justify-center items-center content-center grow shrink-0 basis-0 overflow-clip max-lg:w-full max-md:p-5 max-md:rounded-[10px] max-md:flex-col max-md:items-start max-md:content-start max-md:order-[1] max-md:gap-6 max-md:bg-accent max-lg:grow-[initial] max-lg:basis-[initial]">
                           <div className="w-85 flex relative pt-7.5 pb-12.5 px-7.5 rounded-[10px] flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-9.5 overflow-clip bg-accent max-md:w-[18.4375rem] max-md:justify-start max-md:whitespace-pre-wrap max-md:[word-break:break-word] max-md:[overflow-wrap:break-word] max-md:p-0 max-md:rounded-[initial] max-md:[align-items:initial] max-md:[align-content:initial] max-md:grow-[initial] max-md:basis-[initial] max-md:gap-[initial] max-md:[overflow-x:initial] max-md:[overflow-y:initial] max-md:bg-[initial] md:max-lg:w-117 md:max-lg:p-6 md:max-lg:gap-7.5">
                             <h4 className="hidden max-md:block max-md:text-background max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-xl max-md:leading-6 max-md:tracking-[-0.6px] max-md:uppercase max-md:[font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
@@ -1024,7 +1012,7 @@ export default function Page() {
                           </div>
                         </div>
                         <div className="w-[48.5%] flex relative justify-center items-center content-center self-stretch grow shrink-0 basis-0 overflow-clip max-lg:w-full max-md:p-5 max-md:rounded-[10px] max-md:flex-col max-md:items-start max-md:content-start max-md:gap-6 max-md:bg-color-001 max-lg:[align-self:initial] max-lg:grow-[initial] max-lg:basis-[initial]">
-                          <div className="w-[58.5%] flex relative pt-7.5 pb-12.5 px-7.5 rounded-[10px] flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-9.5 overflow-clip bg-background max-md:w-[43%] max-md:gap-3.5 max-md:p-0 max-md:rounded-[initial] max-md:grow-[initial] max-md:basis-[initial] max-md:bg-[initial] md:max-lg:w-[66%] md:max-lg:p-6 md:max-lg:gap-7.5 after:content-[''] after:block after:absolute after:inset-0 after:rounded-tl-[10px] max-md:after:hidden">
+                          <div className="w-[58.5%] flex relative pt-7.5 pb-12.5 px-7.5 rounded-[10px] flex-col justify-center items-start content-start grow shrink-0 basis-0 gap-9.5 overflow-clip bg-background max-md:w-full max-md:gap-3.5 max-md:p-0 max-md:rounded-[initial] max-md:grow-[initial] max-md:basis-[initial] max-md:bg-[initial] md:max-lg:w-[66%] md:max-lg:p-6 md:max-lg:gap-7.5 after:content-[''] after:block after:absolute after:inset-0 after:rounded-tl-[10px] max-md:after:hidden">
                             <div className="w-30 h-[4.8rem] flex relative max-w-30 flex-col justify-start shrink-0 whitespace-pre-wrap [word-break:break-word] [overflow-wrap:break-word] max-md:w-[7.3375rem] max-md:h-8.5 max-md:py-[0.4375rem] max-md:px-3 max-md:rounded-sm max-md:items-center max-md:content-center max-md:gap-1.5 max-lg:max-w-none max-md:[flex-direction:initial] max-md:[white-space:inherit] max-md:[word-break:inherit] max-md:[overflow-wrap:inherit] md:max-lg:w-105 md:max-lg:h-[1.95rem] after:content-[''] after:block after:absolute after:inset-0 after:w-[7.3375rem] after:h-8.5 after:rounded-tl-sm md:max-lg:after:hidden 2xl:after:hidden">
                               <div className="hidden max-md:w-[5.8375rem] max-md:flex max-md:relative max-md:flex-col max-md:justify-start max-md:shrink-0 max-md:whitespace-pre max-md:text-nowrap">
                                 <p className="hidden max-md:block max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-base max-md:font-medium max-md:leading-4 max-md:uppercase max-md:[font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
@@ -1036,13 +1024,13 @@ export default function Page() {
                               </h4>
                             </div>
                             <div className="w-full flex relative pt-7.5 flex-col justify-center items-center content-center shrink-0 gap-7.5 overflow-clip max-md:items-start max-md:content-start max-md:gap-2.5 max-md:pt-0 md:max-lg:pt-6 md:max-lg:gap-6 after:content-[''] after:block after:absolute after:inset-0 max-md:after:hidden">
-                              <div className="w-full flex relative flex-col justify-start shrink-0 whitespace-pre-wrap [word-break:break-word] [overflow-wrap:break-word] max-md:w-[60.5%] max-md:block max-md:[flex-direction:initial] max-md:[justify-content:initial] max-md:[white-space:inherit] max-md:[word-break:inherit] max-md:[overflow-wrap:inherit]">
-                                <Counter value="$99" className="hidden max-md:w-[76.7px] max-md:h-full max-md:block max-md:absolute max-md:top-0 max-md:left-0 max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-[1.75rem] max-md:leading-[2.125rem] max-md:tracking-[-0.84px] max-md:text-center" />
+                              <div className="w-full flex relative flex-col justify-start shrink-0 whitespace-pre-wrap [word-break:break-word] [overflow-wrap:break-word] max-md:w-auto max-md:block">
+                                <Counter value="$99" className="hidden max-md:relative max-md:block max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-[1.75rem] max-md:leading-[2.125rem] max-md:tracking-[-0.84px] max-md:text-left" />
                                 <p className="block text-accent [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11'] max-md:hidden" dir="auto">
                                   Features:
                                 </p>
                               </div>
-                              <div className="w-70 flex relative flex-col justify-center items-center content-center shrink-0 gap-4.5 overflow-clip max-md:w-[127.3px] max-md:justify-start max-md:whitespace-pre max-md:text-nowrap max-md:[align-items:initial] max-md:[align-content:initial] max-md:gap-[initial] max-md:[overflow-x:initial] max-md:[overflow-y:initial] md:max-lg:w-105">
+                              <div className="w-70 flex relative flex-col justify-center items-center content-center shrink-0 gap-4.5 overflow-clip max-md:w-auto max-md:items-start max-md:content-start max-md:gap-0 md:max-lg:w-105">
                                 <p className="hidden max-md:block max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-base max-md:leading-[1.625rem] max-md:[font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
                                   Free to join
                                 </p>
@@ -1057,8 +1045,8 @@ export default function Page() {
                               </div>
                             </div>
                           </div>
-                          <div className="w-[41.5%] h-[25.3rem] flex relative max-w-60 p-6.5 rounded-[10px] flex-col justify-between items-start content-start grow shrink-0 basis-0 overflow-clip bg-color-001 max-md:w-3/5 max-md:h-12.5 max-md:block max-md:z-1 max-md:max-w-none max-md:p-0 max-md:rounded-[initial] max-md:[flex-direction:initial] max-md:[justify-content:initial] max-md:[align-items:initial] max-md:[align-content:initial] max-md:grow-[initial] max-md:basis-[initial] max-md:[overflow-x:initial] max-md:[overflow-y:initial] max-md:bg-[initial] md:max-lg:w-[34%] md:max-lg:h-[19.2rem] md:max-lg:p-6 md:max-lg:self-stretch">
-                            <a className="hidden max-md:flex max-md:relative max-md:py-[0.9375rem] max-md:pr-[0.9375rem] max-md:pl-6 max-md:rounded-[100px] max-md:justify-center max-md:items-center max-md:content-center max-md:gap-8.5 max-md:overflow-clip max-md:text-primary max-md:bg-accent max-md:cursor-pointer after:content-[''] after:block after:absolute after:inset-0 after:w-[177.3px] after:h-12.5 after:rounded-tl-[100px] md:max-lg:after:hidden 2xl:after:hidden" href="/ticket">
+                          <div className="w-[41.5%] h-[25.3rem] flex relative max-w-60 p-6.5 rounded-[10px] flex-col justify-between items-start content-start grow shrink-0 basis-0 overflow-clip bg-color-001 max-md:w-full max-md:h-auto max-md:block max-md:z-1 max-md:max-w-none max-md:p-0 max-md:rounded-[initial] max-md:grow-[initial] max-md:basis-[initial] max-md:bg-[initial] md:max-lg:w-[34%] md:max-lg:h-[19.2rem] md:max-lg:p-6 md:max-lg:self-stretch">
+                            <a className="hidden max-md:flex max-md:relative max-md:w-[177.3px] max-md:py-[0.9375rem] max-md:pr-[0.9375rem] max-md:pl-6 max-md:rounded-[100px] max-md:justify-center max-md:items-center max-md:content-center max-md:gap-8.5 max-md:overflow-clip max-md:text-primary max-md:bg-accent max-md:cursor-pointer after:content-[''] after:block after:absolute after:inset-0 after:w-[177.3px] after:h-12.5 after:rounded-tl-[100px] md:max-lg:after:hidden 2xl:after:hidden" href="/ticket">
                               <div className="hidden max-md:w-10 max-md:h-10 max-md:block max-md:absolute max-md:top-[0.3125rem] max-md:right-[0.3125rem] max-md:z-0 max-md:min-w-0 max-md:rounded-[100px] max-md:shrink-0 max-md:overflow-clip max-md:bg-background" />
                               <div className="hidden max-md:w-[84.3px] max-md:flex max-md:relative max-md:flex-col max-md:justify-start max-md:shrink-0 max-md:whitespace-pre max-md:text-nowrap">
                                 <p className="hidden max-md:block max-md:text-background max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-[0.875rem] max-md:font-semibold max-md:uppercase max-md:[font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
@@ -1148,9 +1136,9 @@ export default function Page() {
                                 <h3 className="hidden">
                                   $249
                                 </h3>
-                                <Counter value="$249" className="hidden max-md:w-[99.3px] max-md:h-full max-md:block max-md:absolute max-md:top-0 max-md:left-0 max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-[1.75rem] max-md:leading-[2.125rem] max-md:tracking-[-0.84px] max-md:text-center" />
+                                <Counter value="$249" className="hidden max-md:relative max-md:block max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-[1.75rem] max-md:leading-[2.125rem] max-md:tracking-[-0.84px] max-md:text-left" />
                               </div>
-                              <div className="hidden max-md:w-[127.3px] max-md:flex max-md:relative max-md:flex-col max-md:justify-start max-md:shrink-0 max-md:whitespace-pre max-md:text-nowrap">
+                              <div className="hidden max-md:flex max-md:relative max-md:flex-col max-md:justify-start max-md:shrink-0 max-md:whitespace-pre max-md:text-nowrap">
                                 <p className="hidden max-md:block max-md:text-accent max-md:[font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] max-md:text-base max-md:leading-[1.625rem] max-md:[font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
                                   Free to join
                                 </p>
@@ -1204,14 +1192,14 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[1.06667/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-75 block rounded-[10px] overflow-clip object-cover aspect-[auto_960/900] max-md:h-78.5 md:max-lg:h-[12.5625rem]" data-component="image" alt="Gallery Image" height="900" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/assets/cloned/images/554a331143f0.png" srcSet="/assets/cloned/images/04401a2745a9.png 512w, /assets/cloned/images/554a331143f0.png 960w" width="960" />
+                          <img className="w-full h-75 block rounded-[10px] overflow-clip object-cover aspect-[auto_960/900] max-md:h-78.5 md:max-lg:h-[12.5625rem]" data-component="image" alt="Gallery Image" height="900" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/impact.jpg" srcSet="/media/career-conferences.webp 512w, /media/impact.jpg 960w" width="960" />
                         </div>
                       </div>
                     </div>
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[1.33333/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/assets/cloned/images/529ade0bebf6.png" srcSet="/assets/cloned/images/30f5669c22a8.png 512w, /assets/cloned/images/77b6e99e7e3e.png 1024w, /assets/cloned/images/529ade0bebf6.png 1280w" width="1280" />
+                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/haqqathons.webp" srcSet="/media/faithful-talent.webp 512w, /media/mmm.webp 1024w, /media/haqqathons.webp 1280w" width="1280" />
                         </div>
                       </div>
                     </div>
@@ -1220,17 +1208,17 @@ export default function Page() {
                     <div className="w-95 flex relative max-w-95 flex-col justify-center items-center content-center grow shrink-0 basis-0 gap-[4.0625rem] overflow-clip transform-[matrix(1,0,0,1,0,60)] max-md:w-[20.9375rem] max-md:gap-6 max-md:max-w-none max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-[214.7px] md:max-lg:gap-8 md:max-lg:transform-[matrix(1,0,0,1,0,40)]">
                       <div className="contents min-w-0 md:max-lg:w-[214.7px] md:max-lg:h-[15.5375rem] md:max-lg:block md:max-lg:relative md:max-lg:rounded-[10px] md:max-lg:shrink-0 md:max-lg:overflow-clip md:max-lg:aspect-[0.863636/1]">
                         <div className="w-95 h-110 block relative inset-0 rounded-[10px] shrink-0 overflow-clip aspect-[0.863636/1] max-md:w-[20.9375rem] max-md:h-[387.9px] md:max-lg:w-[214.7px] md:max-lg:h-[15.5375rem] md:max-lg:absolute md:max-lg:right-auto md:max-lg:bottom-auto md:max-lg:shrink-[initial] md:max-lg:[overflow-x:initial] md:max-lg:[overflow-y:initial] md:max-lg:aspect-[initial]">
-                          <img className="hidden md:max-lg:w-full md:max-lg:h-[15.5625rem] md:max-lg:block md:max-lg:rounded-[10px] md:max-lg:overflow-clip md:max-lg:object-cover md:max-lg:aspect-[auto_1520/1760]" alt="Gallery Image" height="1760" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 64px) / 3, 1px), 380px)" src="/media/faithful-talent.jpg" srcSet="/media/faithful-talent.jpg 884w, /media/faithful-talent.jpg 1520w" width="1520" />
+                          <img className="hidden md:max-lg:w-full md:max-lg:h-[15.5625rem] md:max-lg:block md:max-lg:rounded-[10px] md:max-lg:overflow-clip md:max-lg:object-cover md:max-lg:aspect-[auto_1520/1760]" alt="Gallery Image" height="1760" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 64px) / 3, 1px), 380px)" src="/media/faithful-talent.webp" srcSet="/media/faithful-talent.webp 884w, /media/faithful-talent.webp 1520w" width="1520" />
                           <div className="h-full block absolute top-0 inset-x-0 rounded-[10px] md:max-lg:hidden">
-                            <img className="w-full h-110 block rounded-[10px] overflow-clip object-cover aspect-[auto_1520/1760] max-md:h-97 md:max-lg:hidden" data-component="image" alt="Gallery Image" height="1760" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 380px)" src="/media/faithful-talent.jpg" srcSet="/media/faithful-talent.jpg 884w, /media/faithful-talent.jpg 1520w" width="1520" />
+                            <img className="w-full h-110 block rounded-[10px] overflow-clip object-cover aspect-[auto_1520/1760] max-md:h-97 md:max-lg:hidden" data-component="image" alt="Gallery Image" height="1760" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 380px)" src="/media/faithful-talent.webp" srcSet="/media/faithful-talent.webp 884w, /media/faithful-talent.webp 1520w" width="1520" />
                           </div>
                         </div>
                       </div>
                       <div className="contents min-w-0 md:max-lg:w-[214.7px] md:max-lg:h-[8.475rem] md:max-lg:block md:max-lg:relative md:max-lg:rounded-[10px] md:max-lg:shrink-0 md:max-lg:overflow-clip md:max-lg:aspect-[1.58333/1]">
                         <div className="w-95 h-60 block relative inset-0 rounded-[10px] shrink-0 overflow-clip aspect-[1.58333/1] max-md:w-[20.9375rem] max-md:h-[13.225rem] md:max-lg:w-[214.7px] md:max-lg:h-[8.475rem] md:max-lg:absolute md:max-lg:right-auto md:max-lg:bottom-auto md:max-lg:shrink-[initial] md:max-lg:[overflow-x:initial] md:max-lg:[overflow-y:initial] md:max-lg:aspect-[initial]">
-                          <img className="hidden md:max-lg:w-full md:max-lg:h-34 md:max-lg:block md:max-lg:rounded-[10px] md:max-lg:overflow-clip md:max-lg:object-cover md:max-lg:aspect-[auto_1520/960]" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 64px) / 3, 1px), 380px)" src="/media/career-conference.jpg" srcSet="/media/career-conference.jpg 512w, /media/career-conference.jpg 1024w, /media/career-conference.jpg 1520w" width="1520" />
+                          <img className="hidden md:max-lg:w-full md:max-lg:h-34 md:max-lg:block md:max-lg:rounded-[10px] md:max-lg:overflow-clip md:max-lg:object-cover md:max-lg:aspect-[auto_1520/960]" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 64px) / 3, 1px), 380px)" src="/media/career-conferences.webp" srcSet="/media/career-conferences.webp 512w, /media/career-conferences.webp 1024w, /media/career-conferences.webp 1520w" width="1520" />
                           <div className="h-full block absolute top-0 inset-x-0 rounded-[10px] md:max-lg:hidden">
-                            <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1520/960] max-md:h-53 md:max-lg:hidden" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 380px)" src="/media/career-conference.jpg" srcSet="/media/career-conference.jpg 512w, /media/career-conference.jpg 1024w, /media/career-conference.jpg 1520w" width="1520" />
+                            <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1520/960] max-md:h-53 md:max-lg:hidden" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 380px)" src="/media/career-conferences.webp" srcSet="/media/career-conferences.webp 512w, /media/career-conferences.webp 1024w, /media/career-conferences.webp 1520w" width="1520" />
                           </div>
                         </div>
                       </div>
@@ -1240,14 +1228,14 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[1.33333/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/assets/cloned/images/b238dfbaf9c2.png" srcSet="/assets/cloned/images/3178fc41c053.png 512w, /assets/cloned/images/d396c4d20af4.png 1024w, /assets/cloned/images/b238dfbaf9c2.png 1280w" width="1280" />
+                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/opp-tracker.webp" srcSet="/media/haqqathons.webp 512w, /media/photo-collage.jpg 1024w, /media/opp-tracker.webp 1280w" width="1280" />
                         </div>
                       </div>
                     </div>
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[0.888889/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-90 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/1440] max-md:h-[23.5625rem] md:max-lg:h-60.5" data-component="image" alt="Gallery Image" height="1440" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/assets/cloned/images/01f9106398bd.png" srcSet="/assets/cloned/images/756e22c7d430.png 910w, /assets/cloned/images/01f9106398bd.png 1280w" width="1280" />
+                          <img className="w-full h-90 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/1440] max-md:h-[23.5625rem] md:max-lg:h-60.5" data-component="image" alt="Gallery Image" height="1440" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/career-conferences.webp" srcSet="/media/career-guides.webp 910w, /media/career-conferences.webp 1280w" width="1280" />
                         </div>
                       </div>
                     </div>
@@ -1361,7 +1349,7 @@ export default function Page() {
                     <div className="w-45.5 h-45.5 flex absolute top-[15.4125rem] left-249 z-0 min-w-0 max-w-45.5 rounded-2xl justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-square transform-[matrix(1,0,0,1,-91,-91)] max-md:w-[3.35rem] max-md:h-[3.35rem] max-md:top-[17.35rem] max-md:left-[16.775rem] max-md:transform-[none] md:max-lg:w-[113.3px] md:max-lg:h-[113.3px] md:max-lg:top-[13.325rem] md:max-lg:left-[38.9375rem] md:max-lg:transform-[matrix(1,0,0,1,-56.6328,-56.6328)]" style={{ maskImage: "url(\"/assets/cloned/svg/7def0162e7a4.svg\")" }}>
                       <div className="basis-0 shrink-0 h-full block relative z-1 grow gap-2.5 overflow-clip">
                         <div className="h-full block absolute top-0 inset-x-0">
-                          <img className="w-full h-45.5 block overflow-clip object-cover aspect-[auto_1920/2880] max-md:h-13.5 md:max-lg:h-[7.0625rem]" data-component="image" alt={"Image\n"} height="2880" sizes="max(min(min(max(100vw - 60px, 1px), 1200px) * 0.1596, 182px), 1px)" src="/assets/cloned/images/8c63931a877a.jpg" srcSet="/assets/cloned/images/d548f1d8960a.jpg 682w, /assets/cloned/images/c25a640cbc73.jpg 1365w, /assets/cloned/images/8c63931a877a.jpg 1920w" width="1920" />
+                          <img className="w-full h-45.5 block overflow-clip object-cover aspect-[auto_1920/2880] max-md:h-13.5 md:max-lg:h-[7.0625rem]" data-component="image" alt={"Image\n"} height="2880" sizes="max(min(min(max(100vw - 60px, 1px), 1200px) * 0.1596, 182px), 1px)" src="/media/impact-wide.jpg" srcSet="/media/hero-poster.webp 682w, /media/impact-wide.jpg 1365w, /media/impact-wide.jpg 1920w" width="1920" />
                         </div>
                       </div>
                     </div>
@@ -1378,9 +1366,9 @@ export default function Page() {
                     <div className="w-full flex relative justify-start items-center content-center shrink-0 gap-7.5 overflow-clip max-md:gap-4 md:max-lg:gap-5">
                       <svg className="w-auto h-48 flex relative max-w-209.5 flex-col justify-start grow shrink-0 basis-0 overflow-hidden whitespace-pre text-nowrap max-md:h-[3.9375rem] md:max-lg:h-[8.4375rem]" data-component="image" viewBox="0 0 842.8 193" data-framer-name="IHSAAN" data-framer-component-type="RichTextContainer" fill="currentColor">
                         <foreignObject width="100%" height="100%" className="framer-fit-text" transform="scale(1)" style={{ overflow: "visible", transformOrigin: "center center" }}>
-                          <p dir="auto" className="framer-text" style={{ "-FontSelector": "R0Y7S3JvbmEgT25lLXJlZ3VsYXI=", "-FramerFontFamily": "\"Poppins\", \"Poppins Placeholder\", sans-serif", "-FramerFontSize": "160px", "-FramerLetterSpacing": "-0.03em", "-FramerLineHeight": "120%", "-FramerTextAlignment": "center", "-FramerTextColor": "var(--extracted-r6o4lv, var(--token-35b3ee99-d6e9-44d3-81d2-99d9e7f9f228, rgb(255, 255, 255)))", "-FramerTextTransform": "uppercase" }}>
+                          <p dir="auto" className="framer-text" style={{ fontFamily: "\"Poppins\", \"Poppins Placeholder\", sans-serif", fontSize: "160px", letterSpacing: "-0.03em", lineHeight: "120%", textAlign: "center", color: "var(--extracted-r6o4lv, var(--token-35b3ee99-d6e9-44d3-81d2-99d9e7f9f228, rgb(255, 255, 255)))", textTransform: "uppercase" }}>
                             {"IHSA"}
-                            <span className="framer-text" style={{ "-FramerTextColor": "var(--extracted-1w3ko1f, var(--token-5c7ce9e3-95e8-4ab4-abd8-71a63db54ab2, rgb(88, 223, 225)))" }}>
+                            <span className="framer-text" style={{ color: "var(--extracted-1w3ko1f, var(--token-5c7ce9e3-95e8-4ab4-abd8-71a63db54ab2, #4C78B8))" }}>
                               {"AN"}
                             </span>
                           </p>
@@ -1439,7 +1427,7 @@ export default function Page() {
                     </div>
                     <div className="flex relative justify-center items-center content-center shrink-0 gap-20 overflow-clip max-md:gap-4">
                       <div className="w-[6.4875rem] block relative shrink-0">
-                        <a className="h-[1.6rem] flex relative justify-center items-center content-center gap-[0.3125rem] overflow-clip text-primary cursor-pointer" data-component="link" href="https://www.framer.com/legal/privacy-statement" rel="noopener">
+                        <a className="h-[1.6rem] flex relative justify-center items-center content-center gap-[0.3125rem] overflow-clip text-primary cursor-pointer" data-component="link" href="/privacy" rel="noopener">
                           <div className="w-px h-px block absolute bottom-0 -left-px z-1 min-w-0 shrink-0 bg-color-001" />
                           <div className="w-[6.4875rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                             <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base leading-[1.625rem] [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
@@ -1449,7 +1437,7 @@ export default function Page() {
                         </a>
                       </div>
                       <div className="w-[10.2625rem] block relative shrink-0">
-                        <a className="h-[1.6rem] flex relative justify-center items-center content-center gap-[0.3125rem] overflow-clip text-primary cursor-pointer" data-component="link" href="https://www.framer.com/legal/terms-of-service" rel="noopener">
+                        <a className="h-[1.6rem] flex relative justify-center items-center content-center gap-[0.3125rem] overflow-clip text-primary cursor-pointer" data-component="link" href="/terms" rel="noopener">
                           <div className="w-px h-px block absolute bottom-0 -left-px z-1 min-w-0 shrink-0 bg-color-001" />
                           <div className="w-[10.2625rem] flex relative flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                             <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base leading-[1.625rem] [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
@@ -1480,9 +1468,9 @@ export default function Page() {
           </g>
           <defs>
             <linearGradient id="svg-961174506_797_paint0_linear_109_394" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#6553F5" />
-              <stop offset="0.776154" stopColor="#FF4282" />
-              <stop offset="1" stopColor="#EC00DB" />
+              <stop stopColor="#0A3463" />
+              <stop offset="0.776154" stopColor="#65408A" />
+              <stop offset="1" stopColor="#4C78B8" />
             </linearGradient>
             <clipPath id="svg-961174506_797_clip0_109_394">
               <rect width="72" height="72" fill="white" />
@@ -1496,9 +1484,9 @@ export default function Page() {
           </g>
           <defs>
             <linearGradient id="svg1040630239_739_paint0_linear_164_189" x1="0" y1="0" x2="150" y2="150" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#6553F5" />
-              <stop offset="0.776154" stopColor="#FF4282" />
-              <stop offset="1" stopColor="#EC00DB" />
+              <stop stopColor="#0A3463" />
+              <stop offset="0.776154" stopColor="#65408A" />
+              <stop offset="1" stopColor="#4C78B8" />
             </linearGradient>
             <clipPath id="svg1040630239_739_clip0_164_189">
               <rect width="150" height="150" fill="white" />

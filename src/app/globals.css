@@ -3,6 +3,27 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 @source "./";
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background: #0a3463;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid #4c78b8;
+  outline-offset: 3px;
+}
+
 /* Tailwind theme: color tokens (so bg-primary/text-foreground resolve to our vars) +
    breakpoints. @theme inline keeps the var() reference (theme-swappable at runtime). */
 @theme inline {

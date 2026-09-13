@@ -34,8 +34,8 @@ export default function MediaCard2({ d, styles }: { d: MediaCard2Data; styles: M
             <div className="w-[5.25rem] h-full flex absolute top-10 z-1 opacity-0 min-w-0 justify-center items-center content-center shrink-0 gap-[0.1875rem] max-lg:top-0 max-lg:opacity-[initial]">
               <div className="w-[1.5375rem] flex relative z-1 flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                 <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                  <a className="inline max-lg:cursor-pointer" data-component="link" href="https://facebook.com/" rel="noopener" target="_blank">
-                    {"FB "}
+                  <a className="inline max-lg:cursor-pointer" data-component="link" href="https://www.instagram.com/ihsaan.network/" rel="noopener noreferrer" target="_blank">
+                    IG
                   </a>
                 </p>
               </div>
@@ -46,20 +46,8 @@ export default function MediaCard2({ d, styles }: { d: MediaCard2Data; styles: M
               </div>
               <div className="w-[13.3px] flex relative z-1 flex-col justify-start shrink-0 whitespace-pre text-nowrap">
                 <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                  <a className="inline max-lg:cursor-pointer" data-component="link" href="https://linkedin.com/" rel="noopener" target="_blank">
+                  <a className="inline max-lg:cursor-pointer" data-component="link" href="https://www.linkedin.com/company/ihsaan-network/" rel="noopener noreferrer" target="_blank">
                     LI
-                  </a>
-                </p>
-              </div>
-              <div className="w-[6.5px] flex relative z-1 flex-col justify-start shrink-0 whitespace-pre text-nowrap">
-                <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                  /
-                </p>
-              </div>
-              <div className="w-[21.1px] flex relative z-1 flex-col justify-start shrink-0 whitespace-pre text-nowrap">
-                <p className="block text-background [font-family:'Poppins',_'Poppins_Placeholder',_sans-serif] text-base font-medium leading-4 uppercase [font-feature-settings:'blwf',_'cv03',_'cv04',_'cv09',_'cv11']" dir="auto">
-                  <a className="inline max-lg:cursor-pointer" data-component="link" href="https://youtube.com/" rel="noopener" target="_blank">
-                    YT
                   </a>
                 </p>
               </div>

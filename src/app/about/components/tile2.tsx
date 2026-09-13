@@ -1,7 +1,8 @@
+import type { CSSProperties } from "react";
 import type { Tile2Styles } from "../_styles";
 import { cn } from "../../../lib/utils";
 export type Tile2Data = {
-  style: string;
+  style: CSSProperties;
   description: string;
 };
 /** A content tile. */

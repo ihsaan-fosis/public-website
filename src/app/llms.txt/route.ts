@@ -10,6 +10,8 @@ IHSAAN elevates faith-driven talent. Public site for Muslim students and young p
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
 - [/ticket](/ticket) Get involved
+- [/privacy](/privacy) Privacy policy
+- [/terms](/terms) Terms and conditions
 
 ## Contact
 
