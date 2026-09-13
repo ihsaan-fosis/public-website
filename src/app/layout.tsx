@@ -21,35 +21,53 @@ export const viewport: Viewport = {
   ],
 };
 
-// Define metadata for better SEO
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://ihsaan.network";
+const siteName = "IHSAAN";
+const siteDescription =
+  "IHSAAN supports Muslim students and young professionals through programmes, opportunities, mentoring, and community.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
-  title: "Next.js Beginner Template",
-  description: "A beginner-friendly Next.js template with TailwindCSS and TypeScript",
-  keywords: ["Next.js", "React", "TailwindCSS", "TypeScript", "Template"],
-  authors: [{ name: "Created with Cursor Agent" }],
-  creator: "Cursor Agent",
-  publisher: "Cursor Agent",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "IHSAAN",
+    template: "%s | IHSAAN",
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  keywords: [
+    "IHSAAN",
+    "ihsaan.network",
+    "Muslim students",
+    "young professionals",
+    "mentoring",
+    "programmes",
+  ],
+  authors: [{ name: "IHSAAN", url: "https://ihsaan.network" }],
+  creator: "IHSAAN",
+  publisher: "IHSAAN",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Next.js Beginner Template",
-    description: "A beginner-friendly Next.js template with TailwindCSS and TypeScript",
-    url: "https://nextjs.org/",
-    siteName: "Next.js Beginner Template",
+    title: siteName,
+    description: siteDescription,
+    url: siteUrl,
+    siteName,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Next.js Beginner Template",
+        alt: "IHSAAN",
       },
     ],
-    locale: "en_US",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Next.js Beginner Template",
-    description: "A beginner-friendly Next.js template with TailwindCSS and TypeScript",
+    title: siteName,
+    description: siteDescription,
     images: ["/og-image.png"],
   },
   robots: {
