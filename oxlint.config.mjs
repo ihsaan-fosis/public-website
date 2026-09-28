@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   jsPlugins: [
     { name: "anti-slop", specifier: "./tools/oxlint/anti-slop/index.ts" },
+    "@shadcn/lint",
   ],
   rules: {
     "anti-slop/no-chained-type-assertions": "error",

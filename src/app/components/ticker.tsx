@@ -21,6 +21,9 @@ type TickerProps = {
  * Continuous horizontal marquee. The captured markup froze one animation frame
  * as a static translate, so the item list is echoed once and the row is driven
  * by rAF at the source speed, wrapping by the measured width of one set.
+ * Like the source, the offset wraps within [-distance - inset, -inset), where
+ * inset is the row's distance from the viewport edge, so the viewport's left
+ * edge is covered from the first frame.
  */
 export default function Ticker({ className, speed = 60, children }: TickerProps) {
   const list = useRef<HTMLUListElement>(null);
@@ -29,15 +32,34 @@ export default function Ticker({ className, speed = 60, children }: TickerProps)
   useEffect(() => {
     const el = list.current;
     if (!el || items.length === 0) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const first = el.children[0] as HTMLElement | undefined;
     const echo = el.children[items.length] as HTMLElement | undefined;
     if (!first || !echo) return;
-    const distance = echo.offsetLeft - first.offsetLeft;
-    if (distance <= 0) return;
 
+    let distance = 0;
+    let inset = 0;
     let offset = 0;
+
+    const render = () => {
+      if (distance <= 0) return;
+      while (offset >= -inset) offset -= distance;
+      while (offset < -inset - distance) offset += distance;
+      el.style.transform = `translateX(${offset}px)`;
+    };
+    // offsetLeft and the parent's box ignore the list's own transform.
+    const measure = () => {
+      distance = echo.offsetLeft - first.offsetLeft;
+      inset = Math.max(el.parentElement?.getBoundingClientRect().left ?? 0, 0);
+      render();
+    };
+    measure();
+    window.addEventListener("resize", measure);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return () => window.removeEventListener("resize", measure);
+    }
+
     let last = performance.now();
     let visible = true;
     let raf = 0;
@@ -48,8 +70,7 @@ export default function Ticker({ className, speed = 60, children }: TickerProps)
       last = now;
       if (visible) {
         offset -= speed * dt;
-        while (-offset >= distance) offset += distance;
-        el.style.transform = `translateX(${offset}px)`;
+        render();
       }
       raf = requestAnimationFrame(frame);
     };
@@ -59,11 +80,13 @@ export default function Ticker({ className, speed = 60, children }: TickerProps)
       visible = entry.isIntersecting;
       last = performance.now();
     });
-    observer.observe(el);
+    // The list's own box is translated off-screen, so watch its parent.
+    observer.observe(el.parentElement ?? el);
 
     return () => {
       cancelAnimationFrame(raf);
       observer.disconnect();
+      window.removeEventListener("resize", measure);
     };
   }, [items.length, speed]);
 
