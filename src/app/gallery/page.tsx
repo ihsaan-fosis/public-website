@@ -24,14 +24,14 @@ const Tile_data2 = [
     { href: "/contact", description: "Contact" },
 ];
 const Logo_data = [
-    { imgSrc: "/partners/AOME.png", srcSet: "/assets/cloned/images/a1e000110cde.png 972w,  1710w" },
+    { imgSrc: "/partners/AOME.png", srcSet: "/assets/cloned/images/a1e000110cde.webp 972w,  1710w" },
     { imgSrc: "/media/blue-logo.webp", srcSet: "/assets/cloned/images/4acb3ce228c8.png 972w,  1710w" },
-    { imgSrc: "/media/logo.webp", srcSet: "/assets/cloned/images/f9c59637009f.png 972w,  1710w" },
-    { imgSrc: "/media/faithful-talent.jpg", srcSet: "/assets/cloned/images/8bf0787855c5.png 972w,  1710w" },
-    { imgSrc: "/media/career-conference.jpg", srcSet: "/assets/cloned/images/4de044329b2c.png 972w,  1710w" },
-    { imgSrc: "/media/impact.jpg", srcSet: "/assets/cloned/images/c222a474b27e.png 972w,  1710w" },
+    { imgSrc: "/media/logo.webp", srcSet: "/assets/cloned/images/f9c59637009f.webp 972w,  1710w" },
+    { imgSrc: "/media/faithful-talent.webp", srcSet: "/assets/cloned/images/8bf0787855c5.webp 972w,  1710w" },
+    { imgSrc: "/media/career-conference.webp", srcSet: "/assets/cloned/images/4de044329b2c.png 972w,  1710w" },
+    { imgSrc: "/media/impact.webp", srcSet: "/assets/cloned/images/c222a474b27e.png 972w,  1710w" },
     { imgSrc: "/media/hero-poster.webp", srcSet: "/assets/cloned/images/746638478db3.png 972w,  1710w" },
-    { imgSrc: "/media/impact-wide.jpg", srcSet: "/assets/cloned/images/77499269e81e.png 972w,  1710w" }
+    { imgSrc: "/media/impact-wide.webp", srcSet: "/assets/cloned/images/77499269e81e.webp 972w,  1710w" }
 ];
 const Tile2_data = [
     { href: "https://www.instagram.com/ihsaan.network/", description: "Instagram" },

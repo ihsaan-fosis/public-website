@@ -281,7 +281,7 @@ export default function Page() {
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     poster="/media/hero-poster.webp"
                     src="/media/hero-video.mp4"
                     aria-label="IHSAAN hero background"
@@ -322,7 +322,7 @@ export default function Page() {
                           <div className="contents min-w-0 max-md:w-40 max-md:h-40 max-md:block max-md:relative max-md:z-1 max-md:grow max-md:shrink-0 max-md:basis-0 max-md:gap-2.5 max-md:overflow-clip">
                             <div className="w-[26.9375rem] h-full block relative z-1 grow shrink-0 basis-0 gap-2.5 overflow-clip md:max-lg:w-70">
                               <div className="h-full block absolute top-0 inset-x-0 max-md:hidden">
-                                <img className="w-full h-[26.9375rem] block overflow-clip object-cover object-[67.8%_6.4%] aspect-[auto_2000/1334] max-md:hidden md:max-lg:h-70" data-component="image" alt={"Image\n"} height="1334" sizes="431px" src="/media/impact.jpg" srcSet="/media/impact.jpg 512w, /media/impact.jpg 1024w, /media/impact.jpg 2000w" width="2000" />
+                                <img className="w-full h-[26.9375rem] block overflow-clip object-cover object-[67.8%_6.4%] aspect-[auto_2000/1334] max-md:hidden md:max-lg:h-70" data-component="image" alt={"Image\n"} height="1334" sizes="431px" src="/media/impact.webp" srcSet="/media/impact.webp 512w, /media/impact.webp 1024w, /media/impact.webp 2000w" width="2000" />
                               </div>
                             </div>
                           </div>
@@ -333,7 +333,7 @@ export default function Page() {
                           <div className="contents min-w-0 max-md:w-40 max-md:h-40 max-md:block max-md:relative max-md:z-1 max-md:grow max-md:shrink-0 max-md:basis-0 max-md:gap-2.5 max-md:overflow-clip">
                             <div className="w-[26.9375rem] h-full block relative z-1 grow shrink-0 basis-0 gap-2.5 overflow-clip md:max-lg:w-70">
                               <div className="w-[26.9375rem] h-full block absolute top-0 max-md:hidden">
-                                <img className="w-full h-[26.9375rem] block overflow-clip object-cover aspect-[auto_1920/1280] max-md:hidden md:max-lg:h-70" data-ditto-id="style-image" alt={"Image\n"} height="1280" sizes="431px" src="/media/impact-wide.jpg" srcSet="/media/impact-wide.jpg 512w, /media/impact-wide.jpg 1024w, /media/impact-wide.jpg 1920w" width="1920" />
+                                <img className="w-full h-[26.9375rem] block overflow-clip object-cover aspect-[auto_1920/1280] max-md:hidden md:max-lg:h-70" data-ditto-id="style-image" alt={"Image\n"} height="1280" sizes="431px" src="/media/impact-wide.webp" srcSet="/media/impact-wide.webp 512w, /media/impact-wide.webp 1024w, /media/impact-wide.webp 1920w" width="1920" />
                               </div>
                             </div>
                           </div>
@@ -392,7 +392,7 @@ export default function Page() {
                   <div className="contents min-w-0">
                     <div className="w-196 block relative max-w-196 rounded-[10px] self-stretch grow shrink-0 basis-0 overflow-clip max-md:w-[20.9375rem] max-md:aspect-[0.977654/1] max-md:max-w-none max-md:[align-self:initial] max-md:grow-[initial] max-md:basis-[initial] md:max-lg:w-83.5">
                       <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                        <img className="w-full h-122 block rounded-[10px] overflow-clip object-cover aspect-[auto_1176/732] max-md:h-[21.4375rem] md:max-lg:h-[21.9375rem]" data-component="image" alt="" height="732" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 80px) / 2, 1px), 784px)" src="/media/photo-collage.jpg" srcSet="/media/career-conferences.webp 512w, /media/faithful-talent.webp 1024w, /media/photo-collage.jpg 1176w" width="1176" />
+                        <img className="w-full h-122 block rounded-[10px] overflow-clip object-cover aspect-[auto_1176/732] max-md:h-[21.4375rem] md:max-lg:h-[21.9375rem]" data-component="image" alt="" height="732" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 80px) / 2, 1px), 784px)" src="/media/photo-collage.webp" srcSet="/media/career-conferences.webp 512w, /media/faithful-talent.webp 1024w, /media/photo-collage.webp 1176w" width="1176" />
                       </div>
                     </div>
                   </div>
@@ -474,7 +474,7 @@ export default function Page() {
                       <div className="contents min-w-0">
                         <div className="w-92.5 block relative rounded-md shrink-0 overflow-clip aspect-[1.01093/1] max-md:w-[19.6875rem] max-md:aspect-[1.17857/1] md:max-lg:w-172 md:max-lg:aspect-[1.26937/1]">
                           <div className="h-full block absolute top-0 inset-x-0 rounded-md">
-                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_1134/1110] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="1110" sizes="370px" src="/media/career-conferences.webp" srcSet="/media/opp-tracker.webp 512w, /media/impact.jpg 1024w, /media/career-conferences.webp 1134w" width="1134" />
+                            <img className="w-full h-91.5 block rounded-md overflow-clip object-cover aspect-[auto_1134/1110] max-md:h-[16.6875rem] md:max-lg:h-135.5" data-component="image" alt="" height="1110" sizes="370px" src="/media/career-conferences.webp" srcSet="/media/opp-tracker.webp 512w, /media/impact.webp 1024w, /media/career-conferences.webp 1134w" width="1134" />
                           </div>
                         </div>
                       </div>
@@ -889,7 +889,7 @@ export default function Page() {
               <div className="w-full max-w-300 flex relative flex-col justify-center items-center content-center grow shrink-0 basis-0 gap-20 overflow-clip max-md:gap-10 md:max-lg:gap-12.5">
                 <div className="w-full flex relative rounded-[10px] justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-[1.71429/1] transform-[matrix(0.508717,0,0,0.508717,0,0)] origin-[600px_349.992px] max-md:aspect-[1.4/1] max-lg:transform-[matrix(0.5,0,0,0.5,0,0)] max-md:origin-[167.5px_119.641px] md:max-lg:origin-[354px_206.492px] 2xl:transform-[matrix(0.5,0,0,0.5,0,0)]">
                   <div className="basis-0 shrink-0 h-full block relative grow">
-                    <video className="w-full h-175 block overflow-clip object-cover max-md:h-[14.9375rem] md:max-lg:h-[25.8125rem]" autoPlay loop muted playsInline poster="/media/hero-poster.webp" preload="auto" src="/media/hero-video.mp4" />
+                    <video className="w-full h-175 block overflow-clip object-cover max-md:h-[14.9375rem] md:max-lg:h-[25.8125rem]" autoPlay loop muted playsInline poster="/media/hero-poster.webp" preload="metadata" src="/media/hero-video.mp4" />
                   </div>
                 </div>
               </div>
@@ -1192,7 +1192,7 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[1.06667/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-75 block rounded-[10px] overflow-clip object-cover aspect-[auto_960/900] max-md:h-78.5 md:max-lg:h-[12.5625rem]" data-component="image" alt="Gallery Image" height="900" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/impact.jpg" srcSet="/media/career-conferences.webp 512w, /media/impact.jpg 960w" width="960" />
+                          <img className="w-full h-75 block rounded-[10px] overflow-clip object-cover aspect-[auto_960/900] max-md:h-78.5 md:max-lg:h-[12.5625rem]" data-component="image" alt="Gallery Image" height="900" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/impact.webp" srcSet="/media/career-conferences.webp 512w, /media/impact.webp 960w" width="960" />
                         </div>
                       </div>
                     </div>
@@ -1228,7 +1228,7 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="w-full block relative rounded-[10px] shrink-0 overflow-clip aspect-[1.33333/1]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/opp-tracker.webp" srcSet="/media/haqqathons.webp 512w, /media/photo-collage.jpg 1024w, /media/opp-tracker.webp 1280w" width="1280" />
+                          <img className="w-full h-60 block rounded-[10px] overflow-clip object-cover aspect-[auto_1280/960] max-md:h-[15.6875rem] md:max-lg:h-[10.0625rem]" data-component="image" alt="Gallery Image" height="960" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 160px) / 3, 1px), 320px)" src="/media/opp-tracker.webp" srcSet="/media/haqqathons.webp 512w, /media/photo-collage.webp 1024w, /media/opp-tracker.webp 1280w" width="1280" />
                         </div>
                       </div>
                     </div>
@@ -1349,7 +1349,7 @@ export default function Page() {
                     <div className="w-45.5 h-45.5 flex absolute top-[15.4125rem] left-249 z-0 min-w-0 max-w-45.5 rounded-2xl justify-center items-center content-center shrink-0 gap-2.5 overflow-clip aspect-square transform-[matrix(1,0,0,1,-91,-91)] max-md:w-[3.35rem] max-md:h-[3.35rem] max-md:top-[17.35rem] max-md:left-[16.775rem] max-md:transform-[none] md:max-lg:w-[113.3px] md:max-lg:h-[113.3px] md:max-lg:top-[13.325rem] md:max-lg:left-[38.9375rem] md:max-lg:transform-[matrix(1,0,0,1,-56.6328,-56.6328)]" style={{ maskImage: "url(\"/assets/cloned/svg/7def0162e7a4.svg\")" }}>
                       <div className="basis-0 shrink-0 h-full block relative z-1 grow gap-2.5 overflow-clip">
                         <div className="h-full block absolute top-0 inset-x-0">
-                          <img className="w-full h-45.5 block overflow-clip object-cover aspect-[auto_1920/2880] max-md:h-13.5 md:max-lg:h-[7.0625rem]" data-component="image" alt={"Image\n"} height="2880" sizes="max(min(min(max(100vw - 60px, 1px), 1200px) * 0.1596, 182px), 1px)" src="/media/impact-wide.jpg" srcSet="/media/hero-poster.webp 682w, /media/impact-wide.jpg 1365w, /media/impact-wide.jpg 1920w" width="1920" />
+                          <img className="w-full h-45.5 block overflow-clip object-cover aspect-[auto_1920/2880] max-md:h-13.5 md:max-lg:h-[7.0625rem]" data-component="image" alt={"Image\n"} height="2880" sizes="max(min(min(max(100vw - 60px, 1px), 1200px) * 0.1596, 182px), 1px)" src="/media/impact-wide.webp" srcSet="/media/hero-poster.webp 682w, /media/impact-wide.webp 1365w, /media/impact-wide.webp 1920w" width="1920" />
                         </div>
                       </div>
                     </div>

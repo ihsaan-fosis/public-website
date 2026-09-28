@@ -29,7 +29,7 @@ export default function MediaCard({ d, styles }: { d: MediaCardData; styles: Med
           <div className="contents min-w-0">
             <div className="w-full block relative max-w-100 rounded-[10px] shrink-0 overflow-clip aspect-[1.81818/1] max-lg:aspect-[1.8836/1] max-lg:max-w-none">
               <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                <img className="w-full h-55 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/660] max-md:h-[9.8125rem] md:max-lg:h-[12.4375rem]" data-component="image" alt="Image" height="660" src="/assets/cloned/images/bee07d728783.png" srcSet="/assets/cloned/images/7ee2942d6394.png 512w, /assets/cloned/images/5eeb186a6eee.png 1024w, /assets/cloned/images/bee07d728783.png 1200w" width="1200" />
+                <img className="w-full h-55 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/660] max-md:h-[9.8125rem] md:max-lg:h-[12.4375rem]" data-component="image" alt="Image" height="660" src="/assets/cloned/images/bee07d728783.webp" srcSet="/assets/cloned/images/7ee2942d6394.webp 512w, /assets/cloned/images/5eeb186a6eee.webp 1024w, /assets/cloned/images/bee07d728783.webp 1200w" width="1200" />
               </div>
             </div>
           </div>

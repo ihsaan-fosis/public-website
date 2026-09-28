@@ -38,9 +38,9 @@ const Tile2_data = [
 ];
 const Logo_data = [
     { height: "1380", imgSrc: "/partners/Emerald.webp", srcSet: "/assets/cloned/images/95be43ee9550.png 890w,  1200w", width: "1200" },
-    { height: "1380", imgSrc: "/media/impact.jpg", srcSet: "/assets/cloned/images/6dab6ecff718.png 890w,  1200w", width: "1200" },
-    { height: "1380", imgSrc: "/partners/MC.svg", srcSet: "/assets/cloned/images/02ca60975991.png 890w,  1200w", width: "1200" },
-    { height: "1840", imgSrc: "/media/photo-collage.jpg", srcSet: "/assets/cloned/images/470ed2cf7603.png 890w,  1600w", width: "1600" }
+    { height: "1380", imgSrc: "/media/impact.webp", srcSet: "/assets/cloned/images/6dab6ecff718.webp 890w,  1200w", width: "1200" },
+    { height: "1380", imgSrc: "/partners/MC.webp", srcSet: "/assets/cloned/images/02ca60975991.png 890w,  1200w", width: "1200" },
+    { height: "1840", imgSrc: "/media/photo-collage.webp", srcSet: "/assets/cloned/images/470ed2cf7603.png 890w,  1600w", width: "1600" }
 ];
 const FeatureCard_data = [
     { title: "500", description: "Conference signups" },
@@ -48,13 +48,13 @@ const FeatureCard_data = [
     { title: "200", description: "Internship places" }
 ];
 const MediaCard_data = [
-    { title: "Career conferences", description: "Gain insights from leading innovators, and decision-makers from around the world.", height: "600", imgSrc: "/media/faithful-talent.jpg", srcSet: "/assets/cloned/images/38bfc2fc431e.png 512w,  960w" },
+    { title: "Career conferences", description: "Gain insights from leading innovators, and decision-makers from around the world.", height: "600", imgSrc: "/media/faithful-talent.webp", srcSet: "/assets/cloned/images/38bfc2fc431e.png 512w,  960w" },
     { title: "Faithful Talent", description: "We bring years of experience in organizing world-class conferences.", height: "630", imgSrc: "/media/logo.webp", srcSet: "/assets/cloned/images/fc1b2537a803.png 512w,  960w" },
     { title: "Hackathons", description: "Enjoy smooth registration, modern venues, and well-structured sessions.", height: "600", imgSrc: "/media/blue-logo.webp", srcSet: "/assets/cloned/images/4d9658f72a86.png 512w,  960w" }
 ];
 const MediaCard2_data = [
-    { height: "1500", imgSrc: "/partners/Greentech.webp", srcSet: "/assets/cloned/images/8a861c39199f.png 512w, /assets/cloned/images/eabe59ef54b1.png 1024w,  1500w", description: "Flagship events", title: "Career Conferences" },
-    { height: "1500", imgSrc: "/partners/DeenDeveleopers.webp", srcSet: "/assets/cloned/images/e24a981be83c.png 512w, /assets/cloned/images/f3da884af1a7.png 1024w,  1500w", description: "Internships", title: "Faithful Talent" },
+    { height: "1500", imgSrc: "/partners/Greentech.webp", srcSet: "/assets/cloned/images/8a861c39199f.png 512w, /assets/cloned/images/eabe59ef54b1.webp 1024w,  1500w", description: "Flagship events", title: "Career Conferences" },
+    { height: "1500", imgSrc: "/partners/DeenDeveleopers.webp", srcSet: "/assets/cloned/images/e24a981be83c.png 512w, /assets/cloned/images/f3da884af1a7.webp 1024w,  1500w", description: "Internships", title: "Faithful Talent" },
     { height: "1991", imgSrc: "/partners/KPMC.png", srcSet: "/assets/cloned/images/3783e35f28d7.png 771w,  1500w", description: "Build with purpose", title: "Hackathons" }
 ];
 const Logo2_data = [
@@ -368,7 +368,7 @@ export default function Page() {
                           <div className="contents max-md:w-49.5 max-md:h-[227.7px] max-md:block max-md:relative max-md:rounded-[10px] max-md:shrink-0 max-md:overflow-clip max-md:aspect-[0.869565/1]">
                             <div className="w-100 block relative rounded-[10px] shrink-0 overflow-clip aspect-[0.869565/1] md:max-lg:w-61.5" data-ditto-id="style-div-10">
                               <div className="h-full block absolute top-0 inset-x-0 rounded-[10px] max-md:hidden">
-                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/1380] max-md:hidden md:max-lg:h-[17.6875rem]" data-component="image" alt="Image" height="1380" sizes="400px" src="/media/impact.jpg" srcSet="/assets/cloned/images/6dab6ecff718.png 890w, /media/impact.jpg 1200w" width="1200" />
+                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/1380] max-md:hidden md:max-lg:h-[17.6875rem]" data-component="image" alt="Image" height="1380" sizes="400px" src="/media/impact.webp" srcSet="/assets/cloned/images/6dab6ecff718.webp 890w, /media/impact.webp 1200w" width="1200" />
                               </div>
                             </div>
                           </div>
@@ -376,9 +376,9 @@ export default function Page() {
                         <li className="list-item relative shrink-0" data-ditto-id="style-image-2" aria-hidden="false" aria-posinset={3} aria-setsize={4}>
                           <div className="contents max-md:w-49.5 max-md:h-[227.7px] max-md:block max-md:relative max-md:rounded-[10px] max-md:shrink-0 max-md:overflow-clip max-md:aspect-[0.869565/1]">
                             <div className="w-100 h-115 block relative inset-0 rounded-[10px] shrink-0 overflow-clip aspect-[0.869565/1] max-md:w-49.5 max-md:h-[227.7px] max-md:absolute max-md:right-auto max-md:bottom-auto max-md:shrink-[initial] max-md:[overflow-x:initial] max-md:[overflow-y:initial] max-md:aspect-[initial] md:max-lg:w-61.5 md:max-lg:h-[282.9px]">
-                              <img className="hidden max-md:w-full max-md:h-57 max-md:block max-md:rounded-[10px] max-md:overflow-clip max-md:object-cover max-md:aspect-[auto_1200/1380]" alt="Image" height="1380" sizes="198px" src="/partners/MC.svg" srcSet="/assets/cloned/images/02ca60975991.png 890w, /partners/MC.svg 1200w" width="1200" />
+                              <img className="hidden max-md:w-full max-md:h-57 max-md:block max-md:rounded-[10px] max-md:overflow-clip max-md:object-cover max-md:aspect-[auto_1200/1380]" alt="Image" height="1380" sizes="198px" src="/partners/MC.webp" srcSet="/assets/cloned/images/02ca60975991.png 890w, /partners/MC.webp 1200w" width="1200" />
                               <div className="w-100 h-full block absolute top-0 rounded-[10px] max-md:hidden">
-                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/1380] max-md:hidden md:max-lg:h-[17.6875rem]" data-component="image" alt="Image" height="1380" sizes="400px" src="/partners/MC.svg" srcSet="/assets/cloned/images/02ca60975991.png 890w, /partners/MC.svg 1200w" width="1200" />
+                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/1380] max-md:hidden md:max-lg:h-[17.6875rem]" data-component="image" alt="Image" height="1380" sizes="400px" src="/partners/MC.webp" srcSet="/assets/cloned/images/02ca60975991.png 890w, /partners/MC.webp 1200w" width="1200" />
                               </div>
                             </div>
                           </div>
@@ -386,9 +386,9 @@ export default function Page() {
                         <li className="list-item relative shrink-0" data-ditto-id="style-li" aria-hidden="false" aria-posinset={4} aria-setsize={4}>
                           <div className="contents max-md:w-49.5 max-md:h-[227.7px] max-md:block max-md:relative max-md:rounded-[10px] max-md:shrink-0 max-md:overflow-clip max-md:aspect-[0.869565/1]">
                             <div className="w-100 h-115 block relative inset-0 rounded-[10px] shrink-0 overflow-clip aspect-[0.869565/1] max-md:w-49.5 max-md:h-[227.7px] max-md:absolute max-md:right-auto max-md:bottom-auto max-md:shrink-[initial] max-md:[overflow-x:initial] max-md:[overflow-y:initial] max-md:aspect-[initial] md:max-lg:w-61.5 md:max-lg:h-[282.9px]">
-                              <img className="hidden max-md:w-full max-md:h-57 max-md:block max-md:rounded-[10px] max-md:overflow-clip max-md:object-cover max-md:aspect-[auto_1600/1840]" alt="Image" height="1840" sizes="198px" src="/media/photo-collage.jpg" srcSet="/assets/cloned/images/470ed2cf7603.png 890w, /media/photo-collage.jpg 1600w" width="1600" />
+                              <img className="hidden max-md:w-full max-md:h-57 max-md:block max-md:rounded-[10px] max-md:overflow-clip max-md:object-cover max-md:aspect-[auto_1600/1840]" alt="Image" height="1840" sizes="198px" src="/media/photo-collage.webp" srcSet="/assets/cloned/images/470ed2cf7603.png 890w, /media/photo-collage.webp 1600w" width="1600" />
                               <div className="h-full block absolute top-0 inset-x-0 rounded-[10px] max-md:hidden">
-                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1600/1840] max-md:hidden md:max-lg:h-[17.6875rem]" data-ditto-id="style-image" data-component="image" alt="Image" height="1840" sizes="400px" src="/media/photo-collage.jpg" srcSet="/assets/cloned/images/470ed2cf7603.png 890w, /media/photo-collage.jpg 1600w" width="1600" />
+                                <img className="w-full h-115 block rounded-[10px] overflow-clip object-cover aspect-[auto_1600/1840] max-md:hidden md:max-lg:h-[17.6875rem]" data-ditto-id="style-image" data-component="image" alt="Image" height="1840" sizes="400px" src="/media/photo-collage.webp" srcSet="/assets/cloned/images/470ed2cf7603.png 890w, /media/photo-collage.webp 1600w" width="1600" />
                               </div>
                             </div>
                           </div>
@@ -429,7 +429,7 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="w-300 h-full block relative rounded-[10px] grow shrink-0 basis-0 overflow-clip transform-[matrix(1,0,0,1,0,-240)] max-md:w-[20.9375rem] max-md:transform-[matrix(1,0,0,1,0,-60)] md:max-lg:w-177 md:max-lg:transform-[matrix(1,0,0,1,0,-120)]">
                         <div className="h-full block absolute top-0 inset-x-0 rounded-[10px]">
-                          <img className="w-full h-175 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/700] max-md:h-67 md:max-lg:h-[25.8125rem]" data-component="image" alt="Image" height="700" sizes="max(min(max(100vw - 60px, 1px), 1200px), 1px)" src="/assets/cloned/images/5773f5066e7c.png" srcSet="/assets/cloned/images/0dde2abc88ec.png 512w, /assets/cloned/images/04e63ecb9791.png 1024w, /assets/cloned/images/5773f5066e7c.png 1200w" width="1200" />
+                          <img className="w-full h-175 block rounded-[10px] overflow-clip object-cover aspect-[auto_1200/700] max-md:h-67 md:max-lg:h-[25.8125rem]" data-component="image" alt="Image" height="700" sizes="max(min(max(100vw - 60px, 1px), 1200px), 1px)" src="/assets/cloned/images/5773f5066e7c.webp" srcSet="/assets/cloned/images/0dde2abc88ec.webp 512w, /assets/cloned/images/04e63ecb9791.webp 1024w, /assets/cloned/images/5773f5066e7c.webp 1200w" width="1200" />
                         </div>
                       </div>
                     </div>

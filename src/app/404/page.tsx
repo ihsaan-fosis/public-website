@@ -190,7 +190,7 @@ export default function Page() {
               <div className="h-full block absolute top-0 inset-x-0 z-1 min-w-0 shrink-0 overflow-clip" style={{ backgroundImage: "linear-gradient(90deg, var(--accent) 0%, var(--clr-14) 100%)" }} />
               <div className="h-full block absolute top-0 inset-x-0 z-0 min-w-0 shrink-0 overflow-clip">
                 <div className="h-full block absolute top-0 inset-x-0">
-                  <img className="w-full h-[59.9375rem] block overflow-clip object-cover aspect-[auto_1600/960] max-md:h-[29.6875rem] md:max-lg:h-132.5" data-component="image" alt="Bg Image" height="960" sizes="(min-width: 1200px) 100vw, (min-width: 768px) and (max-width: 1199.98px) 100vw, (max-width: 767.98px) 100vw" src="/assets/cloned/images/31f3ee6fff75.png" srcSet="/assets/cloned/images/d8a62418ee58.png 512w, /assets/cloned/images/109cabea20ea.png 1024w, /assets/cloned/images/31f3ee6fff75.png 1600w" width="1600" />
+                  <img className="w-full h-[59.9375rem] block overflow-clip object-cover aspect-[auto_1600/960] max-md:h-[29.6875rem] md:max-lg:h-132.5" data-component="image" alt="Bg Image" height="960" sizes="(min-width: 1200px) 100vw, (min-width: 768px) and (max-width: 1199.98px) 100vw, (max-width: 767.98px) 100vw" src="/assets/cloned/images/31f3ee6fff75.webp" srcSet="/assets/cloned/images/d8a62418ee58.png 512w, /assets/cloned/images/109cabea20ea.webp 1024w, /assets/cloned/images/31f3ee6fff75.webp 1600w" width="1600" />
                 </div>
               </div>
               <div className="w-full max-w-300 flex relative z-2 flex-col justify-center items-center content-center grow shrink-0 basis-0 gap-15 overflow-clip max-md:gap-6 md:max-lg:gap-8">

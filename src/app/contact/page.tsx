@@ -28,10 +28,10 @@ const Logo_data = [
     { imgSrc: "/partners/KPMC.png" },
     { imgSrc: "/partners/MTF-Finance.webp" },
     { imgSrc: "/partners/MIRE.webp" },
-    { imgSrc: "/media/impact.jpg" },
-    { imgSrc: "/media/career-conference.jpg" },
+    { imgSrc: "/media/impact.webp" },
+    { imgSrc: "/media/career-conference.webp" },
     { imgSrc: "/partners/Emerald.webp" },
-    { imgSrc: "/media/faithful-talent.jpg" },
+    { imgSrc: "/media/faithful-talent.webp" },
     { imgSrc: "/partners/My-Fridays.webp" },
     { imgSrc: "/partners/Rail.webp" },
     { imgSrc: "/partners/PWC.webp" },
@@ -39,9 +39,9 @@ const Logo_data = [
     { imgSrc: "/partners/AOME.png" },
     { imgSrc: "/media/blue-logo.webp" },
     { imgSrc: "/media/hero-poster.webp" },
-    { imgSrc: "/media/impact-wide.jpg" },
-    { imgSrc: "/media/photo-collage.jpg" },
-    { imgSrc: "/partners/MC.svg" },
+    { imgSrc: "/media/impact-wide.webp" },
+    { imgSrc: "/media/photo-collage.webp" },
+    { imgSrc: "/partners/MC.webp" },
     { imgSrc: "/partners/MIPP.webp" },
     { imgSrc: "/partners/Greentech.webp" },
     { imgSrc: "/partners/CubeNetwork.webp" },
@@ -276,7 +276,7 @@ export default function Page() {
               <div className="h-full block absolute top-0 inset-x-0 z-1 min-w-0 shrink-0 overflow-clip" style={{ backgroundImage: "linear-gradient(90deg, var(--accent) 0%, var(--clr-14) 100%)" }} />
               <div className="h-full block absolute top-0 inset-x-0 z-0 min-w-0 shrink-0 overflow-clip">
                 <div className="h-full block absolute top-0 inset-x-0">
-                  <img className="w-full h-200 block overflow-clip object-cover aspect-[auto_1600/800] max-md:h-87 md:max-lg:h-118" data-component="image" alt="Bg Image" height="800" sizes="(min-width: 1200px) 100vw, (min-width: 768px) and (max-width: 1199.98px) 100vw, (max-width: 767.98px) 100vw" src="/assets/cloned/images/2f69b89e066a.png" srcSet="/assets/cloned/images/6789ffe2a68e.png 512w, /assets/cloned/images/2e3012275617.png 1024w, /assets/cloned/images/2f69b89e066a.png 1600w" width="1600" />
+                  <img className="w-full h-200 block overflow-clip object-cover aspect-[auto_1600/800] max-md:h-87 md:max-lg:h-118" data-component="image" alt="Bg Image" height="800" sizes="(min-width: 1200px) 100vw, (min-width: 768px) and (max-width: 1199.98px) 100vw, (max-width: 767.98px) 100vw" src="/assets/cloned/images/2f69b89e066a.webp" srcSet="/assets/cloned/images/6789ffe2a68e.webp 512w, /assets/cloned/images/2e3012275617.webp 1024w, /assets/cloned/images/2f69b89e066a.webp 1600w" width="1600" />
                 </div>
               </div>
               <div className="w-full max-w-300 flex relative z-2 flex-col justify-center items-center content-center grow shrink-0 basis-0 gap-2.5 overflow-clip max-md:gap-2">
@@ -311,7 +311,7 @@ export default function Page() {
                     <div className="contents min-w-0">
                       <div className="h-[39.575rem] block absolute top-0 inset-x-0 z-0 shrink-0 overflow-clip max-md:h-[444.1px] md:max-lg:h-[46.1875rem]">
                         <div className="h-full block absolute top-0 inset-x-0">
-                          <img className="w-full h-[39.5625rem] block overflow-clip object-cover aspect-[auto_1710/1974] max-md:h-111 md:max-lg:h-[46.1875rem]" data-component="image" alt="Image" height="1974" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 30px) / 2, 1px), 570px)" src="/assets/cloned/images/8aad160fe46e.png" srcSet="/assets/cloned/images/be37ed294768.png 887w, /assets/cloned/images/8aad160fe46e.png 1710w" width="1710" />
+                          <img className="w-full h-[39.5625rem] block overflow-clip object-cover aspect-[auto_1710/1974] max-md:h-111 md:max-lg:h-[46.1875rem]" data-component="image" alt="Image" height="1974" sizes="min(max((min(max(100vw - 60px, 1px), 1200px) - 30px) / 2, 1px), 570px)" src="/assets/cloned/images/8aad160fe46e.webp" srcSet="/assets/cloned/images/be37ed294768.webp 887w, /assets/cloned/images/8aad160fe46e.webp 1710w" width="1710" />
                         </div>
                       </div>
                     </div>
