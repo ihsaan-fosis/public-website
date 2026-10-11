@@ -3,7 +3,7 @@ const isDev = process.env.NODE_ENV !== "production";
 
 const nextConfig = {
   reactStrictMode: true,
-  // Ditto clone uses plain <img> and static asset paths under /public.
+  // Pages use plain <img> with static assets under /public.
   images: { unoptimized: true },
   async redirects() {
     return [

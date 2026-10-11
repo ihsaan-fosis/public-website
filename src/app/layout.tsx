@@ -2,6 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Poppins } from "next/font/google";
+import { RevealObserver } from "@/components/motion";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { SITE_ORIGIN } from "../lib/site";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
@@ -78,12 +81,21 @@ const organizationJsonLd = {
   ],
 };
 
+// Runs before paint so the stored or system theme applies without a flash.
+const themeScript = `(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.dataset.theme=t})()`;
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-GB" className={poppins.variable}>
-      <body className={`cn0 ${poppins.className}`}>
+    <html lang="en-GB" className={poppins.variable} data-theme="light" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${poppins.className} min-h-screen`}>
         <a className="skip-link" href="#main-content">Skip to main content</a>
+        <SiteHeader />
         <main id="main-content">{children}</main>
+        <SiteFooter />
+        <RevealObserver />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}

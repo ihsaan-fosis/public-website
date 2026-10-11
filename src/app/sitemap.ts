@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { PROGRAMME_PAGES } from "../content/programmes";
 import { SITE_ORIGIN } from "../lib/site";
 
 export const dynamic = "force-static";
@@ -10,6 +11,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly",
     priority: 1,
   },
+  {
+    url: SITE_ORIGIN + "/programmes",
+    changeFrequency: "weekly",
+    priority: 0.8,
+  },
+  ...PROGRAMME_PAGES.map(({ slug }) => ({
+    url: `${SITE_ORIGIN}/programmes/${slug}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  })),
   {
     url: SITE_ORIGIN + "/about",
     changeFrequency: "weekly",
