@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { HeroVideo, MarqueeGroup, RevealObserver } from "./motion";
-import { Glow, PhotoHero, SectionHeading, SectionTitle } from "./ui";
+import { Glow, PhotoHero, SectionHeading } from "./ui";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
 
@@ -148,10 +148,10 @@ describe("MarqueeGroup", () => {
   });
 });
 
-describe("RevealObserver title rules", () => {
+describe("RevealObserver", () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it("cycles the accent tone by document order and reveals each rule when it intersects", () => {
+  it("reveals each data-reveal target when it intersects", () => {
     const observed: Element[] = [];
     let notify: IntersectionObserverCallback = () => undefined;
     class FiringObserver {
@@ -174,18 +174,21 @@ describe("RevealObserver title rules", () => {
       <>
         <RevealObserver />
         <SectionHeading id="a" title="First" />
-        <SectionTitle id="b">Second</SectionTitle>
-        <SectionTitle id="c">Third</SectionTitle>
-        <SectionTitle id="d">Fourth</SectionTitle>
+        <div data-reveal>Second</div>
       </>,
     );
-    const rules = Array.from(container.querySelectorAll<HTMLElement>("[data-rule]"));
-    expect(rules.map((rule) => rule.dataset.tone)).toEqual(["0", "1", "2", "0"]);
-    expect(observed).toEqual(expect.arrayContaining(rules));
-    expect(rules.some((rule) => rule.classList.contains("is-visible"))).toBe(false);
+    const targets = Array.from(container.querySelectorAll<HTMLElement>("[data-reveal]"));
+    expect(targets).toHaveLength(2);
+    expect(observed).toEqual(expect.arrayContaining(targets));
+    expect(targets.some((target) => target.classList.contains("is-visible"))).toBe(false);
 
-    act(() => notify(rules.map((target) => ({ isIntersecting: true, target }) as IntersectionObserverEntry), {} as IntersectionObserver));
-    expect(rules.every((rule) => rule.classList.contains("is-visible"))).toBe(true);
+    act(() =>
+      notify(
+        targets.map((target) => ({ isIntersecting: true, target }) as IntersectionObserverEntry),
+        {} as IntersectionObserver,
+      ),
+    );
+    expect(targets.every((target) => target.classList.contains("is-visible"))).toBe(true);
   });
 });
 
@@ -197,14 +200,15 @@ describe("static decoration", () => {
     expect(copy?.className).not.toMatch(/max-w-/);
   });
 
+  it("renders Glow without any animation", () => {
+    const { container } = render(<Glow />);
+    expect(container.querySelector('[class*="animate-"]')).toBeNull();
+  });
+
   it("renders a still-image hero without the continuous zoom", () => {
     const { container } = render(<PhotoHero image="/still.webp" title="A still hero" />);
     expect(container.querySelector(".animate-kenburns")).toBeNull();
     expect(container.querySelector("video")).toBeNull();
   });
 
-  it("renders Glow without any animation", () => {
-    const { container } = render(<Glow />);
-    expect(container.querySelector('[class*="animate-"]')).toBeNull();
-  });
 });

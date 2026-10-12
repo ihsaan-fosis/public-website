@@ -136,46 +136,6 @@
   transform: none;
 }
 
-/* Section title rule: draws in left to right once visible. The accent colour cycles by order (RevealObserver sets data-tone). */
-[data-rule] {
-  --rule-accent: var(--color-ihsaan-blue);
-}
-
-[data-rule][data-tone="1"] {
-  --rule-accent: var(--color-ihsaan-purple);
-}
-
-[data-rule][data-tone="2"] {
-  --rule-accent: var(--color-ihsaan-light-blue);
-}
-
-[data-theme="dark"] [data-rule] {
-  --rule-accent: var(--color-ihsaan-light-blue);
-}
-
-[data-theme="dark"] [data-rule][data-tone="1"] {
-  --rule-accent: var(--color-ihsaan-lavender);
-}
-
-[data-theme="dark"] [data-rule][data-tone="2"] {
-  --rule-accent: var(--color-cream);
-}
-
-.js [data-rule] :is(.title-rule-line, .title-rule-accent) {
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.js [data-rule] .title-rule-accent {
-  transition-duration: 0.7s;
-  transition-delay: 0.15s;
-}
-
-.js [data-rule].is-visible :is(.title-rule-line, .title-rule-accent) {
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -191,10 +151,6 @@
 
   .js [data-reveal] {
     opacity: 1;
-    transform: none;
-  }
-
-  .js [data-rule] :is(.title-rule-line, .title-rule-accent) {
     transform: none;
   }
 }
@@ -253,17 +209,6 @@
       animation: column-drift linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
-    }
-
-    /* Section title rule: the thin line is static and every accent grows with progress through the whole page (root scroll), replacing the one-shot draw-in. */
-    .js [data-rule] :is(.title-rule-line, .title-rule-accent) {
-      transform: none;
-      transition: none;
-    }
-
-    [data-rule] .title-rule-accent {
-      animation: title-rule-grow linear both;
-      animation-timeline: scroll(root);
     }
 
     .why-reveal {
@@ -490,15 +435,6 @@
   }
   to {
     transform: scaleX(1);
-  }
-}
-
-@keyframes title-rule-grow {
-  from {
-    width: 3.5rem;
-  }
-  to {
-    width: 100%;
   }
 }
 

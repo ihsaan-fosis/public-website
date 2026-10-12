@@ -55,25 +55,7 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
 
 export const displayClass = "font-extrabold tracking-[-0.035em] text-ink";
 
-/**
- * A thin full-width rule anchors every section title, with a short brand-coloured segment at its left edge
- * (docs/IHSAAN-DESIGN.md: thin blue rules, strong left alignment). The segment grows with progress through the
- * whole page, so every title shows the same reading position; browsers without scroll-driven animations draw both
- * in once when the title scrolls into view. The segment colour cycles through the brand accents by document order
- * (globals.css `[data-rule]`).
- */
-const TITLE_RULE = "relative pt-6 sm:pt-8";
-
 const TITLE_SIZE = "max-w-3xl text-[2rem] leading-[1.05] sm:text-5xl";
-
-function TitleRule() {
-  return (
-    <>
-      <span aria-hidden className="title-rule-line absolute inset-x-0 top-0 h-px bg-ink/15" />
-      <span aria-hidden className="title-rule-accent absolute top-[-1px] left-0 h-0.5 w-14 bg-(--rule-accent)" />
-    </>
-  );
-}
 
 /** `compact` is for titles in a narrow column beside other content. */
 export function SectionTitle({
@@ -88,8 +70,7 @@ export function SectionTitle({
   className?: string;
 }) {
   return (
-    <div data-rule className={cn(TITLE_RULE, className)}>
-      <TitleRule />
+    <div className={className}>
       <h2 id={id} className={cn(compact ? "text-[1.75rem] leading-[1.1] sm:text-4xl" : TITLE_SIZE, displayClass)}>
         {children}
       </h2>
@@ -109,12 +90,7 @@ export function SectionHeading({
   action?: ReactNode;
 }) {
   return (
-    <div
-      data-reveal
-      data-rule
-      className={cn(TITLE_RULE, "flex flex-col gap-6 md:flex-row md:items-end md:justify-between")}
-    >
-      <TitleRule />
+    <div data-reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <h2 id={id} className={cn(TITLE_SIZE, displayClass)}>
         {title}
       </h2>
