@@ -26,6 +26,11 @@ export default function PrivacyPage() {
         <p>This website has no contact forms, accounts, analytics or advertising.</p>
       </section>
       <section>
+        <h2>Forms and registration on other services</h2>
+        <p>Some pages link to forms, event registration and guides run on other services, including Luma for event registration, Google Forms for the WhatsApp community and Notion for volunteer openings and career guides. They open on that service&apos;s website. What you enter there is collected by that service and the organisers of that form or event, and is not submitted through this website.</p>
+        <p>Those forms can ask for personal information such as your name and contact details. Read what each form asks for and the service&apos;s privacy policy before you submit it.</p>
+      </section>
+      <section>
         <h2>Cookies and local storage</h2>
         <p>This website does not use cookies. If you use the light or dark mode switch, your choice is saved in your browser&apos;s local storage under the name &ldquo;theme&rdquo; so the site remembers it on your next visit. It stays on your device and is not sent to us. You can remove it at any time by clearing your browser&apos;s site data.</p>
       </section>

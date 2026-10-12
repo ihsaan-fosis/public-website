@@ -160,6 +160,42 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
   },
 ];
 
+export type InvolvementAction = {
+  id: "membership" | "community" | "alumni" | "volunteer";
+  title: string;
+  body: string;
+  cta: NavLink & { external?: boolean };
+  secondary?: NavLink & { external?: boolean };
+};
+
+export const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
+  {
+    id: "membership",
+    title: "Membership and professional network",
+    body: "Students and professionals can ask about joining IHSAAN and its professional network. We will confirm the current route and what it includes. The student portal is where members access the member platform. It is not a membership application.",
+    cta: { href: "/contact", label: "Ask about membership" },
+    secondary: { href: MEMBER_PORTAL.href, label: MEMBER_PORTAL.label, external: true },
+  },
+  {
+    id: "community",
+    title: "WhatsApp community",
+    body: "Apply to join the IHSAAN WhatsApp community through a short Google Form. Submitting the form is a request to join, not an automatic invitation, and admission is handled separately by IHSAAN. The form opens on Google Forms, not on this website.",
+    cta: { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Apply to join the WhatsApp community", external: true },
+  },
+  {
+    id: "alumni",
+    title: "Alumni network",
+    body: "Alumni who want to stay connected with IHSAAN can get in touch and ask how to take part in the alumni network.",
+    cta: { href: "/contact", label: "Ask about the alumni network" },
+  },
+  {
+    id: "volunteer",
+    title: "Volunteering",
+    body: "Volunteer roles with IHSAAN are unpaid. Read the current openings and application guidance on Notion before you apply.",
+    cta: { href: PUBLIC_DESTINATIONS.volunteerOpenings.href, label: "View volunteer openings", external: true },
+  },
+];
+
 export type FaqItem = { question: string; answer: string };
 
 export const FAQS: readonly FaqItem[] = [

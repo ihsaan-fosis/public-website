@@ -57,9 +57,22 @@ export default function ContactPage() {
             </div>
             <div className="border-b border-ink/10 py-6">
               <dt>
+                <Eyebrow>Community and volunteering</Eyebrow>
+              </dt>
+              <dd className="mt-2 flex flex-wrap gap-x-6 gap-y-2">
+                <Link href="/ticket#community" className="text-lg font-medium text-ink hover:underline">
+                  Join the WhatsApp community
+                </Link>
+                <Link href="/ticket#volunteer" className="text-lg font-medium text-ink hover:underline">
+                  Volunteer with IHSAAN
+                </Link>
+              </dd>
+            </div>
+            <div className="border-b border-ink/10 py-6">
+              <dt>
                 <Eyebrow>Follow</Eyebrow>
               </dt>
-              <dd className="mt-2 flex gap-6">
+              <dd className="mt-2 flex flex-wrap gap-x-6 gap-y-2">
                 {SOCIAL_LINKS.map((link) => (
                   <a
                     key={link.href}

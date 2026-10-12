@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { RouteSwitcher } from "@/components/route-switcher";
 import { FaqSection, InvolvementCards } from "@/components/sections";
-import { PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { PhotoHero, ButtonLink, revealDelay, Section, SectionHeading } from "@/components/ui";
+import { INVOLVEMENT_ACTIONS } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -33,6 +34,38 @@ export default function GetInvolvedPage() {
           What each route offers
         </h2>
         <InvolvementCards />
+      </Section>
+
+      <Section labelledBy="actions-title" className="pt-0 sm:pt-0">
+        <SectionHeading
+          id="actions-title"
+          title="Take the next step"
+          aside="Some steps open on other websites. Nothing you enter there is submitted through this website."
+        />
+        <ul className="mt-12 grid gap-4 md:grid-cols-2">
+          {INVOLVEMENT_ACTIONS.map((action, index) => (
+            <li
+              key={action.id}
+              id={action.id}
+              data-reveal
+              style={revealDelay(index % 2)}
+              className="flex scroll-mt-24 flex-col rounded-[22px] bg-surface p-8 ring-1 ring-ink/5"
+            >
+              <h3 className="text-2xl font-bold tracking-[-0.02em] text-ink">{action.title}</h3>
+              <p className="mt-3 max-w-lg text-[15px] leading-7 text-ink/70">{action.body}</p>
+              <div className="mt-auto flex flex-wrap gap-3 pt-8">
+                <ButtonLink href={action.cta.href} external={action.cta.external} className="py-3 text-center">
+                  {action.cta.label}
+                </ButtonLink>
+                {action.secondary ? (
+                  <ButtonLink href={action.secondary.href} external={action.secondary.external} tone="ghost" className="py-3 text-center">
+                    {action.secondary.label}
+                  </ButtonLink>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section labelledBy="conversation-title" className="pt-0 sm:pt-0">
