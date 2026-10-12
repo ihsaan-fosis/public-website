@@ -146,13 +146,13 @@ export function ImpactStory() {
               className="w-[clamp(12rem,22vw,20rem)]"
             />
           </div>
-          <Container className="flex flex-col pt-24 pb-10 sm:pt-28 sm:pb-14 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_1fr_auto] lg:gap-x-10">
-            <p className="why-reveal-eyebrow text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase lg:col-span-6">
+          <Container className="flex flex-col pt-24 pb-10 sm:pt-28 sm:pb-14 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12">
+            <p className="why-reveal-eyebrow text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase lg:col-span-2">
               Why IHSAAN
             </p>
             <h2
               id="why-title"
-              className="mt-auto pt-10 text-[2.75rem] leading-[0.95] font-extrabold tracking-[-0.05em] text-cream sm:text-7xl lg:col-span-8 lg:row-start-3 lg:self-end lg:pt-0 lg:text-[7rem]"
+              className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
             >
               {WHY_LINES.map((line, index) => (
                 <span key={line} className="why-reveal-line block">
@@ -161,12 +161,12 @@ export function ImpactStory() {
                 </span>
               ))}
             </h2>
-            <div className="why-reveal-aside mt-6 lg:col-span-4 lg:col-start-9 lg:row-start-3 lg:mt-0 lg:self-end">
-              <p className="max-w-sm text-[15px] leading-7 text-cream/80">
+            <div className="why-reveal-aside mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
+              <p className="max-w-sm text-sm leading-6 text-cream/70">
                 The word Ihsaan means excellence, striving for the highest standard in everything we do as a form of
                 devotion to God. We work across universities in the UK and Ireland.
               </p>
-              <ButtonLink href="/about" tone="white" className="mt-6">
+              <ButtonLink href="/about" tone="white">
                 Our story
               </ButtonLink>
             </div>

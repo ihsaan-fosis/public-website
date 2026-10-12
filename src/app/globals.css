@@ -174,7 +174,7 @@
   display: none;
 }
 
-/* Editorial hero title: a headline-scale stack that sits quietly under the media instead of competing with it. */
+/* Editorial title (home hero and the Why IHSAAN story): a headline-scale stack that sits quietly over the media instead of competing with it. */
 .hero-title-editorial {
   font-size: clamp(2.25rem, 4.4vw, 4rem);
 }
