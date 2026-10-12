@@ -43,6 +43,12 @@ describe("Home", () => {
     expect(ctas).toEqual(["/programmes", "/contact", "/contact"]);
   });
 
+  it("offers an evergreen route to events instead of a dated schedule", () => {
+    const { container } = render(<Home />);
+    expect(screen.getByRole("link", { name: "View events" }).getAttribute("href")).toBe("/events");
+    expect(container.textContent).not.toMatch(/Spring Week Academy|Career Conference 2026/);
+  });
+
   it("does not show template prices or the placeholder event schedule", () => {
     const { container } = render(<Home />);
     expect(container.textContent).not.toMatch(/\$99|\$249|Check-In|Opening Keynote/);

@@ -1,6 +1,7 @@
 import { PROGRAMME_PAGES } from "@/content/programmes";
 import { LEGACY_PAGES } from "@/content/legacy-routes.mjs";
 import { pageMetadata } from "@/lib/metadata";
+import { GET as llms } from "./llms.txt/route";
 import robots from "./robots";
 import sitemap from "./sitemap";
 
@@ -13,6 +14,7 @@ describe("technical SEO routes", () => {
     expect(urls).toContain(`${ORIGIN}/`);
     expect(urls).toContain(`${ORIGIN}/privacy`);
     expect(urls).toContain(`${ORIGIN}/terms`);
+    expect(urls).toContain(`${ORIGIN}/events`);
     expect(urls).not.toContain(`${ORIGIN}/404`);
     expect(urls.every((url) => url.startsWith(ORIGIN))).toBe(true);
   });
@@ -25,10 +27,28 @@ describe("technical SEO routes", () => {
   });
 });
 
+describe("llms.txt", () => {
+  it("lists the events route and every approved social profile", async () => {
+    const body = await llms().text();
+
+    expect(body).toContain("- [/events](/events) Events:");
+    for (const profile of [
+      "https://www.instagram.com/ihsaan.network/",
+      "https://www.linkedin.com/company/ihsaan-network/",
+      "https://www.tiktok.com/@ihsaan.network",
+      "https://www.youtube.com/@IHSAAN.network",
+    ]) {
+      expect(body).toContain(profile);
+    }
+    expect(body).not.toMatch(/fbclid|tally\.so|opportunities-tracker/);
+  });
+});
+
 describe("page metadata", () => {
   const pages = [
     ["/about", () => import("./about/page")],
     ["/contact", () => import("./contact/page")],
+    ["/events", () => import("./events/page")],
     ["/gallery", () => import("./gallery/page")],
     ["/ticket", () => import("./ticket/page")],
     ["/programmes", () => import("./programmes/page")],

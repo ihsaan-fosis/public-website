@@ -34,7 +34,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
   return (
     <>
       <PhotoHero image={page.image} title={page.headline} intro={page.intro}>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3">
           <ButtonLink href={page.primary.href} external={page.primary.external}>
             {page.primary.label}
           </ButtonLink>
@@ -133,6 +133,26 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
             </blockquote>
             <figcaption className="mt-5 text-sm text-ink/65">{page.quote.source}</figcaption>
           </figure>
+        </Section>
+      ) : null}
+
+      {page.relatedLinks ? (
+        <Section labelledBy="related-title" className="pt-0 sm:pt-0">
+          <SectionTitle id="related-title">Related links</SectionTitle>
+          <ul className="mt-10 flex flex-wrap gap-3">
+            {page.relatedLinks.map((link) => (
+              <li key={link.href}>
+                <ButtonLink href={link.href} external={link.external} tone="ghost">
+                  {link.label}
+                </ButtonLink>
+              </li>
+            ))}
+          </ul>
+          {page.relatedLinks.some((link) => link.external) ? (
+            <p className="mt-6 max-w-2xl text-[13px] leading-6 text-ink/65">
+              External links open on other websites, which have their own privacy policies.
+            </p>
+          ) : null}
         </Section>
       ) : null}
 

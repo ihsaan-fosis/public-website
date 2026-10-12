@@ -70,7 +70,7 @@ function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
 }
 
 /** Vertical scroll drives a pinned horizontal rail on wide screens (globals.css `.hscroll`); phones swipe natively. */
-export function ProgrammesCarousel() {
+export function ProgrammesCarousel({ action }: { action?: ReactNode }) {
   return (
     <section
       id="programmes"
@@ -83,9 +83,12 @@ export function ProgrammesCarousel() {
             id="programmes-title"
             title="Explore what we offer"
             action={
-              <ButtonLink href="/programmes" tone="ghost">
-                All programmes
-              </ButtonLink>
+              <div className="flex flex-wrap gap-3">
+                {action}
+                <ButtonLink href="/programmes" tone="ghost">
+                  All programmes
+                </ButtonLink>
+              </div>
             }
           />
           <div aria-hidden className="mt-8 h-px w-full bg-ink/10">

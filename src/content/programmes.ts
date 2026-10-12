@@ -26,6 +26,7 @@ export type ProgrammePage = {
   quote?: { text: string; source: string };
   primary: ProgrammeAction;
   secondary?: ProgrammeAction;
+  relatedLinks?: readonly ProgrammeAction[];
 };
 
 export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
@@ -73,6 +74,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     primary: { label: "View upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Host or sponsor a conference", href: "/contact" },
+    relatedLinks: [{ label: "See scheduled IHSAAN events", href: "/events" }],
   },
   {
     slug: "faithful-talent",
@@ -142,6 +144,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     },
     primary: { label: "See upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Become a partner", href: "/contact" },
+    relatedLinks: [{ label: "Visit Haqqathons", href: PUBLIC_DESTINATIONS.haqqathons.href, external: true }],
   },
   {
     slug: "mentorship",
@@ -194,6 +197,13 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     primary: { label: "Access the guides", href: PUBLIC_DESTINATIONS.careerGuides.href, external: true },
     secondary: { label: "Follow for new guides", href: PUBLIC_DESTINATIONS.instagram.href, external: true },
+    relatedLinks: [
+      {
+        label: "Read a Civil Service internship reflection on Notion",
+        href: PUBLIC_DESTINATIONS.civilServiceReflection.href,
+        external: true,
+      },
+    ],
   },
 ];
 

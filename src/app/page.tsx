@@ -48,7 +48,13 @@ export default function Home() {
 
       <ImpactStory />
 
-      <ProgrammesCarousel />
+      <ProgrammesCarousel
+        action={
+          <ButtonLink href="/events" tone="ghost">
+            View events
+          </ButtonLink>
+        }
+      />
 
       <Section labelledBy="routes-title" className="isolate">
         <Glow className="opacity-50" />

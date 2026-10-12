@@ -19,6 +19,9 @@ export const NAV_LINKS: readonly NavLink[] = [
 
 export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
 
+/** Kept out of `NAV_LINKS`: a fifth capsule item crushes the wordmark at the 1024px desktop breakpoint. */
+export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
+
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network", label: "Student portal" };
 
 export const SOCIAL_LINKS: readonly NavLink[] = (["instagram", "linkedin", "tiktok", "youtube"] as const).map(
