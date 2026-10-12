@@ -10,17 +10,38 @@ export const TAGLINE =
 
 export type NavLink = { href: string; label: string };
 
-export const NAV_LINKS: readonly NavLink[] = [
-  { href: "/about", label: "Our story" },
+/** Top-level chrome item. Optional `children` render as a Resources-style dropdown. */
+export type NavItem = NavLink & { children?: readonly NavLink[] };
+
+/**
+ * Resource types in the Resources dropdown. Anchors land on the matching block on /resources;
+ * Blog keeps its own route.
+ */
+export const RESOURCE_NAV_LINKS: readonly NavLink[] = [
+  { href: "/resources#career-essentials", label: "Career Essentials" },
+  { href: "/blog", label: "Blog" },
+  { href: "/resources#my-muslim-mentor", label: "Mentoring" },
+  { href: "/resources#haqqathons", label: "Haqqathons" },
+];
+
+export const NAV_LINKS: readonly NavItem[] = [
+  { href: "/about", label: "About" },
   { href: "/programmes", label: "Programmes" },
+  {
+    href: "/resources",
+    label: "Resources",
+    children: RESOURCE_NAV_LINKS,
+  },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
 
-/** Kept out of `NAV_LINKS`: a fifth capsule item crushes the wordmark at the 1024px desktop breakpoint. */
+/** Kept out of `NAV_LINKS` so the primary row stays readable beside the wordmark and CTAs. */
 export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
+
+export const BLOG_LINK: NavLink = { href: "/blog", label: "Blog" };
 
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network", label: "Student portal" };
 

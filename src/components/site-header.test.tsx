@@ -25,23 +25,60 @@ describe("SiteHeader", () => {
     },
   );
 
-  it.each(["/", "/about", "/programmes", "/gallery", "/contact"])(
+  it.each(["/", "/about", "/programmes", "/resources", "/gallery", "/contact"])(
     "targets the top of each destination in both menus from %s",
     (pathname) => {
       route.pathname = pathname;
       render(<SiteHeader />);
       for (const name of ["Primary", "Mobile primary"]) {
         const nav = screen.getByRole("navigation", { name, hidden: true });
-        const destinations = within(nav)
-          .getAllByRole("link", { hidden: true })
-          .slice(0, 4)
-          .map((link) => link.getAttribute("href"));
-        expect(destinations).toEqual(["/about", "/programmes", "/gallery", "/contact"]);
+        for (const [label, href] of [
+          ["About", "/about"],
+          ["Programmes", "/programmes"],
+          ["Resources", "/resources"],
+          ["Gallery", "/gallery"],
+          ["Contact", "/contact"],
+        ] as const) {
+          expect(within(nav).getByRole("link", { name: label, hidden: true })).toHaveAttribute("href", href);
+        }
       }
       expect(screen.getAllByRole("link", { name: "Get involved", hidden: true }).map((link) => link.getAttribute("href")))
         .toEqual(["/ticket", "/ticket"]);
     },
   );
+
+  it("exposes each resource type under the Resources dropdown on desktop and in the mobile menu", () => {
+    render(<SiteHeader />);
+
+    const expected = [
+      ["Career Essentials", "/resources#career-essentials"],
+      ["Blog", "/blog"],
+      ["Mentoring", "/resources#my-muslim-mentor"],
+      ["Haqqathons", "/resources#haqqathons"],
+    ] as const;
+
+    const desktop = screen.getByRole("navigation", { name: "Primary" });
+    fireEvent.click(within(desktop).getByRole("button", { name: "Resources menu" }));
+    for (const [label, href] of expected) {
+      expect(within(desktop).getByRole("menuitem", { name: label })).toHaveAttribute("href", href);
+    }
+    expect(within(desktop).queryByRole("menuitem", { name: "All resources" })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const mobile = screen.getByRole("navigation", { name: "Mobile primary" });
+    fireEvent.click(within(mobile).getByRole("button", { name: "Show Resources links" }));
+    for (const [label, href] of expected) {
+      expect(within(mobile).getByRole("link", { name: label })).toHaveAttribute("href", href);
+    }
+  });
+
+  it("keeps Resources active while reading the blog", () => {
+    route.pathname = "/blog";
+    render(<SiteHeader />);
+    const desktop = screen.getByRole("navigation", { name: "Primary" });
+    fireEvent.click(within(desktop).getByRole("button", { name: "Resources menu" }));
+    expect(within(desktop).getByRole("menuitem", { name: "Blog" })).toHaveAttribute("aria-current", "page");
+  });
 
   it("keeps the programmes link targeting its overview from a detail page", () => {
     route.pathname = "/programmes/career-conferences";
@@ -53,8 +90,10 @@ describe("SiteHeader", () => {
 
   it.each([
     ["/", "IHSAAN home"],
-    ["/about", "Our story"],
+    ["/about", "About"],
     ["/programmes", "Programmes"],
+    ["/resources", "Resources"],
+    ["/blog", "Blog"],
     ["/gallery", "Gallery"],
     ["/contact", "Contact"],
     ["/ticket", "Get involved"],
@@ -75,7 +114,7 @@ describe("SiteHeader", () => {
     const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
     render(<SiteHeader />);
     const nav = screen.getByRole("navigation", { name: "Primary" });
-    fireEvent.click(within(nav).getByRole("link", { name: "Our story" }), { [modifier]: true });
+    fireEvent.click(within(nav).getByRole("link", { name: "About" }), { [modifier]: true });
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
@@ -85,7 +124,7 @@ describe("SiteHeader", () => {
     expect(scrollTo).not.toHaveBeenCalled();
 
     const nav = screen.getByRole("navigation", { name: "Primary" });
-    fireEvent.click(within(nav).getByRole("link", { name: "Our story" }));
+    fireEvent.click(within(nav).getByRole("link", { name: "About" }));
     expect(scrollTo).not.toHaveBeenCalled();
     window.history.replaceState(null, "", "/about");
     route.pathname = "/about";

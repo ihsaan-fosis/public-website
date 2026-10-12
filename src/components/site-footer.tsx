@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { EVENTS_LINK, GET_INVOLVED, LEGAL_LINKS, NAV_LINKS, SOCIAL_LINKS } from "@/content/site";
+import { BLOG_LINK, EVENTS_LINK, GET_INVOLVED, LEGAL_LINKS, NAV_LINKS, SOCIAL_LINKS } from "@/content/site";
 import { ThemeToggle } from "./motion";
 import { Container, Eyebrow, Glow } from "./ui";
 
@@ -63,7 +63,7 @@ export function SiteFooter() {
       <Container>
         <div className="grid gap-10 pb-14 sm:grid-cols-3">
           <FooterColumn title="Explore">
-            {[...NAV_LINKS, EVENTS_LINK, GET_INVOLVED].map((link) => (
+            {[...NAV_LINKS, BLOG_LINK, EVENTS_LINK, GET_INVOLVED].map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className={linkClass}>
                   {link.label}

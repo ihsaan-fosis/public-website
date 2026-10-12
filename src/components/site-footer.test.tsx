@@ -16,9 +16,10 @@ describe("SiteFooter", () => {
     expect(link.querySelector("svg") !== null || (link.textContent ?? "").trim() === name).toBe(true);
   });
 
-  it("links Events from the explore column", () => {
+  it("links Events and Blog from the explore column", () => {
     render(<SiteFooter />);
     expect(screen.getByRole("link", { name: "Events" }).getAttribute("href")).toBe("/events");
+    expect(screen.getByRole("link", { name: "Blog" }).getAttribute("href")).toBe("/blog");
   });
 
   it("shows the closing wordmark without waiting for a scroll reveal it can never reach on phones", () => {
