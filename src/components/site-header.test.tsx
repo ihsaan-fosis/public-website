@@ -53,8 +53,8 @@ describe("SiteHeader", () => {
     const expected = [
       ["Career Essentials", "/resources#career-essentials"],
       ["Blog", "/blog"],
-      ["Mentoring", "/resources#my-muslim-mentor"],
-      ["Haqqathons", "/resources#haqqathons"],
+      ["Mentoring", "/mentoring"],
+      ["Haqqathons", "/haqqathons"],
     ] as const;
 
     const desktop = screen.getByRole("navigation", { name: "Primary" });

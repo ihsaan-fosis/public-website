@@ -19,6 +19,8 @@ IHSAAN elevates faith-driven talent. Public site for Muslim students and young p
 ${guideLines}
 - [/blog](/blog) Blog: community reflections and writing
 - [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship) Civil Service summer internship reflection
+- [/mentoring](/mentoring) Mentoring hub (coming soon)
+- [/haqqathons](/haqqathons) Haqqathons hub (coming soon)
 - [/events](/events) Events: upcoming career conferences and academies, with the full events calendar
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact

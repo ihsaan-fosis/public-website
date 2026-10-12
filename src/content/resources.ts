@@ -1,4 +1,3 @@
-import { PUBLIC_DESTINATIONS } from "./links";
 import type { Motif, NavLink } from "./site";
 
 /**
@@ -23,23 +22,19 @@ export const RESOURCES: readonly Resource[] = [
     cta: { href: "/blog", label: "Browse the blog" },
   },
   {
-    id: "my-muslim-mentor",
-    title: "My Muslim Mentor",
-    body: "Book time with a mentor through My Muslim Mentor, the mentoring surface IHSAAN points students toward.",
+    id: "mentoring",
+    title: "Mentoring",
+    body: "A mentoring hub is coming soon. Until then, start with My Muslim Mentor or the mentorship programme overview.",
     motif: "c",
-    cta: {
-      href: PUBLIC_DESTINATIONS.myMuslimMentor.href,
-      label: "Visit My Muslim Mentor",
-      external: true,
-    },
+    cta: { href: "/mentoring", label: "Open mentoring hub" },
     related: { href: "/programmes/mentorship", label: "About mentorship" },
   },
   {
     id: "haqqathons",
     title: "Haqqathons",
-    body: "Faith-conscious hackathons where Muslim students build, ship and meet collaborators. Event details live on Haqqathons.",
+    body: "A Haqqathons hub is coming soon. Until then, open live events on Haqqathons or the hackathons programme overview.",
     motif: "a",
-    cta: { href: PUBLIC_DESTINATIONS.haqqathons.href, label: "Visit Haqqathons", external: true },
+    cta: { href: "/haqqathons", label: "Open Haqqathons hub" },
     related: { href: "/programmes/hackathons", label: "About hackathons" },
   },
 ];

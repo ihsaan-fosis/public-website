@@ -37,7 +37,7 @@ describe("resources page", () => {
   });
 
   it("lists partner surfaces without gated destinations", () => {
-    expect(RESOURCES.map((resource) => resource.id)).toEqual(["blog", "my-muslim-mentor", "haqqathons"]);
+    expect(RESOURCES.map((resource) => resource.id)).toEqual(["blog", "mentoring", "haqqathons"]);
     const { container } = render(<ResourcesPage />);
     expect(container.innerHTML).not.toContain("tally.so");
     expect(container.innerHTML).not.toContain("opportunities-tracker");

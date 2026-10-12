@@ -18,8 +18,8 @@ describe("blog index", () => {
     expect(resources?.children?.map((child) => child.href)).toEqual([
       "/resources#career-essentials",
       "/blog",
-      "/resources#my-muslim-mentor",
-      "/resources#haqqathons",
+      "/mentoring",
+      "/haqqathons",
     ]);
   });
 

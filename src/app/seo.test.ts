@@ -21,6 +21,8 @@ describe("technical SEO routes", () => {
     expect(urls).not.toContain(`${ORIGIN}/resources/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
+    expect(urls).toContain(`${ORIGIN}/mentoring`);
+    expect(urls).toContain(`${ORIGIN}/haqqathons`);
     expect(urls).not.toContain(`${ORIGIN}/404`);
     expect(urls.every((url) => url.startsWith(ORIGIN))).toBe(true);
   });
@@ -42,6 +44,8 @@ describe("llms.txt", () => {
     expect(body).toContain("- [/resources/intentions-behind-a-career](/resources/intentions-behind-a-career)");
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
+    expect(body).toContain("- [/mentoring](/mentoring) Mentoring hub");
+    expect(body).toContain("- [/haqqathons](/haqqathons) Haqqathons hub");
     for (const profile of [
       "https://www.instagram.com/ihsaan.network/",
       "https://www.linkedin.com/company/ihsaan-network/",
@@ -61,6 +65,8 @@ describe("page metadata", () => {
     ["/events", () => import("./events/page")],
     ["/resources", () => import("./resources/page")],
     ["/blog", () => import("./blog/page")],
+    ["/mentoring", () => import("./mentoring/page")],
+    ["/haqqathons", () => import("./haqqathons/page")],
     ["/gallery", () => import("./gallery/page")],
     ["/ticket", () => import("./ticket/page")],
     ["/programmes", () => import("./programmes/page")],

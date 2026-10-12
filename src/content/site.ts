@@ -14,14 +14,14 @@ export type NavLink = { href: string; label: string };
 export type NavItem = NavLink & { children?: readonly NavLink[] };
 
 /**
- * Resource types in the Resources dropdown. Anchors land on the matching block on /resources;
- * Blog keeps its own route.
+ * Resource types in the Resources dropdown.
+ * Career Essentials anchors the guides block; Blog, Mentoring and Haqqathons are own routes.
  */
 export const RESOURCE_NAV_LINKS: readonly NavLink[] = [
   { href: "/resources#career-essentials", label: "Career Essentials" },
   { href: "/blog", label: "Blog" },
-  { href: "/resources#my-muslim-mentor", label: "Mentoring" },
-  { href: "/resources#haqqathons", label: "Haqqathons" },
+  { href: "/mentoring", label: "Mentoring" },
+  { href: "/haqqathons", label: "Haqqathons" },
 ];
 
 export const NAV_LINKS: readonly NavItem[] = [
