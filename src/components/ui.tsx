@@ -72,14 +72,18 @@ export function SectionHeading({
 
 type ButtonTone = "accent" | "light-outline" | "ghost" | "solid" | "white";
 
-/** Flat rounded-rectangle buttons (rounded-xl, a step down from the 22px panels): no gradients, glass, glow or arrows (docs/IHSAAN-DESIGN.md). */
+/** Flat rounded-rectangle buttons (rounded-xl, a step down from the 22px panels): no gradients, glass, glow or arrows (docs/IHSAAN-DESIGN.md). Each tone sweeps a solid fill up from the bottom edge on hover. */
 const BUTTON_TONES: Record<ButtonTone, string> = {
-  accent: "bg-accent text-accent-ink ring-1 ring-accent hover:opacity-90",
-  "light-outline": "text-cream ring-1 ring-cream/50 hover:bg-cream/10 hover:ring-cream",
-  ghost: "text-ink ring-1 ring-ink/25 hover:bg-ink/5 hover:ring-ink/50",
-  solid: "bg-ink text-page ring-1 ring-ink hover:opacity-90",
-  white: "bg-white text-night ring-1 ring-white hover:bg-cream hover:ring-cream",
+  accent:
+    "bg-accent text-accent-ink ring-accent before:bg-ihsaan-blue hover:ring-ihsaan-blue dark:before:bg-white dark:hover:ring-white",
+  "light-outline": "text-cream ring-cream/50 before:bg-cream hover:text-night hover:ring-cream",
+  ghost: "text-ink ring-ink/25 before:bg-ink hover:text-page hover:ring-ink",
+  solid: "bg-ink text-page ring-ink before:bg-accent hover:text-accent-ink hover:ring-accent",
+  white: "bg-white text-night ring-white before:bg-ihsaan-lavender hover:ring-ihsaan-lavender",
 };
+
+const BUTTON_BASE =
+  "relative isolate inline-flex min-h-[52px] items-center justify-center overflow-hidden rounded-xl px-8 text-[12.5px] font-bold uppercase tracking-[0.14em] ring-1 transition-[color,box-shadow,transform] duration-300 ease-out before:absolute before:inset-0 before:-z-10 before:translate-y-full before:transition-transform before:duration-[350ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:before:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:scale-[0.98]";
 
 export function ButtonLink({
   href,
@@ -94,11 +98,7 @@ export function ButtonLink({
   external?: boolean;
   className?: string;
 }) {
-  const classes = cn(
-    "inline-flex min-h-12 items-center justify-center rounded-xl px-6 text-sm font-medium tracking-[-0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-px",
-    BUTTON_TONES[tone],
-    className,
-  );
+  const classes = cn(BUTTON_BASE, BUTTON_TONES[tone], className);
   if (external) {
     return (
       <a href={href} className={classes}>
