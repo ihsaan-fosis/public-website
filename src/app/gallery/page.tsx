@@ -18,7 +18,6 @@ export default function GalleryPage() {
     <>
       <PhotoHero
         image="/media/impact-wide.webp"
-        badge="Event gallery"
         title="Programme gallery."
         intro="Moments from our career conferences, hackathons, internships and mentoring programmes."
       />

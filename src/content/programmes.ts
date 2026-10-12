@@ -9,8 +9,6 @@ export type ProgrammeEvent = { date: string; place: string; detail: string };
 export type ProgrammePage = {
   slug: string;
   title: string;
-  /** Short label shown on cards and in the hero badge. */
-  eyebrow: string;
   /** One sentence for the programmes index and metadata. */
   summary: string;
   /** Hero headline. */
@@ -35,7 +33,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
     slug: "career-conferences",
     title: "Career Conferences",
-    eyebrow: "Flagship events",
     summary: "Large-scale events connecting Muslim students with leading employers, role models and career pathways.",
     headline: "Meet the employers who want you.",
     intro: "Connecting Muslim students with leading employers, role models and career pathways across the UK and Ireland.",
@@ -81,7 +78,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
     slug: "faithful-talent",
     title: "Faithful Talent",
-    eyebrow: "Internships",
     summary: "The IHSAAN Summer Internship Programme, connecting Muslim students to faith-aligned employers.",
     headline: "Internships built with you in mind.",
     intro:
@@ -113,7 +109,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
     slug: "hackathons",
     title: "Hackathons",
-    eyebrow: "Build with purpose",
     summary: "Weekend hackathons where students build solutions to real community problems.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
@@ -152,7 +147,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
     slug: "mentorship",
     title: "Mentorship",
-    eyebrow: "1:1 mentors",
     summary: "My Muslim Mentor pairs students with professionals in their field for 1:1 mentorship.",
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
@@ -180,7 +174,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
     slug: "career-guides",
     title: "Career Guides",
-    eyebrow: "Resources",
     summary: "Free, step-by-step guides written for Muslim students navigating the UK job market.",
     headline: "The role you want, step by step.",
     intro: "Practical, step-by-step resources to help you land the role you want.",

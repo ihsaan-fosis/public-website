@@ -9,7 +9,7 @@ import {
   PartnersSection,
   ProgrammesCarousel,
 } from "@/components/sections";
-import { Container, displayClass, Eyebrow, Glow, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { Container, displayClass, Glow, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { GET_INVOLVED, MISSION } from "@/content/site";
 
 const PROMISE =
@@ -37,10 +37,9 @@ export default function Home() {
 
       <section aria-labelledby="promise-title" className="relative py-24 sm:py-36">
         <Container>
-          <Eyebrow>Our promise</Eyebrow>
           <h2
             id="promise-title"
-            className={`mt-5 max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
+            className={`max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
           >
             <ScrollWords text={PROMISE} />
           </h2>
@@ -55,7 +54,6 @@ export default function Home() {
         <Glow className="opacity-50" />
         <SectionHeading
           id="routes-title"
-          eyebrow="Ways to get involved"
           title="Find your place at IHSAAN"
           aside="Students, professionals and organisations all have a part to play in elevating faith-driven talent."
         />

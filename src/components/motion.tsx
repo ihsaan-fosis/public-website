@@ -13,12 +13,21 @@ function prefersReducedMotion() {
   return "matchMedia" in window && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-/** Adds `is-visible` to every `[data-reveal]` element as it enters the viewport. Mounted once in the layout. */
+/** Number of brand accents a section title rule cycles through (globals.css `[data-rule][data-tone]`). */
+const RULE_TONES = 3;
+
+/**
+ * Adds `is-visible` to every `[data-reveal]` and `[data-rule]` element as it enters the viewport, and gives each
+ * title rule a `data-tone` by document order so neighbouring sections alternate accents. Mounted once in the layout.
+ */
 export function RevealObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-visible)");
+    document.querySelectorAll<HTMLElement>("[data-rule]").forEach((rule, index) => {
+      rule.dataset.tone = String(index % RULE_TONES);
+    });
+    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-visible), [data-rule]:not(.is-visible)");
     if (!canObserve()) {
       targets.forEach((target) => target.classList.add("is-visible"));
       return;

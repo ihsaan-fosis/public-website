@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { ClosingCta, FactsCard, PartnersSection, ProgrammesCarousel } from "@/components/sections";
 import { ScrollWords } from "@/components/motion";
-import { Container, displayClass, Eyebrow, Glow, PhotoHero, revealDelay, Section } from "@/components/ui";
+import { Container, displayClass, Glow, PhotoHero, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { MISSION } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -17,15 +17,14 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <PhotoHero image="/media/gallery/networking-hall.webp" badge="Our story" title="Why IHSAAN exists." intro={MISSION} />
+      <PhotoHero image="/media/gallery/networking-hall.webp" title="Why IHSAAN exists." intro={MISSION} />
 
       <section aria-labelledby="belief-title" className="relative isolate pt-24 sm:pt-36">
         <Glow className="opacity-60" />
         <Container>
-          <Eyebrow>Founded on a belief</Eyebrow>
           <h2
             id="belief-title"
-            className={`mt-5 max-w-4xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] ${displayClass}`}
+            className={`max-w-4xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] ${displayClass}`}
           >
             <ScrollWords text="Every Muslim student deserves equal access to the mentorship, networks and opportunities needed to build a meaningful career." />
           </h2>
@@ -35,10 +34,9 @@ export default function AboutPage() {
       <Section labelledBy="who-title">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr_1.1fr]">
           <div data-reveal className="py-2 lg:pr-6">
-            <Eyebrow>Who we are</Eyebrow>
-            <h2 id="who-title" className={`mt-3 text-3xl leading-[1.1] ${displayClass}`}>
+            <SectionTitle id="who-title" compact>
               The national careers programme of FOSIS.
-            </h2>
+            </SectionTitle>
             <div className="mt-5 max-w-sm space-y-4 text-sm leading-6 text-ink/65">
               <p>
                 IHSAAN is the national careers programme of the Federation of Student Islamic Societies (FOSIS). We work

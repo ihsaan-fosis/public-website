@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClosingCta, PartnersSection } from "@/components/sections";
-import { Container, displayClass, Eyebrow, PhotoHero, revealDelay, Section } from "@/components/ui";
+import { PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
 import { PROGRAMME_PAGES } from "@/content/programmes";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -19,18 +19,12 @@ export default function ProgrammesPage() {
     <>
       <PhotoHero
         image="/media/impact-wide.webp"
-        badge="Our programmes"
         title="Explore what we offer."
         intro="Five ways IHSAAN connects Muslim students and young professionals with employers, mentors and opportunities."
       />
 
       <Section labelledBy="all-programmes-title">
-        <Container className="px-0 sm:px-0">
-          <Eyebrow>All programmes</Eyebrow>
-          <h2 id="all-programmes-title" className={`mt-3 text-3xl leading-[1.1] sm:text-[2.6rem] ${displayClass}`}>
-            Find your starting point
-          </h2>
-        </Container>
+        <SectionHeading id="all-programmes-title" title="Find your starting point" />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PROGRAMME_PAGES.map((programme, index) => (
             <li key={programme.slug} data-reveal style={revealDelay(index % 3)}>
@@ -50,8 +44,7 @@ export default function ProgrammesPage() {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="text-xs text-cream/90">{programme.eyebrow}</p>
-                  <h3 className="mt-1 text-2xl font-bold tracking-[-0.02em] text-cream">{programme.title}</h3>
+                  <h3 className="text-2xl font-bold tracking-[-0.02em] text-cream">{programme.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-cream/90">{programme.summary}</p>
                   <span className="mt-5 inline-flex min-h-10 items-center rounded-xl bg-cream px-4 text-sm font-medium text-night transition-colors group-hover:bg-white">
                     Learn more

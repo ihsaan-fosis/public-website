@@ -43,27 +43,69 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
 
 export const displayClass = "font-extrabold tracking-[-0.035em] text-ink";
 
+/**
+ * A thin full-width rule anchors every section title, with a short brand-coloured segment at its left edge
+ * (docs/IHSAAN-DESIGN.md: thin blue rules, strong left alignment). The segment grows with progress through the
+ * whole page, so every title shows the same reading position; browsers without scroll-driven animations draw both
+ * in once when the title scrolls into view. The segment colour cycles through the brand accents by document order
+ * (globals.css `[data-rule]`).
+ */
+const TITLE_RULE = "relative pt-6 sm:pt-8";
+
+const TITLE_SIZE = "max-w-3xl text-[2rem] leading-[1.05] sm:text-5xl";
+
+function TitleRule() {
+  return (
+    <>
+      <span aria-hidden className="title-rule-line absolute inset-x-0 top-0 h-px bg-ink/15" />
+      <span aria-hidden className="title-rule-accent absolute top-[-1px] left-0 h-0.5 w-14 bg-(--rule-accent)" />
+    </>
+  );
+}
+
+/** `compact` is for titles in a narrow column beside other content. */
+export function SectionTitle({
+  id,
+  children,
+  compact = false,
+  className,
+}: {
+  id: string;
+  children: ReactNode;
+  compact?: boolean;
+  className?: string;
+}) {
+  return (
+    <div data-rule className={cn(TITLE_RULE, className)}>
+      <TitleRule />
+      <h2 id={id} className={cn(compact ? "text-[1.75rem] leading-[1.1] sm:text-4xl" : TITLE_SIZE, displayClass)}>
+        {children}
+      </h2>
+    </div>
+  );
+}
+
 export function SectionHeading({
   id,
-  eyebrow,
   title,
   aside,
   action,
 }: {
   id: string;
-  eyebrow: string;
   title: ReactNode;
   aside?: ReactNode;
   action?: ReactNode;
 }) {
   return (
-    <div data-reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-      <div className="max-w-2xl">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 id={id} className={cn("mt-3 text-3xl leading-[1.1] sm:text-[2.6rem]", displayClass)}>
-          {title}
-        </h2>
-      </div>
+    <div
+      data-reveal
+      data-rule
+      className={cn(TITLE_RULE, "flex flex-col gap-6 md:flex-row md:items-end md:justify-between")}
+    >
+      <TitleRule />
+      <h2 id={id} className={cn(TITLE_SIZE, displayClass)}>
+        {title}
+      </h2>
       {aside ? <p className="max-w-xs text-sm leading-6 text-ink/65">{aside}</p> : null}
       {action}
     </div>
@@ -126,7 +168,6 @@ export function Glow({ className }: { className?: string }) {
 export function PhotoHero({
   image,
   video,
-  badge,
   title,
   intro,
   children,
@@ -136,7 +177,6 @@ export function PhotoHero({
 }: {
   image: string;
   video?: HeroVideoSources;
-  badge?: string;
   title: string;
   intro?: ReactNode;
   children?: ReactNode;
@@ -185,24 +225,13 @@ export function PhotoHero({
             editorial ? "pt-16 sm:pt-20 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12" : "pt-36",
           )}
         >
-          {badge ? (
-            <div className={cn("animate-rise", editorial && "lg:col-span-2")}>
-              <span className="inline-flex items-center gap-2 rounded-full bg-night/55 px-3 py-1.5 text-xs font-medium text-cream ring-1 ring-white/15 backdrop-blur">
-                <span aria-hidden className="relative flex size-2">
-                  <span className="absolute inset-0 animate-ping rounded-full bg-ihsaan-lavender/70" style={{ animationIterationCount: 3 }} />
-                  <span className="relative size-2 rounded-full bg-ihsaan-lavender" />
-                </span>
-                {badge}
-              </span>
-            </div>
-          ) : null}
           <h1
             aria-label={title}
             className={cn(
               "font-extrabold text-cream",
               editorial
-                ? "hero-title-editorial mt-5 leading-[1.08] tracking-[-0.03em]"
-                : "mt-6 max-w-5xl text-[2.6rem] leading-[1.02] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem]",
+                ? "hero-title-editorial leading-[1.08] tracking-[-0.03em]"
+                : "max-w-5xl text-[2.6rem] leading-[1.02] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem]",
             )}
           >
             {words.map((word, index) => (

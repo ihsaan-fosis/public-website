@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Panel } from "@/components/panel";
 import { ClosingCta } from "@/components/sections";
-import { displayClass, Eyebrow, Glow, PhotoHero, ButtonLink, revealDelay, Section } from "@/components/ui";
+import { displayClass, Glow, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import type { Motif } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -33,7 +33,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
   return (
     <>
-      <PhotoHero image={page.image} badge={page.eyebrow} title={page.headline} intro={page.intro}>
+      <PhotoHero image={page.image} title={page.headline} intro={page.intro}>
         <div className="mt-8 flex flex-wrap gap-3">
           <ButtonLink href={page.primary.href} external={page.primary.external}>
             {page.primary.label}
@@ -49,10 +49,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
       <Section labelledBy="about-title">
         <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr]")}>
           <div data-reveal>
-            <Eyebrow>About {page.title}</Eyebrow>
-            <h2 id="about-title" className={`mt-3 max-w-2xl text-3xl leading-[1.1] sm:text-[2.6rem] ${displayClass}`}>
-              {page.title}
-            </h2>
+            <SectionTitle id="about-title">{page.title}</SectionTitle>
             <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-7 text-ink/70">
               {page.about.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -79,10 +76,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
       <section aria-labelledby="highlights-title" className="relative isolate pb-20 sm:pb-28">
         <Glow className="opacity-50" />
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-10">
-          <Eyebrow>{page.title}</Eyebrow>
-          <h2 id="highlights-title" className={`mt-3 text-3xl leading-[1.1] sm:text-[2.6rem] ${displayClass}`}>
-            {page.highlightsTitle}
-          </h2>
+          <SectionTitle id="highlights-title">{page.highlightsTitle}</SectionTitle>
           <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {page.highlights.map((highlight, index) => {
               const motif = MOTIFS[index % MOTIFS.length];
@@ -111,10 +105,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {page.events && page.eventsTitle ? (
         <Section labelledBy="events-title" className="pt-0 sm:pt-0">
-          <Eyebrow>Track record</Eyebrow>
-          <h2 id="events-title" className={`mt-3 text-3xl leading-[1.1] sm:text-[2.6rem] ${displayClass}`}>
-            {page.eventsTitle}
-          </h2>
+          <SectionTitle id="events-title">{page.eventsTitle}</SectionTitle>
           <ul className="mt-10 divide-y divide-ink/10 rounded-[22px] bg-surface px-6 ring-1 ring-ink/5 sm:px-8">
             {page.events.map((event) => (
               <li
@@ -146,10 +137,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
       ) : null}
 
       <Section labelledBy="more-title" className="pt-0 sm:pt-0">
-        <Eyebrow>More from IHSAAN</Eyebrow>
-        <h2 id="more-title" className={`mt-3 text-3xl leading-[1.1] sm:text-[2.6rem] ${displayClass}`}>
-          Other programmes
-        </h2>
+        <SectionTitle id="more-title">Other programmes</SectionTitle>
         <ul className="mt-10 flex flex-wrap gap-3">
           {others.map((programme) => (
             <li key={programme.slug}>

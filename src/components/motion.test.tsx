@@ -1,6 +1,8 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { HeroVideo, MarqueeGroup } from "./motion";
-import { Glow, PhotoHero } from "./ui";
+import { HeroVideo, MarqueeGroup, RevealObserver } from "./motion";
+import { Glow, PhotoHero, SectionHeading, SectionTitle } from "./ui";
+
+vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
 
 type Listener = (event: MediaQueryListEvent) => void;
 
@@ -146,9 +148,50 @@ describe("MarqueeGroup", () => {
   });
 });
 
+describe("RevealObserver title rules", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("cycles the accent tone by document order and reveals each rule when it intersects", () => {
+    const observed: Element[] = [];
+    let notify: IntersectionObserverCallback = () => undefined;
+    class FiringObserver {
+      constructor(callback: IntersectionObserverCallback) {
+        notify = callback;
+      }
+      observe(target: Element) {
+        observed.push(target);
+      }
+      unobserve() {
+        return undefined;
+      }
+      disconnect() {
+        return undefined;
+      }
+    }
+    vi.stubGlobal("IntersectionObserver", FiringObserver);
+
+    const { container } = render(
+      <>
+        <RevealObserver />
+        <SectionHeading id="a" title="First" />
+        <SectionTitle id="b">Second</SectionTitle>
+        <SectionTitle id="c">Third</SectionTitle>
+        <SectionTitle id="d">Fourth</SectionTitle>
+      </>,
+    );
+    const rules = Array.from(container.querySelectorAll<HTMLElement>("[data-rule]"));
+    expect(rules.map((rule) => rule.dataset.tone)).toEqual(["0", "1", "2", "0"]);
+    expect(observed).toEqual(expect.arrayContaining(rules));
+    expect(rules.some((rule) => rule.classList.contains("is-visible"))).toBe(false);
+
+    act(() => notify(rules.map((target) => ({ isIntersecting: true, target }) as IntersectionObserverEntry), {} as IntersectionObserver));
+    expect(rules.every((rule) => rule.classList.contains("is-visible"))).toBe(true);
+  });
+});
+
 describe("static decoration", () => {
   it("renders a still-image hero without the continuous zoom", () => {
-    const { container } = render(<PhotoHero image="/still.webp" badge="Badge" title="A still hero" />);
+    const { container } = render(<PhotoHero image="/still.webp" title="A still hero" />);
     expect(container.querySelector(".animate-kenburns")).toBeNull();
     expect(container.querySelector("video")).toBeNull();
   });

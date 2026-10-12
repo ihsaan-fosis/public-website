@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CountUp, MarqueeGroup } from "./motion";
 import { isDarkMotif, Panel } from "./panel";
-import { Container, displayClass, Eyebrow, ButtonLink, revealDelay, Section, SectionHeading } from "./ui";
+import { Container, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "./ui";
 
 export function FactsCard({ footnote }: { footnote?: string }) {
   return (
@@ -62,8 +62,7 @@ function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-          <p className="text-[11px] font-bold tracking-[0.18em] text-cream/90 uppercase">{offer.eyebrow}</p>
-          <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{offer.title}</h3>
+          <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{offer.title}</h3>
         </div>
       </Link>
     </li>
@@ -82,7 +81,6 @@ export function ProgrammesCarousel() {
         <Container>
           <SectionHeading
             id="programmes-title"
-            eyebrow="Our programmes"
             title="Explore what we offer"
             action={
               <ButtonLink href="/programmes" tone="ghost">
@@ -148,9 +146,6 @@ export function ImpactStory() {
             />
           </div>
           <Container className="flex flex-col pt-24 pb-10 sm:pt-28 sm:pb-14 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12">
-            <p className="why-reveal-eyebrow text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase lg:col-span-2">
-              Why IHSAAN
-            </p>
             <h2
               id="why-title"
               className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
@@ -196,7 +191,7 @@ export function GalleryParallax({ action }: { action?: ReactNode }) {
   return (
     <section aria-labelledby="gallery-title" className="relative overflow-clip py-20 sm:py-28">
       <Container className="relative z-10">
-        <SectionHeading id="gallery-title" eyebrow="Event gallery" title="Moments from our programmes" action={action} />
+        <SectionHeading id="gallery-title" title="Moments from our programmes" action={action} />
       </Container>
       <div className="mt-14 grid grid-cols-2 gap-3 px-2 sm:grid-cols-3 sm:gap-4 sm:px-3">
         {columns.map((photos, column) => (
@@ -360,7 +355,6 @@ export function PartnersSection() {
       <Container>
         <SectionHeading
           id="partners-title"
-          eyebrow="Partners & employers"
           title="Organisations backing faith-driven talent"
           aside="Our diamond and gold partners open doors through conferences, mentoring and roles."
         />
@@ -408,10 +402,9 @@ export function FaqSection() {
     <Section labelledBy="faq-title">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div data-reveal>
-          <Eyebrow>Questions</Eyebrow>
-          <h2 id="faq-title" className={cn("mt-3 text-3xl leading-[1.1] sm:text-[2.6rem]", displayClass)}>
+          <SectionTitle id="faq-title" compact>
             Good to know before you join
-          </h2>
+          </SectionTitle>
           <p className="mt-5 max-w-sm text-sm leading-6 text-ink/65">
             Something else on your mind? Email {CONTACT_EMAIL} and the team will get back to you.
           </p>
@@ -481,9 +474,6 @@ const CTA_LINES = ["Start your", "career journey", "with IHSAAN."] as const;
 export function ClosingCta() {
   return (
     <PhotoBand image="/media/gallery/conference-audience.webp" labelledBy="cta-title">
-      <p className="text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase lg:col-span-2">
-        Your career journey starts here
-      </p>
       <h2
         id="cta-title"
         className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"

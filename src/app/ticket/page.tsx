@@ -17,13 +17,12 @@ export default function GetInvolvedPage() {
     <>
       <PhotoHero
         image="/media/career-conference.webp"
-        badge="Build with us"
         title="Get involved."
         intro="Students, professionals and organisations all have a part to play in elevating faith-driven talent."
       />
 
       <Section labelledBy="routes-title">
-        <SectionHeading id="routes-title" eyebrow="Join IHSAAN" title="Ways to get involved" />
+        <SectionHeading id="routes-title" title="Ways to get involved" />
         <div className="mt-12">
           <RouteSwitcher />
         </div>
@@ -40,7 +39,6 @@ export default function GetInvolvedPage() {
         <div className="flex flex-col gap-8 rounded-[22px] bg-surface p-8 ring-1 ring-ink/5 sm:p-12 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             id="conversation-title"
-            eyebrow="Not sure where you fit?"
             title="Start a conversation"
             aside="Tell us how you would like to take part. We will direct you to the right programme or partnership route."
           />

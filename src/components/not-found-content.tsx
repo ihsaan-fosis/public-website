@@ -6,7 +6,6 @@ export function NotFoundContent() {
       image="/media/impact-wide.webp"
       // Next ships the not-found boundary with every page, so its hero must not compete with the real page's LCP.
       lcp={false}
-      badge="404"
       title="This page could not be found."
       intro="The link may be out of date, or the page may have moved."
     >

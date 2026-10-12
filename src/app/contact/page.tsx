@@ -19,7 +19,7 @@ const ALL_PARTNERS = [...PARTNER_TIERS.flatMap((tier) => tier.partners), ...COMM
 export default function ContactPage() {
   return (
     <>
-      <PhotoHero image="/media/impact.webp" badge="Contact IHSAAN" title="We would love to hear from you." />
+      <PhotoHero image="/media/impact.webp" title="We would love to hear from you." />
 
       <Section labelledBy="conversation-title">
         <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
@@ -88,7 +88,7 @@ export default function ContactPage() {
       </Section>
 
       <Section labelledBy="network-title" className="pt-0 sm:pt-0">
-        <SectionHeading id="network-title" eyebrow="Our network" title="Organisations we work with" />
+        <SectionHeading id="network-title" title="Organisations we work with" />
         <div className="mt-10">
           <PartnerWall partners={ALL_PARTNERS} />
         </div>

@@ -38,49 +38,43 @@ export const FACTS: readonly Stat[] = [
   { value: "UK & IE", label: "Where we work" },
 ];
 
-export type Programme = { slug: string; title: string; eyebrow: string; photo: Photo };
+export type Programme = { slug: string; title: string; photo: Photo };
 
 export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "career-conferences",
     title: "Career Conferences",
-    eyebrow: "Flagship events",
     photo: { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
   },
   {
     slug: "faithful-talent",
     title: "Faithful Talent",
-    eyebrow: "Internships",
     photo: { src: "/media/faithful-talent.webp", alt: "Faithful Talent interns at an IHSAAN session", width: 1800, height: 1114 },
   },
   {
     slug: "hackathons",
     title: "Hackathons",
-    eyebrow: "Build with purpose",
     photo: { src: "/media/haqqathons.webp", alt: "Participants building at an IHSAAN hackathon", width: 1800, height: 1646 },
   },
   {
     slug: "mentorship",
     title: "Mentorship",
-    eyebrow: "1:1 mentors",
     photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
   },
   {
     slug: "career-guides",
     title: "Career Guides",
-    eyebrow: "Resources",
     photo: { src: "/media/career-guides.webp", alt: "A board of IHSAAN career guides", width: 1800, height: 1748 },
   },
 ];
 
-export type Offer = { href: string; title: string; eyebrow: string; photo: Photo };
+export type Offer = { href: string; title: string; photo: Photo };
 
 export const OFFERS: readonly Offer[] = [
-  ...PROGRAMMES.map(({ slug, title, eyebrow, photo }) => ({ href: `/programmes/${slug}`, title, eyebrow, photo })),
+  ...PROGRAMMES.map(({ slug, title, photo }) => ({ href: `/programmes/${slug}`, title, photo })),
   {
     href: MEMBER_PORTAL.href,
     title: "Member Portal",
-    eyebrow: "Events and opportunities",
     photo: { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
   },
 ];
