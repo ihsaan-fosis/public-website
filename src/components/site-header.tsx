@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { GET_INVOLVED, NAV_LINKS } from "@/content/site";
+import { GET_INVOLVED, MEMBER_PORTAL, NAV_LINKS } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "./ui";
 
@@ -45,7 +45,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-page/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-10">
+      <div className="mx-auto flex h-16 w-full max-w-[96rem] items-center justify-between gap-3 px-5 sm:px-10">
         <Link href="/" aria-label="IHSAAN home" className="flex h-11 items-center">
           <Wordmark className="h-6 w-auto" />
         </Link>
@@ -59,7 +59,7 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative rounded-xl px-3.5 py-2 text-sm font-semibold tracking-[0.08em] uppercase transition-colors",
+                  "relative rounded-xl px-3.5 py-2 text-sm whitespace-nowrap font-semibold tracking-[0.08em] uppercase transition-colors",
                   active ? "bg-ink/10 text-ink" : "text-ink/70 hover:bg-ink/5 hover:text-ink",
                 )}
               >
@@ -69,8 +69,11 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-1">
-          <ButtonLink href={GET_INVOLVED.href} className="max-sm:hidden">
+        <div className="flex items-center gap-2">
+          <ButtonLink href={MEMBER_PORTAL.href} external tone="ghost" className="whitespace-nowrap max-sm:hidden lg:max-xl:px-5">
+            {MEMBER_PORTAL.label}
+          </ButtonLink>
+          <ButtonLink href={GET_INVOLVED.href} className="whitespace-nowrap max-sm:hidden lg:max-xl:px-5">
             {GET_INVOLVED.label}
           </ButtonLink>
           <button
@@ -123,7 +126,10 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <ButtonLink href={GET_INVOLVED.href} className="mt-4 w-full">
+            <ButtonLink href={MEMBER_PORTAL.href} external tone="ghost" className="mt-4 w-full">
+              {MEMBER_PORTAL.label}
+            </ButtonLink>
+            <ButtonLink href={GET_INVOLVED.href} className="mt-2 w-full">
               {GET_INVOLVED.label}
             </ButtonLink>
           </div>

@@ -8,8 +8,9 @@ import {
   GALLERY,
   GET_INVOLVED,
   INVOLVEMENT_ROUTES,
+  OFFERS,
   PARTNER_TIERS,
-  PROGRAMMES,
+  type Offer,
   type Partner,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -39,16 +40,16 @@ export function FactsCard({ footnote }: { footnote?: string }) {
   );
 }
 
-function ProgrammeSlide({ programme, index }: { programme: (typeof PROGRAMMES)[number]; index: number }) {
+function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
   return (
     <li className="shrink-0">
       <Link
-        href={`/programmes/${programme.slug}`}
+        href={offer.href}
         className="group relative block h-[min(62svh,40rem)] min-h-[24rem] w-[82vw] overflow-hidden rounded-[28px] bg-night-2 sm:w-[48vw] lg:w-[34vw]"
       >
         <Image
-          src={programme.photo.src}
-          alt={programme.photo.alt}
+          src={offer.photo.src}
+          alt={offer.photo.alt}
           fill
           sizes="(min-width: 1024px) 34vw, (min-width: 640px) 48vw, 82vw"
           className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
@@ -61,8 +62,8 @@ function ProgrammeSlide({ programme, index }: { programme: (typeof PROGRAMMES)[n
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-          <p className="text-[11px] font-bold tracking-[0.18em] text-cream/90 uppercase">{programme.eyebrow}</p>
-          <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{programme.title}</h3>
+          <p className="text-[11px] font-bold tracking-[0.18em] text-cream/90 uppercase">{offer.eyebrow}</p>
+          <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{offer.title}</h3>
         </div>
       </Link>
     </li>
@@ -96,8 +97,8 @@ export function ProgrammesCarousel() {
         <div data-reveal className="hscroll-viewport mt-10">
           <div className="hscroll-track w-max px-5 sm:px-10 xl:px-[calc((100vw-80rem)/2+2.5rem)]">
             <ul aria-label="Programmes" className="flex gap-4 sm:gap-6">
-              {PROGRAMMES.map((programme, index) => (
-                <ProgrammeSlide key={programme.title} programme={programme} index={index} />
+              {OFFERS.map((offer, index) => (
+                <OfferSlide key={offer.title} offer={offer} index={index} />
               ))}
             </ul>
           </div>

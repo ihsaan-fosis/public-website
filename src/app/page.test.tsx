@@ -10,7 +10,7 @@ describe("Home", () => {
     expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/ticket");
   });
 
-  it("lists the five programmes under the #programmes anchor", () => {
+  it("lists the five programmes and the member portal under the #programmes anchor", () => {
     render(<Home />);
     const programmes = screen.getByRole("region", { name: "Explore what we offer" });
     expect(programmes.id).toBe("programmes");
@@ -23,7 +23,11 @@ describe("Home", () => {
       "Hackathons",
       "Mentorship",
       "Career Guides",
+      "Member Portal",
     ]);
+    expect(within(programmes).getByRole("link", { name: /Member Portal/ }).getAttribute("href")).toBe(
+      "https://portal.ihsaan.network",
+    );
   });
 
   it("does not show template prices or the placeholder event schedule", () => {

@@ -17,6 +17,8 @@ export const NAV_LINKS: readonly NavLink[] = [
 
 export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
 
+export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network", label: "Student portal" };
+
 export const SOCIAL_LINKS: readonly NavLink[] = [
   { href: "https://www.instagram.com/ihsaan.network/", label: "Instagram" },
   { href: "https://www.linkedin.com/company/ihsaan-network/", label: "LinkedIn" },
@@ -68,6 +70,18 @@ export const PROGRAMMES: readonly Programme[] = [
     title: "Career Guides",
     eyebrow: "Resources",
     photo: { src: "/media/career-guides.webp", alt: "A board of IHSAAN career guides", width: 1800, height: 1748 },
+  },
+];
+
+export type Offer = { href: string; title: string; eyebrow: string; photo: Photo };
+
+export const OFFERS: readonly Offer[] = [
+  ...PROGRAMMES.map(({ slug, title, eyebrow, photo }) => ({ href: `/programmes/${slug}`, title, eyebrow, photo })),
+  {
+    href: MEMBER_PORTAL.href,
+    title: "Member Portal",
+    eyebrow: "Events and opportunities",
+    photo: { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
   },
 ];
 
