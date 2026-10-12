@@ -21,6 +21,20 @@ gh api user --jq .login   # must print ihsaan-fosis
 - Do not push, open PRs, or create issues as `mwijanarko1`, `fasalqna`, or any other logged-in account
 - Before remote git operations, confirm the active account matches `ihsaan-fosis`
 
+## Git commit author (Vercel)
+
+Vercel only deploys commits authored as the team identity. The GitHub push account alone is not enough.
+
+```bash
+git config --local user.name "techihsaan"
+git config --local user.email "tech.ihsaan@fosis.org.uk"
+```
+
+- Author and committer must be `techihsaan <tech.ihsaan@fosis.org.uk>` on every commit that should go live
+- Confirm before commit: `git config --local --get user.email` prints `tech.ihsaan@fosis.org.uk`
+- Confirm after commit: `git log -1` shows that author (not a machine-local `Mikhail <…@….local>` address)
+- If HEAD was pushed with the wrong author, fix with a new commit under the team identity (or rewrite only when explicitly approved). Do not assume `gh auth switch` sets git author
+
 ## Working Guidelines
 
 - Keep changes small and limited to the requested scope.
