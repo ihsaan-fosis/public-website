@@ -7,7 +7,7 @@ IHSAAN elevates faith-driven talent. Public site for Muslim students and young p
 
 - [/](/) Home
 - [/about](/about) Our story
-- [/programmes](/programmes) Programmes: career conferences, Faithful Talent, hackathons, mentorship, opportunities, career guides
+- [/programmes](/programmes) Programmes: career conferences, Faithful Talent, hackathons, mentorship, career guides
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
 - [/ticket](/ticket) Get involved

@@ -45,11 +45,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Our career conferences are the IHSAAN flagship programme: large-scale, professionally organised events that bring Muslim students face to face with employers, industry leaders and successful professionals.",
       "Held at universities and venues across the UK and Ireland, they give students the chance to explore career paths, attend skills workshops and build the networks that will shape their futures.",
     ],
-    stats: [
-      { value: "2,000+", label: "Student signups" },
-      { value: "9", label: "Recent conferences" },
-      { value: "502", label: "Largest event, London" },
-    ],
+    stats: [],
     highlightsTitle: "What to expect",
     highlights: [
       { title: "Keynote talks", body: "Professionals across finance, law, technology, healthcare, consulting and more." },
@@ -95,24 +91,20 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     about: [
       "Faithful Talent is our Summer Internship Programme: faith-aligned opportunities across a range of industries, connecting Muslim students to companies where they can grow without compromising their values.",
     ],
-    stats: [
-      { value: "30+", label: "Companies" },
-      { value: "50+", label: "Roles" },
-      { value: "100+", label: "Positions" },
-    ],
+    stats: [],
     highlightsTitle: "The 2026 programme",
     highlights: [
       {
-        title: "30+ companies",
+        title: "Employers",
         body: "Students were introduced to employers actively opening internship pathways for Muslim talent.",
       },
       {
-        title: "50+ roles",
+        title: "Roles",
         body: "The programme brought together opportunities across a range of industries, disciplines and career interests.",
       },
       {
-        title: "100+ positions",
-        body: "More than 100 internship places gave students a clearer route into experience that matched both ambition and values.",
+        title: "Placements",
+        body: "Internship places gave students a clearer route into experience that matched both ambition and values.",
       },
     ],
     primary: { label: "Partner with Faithful Talent", href: "/contact" },
@@ -130,11 +122,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     about: [
       "A hackathon is a focused sprint where teams turn real-world problems into working ideas. Over a weekend, participants form teams, learn from mentors, prototype a solution and pitch it to partners who can help take it further.",
     ],
-    stats: [
-      { value: "120+", label: "Participants" },
-      { value: "2", label: "Hackathons" },
-      { value: "2", label: "Cities" },
-    ],
+    stats: [],
     highlightsTitle: "How it works",
     highlights: [
       { title: "Form a team", body: "Students work in teams to prototype practical solutions for real community challenges." },
@@ -190,32 +178,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     secondary: { label: "Become a mentor", href: "/contact" },
   },
   {
-    slug: "opportunities-tracker",
-    title: "Opportunities",
-    eyebrow: "Jobs & placements",
-    summary: "A curated tracker of roles, internships, scholarships and programmes, updated weekly.",
-    headline: "Opportunities, curated for you.",
-    intro: "Find roles, internships, scholarships and programmes selected by IHSAAN.",
-    image: "/media/opp-tracker.webp",
-    photo: { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
-    about: [
-      "The IHSAAN Opportunities Tracker is free to browse. Our team manually curates and verifies every listing, prioritising quality over quantity.",
-      "The tracker is updated weekly and shared across our social media channels.",
-    ],
-    stats: [
-      { value: "Free", label: "To browse" },
-      { value: "Weekly", label: "Updates" },
-    ],
-    highlightsTitle: "What you will find",
-    highlights: [
-      { title: "Internships", body: "Placements and summer schemes from employers open to Muslim talent." },
-      { title: "Graduate roles", body: "Entry-level roles and graduate schemes across industries." },
-      { title: "Scholarships and programmes", body: "Funding and development programmes selected for the IHSAAN community." },
-    ],
-    primary: { label: "Follow for updates", href: INSTAGRAM, external: true },
-    secondary: { label: "Share a role with us", href: "/contact" },
-  },
-  {
     slug: "career-guides",
     title: "Career Guides",
     eyebrow: "Resources",
@@ -228,11 +190,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Our Career Guides are free, in-depth resources written specifically for Muslim students navigating the UK job market. Whether you are writing your first CV, preparing for an assessment centre or deciding between career paths, these guides give you the practical knowledge and confidence to take the next step.",
       "All our guides are free to access. New guides are released regularly and shared across our social media channels.",
     ],
-    stats: [
-      { value: "17", label: "Guides published" },
-      { value: "280", label: "Avg. webinar signups" },
-      { value: "4.8/5", label: "Average rating" },
-    ],
+    stats: [],
     highlightsTitle: "Topics covered",
     highlights: [
       { title: "CVs and cover letters", body: "How to stand out to recruiters." },

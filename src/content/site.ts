@@ -31,17 +31,8 @@ export type Photo = { src: string; alt: string; width: number; height: number };
 
 export type Stat = { value: string; label: string };
 
-export const STATS: readonly Stat[] = [
-  { value: "500+", label: "Conference signups" },
-  { value: "50,000", label: "Hackathon participants" },
-  { value: "200", label: "Programmes & attendees" },
-];
-
-
 export const FACTS: readonly Stat[] = [
-  ...STATS,
   { value: "Free", label: "Career guides" },
-  { value: "Weekly", label: "Opportunities Tracker updates" },
   { value: "UK & IE", label: "Where we work" },
 ];
 
@@ -71,12 +62,6 @@ export const PROGRAMMES: readonly Programme[] = [
     title: "Mentorship",
     eyebrow: "1:1 mentors",
     photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
-  },
-  {
-    slug: "opportunities-tracker",
-    title: "Opportunities",
-    eyebrow: "Jobs & placements",
-    photo: { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
   },
   {
     slug: "career-guides",
@@ -139,7 +124,7 @@ export type InvolvementRoute = {
 export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
   {
     title: "Students",
-    body: "Join career conferences, hackathons and internship programmes, and use free career guides and opportunities.",
+    body: "Join career conferences, hackathons and internship programmes, and use free career guides.",
     points: ["Career guides & resources", "Professional networks", "Faith-conscious support", "Skills workshops"],
     motif: "a",
     cta: { href: "/programmes", label: "Explore programmes" },
@@ -179,22 +164,17 @@ export const FAQS: readonly FaqItem[] = [
   {
     question: "Are your resources free?",
     answer:
-      "Yes. All our Career Guides are free to access, and the Opportunities Tracker is free to browse. New guides are released regularly and shared across our social channels.",
-  },
-  {
-    question: "How often is the Opportunities Tracker updated?",
-    answer:
-      "Our team manually curates and verifies every listing, prioritising quality over quantity. The tracker is updated weekly and shared across our social media channels.",
+      "Yes. All our Career Guides are free to access. New guides are released regularly and shared across our social channels.",
   },
   {
     question: "Where does IHSAAN run its programmes?",
     answer:
-      "Across the UK and Ireland. Career conferences are held at universities and venues nationwide, and our hackathons have run in multiple cities with 340+ participants across four events.",
+      "Across the UK and Ireland. Career conferences are held at universities and venues nationwide, and our hackathons have run in Manchester and Dublin.",
   },
   {
     question: "How can my organisation partner with IHSAAN?",
     answer:
-      "Partnership routes include sponsoring or hosting a career conference, providing mentors through our mentorship programmes, sharing internships and graduate roles via the Opportunities Tracker, and co-delivering workshops, panels or skills sessions.",
+      "Partnership routes include sponsoring or hosting a career conference, providing mentors through our mentorship programmes, sharing internships and graduate roles with our community, and co-delivering workshops, panels or skills sessions.",
   },
 ];
 

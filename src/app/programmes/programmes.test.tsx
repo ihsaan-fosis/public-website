@@ -10,6 +10,11 @@ describe("programme pages", () => {
     expect(NAV_LINKS.find((link) => link.label === "Programmes")?.href).toBe("/programmes");
   });
 
+  it("keeps the opportunities tracker hidden", () => {
+    expect(PROGRAMME_PAGES.map((page) => page.slug)).not.toContain("opportunities-tracker");
+    expect(sitemap().map(({ url }) => url)).not.toContain("https://ihsaan.network/programmes/opportunities-tracker");
+  });
+
   it("has a detail page for every home-page programme", () => {
     expect(PROGRAMMES.map((programme) => programme.slug)).toEqual(PROGRAMME_PAGES.map((page) => page.slug));
     expect(generateStaticParams()).toHaveLength(PROGRAMMES.length);
