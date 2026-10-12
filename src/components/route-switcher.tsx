@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { INVOLVEMENT_ROUTES } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -13,15 +14,14 @@ export function RouteSwitcher() {
     <div data-reveal className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-night-2 max-lg:aspect-[4/3]">
         {INVOLVEMENT_ROUTES.map((route, index) => (
-          <img
+          <Image
             key={route.title}
             src={route.photo.src}
             alt={route.photo.alt}
-            width={route.photo.width}
-            height={route.photo.height}
-            loading="lazy"
+            fill
+            sizes="(min-width: 1280px) 533px, (min-width: 1024px) 42vw, 100vw"
             className={cn(
-              "absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out",
+              "object-cover transition-all duration-700 ease-out",
               index === active ? "scale-100 opacity-100" : "scale-110 opacity-0",
             )}
           />
@@ -45,11 +45,11 @@ export function RouteSwitcher() {
                 onClick={() => setActive(index)}
                 className="flex w-full items-baseline gap-6 py-5 text-left"
               >
-                <span className={cn("w-6 text-xs transition-colors", index === active ? "text-ihsaan-light-blue" : "text-ink/40")}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={cn("w-6 text-xs transition-colors", index === active ? "text-ink" : "text-ink/65")}>{String(index + 1).padStart(2, "0")}</span>
                 <span
                   className={cn(
                     "text-3xl font-medium tracking-[-0.03em] transition-all duration-300 sm:text-[2.6rem]",
-                    index === active ? "translate-x-3 text-ink" : "text-ink/30 hover:text-ink/60",
+                    index === active ? "translate-x-3 text-ink" : "text-ink/65 hover:text-ink",
                   )}
                 >
                   {route.title}

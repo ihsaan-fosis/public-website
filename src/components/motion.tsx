@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
+import { preload } from "react-dom";
 import { cn } from "@/lib/utils";
 
 function canObserve() {
@@ -83,7 +84,7 @@ export function CountUp({ value, className }: { value: string; className?: strin
   );
 }
 
-/** Words brighten one by one as the block scrolls through the viewport. */
+/** Words brighten one by one as the block scrolls through the viewport. Unlit words stay at 4.5:1 contrast so the text is always readable. */
 export function ScrollWords({ text, className }: { text: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const words = text.split(" ");
@@ -120,7 +121,7 @@ export function ScrollWords({ text, className }: { text: string; className?: str
         <span
           key={`${word}-${index}`}
           className="transition-opacity duration-300"
-          style={{ opacity: index < lit ? 1 : 0.18 }}
+          style={{ opacity: index < lit ? 1 : 0.65 }}
         >
           {word}
           {index < words.length - 1 ? " " : ""}
@@ -189,5 +190,97 @@ export function ThemeToggle({ className }: { className?: string }) {
         />
       </svg>
     </button>
+  );
+}
+
+/**
+ * The hero's background video and slow zoom, with a control to pause both (WCAG 2.2.2).
+ * Playback starts from script rather than `autoPlay`, so reduced-motion visitors keep the poster and never download the video.
+ */
+export type HeroVideoSources = {
+  src: string;
+  /** Centre crop of `src` for portrait phones, where `object-cover` only shows that slice anyway. */
+  portraitSrc: string;
+};
+
+export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  // The poster is the first paint of the hero (and its LCP) until the video starts, so fetch it early.
+  preload(poster, { as: "image", fetchPriority: "high" });
+
+  // Blocked autoplay rejects; the poster stays and the control offers Play.
+  const play = (video: HTMLVideoElement) => Promise.resolve(video.play()).catch(() => undefined);
+
+  useEffect(() => {
+    if (ref.current && !prefersReducedMotion()) play(ref.current);
+    if (!("matchMedia" in window)) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) ref.current?.pause();
+    };
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+
+  const toggle = () => {
+    const video = ref.current;
+    if (!video) return;
+    if (video.paused) play(video);
+    else video.pause();
+  };
+
+  return (
+    <>
+      <div className="hero-media absolute inset-0 -z-20">
+        <div className={cn("h-full w-full animate-kenburns", !playing && "[animation-play-state:paused]")}>
+          <video
+            ref={ref}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            className="h-full w-full object-cover"
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={poster}
+            aria-hidden
+          >
+            <source src={video.portraitSrc} type="video/mp4" media="(max-width: 767px) and (orientation: portrait)" />
+            <source src={video.src} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={playing ? "Pause background video" : "Play background video"}
+        className="absolute right-4 bottom-4 z-10 flex size-10 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:right-6 sm:bottom-6"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="currentColor">
+          {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />}
+        </svg>
+      </button>
+    </>
+  );
+}
+
+/** Wraps the partner marquees with one control that pauses every row. Reduced motion already renders them static. */
+export function MarqueeGroup({ children, className }: { children: ReactNode; className?: string }) {
+  const [paused, setPaused] = useState(false);
+
+  return (
+    <div data-paused={paused || undefined} className={cn("group/marquee", className)}>
+      {children}
+      <div className="mx-auto flex w-full max-w-7xl justify-end px-5 pt-3 motion-reduce:hidden sm:px-10">
+        <button
+          type="button"
+          onClick={() => setPaused(!paused)}
+          className="inline-flex min-h-10 items-center rounded-full px-4 text-xs font-medium text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5"
+        >
+          {paused ? "Play partner logos" : "Pause partner logos"}
+        </button>
+      </div>
+    </div>
   );
 }

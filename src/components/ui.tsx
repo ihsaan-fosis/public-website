@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { HeroVideo, type HeroVideoSources } from "./motion";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cn("mx-auto w-full max-w-7xl px-5 sm:px-10", className)}>{children}</div>;
@@ -32,7 +34,7 @@ export function revealDelay(index: number): CSSProperties {
 
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <p className={cn("flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] text-ink/55 uppercase", className)}>
+    <p className={cn("flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase", className)}>
       <span aria-hidden className="size-1.5 rounded-full bg-gradient-to-br from-ihsaan-purple to-ihsaan-light-blue" />
       {children}
     </p>
@@ -62,7 +64,7 @@ export function SectionHeading({
           {title}
         </h2>
       </div>
-      {aside ? <p className="max-w-xs text-sm leading-6 text-ink/60">{aside}</p> : null}
+      {aside ? <p className="max-w-xs text-sm leading-6 text-ink/65">{aside}</p> : null}
       {action}
     </div>
   );
@@ -111,12 +113,12 @@ export function ButtonLink({
   );
 }
 
-/** Soft purple and light-blue light that drifts behind a section. */
+/** Soft purple and light-blue light behind a section. */
 export function Glow({ className }: { className?: string }) {
   return (
     <div aria-hidden className={cn("pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
-      <div className="absolute -top-24 -left-32 size-[34rem] animate-float rounded-full bg-ihsaan-purple/20 blur-[110px] dark:bg-ihsaan-purple/35" />
-      <div className="absolute -right-24 bottom-0 size-[30rem] animate-float rounded-full bg-ihsaan-light-blue/20 blur-[110px] [animation-delay:-4s] dark:bg-ihsaan-light-blue/30" />
+      <div className="absolute -top-24 -left-32 size-[34rem] rounded-full bg-ihsaan-purple/20 blur-[110px] dark:bg-ihsaan-purple/35" />
+      <div className="absolute -right-24 bottom-0 size-[30rem] rounded-full bg-ihsaan-light-blue/20 blur-[110px] dark:bg-ihsaan-light-blue/30" />
     </div>
   );
 }
@@ -130,14 +132,20 @@ export function PhotoHero({
   intro,
   children,
   tall = false,
+  editorial = false,
+  lcp = true,
 }: {
   image: string;
-  video?: string;
-  badge: string;
+  video?: HeroVideoSources;
+  badge?: string;
   title: string;
   intro?: ReactNode;
   children?: ReactNode;
   tall?: boolean;
+  /** A restrained single-line headline, with the intro and actions set under a hairline rule so the media stays the focus. */
+  editorial?: boolean;
+  /** The hero is the page's largest paint, so it loads first. Pass false where the hero is not the page's LCP. */
+  lcp?: boolean;
 }) {
   const words = title.split(" ");
   return (
@@ -145,72 +153,100 @@ export function PhotoHero({
       <div
         className={cn(
           "hero-frame relative isolate flex overflow-hidden rounded-[28px] bg-night-2",
-          tall ? "min-h-[92svh]" : "min-h-[64svh]",
+          // 65px is the sticky header (h-16 plus its border), 1rem and 1.5rem the section's p-2 and sm:p-3 gutters.
+          tall ? "min-h-[calc(100svh-65px-1rem)] sm:min-h-[calc(100svh-65px-1.5rem)]" : "min-h-[64svh]",
         )}
       >
-        <div className="hero-media absolute inset-0 -z-20">
-          <div className="h-full w-full animate-kenburns">
-            {video ? (
-              <video
-                className="h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster={image}
-                src={video}
-                aria-hidden
-              />
-            ) : (
-              <img src={image} alt="" className="h-full w-full object-cover" />
-            )}
+        {video ? (
+          <HeroVideo video={video} poster={image} />
+        ) : (
+          <div className="hero-media absolute inset-0 -z-20">
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="100vw"
+              loading={lcp ? "eager" : "lazy"}
+              fetchPriority={lcp ? "high" : "auto"}
+              className="object-cover"
+            />
           </div>
-        </div>
+        )}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.45)_0%,rgba(6,22,41,0.1)_40%,rgba(6,22,41,0.92)_100%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
         />
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
-        <Container className="hero-copy flex flex-col justify-end pt-36 pb-12 sm:pb-16">
-          <div className="animate-rise">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-xs font-medium text-cream ring-1 ring-white/15 backdrop-blur">
-              <span aria-hidden className="relative flex size-2">
-                <span className="absolute inset-0 animate-ping rounded-full bg-ihsaan-lavender/70" />
-                <span className="relative size-2 rounded-full bg-ihsaan-lavender" />
+        <Container
+          className={cn(
+            "hero-copy flex flex-col justify-end pb-12 sm:pb-16",
+            editorial ? "pt-16 sm:pt-20" : "pt-36",
+          )}
+        >
+          {badge ? (
+            <div className="animate-rise">
+              <span className="inline-flex items-center gap-2 rounded-full bg-night/55 px-3 py-1.5 text-xs font-medium text-cream ring-1 ring-white/15 backdrop-blur">
+                <span aria-hidden className="relative flex size-2">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-ihsaan-lavender/70" style={{ animationIterationCount: 3 }} />
+                  <span className="relative size-2 rounded-full bg-ihsaan-lavender" />
+                </span>
+                {badge}
               </span>
-              {badge}
-            </span>
-          </div>
+            </div>
+          ) : null}
           <h1
             aria-label={title}
-            className="mt-6 max-w-5xl text-[2.6rem] leading-[1.02] font-extrabold tracking-[-0.04em] text-cream sm:text-7xl lg:text-[5.5rem]"
+            className={cn(
+              "font-extrabold text-cream",
+              editorial
+                ? "hero-title-editorial mt-5 leading-[1.08] tracking-[-0.03em]"
+                : "mt-6 max-w-5xl text-[2.6rem] leading-[1.02] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem]",
+            )}
           >
             {words.map((word, index) => (
               <span key={`${word}-${index}`} aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
                 <span className="inline-block animate-rise" style={{ animationDelay: `${150 + index * 90}ms` }}>
-                  {word}
+                  {editorial && word.endsWith(".") ? (
+                    <>
+                      {word.slice(0, -1)}
+                      <span className="text-ihsaan-lavender">.</span>
+                    </>
+                  ) : (
+                    word
+                  )}
                 </span>
                 {index < words.length - 1 ? " " : null}
               </span>
             ))}
           </h1>
-          {intro ? (
-            <p
-              className="mt-6 max-w-xl animate-rise text-[15px] leading-7 text-cream/80"
+          {editorial ? (
+            <div
+              className="mt-8 flex animate-rise flex-col gap-5 border-t border-white/20 pt-5 sm:mt-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
               style={{ animationDelay: `${300 + words.length * 90}ms` }}
             >
-              {intro}
-            </p>
-          ) : null}
-          {children ? (
-            <div className="animate-rise" style={{ animationDelay: `${420 + words.length * 90}ms` }}>
+              {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
               {children}
             </div>
-          ) : null}
+          ) : (
+            <>
+              {intro ? (
+                <p
+                  className="mt-6 max-w-xl animate-rise text-[15px] leading-7 text-cream/80"
+                  style={{ animationDelay: `${300 + words.length * 90}ms` }}
+                >
+                  {intro}
+                </p>
+              ) : null}
+              {children ? (
+                <div className="animate-rise" style={{ animationDelay: `${420 + words.length * 90}ms` }}>
+                  {children}
+                </div>
+              ) : null}
+            </>
+          )}
         </Container>
       </div>
     </section>

@@ -1,14 +1,16 @@
 import { render, screen, within } from "@testing-library/react";
 import Home from "./page";
 
+vi.mock("next/navigation", () => ({ useRouter: () => ({ replace: vi.fn() }), usePathname: () => "/" }));
+
 describe("Home", () => {
   it("leads with the IHSAAN headline and a route into getting involved", () => {
     render(<Home />);
-    expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Elevating faith\u2011driven talent.");
+    expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Faith. Excellence. Service.");
     expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/ticket");
   });
 
-  it("lists the six programmes under the #programmes anchor", () => {
+  it("lists the five programmes under the #programmes anchor", () => {
     render(<Home />);
     const programmes = screen.getByRole("region", { name: "Explore what we offer" });
     expect(programmes.id).toBe("programmes");
@@ -20,7 +22,6 @@ describe("Home", () => {
       "Faithful Talent",
       "Hackathons",
       "Mentorship",
-      "Opportunities",
       "Career Guides",
     ]);
   });

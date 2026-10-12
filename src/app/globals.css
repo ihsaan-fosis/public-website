@@ -19,7 +19,6 @@
   --animate-marquee: marquee 120s linear infinite;
   --animate-kenburns: kenburns 22s ease-out both;
   --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-float: float 9s ease-in-out infinite;
 
   @keyframes marquee {
     from {
@@ -49,16 +48,6 @@
       opacity: 1;
       transform: none;
       filter: none;
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    50% {
-      transform: translate3d(3%, -4%, 0) scale(1.08);
     }
   }
 }
@@ -183,6 +172,11 @@
 .why-reveal-intro,
 .why-reveal-logo {
   display: none;
+}
+
+/* Editorial hero title: a headline-scale line that sits quietly under the media instead of competing with it. */
+.hero-title-editorial {
+  font-size: clamp(2.25rem, 4.4vw, 4rem);
 }
 
 @media (prefers-reduced-motion: no-preference) {

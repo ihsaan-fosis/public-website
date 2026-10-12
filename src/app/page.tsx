@@ -1,3 +1,4 @@
+import { LegacyHashRedirect } from "@/components/legacy-hash-redirect";
 import { ScrollWords } from "@/components/motion";
 import { RouteSwitcher } from "@/components/route-switcher";
 import {
@@ -17,15 +18,16 @@ const PROMISE =
 export default function Home() {
   return (
     <>
+      <LegacyHashRedirect />
       <PhotoHero
         tall
+        editorial
         image="/media/hero-poster.webp"
-        video="/media/hero-video.mp4"
-        badge="Careers programme for Muslim students"
-        title={"Elevating faith‑driven talent."}
+        video={{ src: "/media/hero-video.mp4", portraitSrc: "/media/hero-video-mobile.mp4" }}
+        title="Faith. Excellence. Service."
         intro={MISSION}
       >
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3">
           <ButtonLink href={GET_INVOLVED.href}>{GET_INVOLVED.label}</ButtonLink>
           <ButtonLink href="/programmes" tone="light-outline">
             Explore programmes

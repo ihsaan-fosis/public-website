@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import {
@@ -12,7 +13,7 @@ import {
   type Partner,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { CountUp } from "./motion";
+import { CountUp, MarqueeGroup } from "./motion";
 import { isDarkMotif, Panel } from "./panel";
 import { Container, displayClass, Eyebrow, ButtonLink, revealDelay, Section, SectionHeading } from "./ui";
 
@@ -45,15 +46,14 @@ function ProgrammeSlide({ programme, index }: { programme: (typeof PROGRAMMES)[n
         href={`/programmes/${programme.slug}`}
         className="group relative block h-[min(62svh,40rem)] min-h-[24rem] w-[82vw] overflow-hidden rounded-[28px] bg-night-2 sm:w-[48vw] lg:w-[34vw]"
       >
-        <img
+        <Image
           src={programme.photo.src}
           alt={programme.photo.alt}
-          width={programme.photo.width}
-          height={programme.photo.height}
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+          fill
+          sizes="(min-width: 1024px) 34vw, (min-width: 640px) 48vw, 82vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/25 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
         <span
           aria-hidden
           className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40 sm:text-[7.5rem]"
@@ -61,12 +61,8 @@ function ProgrammeSlide({ programme, index }: { programme: (typeof PROGRAMMES)[n
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-          <p className="text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase">{programme.eyebrow}</p>
+          <p className="text-[11px] font-bold tracking-[0.18em] text-cream/90 uppercase">{programme.eyebrow}</p>
           <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{programme.title}</h3>
-          <span className="mt-5 flex items-center gap-3 text-sm font-medium text-cream/85">
-            <span aria-hidden className="h-px w-8 bg-cream/60 transition-all duration-500 group-hover:w-16 group-hover:bg-cream" />
-            Explore programme
-          </span>
         </div>
       </Link>
     </li>
@@ -123,19 +119,18 @@ export function ImpactStory() {
       <div className="why-reveal-sticky relative p-2 sm:p-3">
         <div
           aria-hidden
-          className="why-reveal-intro absolute inset-0 flex-col items-center justify-between px-5 pt-[14svh] pb-[8svh] text-[clamp(3.5rem,7vw,8rem)] leading-none font-extrabold tracking-[-0.05em] text-ink md:flex-row md:px-10 md:py-0"
+          className="why-reveal-intro absolute inset-0 flex-col items-center justify-between px-5 pt-[14svh] pb-[8svh] text-[clamp(3.5rem,7vw,8rem)] leading-none font-extrabold tracking-[-0.05em] text-ink md:flex-row md:px-3 md:py-0"
         >
-          <span className="why-reveal-word-start">Why</span>
-          <span className="why-reveal-word-end">Ihsaan</span>
+          <span className="why-reveal-word-start md:w-[33%] md:pr-[1.5em] md:text-right">Why</span>
+          <span className="why-reveal-word-end md:mr-[calc(1.75em+28px)]">?</span>
         </div>
         <div className="why-reveal-frame relative isolate flex h-full min-h-[calc(100svh-1rem)] overflow-hidden rounded-[28px] bg-night-2 sm:min-h-[calc(100svh-1.5rem)]">
-          <img
+          <Image
             src="/media/career-conference.webp"
             alt=""
-            width={2560}
-            height={1442}
-            loading="lazy"
-            className="why-reveal-photo absolute inset-0 -z-20 h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="why-reveal-photo -z-20 object-cover"
           />
           <div
             aria-hidden
@@ -147,6 +142,7 @@ export function ImpactStory() {
               alt=""
               width={1727}
               height={375}
+              loading="lazy"
               className="w-[clamp(12rem,22vw,20rem)]"
             />
           </div>
@@ -216,12 +212,12 @@ export function GalleryParallax({ action }: { action?: ReactNode }) {
                   GALLERY_ASPECTS[(row + column) % GALLERY_ASPECTS.length],
                 )}
               >
-                <img
+                <Image
                   src={photo.src}
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}
-                  loading="lazy"
+                  sizes="(min-width: 640px) 33vw, 50vw"
                   className="parallax-zoom h-full w-full object-cover"
                 />
               </li>
@@ -312,7 +308,7 @@ function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[
     <div className="group flex overflow-hidden py-1 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
       <div
         className={cn(
-          "flex w-max animate-marquee bg-page group-hover:[animation-play-state:paused]",
+          "flex w-max animate-marquee bg-page group-hover:[animation-play-state:paused] group-data-[paused]/marquee:[animation-play-state:paused]",
           reverse && "[animation-direction:reverse]",
         )}
       >
@@ -334,14 +330,16 @@ export function PartnersSection() {
           aside="Our diamond and gold partners open doors through conferences, mentoring and roles."
         />
       </Container>
-      <div data-reveal className="mt-12 space-y-3">
-        {PARTNER_TIERS.map((tier, index) => (
-          <div key={tier.name}>
-            <h3 className="sr-only">{tier.name}</h3>
-            <MarqueeRow partners={tier.partners} reverse={index % 2 === 1} />
-          </div>
-        ))}
-      </div>
+      <MarqueeGroup className="mt-12">
+        <div data-reveal className="space-y-3">
+          {PARTNER_TIERS.map((tier, index) => (
+            <div key={tier.name}>
+              <h3 className="sr-only">{tier.name}</h3>
+              <MarqueeRow partners={tier.partners} reverse={index % 2 === 1} />
+            </div>
+          ))}
+        </div>
+      </MarqueeGroup>
     </section>
   );
 }
@@ -379,7 +377,7 @@ export function FaqSection() {
           <h2 id="faq-title" className={cn("mt-3 text-3xl leading-[1.1] sm:text-[2.6rem]", displayClass)}>
             Good to know before you join
           </h2>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-ink/60">
+          <p className="mt-5 max-w-sm text-sm leading-6 text-ink/65">
             Something else on your mind? Email {CONTACT_EMAIL} and the team will get back to you.
           </p>
           <ButtonLink href="/contact" tone="solid" className="mt-8">
@@ -422,11 +420,12 @@ export function PhotoBand({
         className="group relative isolate flex min-h-[70svh] overflow-hidden rounded-[28px] bg-night-2"
       >
         <div aria-hidden className="parallax-zoom absolute inset-0 -z-20">
-          <img
+          <Image
             src={image}
             alt=""
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
+            fill
+            sizes="100vw"
+            className="object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
           />
         </div>
         <div aria-hidden className="absolute inset-0 -z-10 bg-night/60" />
