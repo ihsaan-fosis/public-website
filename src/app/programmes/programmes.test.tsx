@@ -21,10 +21,10 @@ describe("programme pages", () => {
   });
 
   it("links every programme from the index", () => {
-    render(<ProgrammesPage />);
+    const { container } = render(<ProgrammesPage />);
     for (const { slug, title } of PROGRAMME_PAGES) {
-      const link = screen.getByRole("link", { name: new RegExp(title) });
-      expect(link.getAttribute("href")).toBe(`/programmes/${slug}`);
+      expect(screen.getByRole("heading", { level: 3, name: title })).toBeTruthy();
+      expect(container.querySelector(`a[href="/programmes/${slug}"]`)).toBeTruthy();
     }
   });
 

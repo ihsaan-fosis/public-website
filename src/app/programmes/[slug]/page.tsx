@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Panel } from "@/components/panel";
 import { ClosingCta } from "@/components/sections";
@@ -161,21 +160,15 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         <ul className="mt-10 flex flex-wrap gap-3">
           {others.map((programme) => (
             <li key={programme.slug}>
-              <Link
-                href={`/programmes/${programme.slug}`}
-                className="inline-flex min-h-12 items-center rounded-xl px-6 text-sm font-medium text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5 hover:ring-ink/50"
-              >
+              <ButtonLink href={`/programmes/${programme.slug}`} tone="ghost">
                 {programme.title}
-              </Link>
+              </ButtonLink>
             </li>
           ))}
           <li>
-            <Link
-              href="/programmes"
-              className="inline-flex min-h-12 items-center px-3 text-sm font-medium text-ink/65 underline underline-offset-4 hover:text-ink"
-            >
+            <ButtonLink href="/programmes" tone="ghost">
               All programmes
-            </Link>
+            </ButtonLink>
           </li>
         </ul>
       </Section>

@@ -1,8 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ClosingCta, PartnersSection } from "@/components/sections";
-import { PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
+import { ButtonLink, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
 import { PROGRAMME_PAGES } from "@/content/programmes";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -24,33 +23,37 @@ export default function ProgrammesPage() {
       />
 
       <Section labelledBy="all-programmes-title">
-        <SectionHeading id="all-programmes-title" title="Find your starting point" />
+        <SectionHeading
+          id="all-programmes-title"
+          title="Find your starting point"
+          aside="Conferences, internships, hackathons, mentorship and guides. Pick the path that fits where you are now."
+        />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PROGRAMME_PAGES.map((programme, index) => (
             <li key={programme.slug} data-reveal style={revealDelay(index % 3)}>
-              <Link
-                href={`/programmes/${programme.slug}`}
-                className="group relative block aspect-[4/5] overflow-hidden rounded-[22px] bg-night-2"
-              >
+              <article className="group relative isolate flex h-full min-h-[34rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[40rem]">
                 <Image
                   src={programme.photo.src}
-                  alt=""
+                  alt={programme.photo.alt}
                   fill
-                  sizes="(min-width: 1280px) 384px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  sizes="(min-width: 1280px) 416px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
+                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-transparent transition-colors duration-500 group-hover:via-ihsaan-purple/60" />
-                <span className="absolute top-4 left-4 rounded-full bg-night/60 px-2.5 py-1 text-[11px] font-medium text-cream ring-1 ring-white/20 backdrop-blur">
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+                <span
+                  aria-hidden
+                  className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40 sm:text-[7.5rem]"
+                >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <h3 className="text-2xl font-bold tracking-[-0.02em] text-cream">{programme.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-cream/90">{programme.summary}</p>
-                  <span className="mt-5 inline-flex min-h-10 items-center rounded-xl bg-cream px-4 text-sm font-medium text-night transition-colors group-hover:bg-white">
+                <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{programme.title}</h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{programme.summary}</p>
+                <div className="mt-7">
+                  <ButtonLink href={`/programmes/${programme.slug}`} tone="white">
                     Learn more
-                  </span>
+                  </ButtonLink>
                 </div>
-              </Link>
+              </article>
             </li>
           ))}
         </ul>
