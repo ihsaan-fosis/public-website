@@ -72,18 +72,17 @@ export function SectionHeading({
 
 type ButtonTone = "accent" | "light-outline" | "ghost" | "solid" | "white";
 
-/** Flat rounded-rectangle buttons (rounded-xl, a step down from the 22px panels): no gradients, glass, glow or arrows (docs/IHSAAN-DESIGN.md). Each tone sweeps a solid fill up from the bottom edge on hover. */
+/** Flat rounded-rectangle buttons (rounded-xl, a step down from the 22px panels): no gradients, glass, glow or arrows (docs/IHSAAN-DESIGN.md). */
 const BUTTON_TONES: Record<ButtonTone, string> = {
-  accent:
-    "bg-accent text-accent-ink ring-accent before:bg-ihsaan-blue hover:ring-ihsaan-blue dark:before:bg-white dark:hover:ring-white",
-  "light-outline": "text-cream ring-cream/50 before:bg-cream hover:text-night hover:ring-cream",
-  ghost: "text-ink ring-ink/25 before:bg-ink hover:text-page hover:ring-ink",
-  solid: "bg-ink text-page ring-ink before:bg-accent hover:text-accent-ink hover:ring-accent",
-  white: "bg-white text-night ring-white before:bg-ihsaan-lavender hover:ring-ihsaan-lavender",
+  accent: "bg-ihsaan-blue text-white ring-ihsaan-blue dark:bg-ihsaan-light-blue dark:text-black dark:ring-ihsaan-light-blue",
+  "light-outline": "text-cream ring-cream/50",
+  ghost: "text-ink ring-ink/25",
+  solid: "bg-ink text-page ring-ink",
+  white: "bg-white text-night ring-white",
 };
 
 const BUTTON_BASE =
-  "relative isolate inline-flex min-h-[52px] items-center justify-center overflow-hidden rounded-xl px-8 text-[12.5px] font-bold uppercase tracking-[0.14em] ring-1 transition-[color,box-shadow,transform] duration-300 ease-out before:absolute before:inset-0 before:-z-10 before:translate-y-full before:transition-transform before:duration-[350ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:before:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:scale-[0.98]";
+  "inline-flex min-h-[52px] items-center justify-center rounded-xl px-8 text-[12.5px] font-bold uppercase tracking-[0.14em] ring-1 transition-[translate,scale,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgb(0_0_0/0.22)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:translate-y-0 active:scale-[0.98] active:shadow-none";
 
 export function ButtonLink({
   href,
@@ -142,7 +141,7 @@ export function PhotoHero({
   intro?: ReactNode;
   children?: ReactNode;
   tall?: boolean;
-  /** A restrained single-line headline, with the intro and actions set under a hairline rule so the media stays the focus. */
+  /** A restrained stacked headline, with the intro above the actions set to its right on large screens so the media stays the focus. */
   editorial?: boolean;
   /** The hero is the page's largest paint, so it loads first. Pass false where the hero is not the page's LCP. */
   lcp?: boolean;
@@ -183,11 +182,11 @@ export function PhotoHero({
         <Container
           className={cn(
             "hero-copy flex flex-col justify-end pb-12 sm:pb-16",
-            editorial ? "pt-16 sm:pt-20" : "pt-36",
+            editorial ? "pt-16 sm:pt-20 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12" : "pt-36",
           )}
         >
           {badge ? (
-            <div className="animate-rise">
+            <div className={cn("animate-rise", editorial && "lg:col-span-2")}>
               <span className="inline-flex items-center gap-2 rounded-full bg-night/55 px-3 py-1.5 text-xs font-medium text-cream ring-1 ring-white/15 backdrop-blur">
                 <span aria-hidden className="relative flex size-2">
                   <span className="absolute inset-0 animate-ping rounded-full bg-ihsaan-lavender/70" style={{ animationIterationCount: 3 }} />
@@ -207,7 +206,11 @@ export function PhotoHero({
             )}
           >
             {words.map((word, index) => (
-              <span key={`${word}-${index}`} aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+              <span
+                key={`${word}-${index}`}
+                aria-hidden
+                className={cn("overflow-hidden pb-[0.08em] align-bottom", editorial ? "block" : "inline-block")}
+              >
                 <span className="inline-block animate-rise" style={{ animationDelay: `${150 + index * 90}ms` }}>
                   {editorial && word.endsWith(".") ? (
                     <>
@@ -224,7 +227,7 @@ export function PhotoHero({
           </h1>
           {editorial ? (
             <div
-              className="mt-8 flex animate-rise flex-col gap-5 border-t border-white/20 pt-5 sm:mt-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
+              className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-0"
               style={{ animationDelay: `${300 + words.length * 90}ms` }}
             >
               {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
