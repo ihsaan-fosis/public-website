@@ -1,3 +1,5 @@
+import { SOCIAL_LINKS } from "@/content/site";
+
 export function GET() {
   return new Response(`# IHSAAN
 
@@ -18,7 +20,6 @@ IHSAAN elevates faith-driven talent. Public site for Muslim students and young p
 
 ihsaan@fosis.org.uk
 https://ihsaan.network
-https://www.instagram.com/ihsaan.network/
-https://linkedin.com/company/ihsaan-network/
+${SOCIAL_LINKS.map(({ href }) => href).join("\n")}
 `, { headers: { "content-type": "text/plain; charset=utf-8" } });
 }

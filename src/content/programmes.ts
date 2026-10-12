@@ -1,3 +1,4 @@
+import { PUBLIC_DESTINATIONS } from "./links";
 import type { Photo, Stat } from "./site";
 
 export type ProgrammeAction = { label: string; href: string; external?: boolean };
@@ -26,8 +27,6 @@ export type ProgrammePage = {
   primary: ProgrammeAction;
   secondary?: ProgrammeAction;
 };
-
-const INSTAGRAM = "https://www.instagram.com/ihsaan.network/";
 
 export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
   {
@@ -72,7 +71,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       { date: "3 Feb 2026", place: "Leeds", detail: "143 signups" },
       { date: "26 Mar 2026", place: "Manchester", detail: "172 signups" },
     ],
-    primary: { label: "View upcoming events", href: "https://luma.com/calendar/cal-8amaiM2VigRIqjq", external: true },
+    primary: { label: "View upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Host or sponsor a conference", href: "/contact" },
   },
   {
@@ -141,7 +140,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       text: "The hackathon was an incredible experience. I learned so much from the people around me, got hands on experience with the latest AI tools and loved seeing participants build solutions to real world problems.",
       source: "Attendee, Dublin Hackathon, 2026",
     },
-    primary: { label: "See upcoming events", href: "https://luma.com/calendar/cal-8amaiM2VigRIqjq", external: true },
+    primary: { label: "See upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Become a partner", href: "/contact" },
   },
   {
@@ -168,7 +167,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Share your experience, mentor emerging Muslim talent and help students navigate their careers.",
       },
     ],
-    primary: { label: "Visit My Muslim Mentor", href: "https://mymuslimmentor.com/", external: true },
+    primary: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
     secondary: { label: "Become a mentor", href: "/contact" },
   },
   {
@@ -193,8 +192,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       { title: "Industry overviews", body: "Breaking into finance, law, tech, consulting and the public sector." },
       { title: "Faith at work", body: "Practical advice on prayer, dress and workplace culture." },
     ],
-    primary: { label: "Access the guides", href: "https://ihsaannetwork.notion.site/careers-essentials", external: true },
-    secondary: { label: "Follow for new guides", href: INSTAGRAM, external: true },
+    primary: { label: "Access the guides", href: PUBLIC_DESTINATIONS.careerGuides.href, external: true },
+    secondary: { label: "Follow for new guides", href: PUBLIC_DESTINATIONS.instagram.href, external: true },
   },
 ];
 

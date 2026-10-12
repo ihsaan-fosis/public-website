@@ -1,3 +1,5 @@
+import { PUBLIC_DESTINATIONS } from "./links";
+
 export const CONTACT_EMAIL = "ihsaan@fosis.org.uk";
 
 export const MISSION =
@@ -19,10 +21,9 @@ export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
 
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network", label: "Student portal" };
 
-export const SOCIAL_LINKS: readonly NavLink[] = [
-  { href: "https://www.instagram.com/ihsaan.network/", label: "Instagram" },
-  { href: "https://www.linkedin.com/company/ihsaan-network/", label: "LinkedIn" },
-];
+export const SOCIAL_LINKS: readonly NavLink[] = (["instagram", "linkedin", "tiktok", "youtube"] as const).map(
+  (key) => PUBLIC_DESTINATIONS[key],
+);
 
 export const LEGAL_LINKS: readonly NavLink[] = [
   { href: "/privacy", label: "Privacy policy" },

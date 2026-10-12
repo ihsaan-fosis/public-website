@@ -5,7 +5,7 @@ import { Poppins } from "next/font/google";
 import { RevealObserver } from "@/components/motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { TAGLINE } from "@/content/site";
+import { SOCIAL_LINKS, TAGLINE } from "@/content/site";
 import { DEFAULT_TITLE, pageMetadata } from "@/lib/metadata";
 import { INDEXABLE, SITE_ORIGIN } from "../lib/site";
 
@@ -53,10 +53,7 @@ const organizationJsonLd = {
   logo: `${SITE_ORIGIN}/media/blue-logo.webp`,
   email: "ihsaan@fosis.org.uk",
   areaServed: ["United Kingdom", "Ireland"],
-  sameAs: [
-    "https://www.instagram.com/ihsaan.network/",
-    "https://www.linkedin.com/company/ihsaan-network/",
-  ],
+  sameAs: SOCIAL_LINKS.map(({ href }) => href),
 };
 
 // Runs before paint so the stored or system theme applies without a flash.
