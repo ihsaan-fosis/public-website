@@ -6,8 +6,12 @@ import ProgrammesPage from "./page";
 import ProgrammePage, { generateStaticParams } from "./[slug]/page";
 
 describe("programme pages", () => {
-  it("points the Programmes nav link at its own page", () => {
-    expect(NAV_LINKS.find((link) => link.label === "Programmes")?.href).toBe("/programmes");
+  it("points the Programmes nav link at its own page with a child per programme", () => {
+    const programmes = NAV_LINKS.find((link) => link.label === "Programmes");
+    expect(programmes?.href).toBe("/programmes");
+    expect(programmes?.children).toEqual(
+      PROGRAMMES.map(({ slug, title }) => ({ href: `/programmes/${slug}`, label: title })),
+    );
   });
 
   it("keeps the opportunities tracker hidden", () => {

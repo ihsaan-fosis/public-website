@@ -24,9 +24,22 @@ export const RESOURCE_NAV_LINKS: readonly NavLink[] = [
   { href: "/haqqathons", label: "Haqqathons" },
 ];
 
+/** Programme detail pages in the Programmes dropdown. Overview stays on the parent link. */
+export const PROGRAMME_NAV_LINKS: readonly NavLink[] = [
+  { href: "/programmes/career-conferences", label: "Career Conferences" },
+  { href: "/programmes/faithful-talent", label: "Faithful Talent" },
+  { href: "/programmes/hackathons", label: "Hackathons" },
+  { href: "/programmes/mentorship", label: "Mentorship" },
+  { href: "/programmes/career-guides", label: "Career Guides" },
+];
+
 export const NAV_LINKS: readonly NavItem[] = [
   { href: "/about", label: "About" },
-  { href: "/programmes", label: "Programmes" },
+  {
+    href: "/programmes",
+    label: "Programmes",
+    children: PROGRAMME_NAV_LINKS,
+  },
   {
     href: "/resources",
     label: "Resources",

@@ -72,6 +72,32 @@ describe("SiteHeader", () => {
     }
   });
 
+  it("exposes each programme under the Programmes dropdown on desktop and in the mobile menu", () => {
+    render(<SiteHeader />);
+
+    const expected = [
+      ["Career Conferences", "/programmes/career-conferences"],
+      ["Faithful Talent", "/programmes/faithful-talent"],
+      ["Hackathons", "/programmes/hackathons"],
+      ["Mentorship", "/programmes/mentorship"],
+      ["Career Guides", "/programmes/career-guides"],
+    ] as const;
+
+    const desktop = screen.getByRole("navigation", { name: "Primary" });
+    fireEvent.click(within(desktop).getByRole("button", { name: "Programmes menu" }));
+    for (const [label, href] of expected) {
+      expect(within(desktop).getByRole("menuitem", { name: label })).toHaveAttribute("href", href);
+    }
+    expect(within(desktop).queryByRole("menuitem", { name: "All programmes" })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const mobile = screen.getByRole("navigation", { name: "Mobile primary" });
+    fireEvent.click(within(mobile).getByRole("button", { name: "Show Programmes links" }));
+    for (const [label, href] of expected) {
+      expect(within(mobile).getByRole("link", { name: label })).toHaveAttribute("href", href);
+    }
+  });
+
   it("keeps Resources active while reading the blog", () => {
     route.pathname = "/blog";
     render(<SiteHeader />);
@@ -80,12 +106,17 @@ describe("SiteHeader", () => {
     expect(within(desktop).getByRole("menuitem", { name: "Blog" })).toHaveAttribute("aria-current", "page");
   });
 
-  it("keeps the programmes link targeting its overview from a detail page", () => {
+  it("keeps the programmes overview link active from a detail page and marks the open child", () => {
     route.pathname = "/programmes/career-conferences";
     render(<SiteHeader />);
     const nav = screen.getByRole("navigation", { name: "Primary" });
     expect(within(nav).getByRole("link", { name: "Programmes" })).toHaveAttribute("href", "/programmes");
     expect(within(nav).getByRole("link", { name: "Programmes" })).toHaveAttribute("aria-current", "page");
+    fireEvent.click(within(nav).getByRole("button", { name: "Programmes menu" }));
+    expect(within(nav).getByRole("menuitem", { name: "Career Conferences" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 
   it.each([
