@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Panel } from "@/components/panel";
 import { ClosingCta } from "@/components/sections";
-import { displayClass, Glow, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { displayClass, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import type { Motif } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -72,8 +72,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </div>
       </Section>
 
-      <section aria-labelledby="highlights-title" className="relative isolate pb-20 sm:pb-28">
-        <Glow className="opacity-50" />
+      <section aria-labelledby="highlights-title" className="pb-20 sm:pb-28">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-10">
           <SectionTitle id="highlights-title">{page.highlightsTitle}</SectionTitle>
           <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

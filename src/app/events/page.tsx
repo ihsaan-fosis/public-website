@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { EventList } from "@/components/event-list";
-import { ButtonLink, Container, displayClass, Glow, Section, SectionTitle } from "@/components/ui";
+import { ButtonLink, Container, displayClass, Section, SectionTitle } from "@/components/ui";
 import { PUBLIC_EVENTS } from "@/content/events";
 import { PUBLIC_DESTINATIONS } from "@/content/links";
 import { classifyEvents } from "@/lib/events";
@@ -25,8 +25,7 @@ export default function EventsPage() {
 
   return (
     <>
-      <section id="hero" aria-labelledby="events-title" className="relative isolate pt-16 pb-12 sm:pt-24 sm:pb-16">
-        <Glow className="opacity-50" />
+      <section id="hero" aria-labelledby="events-title" className="pt-16 pb-12 sm:pt-24 sm:pb-16">
         <Container>
           <h1 id="events-title" className={cn("max-w-3xl text-[2.6rem] leading-[1.02] sm:text-6xl", displayClass)}>
             Events.

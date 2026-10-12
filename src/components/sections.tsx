@@ -21,10 +21,6 @@ import { Container, ButtonLink, revealDelay, Section, SectionHeading, SectionTit
 export function FactsCard({ footnote }: { footnote?: string }) {
   return (
     <Panel motif="a" art={false} className="h-full rounded-[22px]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-20 -right-20 -z-10 size-72 rounded-full bg-ihsaan-light-blue/50 blur-3xl"
-      />
       <dl>
         {FACTS.map((fact) => (
           <div key={fact.label} className="flex items-baseline justify-between gap-4 border-b border-white/15 py-3.5">

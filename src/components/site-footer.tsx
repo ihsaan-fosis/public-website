@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { BLOG_LINK, EVENTS_LINK, GET_INVOLVED, LEGAL_LINKS, NAV_LINKS, SOCIAL_LINKS } from "@/content/site";
 import { ThemeToggle } from "./motion";
-import { Container, Eyebrow, Glow } from "./ui";
+import { Container, Eyebrow } from "./ui";
 
 function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -58,8 +58,7 @@ function SocialIcon({ label }: { label: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="relative isolate overflow-hidden border-t border-ink/10 pt-20">
-      <Glow className="opacity-70" />
+    <footer className="border-t border-ink/10 pt-20">
       <Container>
         <div className="grid gap-10 pb-14 sm:grid-cols-3">
           <FooterColumn title="Explore">

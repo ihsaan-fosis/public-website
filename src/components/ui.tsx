@@ -153,16 +153,6 @@ export function ButtonLink({
   );
 }
 
-/** Soft purple and light-blue light behind a section. */
-export function Glow({ className }: { className?: string }) {
-  return (
-    <div aria-hidden className={cn("pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
-      <div className="absolute -top-24 -left-32 size-[34rem] rounded-full bg-ihsaan-purple/20 blur-[110px] dark:bg-ihsaan-purple/35" />
-      <div className="absolute -right-24 bottom-0 size-[30rem] rounded-full bg-ihsaan-light-blue/20 blur-[110px] dark:bg-ihsaan-light-blue/30" />
-    </div>
-  );
-}
-
 /** Inset, rounded full-bleed photo frame: a stacked headline anchored bottom-left, with the intro above the actions set to its right on large screens so the media stays the focus. */
 export function PhotoHero({
   image,

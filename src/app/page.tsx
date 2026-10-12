@@ -9,7 +9,7 @@ import {
   PartnersSection,
   ProgrammesCarousel,
 } from "@/components/sections";
-import { Container, displayClass, Glow, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { GET_INVOLVED, MISSION } from "@/content/site";
 
 const PROMISE =
@@ -55,8 +55,7 @@ export default function Home() {
         }
       />
 
-      <Section labelledBy="routes-title" className="isolate">
-        <Glow className="opacity-50" />
+      <Section labelledBy="routes-title">
         <SectionHeading
           id="routes-title"
           title="Find your place at IHSAAN"

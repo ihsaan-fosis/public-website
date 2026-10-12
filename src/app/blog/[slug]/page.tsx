@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, Container, displayClass, Eyebrow, Glow, Section } from "@/components/ui";
+import { ButtonLink, Container, displayClass, Eyebrow, Section } from "@/components/ui";
 import { BLOG_POSTS, getBlogPost } from "@/content/blog";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE_ORIGIN } from "@/lib/site";
@@ -68,8 +68,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
   return (
     <>
-      <section id="hero" aria-labelledby="article-title" className="relative isolate pt-16 pb-10 sm:pt-24 sm:pb-14">
-        <Glow className="opacity-50" />
+      <section id="hero" aria-labelledby="article-title" className="pt-16 pb-10 sm:pt-24 sm:pb-14">
         <Container>
           <p className="text-sm font-medium text-ink/65">
             <Link href="/blog" className="hover:text-ink hover:underline">

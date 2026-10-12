@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { HeroVideo, MarqueeGroup, RevealObserver } from "./motion";
-import { Glow, PhotoHero, SectionHeading } from "./ui";
+import { PhotoHero, SectionHeading } from "./ui";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
 
@@ -198,11 +198,6 @@ describe("static decoration", () => {
     const copy = container.querySelector(".hero-copy");
     expect(copy).toHaveClass("w-full", "px-5", "sm:px-10", "lg:px-12", "pb-8", "sm:pb-10", "lg:pb-12");
     expect(copy?.className).not.toMatch(/max-w-/);
-  });
-
-  it("renders Glow without any animation", () => {
-    const { container } = render(<Glow />);
-    expect(container.querySelector('[class*="animate-"]')).toBeNull();
   });
 
   it("renders a still-image hero without the continuous zoom", () => {
