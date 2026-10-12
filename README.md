@@ -4,7 +4,7 @@ Public website for [IHSAAN](https://ihsaan.network) at **https://ihsaan.network*
 
 GitHub: [`ihsaan-fosis/public-website`](https://github.com/ihsaan-fosis/public-website) (private)
 
-Local folder on this machine: `public-website-ihsaan` (alongside `member-platform`).
+Local folder on this machine: `ihsaan-public-website` (alongside `member-platform`).
 
 ## Tech Stack
 
@@ -13,7 +13,7 @@ Local folder on this machine: `public-website-ihsaan` (alongside `member-platfor
 - **Language:** TypeScript
 - **Package manager:** [Bun](https://bun.sh/) (required)
 - **Tests:** Vitest + Testing Library
-- **Lint:** ESLint (Next.js config)
+- **Lint:** Oxlint (anti-slop / project rules). ESLint config remains for Next tooling only
 
 ## Prerequisites
 
@@ -25,10 +25,12 @@ gh auth switch --user ihsaan-fosis
 gh api user --jq .login
 ```
 
+Commits that should deploy on Vercel must be authored as `techihsaan <tech.ihsaan@fosis.org.uk>`. See `AGENTS.md`.
+
 ## Setup
 
 ```bash
-cd public-website-ihsaan
+cd ihsaan-public-website
 bun install
 cp .env.example .env.local
 bun run dev
@@ -40,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Purpose |
 |----------|---------|
-| `NEXT_PUBLIC_APP_URL` | Site origin. Production: `https://ihsaan.network`. Local: `http://localhost:3000` |
+| `NEXT_PUBLIC_APP_URL` | Site origin for local/preview. Production builds always canonicalise to `https://ihsaan.network` |
 
 ## Scripts
 
@@ -51,23 +53,25 @@ Open [http://localhost:3000](http://localhost:3000).
 | `bun run start` | Serve production build |
 | `bun run test` | Vitest watch |
 | `bun run test:run` | Vitest once |
-| `bun run lint` | ESLint |
+| `bun run lint` | Oxlint |
 
 ## Project structure
 
 ```
-public-website-ihsaan/
-├── AGENTS.md                 # Agent rules + gh profile
+ihsaan-public-website/
+├── AGENTS.md
 ├── docs/
-│   ├── CODEBASE_MAP.md       # Module map
+│   ├── CODEBASE_MAP.md       # Module map (start here for navigation)
 │   ├── context.md            # Product context
-│   └── PROMPT.txt            # Optional agent seed prompt
+│   └── IHSAAN-DESIGN.md      # Visual system
 ├── src/
-│   ├── app/                  # layout, page, globals
-│   ├── components/           # UI (Hero)
-│   ├── lib/env.ts            # Env validation
+│   ├── app/                  # Routes, layout, globals, SEO
+│   ├── components/           # UI, sections, chrome, motion
+│   ├── content/              # Site + programme copy, legacy routes
+│   ├── lib/                  # Origin, metadata helpers, cn
 │   └── test/setup.ts
-├── next.config.mjs
+├── public/media|partners|icons
+├── next.config.mjs           # Redirects, CSP, image patterns
 ├── package.json
 └── bun.lock
 ```
@@ -77,7 +81,7 @@ public-website-ihsaan/
 | Repo | Role |
 |------|------|
 | `ihsaan-fosis/public-website` | This public site (`ihsaan.network`) |
-| `ihsaan-fosis/member-platform` | Private member portal |
+| `ihsaan-fosis/member-platform` | Private member portal (`portal.ihsaan.network`) |
 
 ## Docs
 
