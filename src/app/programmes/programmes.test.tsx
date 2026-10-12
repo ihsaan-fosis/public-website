@@ -50,15 +50,12 @@ describe("programme pages", () => {
       expect(href("Become a partner")).toBe("/contact");
     });
 
-    it("adds the single Civil Service reflection to career guides without losing the guides or Instagram", async () => {
+    it("adds the Civil Service reflection to career guides on the native blog without losing the guides or Instagram", async () => {
       const { container } = await renderProgramme("career-guides");
-      expect(href("Read a Civil Service internship reflection on Notion")).toBe(
-        "https://ihsaanbyfosis.notion.site/ihsaan-reflection-civil-service-summer-internship",
-      );
-      expect(href("Access the guides")).toBe("https://ihsaannetwork.notion.site/careers-essentials");
+      expect(href("Read a Civil Service internship reflection")).toBe("/blog/civil-service-summer-internship");
+      expect(href("Browse Career Essentials")).toBe("/resources");
       expect(href("Follow for new guides")).toBe("https://www.instagram.com/ihsaan.network/");
       expect(container.innerHTML).not.toContain("fbclid");
-      expect(screen.queryByRole("link", { name: /blog/i })).toBeNull();
     });
 
     it("keeps My Muslim Mentor on the mentorship page", async () => {

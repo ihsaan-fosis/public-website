@@ -195,13 +195,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       { title: "Industry overviews", body: "Breaking into finance, law, tech, consulting and the public sector." },
       { title: "Faith at work", body: "Practical advice on prayer, dress and workplace culture." },
     ],
-    primary: { label: "Access the guides", href: PUBLIC_DESTINATIONS.careerGuides.href, external: true },
+    primary: { label: "Browse Career Essentials", href: "/resources" },
     secondary: { label: "Follow for new guides", href: PUBLIC_DESTINATIONS.instagram.href, external: true },
     relatedLinks: [
       {
-        label: "Read a Civil Service internship reflection on Notion",
-        href: PUBLIC_DESTINATIONS.civilServiceReflection.href,
-        external: true,
+        label: "Read a Civil Service internship reflection",
+        href: "/blog/civil-service-summer-internship",
       },
     ],
   },
