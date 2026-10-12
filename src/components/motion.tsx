@@ -264,9 +264,9 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause background video" : "Play background video"}
-        className="absolute right-4 bottom-4 z-10 flex size-10 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:right-6 sm:bottom-6"
+        className="absolute right-4 bottom-4 z-10 flex size-8 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:right-6 sm:bottom-6"
       >
-        <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="currentColor">
+        <svg viewBox="0 0 24 24" aria-hidden className="size-3" fill="currentColor">
           {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />}
         </svg>
       </button>

@@ -136,12 +136,20 @@ const BUTTON_TONES: Record<ButtonTone, string> = {
 };
 
 const BUTTON_BASE =
-  "inline-flex min-h-[52px] items-center justify-center rounded-xl px-8 text-[12.5px] font-bold uppercase tracking-[0.14em] ring-1 transition-[translate,scale,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgb(0_0_0/0.22)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:translate-y-0 active:scale-[0.98] active:shadow-none";
+  "inline-flex items-center justify-center rounded-xl font-bold uppercase ring-1 transition-[translate,scale,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgb(0_0_0/0.22)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:translate-y-0 active:scale-[0.98] active:shadow-none";
+
+type ButtonSize = "default" | "compact";
+
+const BUTTON_SIZES: Record<ButtonSize, string> = {
+  default: "min-h-[52px] px-8 text-[12.5px] tracking-[0.14em]",
+  compact: "min-h-9 px-4 text-[11px] tracking-[0.12em]",
+};
 
 export function ButtonLink({
   href,
   children,
   tone = "accent",
+  size = "default",
   external = false,
   className,
   scroll,
@@ -149,11 +157,12 @@ export function ButtonLink({
   href: string;
   children: ReactNode;
   tone?: ButtonTone;
+  size?: ButtonSize;
   external?: boolean;
   className?: string;
   scroll?: boolean;
 }) {
-  const classes = cn(BUTTON_BASE, BUTTON_TONES[tone], className);
+  const classes = cn(BUTTON_BASE, BUTTON_SIZES[size], BUTTON_TONES[tone], className);
   if (external) {
     return (
       <a href={href} className={classes}>
@@ -233,7 +242,7 @@ export function PhotoHero({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
-        <Container className="hero-copy flex flex-col justify-end pt-16 pb-12 sm:pt-20 sm:pb-16 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12">
+        <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12">
           <h1 aria-label={title} className="hero-title-editorial leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
             {words.map((word, index) => {
               const endsSentence = word.endsWith(".");
@@ -263,7 +272,7 @@ export function PhotoHero({
             {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
             {children}
           </div>
-        </Container>
+        </div>
       </div>
     </section>
   );

@@ -148,7 +148,7 @@ export function ImpactStory() {
               className="w-[clamp(12rem,22vw,20rem)]"
             />
           </div>
-          <Container className="flex flex-col pt-24 pb-10 sm:pt-28 sm:pb-14 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12">
+          <div className="flex w-full flex-col px-5 pt-24 pb-8 sm:px-10 sm:pt-28 sm:pb-10 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12 lg:px-12 lg:pb-12">
             <h2
               id="why-title"
               className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
@@ -169,7 +169,7 @@ export function ImpactStory() {
                 Our story
               </ButtonLink>
             </div>
-          </Container>
+          </div>
         </div>
       </div>
     </section>
@@ -464,9 +464,9 @@ export function PhotoBand({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_50%_100%,rgba(101,64,138,0.6),transparent_70%)]"
         />
-        <Container className="flex flex-col py-12 sm:py-16 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12">
+        <div className="flex w-full flex-col px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12 lg:px-12 lg:pb-12">
           {children}
-        </Container>
+        </div>
       </div>
     </section>
   );
