@@ -5,44 +5,22 @@ import { Poppins } from "next/font/google";
 import { RevealObserver } from "@/components/motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SITE_ORIGIN } from "../lib/site";
+import { TAGLINE } from "@/content/site";
+import { DEFAULT_TITLE, pageMetadata } from "@/lib/metadata";
+import { INDEXABLE, SITE_ORIGIN } from "../lib/site";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
 
 export const metadata: Metadata = {
+  ...pageMetadata({ description: TAGLINE, path: "/" }),
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: "IHSAAN | Elevating Faith-Driven Talent",
+    default: DEFAULT_TITLE,
     template: "%s | IHSAAN",
   },
-  "description": "IHSAAN empowers Muslim students with opportunities, mentorship, and networks for God-conscious careers.",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
-  "alternates": {
-    "canonical": "/"
-  },
-  "openGraph": {
-    "title": "IHSAAN | Elevating Faith-Driven Talent",
-    "description": "IHSAAN empowers Muslim students with opportunities, mentorship, and networks for God-conscious careers.",
-    "type": "website",
-    "url": "/",
-    "siteName": "IHSAAN",
-    "locale": "en_GB",
-    "images": [
-      "/media/hero-poster.webp"
-    ]
-  },
-  "twitter": {
-    "card": "summary_large_image",
-    "title": "IHSAAN | Elevating Faith-Driven Talent",
-    "description": "IHSAAN empowers Muslim students with opportunities, mentorship, and networks for God-conscious careers.",
-    "images": [
-      "/media/hero-poster.webp"
-    ]
-  },
+  robots: INDEXABLE
+    ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } }
+    : { index: false, follow: false },
   "icons": {
     "icon": [
       {

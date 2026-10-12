@@ -2,18 +2,15 @@ import type { Metadata } from "next";
 import { RouteSwitcher } from "@/components/route-switcher";
 import { FaqSection, InvolvementCards } from "@/components/sections";
 import { PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Get Involved",
   description:
     "Join IHSAAN as a student, mentor, volunteer or partner and help Muslim talent build meaningful, faith-conscious careers.",
-  alternates: { canonical: "/ticket" },
-  openGraph: {
-    title: "Get Involved | IHSAAN",
-    description: "Join IHSAAN as a student, mentor, volunteer or partner.",
-    url: "/ticket",
-  },
-};
+  path: "/ticket",
+  socialDescription: "Join IHSAAN as a student, mentor, volunteer or partner.",
+});
 
 export default function GetInvolvedPage() {
   return (

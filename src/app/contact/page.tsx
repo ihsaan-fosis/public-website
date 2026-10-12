@@ -4,18 +4,15 @@ import { Panel } from "@/components/panel";
 import { PartnerWall } from "@/components/sections";
 import { Eyebrow, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { COMMUNITY_PARTNERS, CONTACT_EMAIL, PARTNER_TIERS, SOCIAL_LINKS } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Contact IHSAAN about student programmes, mentoring, volunteering and partnerships across the UK and Ireland.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Contact | IHSAAN",
-    description: "Get in touch with IHSAAN about programmes, mentoring, volunteering and partnerships.",
-    url: "/contact",
-  },
-};
+  path: "/contact",
+  socialDescription: "Get in touch with IHSAAN about programmes, mentoring, volunteering and partnerships.",
+});
 
 const ALL_PARTNERS = [...PARTNER_TIERS.flatMap((tier) => tier.partners), ...COMMUNITY_PARTNERS];
 
@@ -76,7 +73,7 @@ export default function ContactPage() {
                 ))}
               </dd>
             </div>
-            <div className="py-6 text-[13px] leading-6 text-ink/60">
+            <div className="py-6 text-[13px] leading-6 text-ink/65">
               <dt className="sr-only">Privacy</dt>
               <dd>
                 Read our{" "}

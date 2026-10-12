@@ -1,10 +1,12 @@
+import { LEGACY_PAGES } from "./src/content/legacy-routes.mjs";
+
 /** @type {import('next').NextConfig} */
 const isDev = process.env.NODE_ENV !== "production";
 
 const nextConfig = {
   reactStrictMode: true,
-  // Pages use plain <img> with static assets under /public.
-  images: { unoptimized: true },
+  // Photographs go through next/image; only first-party files under /public/media may be optimised.
+  images: { localPatterns: [{ pathname: "/media/**", search: "" }] },
   async redirects() {
     return [
       {
@@ -13,6 +15,13 @@ const nextConfig = {
         destination: "https://ihsaan.network/:path*",
         permanent: true,
       },
+      ...LEGACY_PAGES.map(({ page, destination, permanent }) => ({
+        source: `/pages/${page}.html`,
+        destination,
+        permanent,
+      })),
+      // Hidden until the tracker returns; temporary so its URL can come back.
+      { source: "/programmes/opportunities-tracker", destination: "/programmes", permanent: false },
     ];
   },
   async headers() {

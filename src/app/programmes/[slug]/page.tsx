@@ -6,6 +6,7 @@ import { ClosingCta } from "@/components/sections";
 import { displayClass, Eyebrow, Glow, PhotoHero, ButtonLink, revealDelay, Section } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import type { Motif } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 type Params = { slug: string };
@@ -21,13 +22,7 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const page = getProgrammePage((await params).slug);
   if (!page) return {};
-  const url = `/programmes/${page.slug}`;
-  return {
-    title: page.title,
-    description: page.summary,
-    alternates: { canonical: url },
-    openGraph: { title: `${page.title} | IHSAAN`, description: page.summary, url },
-  };
+  return pageMetadata({ title: page.title, description: page.summary, path: `/programmes/${page.slug}`, image: page.image });
 }
 
 export default async function ProgrammePage({ params }: { params: Promise<Params> }) {
@@ -127,7 +122,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
                 data-reveal
                 className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr_auto] sm:items-baseline sm:gap-6"
               >
-                <span className="text-sm text-ink/55">{event.date}</span>
+                <span className="text-sm text-ink/65">{event.date}</span>
                 <span className="text-lg font-medium tracking-[-0.02em] text-ink">{event.place}</span>
                 <span className="text-sm text-ink/65 sm:max-w-md sm:text-right">{event.detail}</span>
               </li>
@@ -145,7 +140,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
             <blockquote className={`text-2xl leading-[1.25] sm:text-4xl ${displayClass}`}>
               &ldquo;{page.quote.text}&rdquo;
             </blockquote>
-            <figcaption className="mt-5 text-sm text-ink/60">{page.quote.source}</figcaption>
+            <figcaption className="mt-5 text-sm text-ink/65">{page.quote.source}</figcaption>
           </figure>
         </Section>
       ) : null}

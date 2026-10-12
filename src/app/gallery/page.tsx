@@ -1,19 +1,17 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ClosingCta } from "@/components/sections";
 import { PhotoHero, revealDelay, Section } from "@/components/ui";
 import { GALLERY } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Programme Gallery",
   description:
     "See IHSAAN career conferences, hackathons and student programmes supporting Muslim talent across the UK and Ireland.",
-  alternates: { canonical: "/gallery" },
-  openGraph: {
-    title: "Programme Gallery | IHSAAN",
-    description: "Explore IHSAAN career conferences, hackathons and student programmes.",
-    url: "/gallery",
-  },
-};
+  path: "/gallery",
+  socialDescription: "Explore IHSAAN career conferences, hackathons and student programmes.",
+});
 
 export default function GalleryPage() {
   return (
@@ -34,13 +32,13 @@ export default function GalleryPage() {
               style={revealDelay(index % 3)}
               className="group mb-4 break-inside-avoid overflow-hidden rounded-[22px]"
             >
-              <img
+              <Image
                 src={photo.src}
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
-                loading="lazy"
-                className="w-full transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                sizes="(min-width: 1280px) 384px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
+                className="h-auto w-full transition-transform duration-[1200ms] ease-out group-hover:scale-105"
               />
             </li>
           ))}

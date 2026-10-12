@@ -1,20 +1,18 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ClosingCta, FactsCard, PartnersSection, ProgrammesCarousel } from "@/components/sections";
 import { ScrollWords } from "@/components/motion";
 import { Container, displayClass, Eyebrow, Glow, PhotoHero, revealDelay, Section } from "@/components/ui";
 import { MISSION } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Our Story",
   description:
     "Discover how IHSAAN helps Muslim students across the UK and Ireland access mentorship, networks and faith-conscious career opportunities.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "Our Story | IHSAAN",
-    description: "IHSAAN unlocks Muslim student talent through mentorship, networks and career opportunities.",
-    url: "/about",
-  },
-};
+  path: "/about",
+  socialDescription: "IHSAAN unlocks Muslim student talent through mentorship, networks and career opportunities.",
+});
 
 export default function AboutPage() {
   return (
@@ -53,13 +51,12 @@ export default function AboutPage() {
             </div>
           </div>
           <div data-reveal style={revealDelay(1)} className="group relative min-h-[26rem] overflow-hidden rounded-[22px] bg-night-2">
-            <img
+            <Image
               src="/media/faithful-talent.webp"
               alt="Faithful Talent interns at an IHSAAN session"
-              width={1800}
-              height={1114}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-105"
+              fill
+              sizes="(min-width: 1280px) 387px, (min-width: 1024px) 31vw, 100vw"
+              className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-105"
             />
           </div>
           <div data-reveal style={revealDelay(2)}>
