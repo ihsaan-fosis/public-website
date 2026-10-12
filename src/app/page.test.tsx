@@ -7,6 +7,7 @@ describe("Home", () => {
   it("leads with the IHSAAN headline and a route into getting involved", () => {
     render(<Home />);
     expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Faith. Excellence. Service.");
+    expect(document.getElementById("hero")).not.toBeNull();
     expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/ticket");
   });
 

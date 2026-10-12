@@ -21,7 +21,6 @@ export default function Home() {
       <LegacyHashRedirect />
       <PhotoHero
         tall
-        editorial
         image="/media/hero-poster.webp"
         video={{ src: "/media/hero-video.mp4", portraitSrc: "/media/hero-video-mobile.mp4" }}
         title="Faith. Excellence. Service."

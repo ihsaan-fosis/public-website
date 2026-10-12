@@ -1,11 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { HeroVideo, type HeroVideoSources } from "./motion";
 
-export function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mx-auto w-full max-w-7xl px-5 sm:px-10", className)}>{children}</div>;
+export function Container({
+  children,
+  className,
+  id,
+}: {
+  children: ReactNode;
+  className?: string;
+  id?: string;
+}) {
+  return (
+    <div id={id} className={cn("mx-auto w-full max-w-7xl px-5 sm:px-10", className)}>
+      {children}
+    </div>
+  );
 }
 
 export function Section({
@@ -132,12 +144,14 @@ export function ButtonLink({
   tone = "accent",
   external = false,
   className,
+  scroll,
 }: {
   href: string;
   children: ReactNode;
   tone?: ButtonTone;
   external?: boolean;
   className?: string;
+  scroll?: boolean;
 }) {
   const classes = cn(BUTTON_BASE, BUTTON_TONES[tone], className);
   if (external) {
@@ -148,7 +162,7 @@ export function ButtonLink({
     );
   }
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} scroll={scroll} className={classes}>
       {children}
     </Link>
   );
@@ -164,7 +178,7 @@ export function Glow({ className }: { className?: string }) {
   );
 }
 
-/** Inset, rounded full-bleed photo frame with an animated headline anchored bottom-left. */
+/** Inset, rounded full-bleed photo frame: a stacked headline anchored bottom-left, with the intro above the actions set to its right on large screens so the media stays the focus. */
 export function PhotoHero({
   image,
   video,
@@ -172,8 +186,8 @@ export function PhotoHero({
   intro,
   children,
   tall = false,
-  editorial = false,
   lcp = true,
+  id = "hero",
 }: {
   image: string;
   video?: HeroVideoSources;
@@ -181,14 +195,14 @@ export function PhotoHero({
   intro?: ReactNode;
   children?: ReactNode;
   tall?: boolean;
-  /** A restrained stacked headline, with the intro above the actions set to its right on large screens so the media stays the focus. */
-  editorial?: boolean;
   /** The hero is the page's largest paint, so it loads first. Pass false where the hero is not the page's LCP. */
   lcp?: boolean;
+  /** Optional section id. Defaults to `hero` so in-page anchors can target the page top. */
+  id?: string;
 }) {
   const words = title.split(" ");
   return (
-    <section className="p-2 sm:p-3">
+    <section id={id} className="p-2 sm:p-3">
       <div
         className={cn(
           "hero-frame relative isolate flex overflow-hidden rounded-[28px] bg-night-2",
@@ -219,66 +233,36 @@ export function PhotoHero({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
-        <Container
-          className={cn(
-            "hero-copy flex flex-col justify-end pb-12 sm:pb-16",
-            editorial ? "pt-16 sm:pt-20 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12" : "pt-36",
-          )}
-        >
-          <h1
-            aria-label={title}
-            className={cn(
-              "font-extrabold text-cream",
-              editorial
-                ? "hero-title-editorial leading-[1.08] tracking-[-0.03em]"
-                : "max-w-5xl text-[2.6rem] leading-[1.02] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem]",
-            )}
-          >
-            {words.map((word, index) => (
-              <span
-                key={`${word}-${index}`}
-                aria-hidden
-                className={cn("overflow-hidden pb-[0.08em] align-bottom", editorial ? "block" : "inline-block")}
-              >
-                <span className="inline-block animate-rise" style={{ animationDelay: `${150 + index * 90}ms` }}>
-                  {editorial && word.endsWith(".") ? (
-                    <>
-                      {word.slice(0, -1)}
-                      <span className="text-ihsaan-lavender">.</span>
-                    </>
-                  ) : (
-                    word
-                  )}
-                </span>
-                {index < words.length - 1 ? " " : null}
-              </span>
-            ))}
+        <Container className="hero-copy flex flex-col justify-end pt-16 pb-12 sm:pt-20 sm:pb-16 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12">
+          <h1 aria-label={title} className="hero-title-editorial leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
+            {words.map((word, index) => {
+              const endsSentence = word.endsWith(".");
+              return (
+                <Fragment key={`${word}-${index}`}>
+                  <span aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+                    <span className="inline-block animate-rise" style={{ animationDelay: `${150 + index * 90}ms` }}>
+                      {endsSentence ? (
+                        <>
+                          {word.slice(0, -1)}
+                          <span className="text-ihsaan-lavender">.</span>
+                        </>
+                      ) : (
+                        word
+                      )}
+                    </span>
+                  </span>
+                  {index === words.length - 1 ? null : endsSentence ? <br aria-hidden /> : " "}
+                </Fragment>
+              );
+            })}
           </h1>
-          {editorial ? (
-            <div
-              className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-0"
-              style={{ animationDelay: `${300 + words.length * 90}ms` }}
-            >
-              {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
-              {children}
-            </div>
-          ) : (
-            <>
-              {intro ? (
-                <p
-                  className="mt-6 max-w-xl animate-rise text-[15px] leading-7 text-cream/80"
-                  style={{ animationDelay: `${300 + words.length * 90}ms` }}
-                >
-                  {intro}
-                </p>
-              ) : null}
-              {children ? (
-                <div className="animate-rise" style={{ animationDelay: `${420 + words.length * 90}ms` }}>
-                  {children}
-                </div>
-              ) : null}
-            </>
-          )}
+          <div
+            className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-0"
+            style={{ animationDelay: `${300 + words.length * 90}ms` }}
+          >
+            {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
+            {children}
+          </div>
         </Container>
       </div>
     </section>

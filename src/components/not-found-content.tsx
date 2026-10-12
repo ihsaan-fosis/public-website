@@ -9,7 +9,7 @@ export function NotFoundContent() {
       title="This page could not be found."
       intro="The link may be out of date, or the page may have moved."
     >
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3">
         <ButtonLink href="/">Back to home</ButtonLink>
         <ButtonLink href="/contact" tone="light-outline">
           Contact us

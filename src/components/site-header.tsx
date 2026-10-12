@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GET_INVOLVED, MEMBER_PORTAL, NAV_LINKS } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "./ui";
@@ -29,9 +29,16 @@ export function Wordmark({ className }: { className?: string }) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const scrollTarget = useRef<string | null>(null);
 
   useEffect(() => {
     setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (scrollTarget.current !== pathname) return;
+    scrollTarget.current = null;
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
 
   useEffect(() => {
@@ -44,9 +51,25 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-page/90 backdrop-blur-xl">
+    <header
+      className="sticky top-0 z-50 border-b border-ink/10 bg-page/90 backdrop-blur-xl"
+      onClickCapture={(event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const link = event.target instanceof Element ? event.target.closest("a") : null;
+        if (!(link instanceof HTMLAnchorElement)) return;
+        if (link.origin !== window.location.origin || link.hash || link.target === "_blank") return;
+        if (link.pathname === pathname) {
+          if (link.search === window.location.search && !window.location.hash) event.preventDefault();
+          scrollTarget.current = null;
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        } else {
+          scrollTarget.current = link.pathname;
+        }
+        setOpen(false);
+      }}
+    >
       <div className="mx-auto flex h-16 w-full max-w-[96rem] items-center justify-between gap-3 px-5 sm:px-10">
-        <Link href="/" aria-label="IHSAAN home" className="flex h-11 items-center">
+        <Link href="/" scroll={false} aria-label="IHSAAN home" className="flex h-11 items-center">
           <Wordmark className="h-6 w-auto" />
         </Link>
 
@@ -57,6 +80,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                scroll={false}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative rounded-xl px-3.5 py-2 text-sm whitespace-nowrap font-semibold tracking-[0.08em] uppercase transition-colors",
@@ -73,7 +97,7 @@ export function SiteHeader() {
           <ButtonLink href={MEMBER_PORTAL.href} external tone="ghost" className="whitespace-nowrap max-sm:hidden lg:max-xl:px-5">
             {MEMBER_PORTAL.label}
           </ButtonLink>
-          <ButtonLink href={GET_INVOLVED.href} className="whitespace-nowrap max-sm:hidden lg:max-xl:px-5">
+          <ButtonLink href={GET_INVOLVED.href} scroll={false} className="whitespace-nowrap max-sm:hidden lg:max-xl:px-5">
             {GET_INVOLVED.label}
           </ButtonLink>
           <button
@@ -116,6 +140,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                scroll={false}
                 onClick={() => setOpen(false)}
                 style={{ transitionDelay: open ? `${80 + index * 50}ms` : "0ms" }}
                 className={cn(
@@ -129,7 +154,7 @@ export function SiteHeader() {
             <ButtonLink href={MEMBER_PORTAL.href} external tone="ghost" className="mt-4 w-full">
               {MEMBER_PORTAL.label}
             </ButtonLink>
-            <ButtonLink href={GET_INVOLVED.href} className="mt-2 w-full">
+            <ButtonLink href={GET_INVOLVED.href} scroll={false} className="mt-2 w-full">
               {GET_INVOLVED.label}
             </ButtonLink>
           </div>
