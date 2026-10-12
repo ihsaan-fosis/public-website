@@ -30,6 +30,19 @@ describe("Home", () => {
     );
   });
 
+  it("shows every way to get involved with its own call to action, without interaction", () => {
+    render(<Home />);
+    const routes = screen.getByRole("region", { name: "Find your place at IHSAAN" });
+    const titles = within(routes)
+      .getAllByRole("heading", { level: 3 })
+      .map((heading) => heading.textContent);
+    expect(titles).toEqual(["Students", "Professionals", "Organisations"]);
+    const ctas = ["Explore programmes", "Offer your time", "Partner with us"].map((name) =>
+      within(routes).getByRole("link", { name }).getAttribute("href"),
+    );
+    expect(ctas).toEqual(["/programmes", "/contact", "/contact"]);
+  });
+
   it("does not show template prices or the placeholder event schedule", () => {
     const { container } = render(<Home />);
     expect(container.textContent).not.toMatch(/\$99|\$249|Check-In|Opening Keynote/);

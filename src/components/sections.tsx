@@ -273,6 +273,40 @@ export function InvolvementCards() {
   );
 }
 
+export function InvolvementPanels() {
+  return (
+    <ul className="grid gap-4 lg:grid-cols-3">
+      {INVOLVEMENT_ROUTES.map((route, index) => (
+        <li key={route.title} data-reveal style={revealDelay(index)}>
+          <article className="group relative isolate flex h-full min-h-[34rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[40rem]">
+            <Image
+              src={route.photo.src}
+              alt={route.photo.alt}
+              fill
+              sizes="(min-width: 1280px) 416px, (min-width: 1024px) 31vw, 100vw"
+              className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+            />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/70 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+            <span
+              aria-hidden
+              className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{route.title}</h3>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{route.body}</p>
+            <div className="mt-7">
+              <ButtonLink href={route.cta.href} tone="white">
+                {route.cta.label}
+              </ButtonLink>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function PartnerTile({ partner, decorative = false }: { partner: Partner; decorative?: boolean }) {
   return (
     <div className="flex h-24 w-52 shrink-0 items-center justify-center px-6">
@@ -434,32 +468,45 @@ export function PhotoBand({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_50%_100%,rgba(101,64,138,0.6),transparent_70%)]"
         />
-        <Container className="flex flex-col items-center justify-center py-16 text-center">{children}</Container>
+        <Container className="flex flex-col py-12 sm:py-16 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12">
+          {children}
+        </Container>
       </div>
     </section>
   );
 }
 
+const CTA_LINES = ["Start your", "career journey", "with IHSAAN."] as const;
+
 export function ClosingCta() {
   return (
     <PhotoBand image="/media/gallery/conference-audience.webp" labelledBy="cta-title">
-      <p className="text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase">Your career journey starts here</p>
+      <p className="text-[11px] font-bold tracking-[0.18em] text-cream/70 uppercase lg:col-span-2">
+        Your career journey starts here
+      </p>
       <h2
         id="cta-title"
-        className="mt-4 max-w-3xl text-4xl leading-[1.05] font-extrabold tracking-[-0.035em] text-cream sm:text-6xl"
+        className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
       >
-        Start your career journey with IHSAAN.
+        {CTA_LINES.map((line, index) => (
+          <span key={line} className="block">
+            {line}
+            {index < CTA_LINES.length - 1 ? " " : null}
+          </span>
+        ))}
       </h2>
-      <p className="mt-5 max-w-md text-[15px] leading-7 text-cream/80">
-        Programmes, mentors and opportunities for Muslim students across the UK and Ireland.
-      </p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <ButtonLink href={GET_INVOLVED.href}>
-          Apply now
-        </ButtonLink>
-        <ButtonLink href="/contact" tone="light-outline">
-          Contact us
-        </ButtonLink>
+      <div className="mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
+        <p className="max-w-sm text-sm leading-6 text-cream/70">
+          Programmes, mentors and opportunities for Muslim students across the UK and Ireland.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href={GET_INVOLVED.href}>
+            Apply now
+          </ButtonLink>
+          <ButtonLink href="/contact" tone="light-outline">
+            Contact us
+          </ButtonLink>
+        </div>
       </div>
     </PhotoBand>
   );

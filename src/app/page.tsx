@@ -1,11 +1,11 @@
 import { LegacyHashRedirect } from "@/components/legacy-hash-redirect";
 import { ScrollWords } from "@/components/motion";
-import { RouteSwitcher } from "@/components/route-switcher";
 import {
   ClosingCta,
   FaqSection,
   GalleryParallax,
   ImpactStory,
+  InvolvementPanels,
   PartnersSection,
   ProgrammesCarousel,
 } from "@/components/sections";
@@ -60,7 +60,7 @@ export default function Home() {
           aside="Students, professionals and organisations all have a part to play in elevating faith-driven talent."
         />
         <div className="mt-12">
-          <RouteSwitcher />
+          <InvolvementPanels />
         </div>
       </Section>
 
