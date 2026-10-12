@@ -517,3 +517,129 @@
 .skip-link:focus {
   transform: translateY(0);
 }
+
+/*
+ * Story page (/about). Static by default: the panorama is open and the route is drawn. Scroll-driven browsers
+ * without reduced motion get the reveals and the pinned map.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .story-rise {
+      animation: story-rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 32%;
+    }
+
+    .story-slit {
+      animation: story-slit-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+
+    .story-slit-photo {
+      animation: zoom-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 60%;
+    }
+
+    /* Phones see the map below its copy, so the route draws as the map itself crosses the viewport. */
+    .story-map-figure {
+      view-timeline-name: --map;
+    }
+
+    .story-route {
+      stroke-dasharray: 1;
+      animation: story-draw-path linear both;
+      animation-timeline: --map;
+      animation-range: cover 20% cover 60%;
+    }
+
+    .story-city {
+      animation: story-arrive linear both;
+      animation-timeline: --map;
+      animation-range: cover calc(18% + var(--p) * 40%) cover calc(24% + var(--p) * 40%);
+    }
+
+    .story-city-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: story-ring linear both;
+      animation-timeline: --map;
+      animation-range: cover calc(18% + var(--p) * 40%) cover calc(30% + var(--p) * 40%);
+    }
+
+    /* Side by side, the whole section pins and the route plays out over the scroll. */
+    @media (min-width: 64rem) {
+      .story-map {
+        view-timeline-name: --map;
+        height: 240svh;
+      }
+
+      .story-map-figure {
+        view-timeline-name: none;
+      }
+
+      .story-map-stage {
+        position: sticky;
+        top: 65px;
+        display: flex;
+        align-items: center;
+        min-height: calc(100svh - 65px);
+      }
+
+      .story-route {
+        animation-range: contain 8% contain 72%;
+      }
+
+      .story-city {
+        animation-range: contain calc(6% + var(--p) * 64%) contain calc(12% + var(--p) * 64%);
+      }
+
+      .story-city-ring {
+        animation-range: contain calc(6% + var(--p) * 64%) contain calc(18% + var(--p) * 64%);
+      }
+    }
+  }
+}
+
+@keyframes story-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+  }
+}
+
+@keyframes story-slit-open {
+  from {
+    clip-path: inset(46% 0 round 28px);
+  }
+  to {
+    clip-path: inset(0 round 28px);
+  }
+}
+
+@keyframes story-draw-path {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes story-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes story-ring {
+  from {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.6);
+  }
+}
