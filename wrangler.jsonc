@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ihsaan-public-website",
+  "account_id": "e0185fb378c844e8ec0ea5af347a244c",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-08",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "ihsaan.network", "custom_domain": true },
+    { "pattern": "www.ihsaan.network", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      // OpenNext calls back into this Worker for caching; the name must match "name" above.
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "ihsaan-public-website"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
