@@ -5,6 +5,7 @@ const valid = {
   email: "aisha@example.com",
   queryType: "partnerships",
   message: "We would like to sponsor the next conference.",
+  turnstileToken: "token",
 };
 
 describe("contact schema", () => {
@@ -17,6 +18,7 @@ describe("contact schema", () => {
     ["queryType", { queryType: "billing" }],
     ["message", { message: "hi" }],
     ["name", { name: "   " }],
+    ["turnstileToken", { turnstileToken: "" }],
   ])("rejects an invalid %s", (field, patch) => {
     const result = contactSchema.safeParse({ ...valid, ...patch });
     expect(result.success).toBe(false);

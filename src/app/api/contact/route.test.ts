@@ -5,10 +5,21 @@ const valid = {
   email: "aisha@example.com",
   queryType: "mentoring",
   message: "How do I become a mentor?",
+  turnstileToken: "token",
 };
 
 function post(body: unknown) {
-  return POST(new Request("http://localhost/api/contact", { method: "POST", body: JSON.stringify(body) }));
+  return POST(
+    new Request("http://localhost/api/contact", {
+      method: "POST",
+      headers: { "CF-Connecting-IP": "203.0.113.7" },
+      body: JSON.stringify(body),
+    }),
+  );
+}
+
+function siteverify(success: boolean) {
+  return Response.json({ success });
 }
 
 describe("POST /api/contact", () => {
@@ -18,6 +29,7 @@ describe("POST /api/contact", () => {
     fetchMock.mockReset();
     vi.stubGlobal("fetch", fetchMock);
     vi.stubEnv("RESEND_API_KEY", "re_test");
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "ts_secret");
     vi.spyOn(console, "error").mockImplementation(() => undefined);
   });
 
@@ -28,10 +40,17 @@ describe("POST /api/contact", () => {
   });
 
   it("emails the team with the visitor as reply-to", async () => {
-    fetchMock.mockResolvedValue(new Response("{}", { status: 200 }));
+    fetchMock.mockResolvedValueOnce(siteverify(true)).mockResolvedValueOnce(new Response("{}", { status: 200 }));
     const response = await post(valid);
     expect(response.status).toBe(200);
-    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    const [verifyUrl, verifyInit] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(verifyUrl).toBe("https://challenges.cloudflare.com/turnstile/v0/siteverify");
+    expect(JSON.parse(verifyInit.body as string)).toEqual({
+      secret: "ts_secret",
+      response: "token",
+      remoteip: "203.0.113.7",
+    });
+    const [url, init] = fetchMock.mock.calls[1] as [string, RequestInit];
     expect(url).toBe("https://api.resend.com/emails");
     expect((init.headers as Record<string, string>).Authorization).toBe("Bearer re_test");
     expect(JSON.parse(init.body as string)).toEqual({
@@ -62,8 +81,33 @@ describe("POST /api/contact", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it("fails closed when the Turnstile secret is missing", async () => {
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "");
+    expect((await post(valid)).status).toBe(503);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("rejects a failed security check without sending", async () => {
+    fetchMock.mockResolvedValueOnce(siteverify(false));
+    const response = await post(valid);
+    expect(response.status).toBe(403);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports an unreachable Turnstile as 502 without sending", async () => {
+    fetchMock.mockRejectedValueOnce(new Error("network down"));
+    expect((await post(valid)).status).toBe(502);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("requires a Turnstile token", async () => {
+    const response = await post({ ...valid, turnstileToken: "" });
+    expect(response.status).toBe(422);
+    expect((await response.json()).fields).toEqual({ turnstileToken: "Complete the security check." });
+  });
+
   it("reports a Resend rejection as 502", async () => {
-    fetchMock.mockResolvedValue(new Response("{}", { status: 403 }));
+    fetchMock.mockResolvedValueOnce(siteverify(true)).mockResolvedValueOnce(new Response("{}", { status: 403 }));
     expect((await post(valid)).status).toBe(502);
   });
 });

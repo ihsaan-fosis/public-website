@@ -2,32 +2,23 @@ import { render, screen } from "@testing-library/react";
 import ContactPage from "./page";
 
 describe("contact page", () => {
-  it("links every social profile to its normalized URL in a new tab", () => {
+  it("leads with the contact form card", () => {
     render(<ContactPage />);
-    const expected = {
-      Instagram: "https://www.instagram.com/ihsaan.network/",
-      LinkedIn: "https://www.linkedin.com/company/ihsaan-network/",
-      TikTok: "https://www.tiktok.com/@ihsaan.network",
-      YouTube: "https://www.youtube.com/@IHSAAN.network",
-    };
-    for (const [name, href] of Object.entries(expected)) {
-      const link = screen.getByRole("link", { name });
-      expect(link.getAttribute("href")).toBe(href);
-      expect(link.getAttribute("target")).toBe("_blank");
-      expect(link.getAttribute("rel")).toBe("noopener noreferrer");
-    }
+    expect(screen.getByRole("heading", { level: 1, name: "We would love to hear from you." })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 2, name: "Start a conversation" })).toBeTruthy();
+    expect(screen.getByRole("form", { name: "Start a conversation" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Send message" })).toBeTruthy();
   });
 
-  it("lets social links wrap on narrow screens", () => {
+  it("points to the privacy policy from the form card", () => {
     render(<ContactPage />);
-    expect(screen.getByRole("link", { name: "Instagram" }).parentElement?.className).toContain("flex-wrap");
+    expect(screen.getByRole("link", { name: "privacy policy" }).getAttribute("href")).toBe("/privacy");
   });
 
-  it("sends community and volunteering questions to the matching get involved sections", () => {
+  it("keeps the page to the form: no partner wall, contact details or social links", () => {
     render(<ContactPage />);
-    expect(screen.getByRole("link", { name: "Join the WhatsApp community" }).getAttribute("href")).toBe(
-      "/ticket#community",
-    );
-    expect(screen.getByRole("link", { name: "Volunteer with IHSAAN" }).getAttribute("href")).toBe("/ticket#volunteer");
+    expect(screen.queryByRole("heading", { name: "Organisations we work with" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Instagram" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Join the WhatsApp community" })).toBeNull();
   });
 });

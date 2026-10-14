@@ -2,6 +2,8 @@ import { LEGACY_PAGES } from "./src/content/legacy-routes.mjs";
 
 /** @type {import('next').NextConfig} */
 const isDev = process.env.NODE_ENV !== "production";
+// Cloudflare Turnstile (contact form) loads a script, an iframe and verifies over XHR from this origin.
+const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -31,8 +33,8 @@ const nextConfig = {
   async headers() {
     // React dev tooling needs eval(); production stays locked down.
     const scriptSrc = isDev
-      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-      : "script-src 'self' 'unsafe-inline'";
+      ? `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${TURNSTILE_ORIGIN}`
+      : `script-src 'self' 'unsafe-inline' ${TURNSTILE_ORIGIN}`;
     const upgradeInsecureRequests = isDev ? "" : "upgrade-insecure-requests";
 
     return [
@@ -57,7 +59,8 @@ const nextConfig = {
               "img-src 'self' data: blob:",
               "font-src 'self' data:",
               "media-src 'self'",
-              "connect-src 'self'",
+              `connect-src 'self' ${TURNSTILE_ORIGIN}`,
+              `frame-src ${TURNSTILE_ORIGIN}`,
               "object-src 'none'",
               "base-uri 'none'",
               "form-action 'self'",

@@ -21,6 +21,7 @@ export const contactSchema = z.object({
   queryType: z.enum(QUERY_TYPE_VALUES, "Choose what your message is about."),
   message: z.string().trim().min(10, "Write at least a few words.").max(5000, "Keep your message under 5000 characters."),
   website: z.string().max(0).optional(),
+  turnstileToken: z.string().min(1, "Complete the security check.").max(2048, "Complete the security check."),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
