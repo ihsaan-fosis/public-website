@@ -201,8 +201,8 @@ export function PhotoHero({
       <div
         className={cn(
           "hero-frame relative isolate flex overflow-hidden rounded-[28px] bg-night-2",
-          // 65px is the sticky header (h-16 plus its border), 1rem and 1.5rem the section's p-2 and sm:p-3 gutters.
-          tall ? "min-h-[calc(100svh-65px-1rem)] sm:min-h-[calc(100svh-65px-1.5rem)]" : "min-h-[64svh]",
+          // 64px is the sticky header (h-16), 1rem and 1.5rem the section's p-2 and sm:p-3 gutters.
+          tall ? "min-h-[calc(100svh-64px-1rem)] sm:min-h-[calc(100svh-64px-1.5rem)]" : "min-h-[64svh]",
         )}
       >
         {video ? (

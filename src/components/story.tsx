@@ -223,7 +223,7 @@ export function MapChapter() {
               viewBox={`0 0 ${MAP_SIZE.width} ${MAP_SIZE.height}`}
               role="img"
               aria-labelledby="map-caption"
-              className="mx-auto h-auto max-h-[calc(100svh-65px-6rem)] w-full overflow-visible"
+              className="mx-auto h-auto max-h-[calc(100svh-64px-6rem)] w-full overflow-visible"
             >
               <g className="fill-ink/15">
                 {MAP_DOTS.map(({ x, y }) => (

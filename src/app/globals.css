@@ -517,10 +517,10 @@
 
       .story-map-stage {
         position: sticky;
-        top: 65px;
+        top: 64px;
         display: flex;
         align-items: center;
-        min-height: calc(100svh - 65px);
+        min-height: calc(100svh - 64px);
       }
 
       .story-route {

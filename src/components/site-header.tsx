@@ -162,7 +162,15 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [menu, setMenu] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const scrollTarget = useRef<string | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -187,7 +195,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-ink/10 bg-page/90 backdrop-blur-xl"
+      className="sticky top-0 z-50"
       onClickCapture={(event) => {
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const link = event.target instanceof Element ? event.target.closest("a") : null;
@@ -203,7 +211,29 @@ export function SiteHeader() {
         setOpen(false);
       }}
     >
-      <div className="flex h-16 w-full items-center justify-between gap-3 px-5 sm:px-10">
+      {/* Blur and tint live on sibling layers: a child of a backdrop-filter element cannot sample the page behind it. */}
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-0 backdrop-blur-xl transition-colors duration-300 motion-reduce:transition-none",
+          scrolled ? "bg-page/80" : "bg-page/95",
+        )}
+      />
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-0 top-full h-10 backdrop-blur-[6px] transition-opacity duration-500 [mask-image:linear-gradient(to_bottom,black,transparent)] motion-reduce:transition-none",
+          scrolled ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-ink/10 transition-opacity duration-300 motion-reduce:transition-none",
+          scrolled ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <div className="relative flex h-16 w-full items-center justify-between gap-3 px-5 sm:px-10">
         <Link href="/" scroll={false} aria-label="IHSAAN home" className="flex h-11 items-center">
           <Wordmark className="h-6 w-auto" />
         </Link>
