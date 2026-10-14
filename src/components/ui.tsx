@@ -141,6 +141,19 @@ const BUTTON_SIZES: Record<ButtonSize, string> = {
   compact: "min-h-9 px-4 text-[11px] tracking-[0.12em]",
 };
 
+/** Button styling for non-link controls such as form submits, so they match `ButtonLink`. */
+export function buttonClassName({
+  tone = "accent",
+  size = "default",
+  className,
+}: {
+  tone?: ButtonTone;
+  size?: ButtonSize;
+  className?: string;
+} = {}) {
+  return cn(BUTTON_BASE, BUTTON_SIZES[size], BUTTON_TONES[tone], className);
+}
+
 export function ButtonLink({
   href,
   children,
@@ -158,7 +171,7 @@ export function ButtonLink({
   className?: string;
   scroll?: boolean;
 }) {
-  const classes = cn(BUTTON_BASE, BUTTON_SIZES[size], BUTTON_TONES[tone], className);
+  const classes = buttonClassName({ tone, size, className });
   if (external) {
     return (
       <a href={href} className={classes}>

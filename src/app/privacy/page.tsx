@@ -10,20 +10,24 @@ export const metadata: Metadata = pageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy policy" updated="12 October 2026">
+    <LegalPage title="Privacy policy" updated="14 October 2026">
       <section>
         <h2>Who we are</h2>
         <p>IHSAAN provides career programmes and opportunities for Muslim students and graduates across the UK and Ireland. For any privacy question or request, email <a href="mailto:ihsaan@fosis.org.uk">ihsaan@fosis.org.uk</a>.</p>
-        <p>This policy covers the IHSAAN website at ihsaan.network, emails you send us and photographs from our events shown here. Services we link to, such as Instagram, LinkedIn, TikTok, YouTube, Luma, Google Forms, Notion and My Muslim Mentor, have their own privacy policies.</p>
+        <p>This policy covers the IHSAAN website at ihsaan.network, the contact form, emails you send us and photographs from our events shown here. Services we link to, such as Instagram, LinkedIn, TikTok, YouTube, Luma, Google Forms, Notion and My Muslim Mentor, have their own privacy policies.</p>
       </section>
       <section>
         <h2>Information we receive</h2>
         <ul>
-          <li><strong>Messages you send us.</strong> If you email us, we receive your name, email address, your message and anything else you choose to include.</li>
+          <li><strong>Messages you send us.</strong> If you use the contact form or email us, we receive your name, email address, your message and anything else you choose to include. The contact form also records the topic you choose.</li>
           <li><strong>Technical information.</strong> Like any website, the servers that deliver this site receive your IP address, browser details, the page requested and the time of the request.</li>
           <li><strong>Event photographs.</strong> This website shows photographs taken at IHSAAN events, which may show people who attended.</li>
         </ul>
-        <p>This website has no contact forms, accounts, analytics or advertising.</p>
+        <p>This website has no accounts, analytics or advertising.</p>
+      </section>
+      <section>
+        <h2>Contact form</h2>
+        <p>When you send a message through the contact form, this website passes your name, email address, chosen topic and message to Resend, the email service we use to deliver it to our team inbox. Resend handles it on our behalf to send that email. We reply to the email address you gave us.</p>
       </section>
       <section>
         <h2>Forms and registration on other services</h2>

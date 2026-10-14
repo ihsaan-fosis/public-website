@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PartnerWall } from "@/components/sections";
-import { Eyebrow, PhotoHero, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "@/components/ui";
-import { COMMUNITY_PARTNERS, CONTACT_EMAIL, PARTNER_TIERS, SOCIAL_LINKS } from "@/content/site";
+import { ContactForm } from "@/components/contact-form";
+import { Eyebrow, PhotoHero, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,8 +12,6 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact",
   socialDescription: "Get in touch with IHSAAN about programmes, mentoring, volunteering and partnerships.",
 });
-
-const ALL_PARTNERS = [...PARTNER_TIERS.flatMap((tier) => tier.partners), ...COMMUNITY_PARTNERS];
 
 export default function ContactPage() {
   return (
@@ -25,13 +23,11 @@ export default function ContactPage() {
           <div data-reveal>
             <SectionTitle id="conversation-title">Start a conversation</SectionTitle>
             <p className="mt-6 max-w-md text-[15px] leading-7 text-ink/70">
-              Email us about partnerships, programmes, mentoring or volunteering. Your message is handled through your
-              email provider and is not submitted through this website.
+              Ask about partnerships, programmes, mentoring or volunteering, or tell us what is on your mind. Pick a
+              topic and your message goes straight to the IHSAAN team.
             </p>
             <div className="mt-8">
-              <ButtonLink href={`mailto:${CONTACT_EMAIL}?subject=IHSAAN%20enquiry`} external>
-                Email IHSAAN
-              </ButtonLink>
+              <ContactForm />
             </div>
           </div>
 
@@ -94,13 +90,6 @@ export default function ContactPage() {
               </dd>
             </div>
           </dl>
-        </div>
-      </Section>
-
-      <Section labelledBy="network-title" className="pt-0 sm:pt-0">
-        <SectionHeading id="network-title" title="Organisations we work with" />
-        <div className="mt-10">
-          <PartnerWall partners={ALL_PARTNERS} />
         </div>
       </Section>
     </>
