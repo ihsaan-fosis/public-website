@@ -182,7 +182,15 @@ describe("legacy URLs", () => {
   });
 
   it("sends www to the apex host", async () => {
-    expect((await redirects())[0]).toMatchObject({
+    const [root, rest] = await redirects();
+    expect(root).toMatchObject({
+      source: "/",
+      has: [{ type: "host", value: "www.ihsaan.network" }],
+      destination: "https://ihsaan.network/",
+      permanent: true,
+    });
+    expect(rest).toMatchObject({
+      source: "/:path*",
       has: [{ type: "host", value: "www.ihsaan.network" }],
       destination: "https://ihsaan.network/:path*",
       permanent: true,

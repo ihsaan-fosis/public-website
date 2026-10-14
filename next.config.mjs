@@ -13,6 +13,13 @@ const nextConfig = {
   images: { localPatterns: [{ pathname: "/media/**", search: "" }] },
   async redirects() {
     return [
+      // OpenNext leaves `:path*` unsubstituted when it matches nothing, so the bare root needs its own rule.
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.ihsaan.network" }],
+        destination: "https://ihsaan.network/",
+        permanent: true,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.ihsaan.network" }],
