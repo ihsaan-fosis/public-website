@@ -11,7 +11,14 @@ export const metadata: Metadata = pageMetadata({
   socialDescription: "Get in touch with IHSAAN about programmes, mentoring, volunteering and partnerships.",
 });
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const topic = typeof params.topic === "string" ? params.topic : undefined;
+
   return (
     <>
       <PhotoHero image="/media/impact.webp" title="We would love to hear from you." />
@@ -28,7 +35,7 @@ export default function ContactPage() {
             </p>
           </div>
           <div data-reveal style={revealDelay(1)}>
-            <ContactForm />
+            <ContactForm defaultQueryType={topic} />
           </div>
         </div>
       </Section>

@@ -61,6 +61,11 @@ describe("contact form", () => {
     ]);
   });
 
+  it("preselects a topic from the deep link", () => {
+    render(<ContactForm defaultQueryType="volunteering" />);
+    expect(screen.getByRole("combobox", { name: "What is this about?" })).toHaveTextContent("Volunteering");
+  });
+
   it("posts the enquiry and confirms it was sent", async () => {
     fetchMock.mockResolvedValue(Response.json({ ok: true }));
     render(<ContactForm />);

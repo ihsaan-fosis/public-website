@@ -27,12 +27,12 @@ export default function PrivacyPage() {
       </section>
       <section>
         <h2>Contact form</h2>
-        <p>When you send a message through the contact form, this website passes your name, email address, chosen topic and message to Resend, the email service we use to deliver it to our team inbox. Resend handles it on our behalf to send that email. We reply to the email address you gave us.</p>
-        <p>The form also uses Cloudflare Turnstile to check that a message comes from a person. To do this, Cloudflare receives your IP address and signals about your browser when the form loads and when you send a message.</p>
+        <p>When you send a message through the contact form, or a volunteer application through the volunteer form, this website passes your name, email address, chosen topic or role details and message to Resend, the email service we use to deliver it to our team inbox. Resend handles it on our behalf to send that email. We reply to the email address you gave us.</p>
+        <p>Those forms also use Cloudflare Turnstile to check that a message comes from a person. To do this, Cloudflare receives your IP address and signals about your browser when the form loads and when you send a message.</p>
       </section>
       <section>
         <h2>Forms and registration on other services</h2>
-        <p>Some pages link to forms, event registration and guides run on other services, including Luma for event registration, Google Forms for the WhatsApp community and Notion for volunteer openings and career guides. They open on that service&apos;s website. What you enter there is collected by that service and the organisers of that form or event, and is not submitted through this website.</p>
+        <p>Some pages link to forms, event registration and guides run on other services, including Luma for event registration, Google Forms for the WhatsApp community and Notion for some career guides. They open on that service&apos;s website. What you enter there is collected by that service and the organisers of that form or event, and is not submitted through this website.</p>
         <p>Those forms can ask for personal information such as your name and contact details. Read what each form asks for and the service&apos;s privacy policy before you submit it.</p>
       </section>
       <section>

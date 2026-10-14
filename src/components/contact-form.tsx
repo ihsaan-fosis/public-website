@@ -8,6 +8,10 @@ import { CONTACT_EMAIL } from "@/content/site";
 import { QUERY_TYPES } from "@/lib/contact";
 import { buttonClassName } from "./ui";
 
+function isQueryType(value: string | undefined): value is (typeof QUERY_TYPES)[number]["value"] {
+  return QUERY_TYPES.some((type) => type.value === value);
+}
+
 type Status =
   | { state: "idle" }
   | { state: "sending" }
@@ -67,10 +71,11 @@ const FIELD =
 const LABEL = "block text-[13px] font-bold text-ink";
 const FIELD_ERROR = "mt-1.5 text-[13px] text-ink/80";
 
-export function ContactForm() {
+export function ContactForm({ defaultQueryType }: { defaultQueryType?: string } = {}) {
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [turnstileToken, setTurnstileToken] = useState("");
   const [checkAttempt, setCheckAttempt] = useState(0);
+  const initialQueryType = isQueryType(defaultQueryType) ? defaultQueryType : undefined;
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -170,7 +175,7 @@ export function ContactForm() {
             <label htmlFor="contact-query-type" className={LABEL}>
               What is this about?
             </label>
-            <Select name="queryType" required>
+            <Select name="queryType" required defaultValue={initialQueryType}>
               <SelectTrigger
                 id="contact-query-type"
                 aria-invalid={Boolean(fields.queryType)}
