@@ -1,5 +1,5 @@
 import { PUBLIC_DESTINATIONS } from "./links";
-import type { Photo, Stat } from "./site";
+import { GET_INVOLVED, type Photo, type Stat } from "./site";
 
 export type ProgrammeAction = { label: string; href: string; external?: boolean };
 
@@ -113,7 +113,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       },
     ],
     primary: { label: "Partner with the programme", href: "/contact" },
-    secondary: { label: "Get involved", href: "/ticket" },
+    secondary: { label: "Get involved", href: GET_INVOLVED.href },
   },
   {
     slug: "insight-events",
@@ -193,7 +193,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       },
     ],
     primary: { label: "See upcoming events", href: "/events" },
-    secondary: { label: "Get involved", href: "/ticket" },
+    secondary: { label: "Get involved", href: GET_INVOLVED.href },
   },
   {
     slug: "hackathons",

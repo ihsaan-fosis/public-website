@@ -8,7 +8,7 @@
 export const LEGACY_PAGES = [
   { page: "home", destination: "/", permanent: true },
   { page: "who-we-are", destination: "/about", permanent: true },
-  { page: "get-involved", destination: "/ticket", permanent: true },
+  { page: "get-involved", destination: "/get-involved", permanent: true },
   { page: "career-conferences", destination: "/programmes/career-conferences", permanent: true },
   { page: "faithful-talent", destination: "/programmes/summer-internships", permanent: true },
   { page: "haqqathons", destination: "/programmes/hackathons", permanent: true },

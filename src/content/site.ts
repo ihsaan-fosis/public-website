@@ -38,7 +38,7 @@ export const NAV_LINKS: readonly NavItem[] = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
+export const GET_INVOLVED: NavLink = { href: "/get-involved", label: "Get involved" };
 
 /** Kept out of `NAV_LINKS` so the primary row stays readable beside the wordmark and CTAs. */
 export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
@@ -172,7 +172,7 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     points: [],
     links: [
       { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
-      { href: "/ticket#alumni", label: "Join the alumni network" },
+      { href: `${GET_INVOLVED.href}#alumni`, label: "Join the alumni network" },
       { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Join the WhatsApp community", external: true },
     ],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Offer your time", external: true },
@@ -187,51 +187,73 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
   },
 ];
 
+export type InvolvementAudience = "students" | "professionals" | "organisations";
+
+export const INVOLVEMENT_AUDIENCES: readonly { value: InvolvementAudience | "all"; label: string }[] = [
+  { value: "all", label: "Everyone" },
+  { value: "students", label: "Students" },
+  { value: "professionals", label: "Professionals" },
+  { value: "organisations", label: "Organisations" },
+];
+
 export type InvolvementAction = {
-  id: "membership" | "professional" | "mentor" | "community" | "alumni" | "volunteer";
+  id: "programmes" | "professional" | "mentor" | "community" | "alumni" | "volunteer" | "partner";
   title: string;
   body: string;
+  audiences: readonly InvolvementAudience[];
   cta: ActionLink;
   secondary?: ActionLink;
 };
 
 export const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
   {
-    id: "membership",
-    title: "Membership",
-    body: "Students can ask about joining IHSAAN. We will confirm the current route and what it includes. The student portal is where members access the member platform. It is not a membership application.",
-    cta: { href: "/contact", label: "Ask about membership" },
-    secondary: { href: MEMBER_PORTAL.href, label: MEMBER_PORTAL.label, external: true },
+    id: "programmes",
+    title: "Programmes for students",
+    body: "Students can join career conferences, hackathons, internships, insight events and skills sessions across the UK and Ireland.",
+    audiences: ["students"],
+    cta: { href: "/programmes", label: "Explore programmes" },
   },
   {
     id: "professional",
     title: "Professional network",
     body: "Professionals can offer their time by joining the IHSAAN professional network and its sector-specific chats through a short Google Form. The form opens on Google Forms, not on this website.",
+    audiences: ["professionals"],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Join the professional network", external: true },
   },
   {
     id: "mentor",
     title: "Mentor on My Muslim Mentor",
     body: "Professionals can mentor Muslim students through My Muslim Mentor. Sign up on the My Muslim Mentor website to register as a mentor. Its sign-up and booking happen there, not on this website.",
+    audiences: ["professionals"],
     cta: { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
   },
   {
     id: "community",
     title: "WhatsApp community",
     body: "Apply to join the IHSAAN WhatsApp community through a short Google Form. Submitting the form is a request to join, not an automatic invitation, and admission is handled separately by IHSAAN. The form opens on Google Forms, not on this website.",
+    audiences: ["students", "professionals"],
     cta: { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Apply to join the WhatsApp community", external: true },
   },
   {
     id: "alumni",
     title: "Alumni network",
     body: "Alumni who want to stay connected with IHSAAN can get in touch and ask how to take part in the alumni network.",
+    audiences: ["professionals"],
     cta: { href: "/contact", label: "Ask about the alumni network" },
   },
   {
     id: "volunteer",
-    title: "Volunteering",
-    body: "Volunteer roles with IHSAAN are unpaid. Read the current openings and application guidance on Notion before you apply.",
-    cta: { href: PUBLIC_DESTINATIONS.volunteerOpenings.href, label: "View volunteer openings", external: true },
+    title: "Volunteer for IHSAAN",
+    body: "Volunteer roles with IHSAAN are unpaid. Browse open roles, read each description, and apply on this website.",
+    audiences: ["students", "professionals", "organisations"],
+    cta: { href: "/volunteer", label: "View volunteer openings" },
+  },
+  {
+    id: "partner",
+    title: "Partner with IHSAAN",
+    body: "Organisations can host or sponsor programmes, share opportunities and meet Muslim students and graduates through a partnership conversation with the team.",
+    audiences: ["organisations"],
+    cta: { href: "/contact", label: "Partner with us" },
   },
 ];
 

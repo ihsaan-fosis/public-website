@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MISSION } from "@/content/site";
+import { GET_INVOLVED, MISSION } from "@/content/site";
 import {
   ENGAGEMENT,
   EVIDENCE_SOURCES,
@@ -380,7 +380,7 @@ export function ImpactClosing() {
         </p>
         <div className="flex flex-wrap gap-3">
           <ButtonLink href="/contact">Partner with us</ButtonLink>
-          <ButtonLink href="/ticket" tone="light-outline">
+          <ButtonLink href={GET_INVOLVED.href} tone="light-outline">
             Get involved
           </ButtonLink>
         </div>

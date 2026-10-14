@@ -4,6 +4,8 @@ import { LEGACY_PAGES } from "./src/content/legacy-routes.mjs";
 const isDev = process.env.NODE_ENV !== "production";
 // Cloudflare Turnstile (contact form) loads a script, an iframe and verifies over XHR from this origin.
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
+// The volunteer application modal embeds a Tally form in an iframe.
+const TALLY_ORIGIN = "https://tally.so";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -28,6 +30,7 @@ const nextConfig = {
       { source: "/programmes/career-guides", destination: "/resources", permanent: true },
       { source: "/haqqathons", destination: "/programmes/hackathons", permanent: true },
       { source: "/mentoring", destination: "/programmes/mentorship", permanent: true },
+      { source: "/ticket", destination: "/get-involved", permanent: true },
     ];
   },
   async headers() {
@@ -60,7 +63,7 @@ const nextConfig = {
               "font-src 'self' data:",
               "media-src 'self'",
               `connect-src 'self' ${TURNSTILE_ORIGIN}`,
-              `frame-src ${TURNSTILE_ORIGIN}`,
+              `frame-src ${TURNSTILE_ORIGIN} ${TALLY_ORIGIN}`,
               "object-src 'none'",
               "base-uri 'none'",
               "form-action 'self'",

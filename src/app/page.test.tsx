@@ -8,7 +8,7 @@ describe("Home", () => {
     render(<Home />);
     expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Faith. Excellence. Service.");
     expect(document.getElementById("hero")).not.toBeNull();
-    expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/ticket");
+    expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/get-involved");
   });
 
   it("lists the six programmes and the member portal under the #programmes anchor", () => {

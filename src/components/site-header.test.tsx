@@ -16,7 +16,7 @@ describe("SiteHeader", () => {
     window.history.replaceState(null, "", "/");
   });
 
-  it.each(["/", "/about", "/programmes/career-conferences", "/gallery", "/contact", "/ticket"])(
+  it.each(["/", "/about", "/programmes/career-conferences", "/gallery", "/contact", "/get-involved"])(
     "keeps the wordmark pointing to the top of home from %s",
     (pathname) => {
       route.pathname = pathname;
@@ -44,7 +44,7 @@ describe("SiteHeader", () => {
         }
       }
       expect(screen.getAllByRole("link", { name: "Get involved", hidden: true }).map((link) => link.getAttribute("href")))
-        .toEqual(["/ticket", "/ticket"]);
+        .toEqual(["/get-involved", "/get-involved"]);
     },
   );
 
@@ -107,7 +107,7 @@ describe("SiteHeader", () => {
     ["/blog", "Blog"],
     ["/gallery", "Gallery"],
     ["/contact", "Contact"],
-    ["/ticket", "Get involved"],
+    ["/get-involved", "Get involved"],
   ])("scrolls to the exact page top when re-clicking %s", (pathname, name) => {
     route.pathname = pathname;
     const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);

@@ -23,7 +23,7 @@ export const PUBLIC_DESTINATIONS = {
     href: "https://docs.google.com/forms/d/e/1FAIpQLSdrT7sgjnP6aqgL6qLwcEQZWr_qHHlf9AWa6Qr8ZEr77I9gTQ/viewform",
     label: "Sector-Specific Chats for Professionals form",
   },
-  volunteerOpenings: { href: "https://ihsaannetwork.notion.site/openings", label: "IHSAAN volunteer openings" },
+  volunteerOpenings: { href: "/volunteer", label: "IHSAAN volunteer openings" },
   instagram: { href: "https://www.instagram.com/ihsaan.network/", label: "Instagram" },
   linkedin: { href: "https://www.linkedin.com/company/ihsaan-network/", label: "LinkedIn" },
   tiktok: { href: "https://www.tiktok.com/@ihsaan.network", label: "TikTok" },

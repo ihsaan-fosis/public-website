@@ -23,7 +23,8 @@ ${guideLines}
 - [/events](/events) Events: upcoming career conferences and academies, with the full events calendar
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
-- [/ticket](/ticket) Get involved
+- [/get-involved](/get-involved) Get involved
+- [/volunteer](/volunteer) Volunteer openings
 - [/privacy](/privacy) Privacy policy
 - [/terms](/terms) Terms and conditions
 
