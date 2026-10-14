@@ -14,7 +14,8 @@ type Status =
   | { state: "sent" }
   | { state: "error"; message: string; fields: Record<string, string> };
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+// Site keys are public. The env override lets `next dev` use Cloudflare's test key, which accepts localhost.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAAFWvhiYlgIlToV8s";
 
 type TurnstileApi = {
   render: (

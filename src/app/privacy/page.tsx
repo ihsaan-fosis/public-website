@@ -28,6 +28,7 @@ export default function PrivacyPage() {
       <section>
         <h2>Contact form</h2>
         <p>When you send a message through the contact form, this website passes your name, email address, chosen topic and message to Resend, the email service we use to deliver it to our team inbox. Resend handles it on our behalf to send that email. We reply to the email address you gave us.</p>
+        <p>The form also uses Cloudflare Turnstile to check that a message comes from a person. To do this, Cloudflare receives your IP address and signals about your browser when the form loads and when you send a message.</p>
       </section>
       <section>
         <h2>Forms and registration on other services</h2>
@@ -36,7 +37,7 @@ export default function PrivacyPage() {
       </section>
       <section>
         <h2>Cookies and local storage</h2>
-        <p>This website does not use cookies. If you use the light or dark mode switch, your choice is saved in your browser&apos;s local storage under the name &ldquo;theme&rdquo; so the site remembers it on your next visit. It stays on your device and is not sent to us. You can remove it at any time by clearing your browser&apos;s site data.</p>
+        <p>This website does not set cookies of its own. The Cloudflare Turnstile check on the contact form is run by Cloudflare, which may use cookies or similar technologies to do it. If you use the light or dark mode switch, your choice is saved in your browser&apos;s local storage under the name &ldquo;theme&rdquo; so the site remembers it on your next visit. It stays on your device and is not sent to us. You can remove it at any time by clearing your browser&apos;s site data.</p>
       </section>
       <section>
         <h2>How we use it</h2>
