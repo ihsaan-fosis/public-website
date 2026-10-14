@@ -22,7 +22,17 @@ export const metadata: Metadata = {
     ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } }
     : { index: false, follow: false },
   "icons": {
+    // Google Search needs a square raster icon it can crawl; the SVGs follow for browsers.
     "icon": [
+      {
+        "url": "/favicon.ico",
+        "sizes": "48x48"
+      },
+      {
+        "url": "/icon.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
       {
         "url": "/blue-icon.svg",
         "media": "(prefers-color-scheme: light)"
@@ -34,7 +44,8 @@ export const metadata: Metadata = {
     ],
     "apple": [
       {
-        "url": "/blue-icon.svg"
+        "url": "/apple-icon.png",
+        "sizes": "180x180"
       }
     ]
   }

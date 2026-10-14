@@ -11,6 +11,16 @@ import {
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { GET_INVOLVED, MISSION, TAGLINE, VISION } from "@/content/site";
+import { SITE_ORIGIN } from "@/lib/site";
+
+// Google reads the site name shown above search results from WebSite data on the homepage.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "IHSAAN",
+  alternateName: ["IHSAAN Network"],
+  url: `${SITE_ORIGIN}/`,
+};
 
 export default function Home() {
   return (
@@ -76,6 +86,11 @@ export default function Home() {
       <FaqSection />
 
       <ClosingCta />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c") }}
+      />
     </>
   );
 }

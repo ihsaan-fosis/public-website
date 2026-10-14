@@ -59,4 +59,10 @@ describe("Home", () => {
     const { container } = render(<Home />);
     expect(container.textContent).not.toMatch(/\$99|\$249|Check-In|Opening Keynote/);
   });
+
+  it("names the site IHSAAN for search results", () => {
+    const { container } = render(<Home />);
+    const website = JSON.parse(container.querySelector('script[type="application/ld+json"]')?.textContent ?? "{}");
+    expect(website).toMatchObject({ "@type": "WebSite", name: "IHSAAN", url: "https://ihsaan.network/" });
+  });
 });
