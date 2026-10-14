@@ -1,14 +1,12 @@
 import Image from "next/image";
 import { MISSION } from "@/content/site";
 import {
-  COMPANY_LINE,
   ENGAGEMENT,
   EVIDENCE_SOURCES,
   FLYWHEEL,
   GAP_QUOTE,
   GAP_STATEMENT,
   GAP_STATS,
-  GOVERNANCE_RISKS,
   IMPACT_PHOTOS,
   MEASURE_NOTE,
   MEASURE_STAGES,
@@ -22,7 +20,6 @@ import {
   VOICES,
   VOICES_SUMMARY,
 } from "@/content/impact";
-import { EXECUTIVE_TEAM } from "@/content/story";
 import { cn } from "@/lib/utils";
 import { CountUp, ScrollWords } from "./motion";
 import { PhotoBand } from "./sections";
@@ -326,60 +323,6 @@ export function MeasureChapter() {
         ))}
       </div>
       <p className="mt-10 max-w-2xl text-[13px] leading-6 text-ink/65">{MEASURE_NOTE}</p>
-    </Section>
-  );
-}
-
-/** The executive team with their backgrounds beside a photograph, then the three risks and how they are managed. */
-export function GovernanceChapter() {
-  return (
-    <Section labelledBy="team-title" className="pt-0 sm:pt-0">
-      <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
-        <PhotoFrame src={IMPACT_PHOTOS.team.src} alt={IMPACT_PHOTOS.team.alt} sticky />
-        <div>
-          <div data-reveal>
-            <Eyebrow>Team and governance</Eyebrow>
-            <SectionTitle id="team-title" className="mt-5">
-              Led by a team with experience from McKinsey to the NHS
-            </SectionTitle>
-          </div>
-          <ul className="mt-10 border-t border-ink/10">
-            {EXECUTIVE_TEAM.map((member, index) => (
-              <li
-                key={member.name}
-                data-reveal
-                style={revealDelay(index % 3)}
-                className="flex items-baseline gap-6 border-b border-ink/10 py-6"
-              >
-                <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
-                    {member.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-ink/65">{member.role}</p>
-                  <p className="mt-2 max-w-lg text-[15px] leading-7 text-ink/70">{member.background}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <h3 className="mt-16 text-[1.75rem] leading-[1.1] font-extrabold tracking-[-0.035em] text-ink sm:text-4xl">
-            Key risks, and how we manage them
-          </h3>
-          <ul className="mt-8 border-t border-ink/10">
-            {GOVERNANCE_RISKS.map((risk, index) => (
-              <li key={risk.title} data-reveal style={revealDelay(index % 3)} className="border-b border-ink/10 py-6">
-                <h4 className="text-xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-2xl">
-                  {risk.title}
-                </h4>
-                <p className="mt-2 max-w-lg text-[15px] leading-7 text-ink/70">{risk.body}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-[13px] leading-6 text-ink/65">{COMPANY_LINE}</p>
-        </div>
-      </div>
     </Section>
   );
 }

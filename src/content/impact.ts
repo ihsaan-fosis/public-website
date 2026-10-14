@@ -231,24 +231,6 @@ export const EVIDENCE_SOURCES: readonly { title: string; body: string }[] = [
 export const MEASURE_NOTE =
   "We also test the assumptions behind each step, such as students acting on new skills and employers continuing to open routes in.";
 
-export const GOVERNANCE_RISKS: readonly { title: string; body: string }[] = [
-  {
-    title: "Key-person dependency",
-    body: "Comprehensive operating procedures for every function, updated constantly, with a named back-up for each role.",
-  },
-  {
-    title: "Volunteer churn",
-    body: "Students we equip want to give back: our open application form is regularly filled, and role listings on our own channels draw many applicants.",
-  },
-  {
-    title: "Mentor engagement",
-    body: "A paid coordinator manages outreach and monitors the platform. A strict 7-day response rule hides unresponsive mentors, and mentees are re-routed to a new mentor or a manual introduction.",
-  },
-];
-
-export const COMPANY_LINE =
-  "IHSAAN Careers Network Ltd. Non-profit: private company limited by guarantee. Company number 16463983. Incorporated 20 May 2025.";
-
 export type VisionColumn = { label: string; title: string; points: readonly string[] };
 
 export const VISION_2045_STATEMENT = "By 2045, every Muslim student can reach a career, and each generation lifts the next.";
@@ -293,7 +275,6 @@ export const VISION_2045_NOTE =
 export const IMPACT_PHOTOS = {
   pathway: galleryPhoto("/media/gallery/careers-fair-hall.webp"),
   stories: galleryPhoto("/media/gallery/conference-selfie.webp"),
-  team: galleryPhoto("/media/gallery/employer-pitch.webp"),
   voices: galleryPhoto("/media/gallery/employer-stands.webp"),
   closing: galleryPhoto("/media/gallery/careers-evening.webp"),
 } as const;

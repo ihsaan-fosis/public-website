@@ -1,6 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
 import { ENGAGEMENT, GAP_STATS, MEASURE_STAGES, STORIES, TRACTION, VISION_2045, VOICES } from "@/content/impact";
-import { EXECUTIVE_TEAM } from "@/content/story";
 import ImpactPage, { metadata } from "./page";
 
 describe("impact page", () => {
@@ -61,14 +60,10 @@ describe("impact page", () => {
     ]);
   });
 
-  it("names the executive team with roles and backgrounds from the proposal", () => {
+  it("leaves the team and governance to the about page", () => {
     render(<ImpactPage />);
-    const team = screen.getByRole("heading", { name: /Led by a team with experience from McKinsey to the NHS/ }).closest("section");
-    for (const member of EXECUTIVE_TEAM) {
-      expect(within(team as HTMLElement).getByRole("heading", { level: 3, name: member.name })).toBeTruthy();
-      expect(team?.textContent).toContain(member.background);
-    }
-    expect(EXECUTIVE_TEAM.map((member) => member.name)).toContain("Muhammad Islam");
+    expect(screen.queryByRole("heading", { name: /Team and governance|executive team|Key risks/ })).toBeNull();
+    expect(document.body.textContent).not.toContain("Company number");
   });
 
   it("ends with the 2045 vision and the proposal contact", () => {

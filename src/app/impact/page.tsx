@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   FlywheelChapter,
   GapChapter,
-  GovernanceChapter,
   ImpactClosing,
   MeasureChapter,
   PathwayChapter,
@@ -45,7 +44,6 @@ export default function ImpactPage() {
       <StoriesChapter />
       <VoicesBand />
       <MeasureChapter />
-      <GovernanceChapter />
       <VisionChapter />
       <ImpactClosing />
     </>
