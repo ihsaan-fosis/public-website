@@ -131,8 +131,8 @@ export const WHO_WE_ARE: readonly WhoBeat[] = [
     photo: { src: "/media/faithful-talent.webp", alt: "Faithful Talent interns at an IHSAAN session", width: 1800, height: 1114 },
   },
   {
-    title: "Led by people one step ahead",
-    body: "Our Spring Week Academies are led by students already building careers in law, tech and finance.",
+    title: "Programmes built around people",
+    body: "From bootcamps and webinars to conferences and career events, our programmes help Muslim students and graduates take their next steps.",
     photo: { src: "/media/gallery/manchester-foyer.webp", alt: "Students gathering in a University of Manchester foyer", width: 2000, height: 1126 },
   },
   {

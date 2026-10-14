@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <LegalPage title="Privacy policy" updated="12 October 2026">
       <section>
         <h2>Who we are</h2>
-        <p>IHSAAN is the national careers programme of the Federation of Student Islamic Societies (FOSIS). For any privacy question or request, email <a href="mailto:ihsaan@fosis.org.uk">ihsaan@fosis.org.uk</a>.</p>
+        <p>IHSAAN provides career programmes and opportunities for Muslim students and graduates across the UK and Ireland. For any privacy question or request, email <a href="mailto:ihsaan@fosis.org.uk">ihsaan@fosis.org.uk</a>.</p>
         <p>This policy covers the IHSAAN website at ihsaan.network, emails you send us and photographs from our events shown here. Services we link to, such as Instagram, LinkedIn, TikTok, YouTube, Luma, Google Forms, Notion and My Muslim Mentor, have their own privacy policies.</p>
       </section>
       <section>

@@ -14,7 +14,7 @@ export default function TermsPage() {
     <LegalPage title="Terms and conditions" updated="12 October 2026">
       <section>
         <h2>Who we are</h2>
-        <p>IHSAAN is the national careers programme of the Federation of Student Islamic Societies (FOSIS). These terms apply to the IHSAAN website at ihsaan.network. By using this website you agree to these terms. If you do not agree, please do not use it.</p>
+        <p>These terms apply to the IHSAAN website at ihsaan.network. By using this website you agree to these terms. If you do not agree, please do not use it.</p>
       </section>
       <section>
         <h2>Using this website</h2>
@@ -22,7 +22,7 @@ export default function TermsPage() {
         <ul>
           <li>interfere with its security, availability or operation, or try to gain unauthorised access to it;</li>
           <li>copy, republish or commercially exploit its content, except as these terms allow;</li>
-          <li>use it to send unsolicited messages or to misrepresent your connection with IHSAAN or FOSIS.</li>
+          <li>use it to send unsolicited messages or to misrepresent your connection with IHSAAN.</li>
         </ul>
       </section>
       <section>

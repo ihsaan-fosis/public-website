@@ -65,6 +65,9 @@ describe("our story page", () => {
     render(<AboutPage />);
     expect(screen.getByRole("heading", { name: "Who we are" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Grassroots and career-focused" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Programmes built around people" })).toBeTruthy();
+    expect(document.body.textContent).toContain("From bootcamps and webinars to conferences and career events");
+    expect(document.body.textContent).not.toContain("Our Spring Week Academies are led by students");
     expect(document.body.textContent).not.toMatch(/FOSIS|Federation of Student Islamic Societies/);
     expect(screen.getByRole("link", { name: "Get involved" }).getAttribute("href")).toBe("/ticket");
     expect(screen.getByRole("link", { name: "See upcoming events" }).getAttribute("href")).toBe("/events");
