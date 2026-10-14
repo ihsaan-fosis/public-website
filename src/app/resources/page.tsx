@@ -1,20 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { isDarkMotif, Panel } from "@/components/panel";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, Eyebrow, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
+import { Eyebrow, PhotoFrame, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
 import { CAREER_GUIDES, careerGuideCategories, careerGuideHref } from "@/content/career-essentials";
 import { RESOURCES } from "@/content/resources";
 import { pageMetadata } from "@/lib/metadata";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "Resources",
   description:
-    "Free Career Essentials guides, reflections, mentoring and hackathon resources for Muslim students across the UK and Ireland.",
+    "Free Career Essentials guides and reflections for Muslim students across the UK and Ireland.",
   path: "/resources",
   socialDescription: "Free Career Essentials guides and career resources from IHSAAN.",
 });
+
+const linkClass = "mt-4 inline-block text-sm font-semibold text-ink underline underline-offset-4 hover:text-ink/70";
+
+function GuideLink({ href, external, children }: { href: string; external?: boolean; children: string }) {
+  return external ? (
+    <a href={href} className={linkClass}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} className={linkClass}>
+      {children}
+    </Link>
+  );
+}
 
 export default function ResourcesPage() {
   const categories = careerGuideCategories();
@@ -24,7 +36,7 @@ export default function ResourcesPage() {
       <PhotoHero
         image="/media/career-guides.webp"
         title="Free resources."
-        intro={`${CAREER_GUIDES.length} Career Essentials guides plus mentoring and community surfaces you can use anytime. Most guides are published on this site.`}
+        intro={`${CAREER_GUIDES.length} Career Essentials guides and community reflections you can use anytime. Most guides are published on this site.`}
       />
 
       <Section id="career-essentials" labelledBy="guides-title" className="scroll-mt-24">
@@ -33,103 +45,55 @@ export default function ResourcesPage() {
           title="Career Essentials"
           aside="Step-by-step guides for intention, applications, interviews and faith at work. Written for Muslim students navigating the UK job market."
         />
-        <div className="mt-12 space-y-14">
-          {categories.map((category) => (
-            <div key={category.id} id={category.id} className="scroll-mt-28">
-              <Eyebrow>{category.title}</Eyebrow>
-              <ul className="mt-5 grid gap-4 md:grid-cols-2">
-                {category.guides.map((guide, index) => {
-                  const destination = careerGuideHref(guide);
-                  return (
-                    <li key={guide.slug} data-reveal style={revealDelay(index % 2)}>
-                      <article className="flex h-full flex-col rounded-[22px] bg-surface p-7 ring-1 ring-ink/5 sm:p-8">
-                        <h3 className="text-xl font-bold tracking-[-0.02em] text-ink">
-                          {destination.external ? (
-                            guide.title
-                          ) : (
-                            <Link href={destination.href} className="hover:underline">
-                              {guide.title}
-                            </Link>
-                          )}
-                        </h3>
-                        <p className="mt-3 flex-1 text-[15px] leading-7 text-ink/70">{guide.summary}</p>
-                        <div className="mt-6">
-                          <ButtonLink href={destination.href} external={destination.external} tone="accent">
-                            {destination.external ? "Open guide" : "Read guide"}
-                          </ButtonLink>
-                        </div>
-                      </article>
-                    </li>
-                  );
-                })}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+          <PhotoFrame src="/media/gallery/hackathon-laptop.webp" alt="A hackathon participant working on a laptop" sticky />
+          <div className="space-y-14">
+            {categories.map((category) => (
+              <div key={category.id} id={category.id} className="scroll-mt-28">
+                <Eyebrow>{category.title}</Eyebrow>
+                <ul className="mt-5 border-t border-ink/10">
+                  {category.guides.map((guide, index) => {
+                    const destination = careerGuideHref(guide);
+                    return (
+                      <li
+                        key={guide.slug}
+                        data-reveal
+                        style={revealDelay(index % 3)}
+                        className="border-b border-ink/10 py-6"
+                      >
+                        <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink">{guide.title}</h3>
+                        <p className="mt-2 max-w-xl text-[15px] leading-7 text-ink/70">{guide.summary}</p>
+                        <GuideLink href={destination.href} external={destination.external}>
+                          {destination.external ? "Open guide" : "Read guide"}
+                        </GuideLink>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+            <div id="more" className="scroll-mt-28">
+              <h2
+                id="more-resources-title"
+                className="flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase"
+              >
+                <span aria-hidden className="size-1.5 rounded-full bg-gradient-to-br from-ihsaan-purple to-ihsaan-light-blue" />
+                More from IHSAAN
+              </h2>
+              <ul className="mt-5 border-t border-ink/10">
+                {RESOURCES.map((resource) => (
+                  <li key={resource.id} id={resource.id} data-reveal className="scroll-mt-28 border-b border-ink/10 py-6">
+                    <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink">{resource.title}</h3>
+                    <p className="mt-2 max-w-xl text-[15px] leading-7 text-ink/70">{resource.body}</p>
+                    <GuideLink href={resource.cta.href} external={resource.cta.external}>
+                      {resource.cta.label}
+                    </GuideLink>
+                  </li>
+                ))}
               </ul>
             </div>
-          ))}
+          </div>
         </div>
-      </Section>
-
-      <Section labelledBy="more-resources-title">
-        <SectionHeading
-          id="more-resources-title"
-          title="More from IHSAAN"
-          aside="Reflections on this site, plus partner surfaces for mentoring and hackathons."
-        />
-        <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {RESOURCES.map((resource, index) => {
-            const dark = isDarkMotif(resource.motif);
-            return (
-              <li
-                key={resource.id}
-                id={resource.id}
-                data-reveal
-                style={revealDelay(index % 3)}
-                className="scroll-mt-28"
-              >
-                <Panel
-                  motif={resource.motif}
-                  className="h-full min-h-[18rem] rounded-[22px] transition-transform duration-500 hover:-translate-y-1.5"
-                >
-                  <h3
-                    className={cn(
-                      "text-2xl font-bold tracking-[-0.02em]",
-                      dark ? "text-white" : "text-ihsaan-purple",
-                    )}
-                  >
-                    {resource.title}
-                  </h3>
-                  <p
-                    className={cn(
-                      "mt-3 max-w-[28rem] text-[15px] leading-7",
-                      dark ? "text-white/90" : "text-black/75",
-                    )}
-                  >
-                    {resource.body}
-                  </p>
-                  <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
-                    <ButtonLink
-                      href={resource.cta.href}
-                      external={resource.cta.external}
-                      tone={dark ? "white" : "accent"}
-                    >
-                      {resource.cta.label}
-                    </ButtonLink>
-                    {resource.related ? (
-                      <Link
-                        href={resource.related.href}
-                        className={cn(
-                          "text-sm font-medium underline-offset-4 hover:underline",
-                          dark ? "text-white/85" : "text-ihsaan-purple",
-                        )}
-                      >
-                        {resource.related.label}
-                      </Link>
-                    ) : null}
-                  </div>
-                </Panel>
-              </li>
-            );
-          })}
-        </ul>
       </Section>
 
       <ClosingCta />

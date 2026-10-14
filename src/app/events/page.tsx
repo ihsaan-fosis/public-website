@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { EventList } from "@/components/event-list";
-import { ButtonLink, Container, displayClass, Section, SectionTitle } from "@/components/ui";
+import { ClosingCta } from "@/components/sections";
+import { ButtonLink, PhotoHero, Section, SectionTitle } from "@/components/ui";
 import { PUBLIC_EVENTS } from "@/content/events";
 import { PUBLIC_DESTINATIONS } from "@/content/links";
 import { classifyEvents } from "@/lib/events";
 import { pageMetadata } from "@/lib/metadata";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "Events",
@@ -25,24 +25,17 @@ export default function EventsPage() {
 
   return (
     <>
-      <section id="hero" aria-labelledby="events-title" className="pt-16 pb-12 sm:pt-24 sm:pb-16">
-        <Container>
-          <h1 id="events-title" className={cn("max-w-3xl text-[2.6rem] leading-[1.02] sm:text-6xl", displayClass)}>
-            Events.
-          </h1>
-          <p className="mt-6 max-w-xl text-[15px] leading-7 text-ink/70">
-            Career conferences and student-led academies across the UK and Ireland. Each event opens on Luma, where
-            registration, approval and joining details are managed.
-          </p>
-          <div className="mt-8">
-            <ButtonLink href={PUBLIC_DESTINATIONS.eventsCalendar.href} external className="py-3 text-center">
-              View the full IHSAAN calendar
-            </ButtonLink>
-          </div>
-        </Container>
-      </section>
+      <PhotoHero
+        image="/media/gallery/careers-evening.webp"
+        title="Events."
+        intro="Career conferences and student-led academies across the UK and Ireland. Each event opens on Luma, where registration, approval and joining details are managed."
+      >
+        <ButtonLink href={PUBLIC_DESTINATIONS.eventsCalendar.href} external>
+          View the full IHSAAN calendar
+        </ButtonLink>
+      </PhotoHero>
 
-      <Section labelledBy="upcoming-title" className="pt-0 sm:pt-0">
+      <Section labelledBy="upcoming-title">
         <SectionTitle id="upcoming-title">Upcoming events</SectionTitle>
         {current.length > 0 ? (
           <>
@@ -55,7 +48,7 @@ export default function EventsPage() {
             </p>
           </>
         ) : (
-          <p className="mt-10 max-w-2xl rounded-[22px] bg-surface p-8 text-[15px] leading-7 text-ink/70 ring-1 ring-ink/5">
+          <p className="mt-10 max-w-2xl border-t border-ink/10 pt-6 text-[15px] leading-7 text-ink/70">
             No upcoming events are listed here. Check the IHSAAN calendar for the latest schedule.
           </p>
         )}
@@ -69,6 +62,8 @@ export default function EventsPage() {
           </div>
         </Section>
       ) : null}
+
+      <ClosingCta />
     </>
   );
 }

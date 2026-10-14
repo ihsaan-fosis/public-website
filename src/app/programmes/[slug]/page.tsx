@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Panel } from "@/components/panel";
 import { ClosingCta } from "@/components/sections";
-import { displayClass, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
-import type { Motif } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 type Params = { slug: string };
-
-const MOTIFS: readonly Motif[] = ["a", "b", "c"];
 
 export const dynamicParams = false;
 
@@ -46,7 +42,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
       </PhotoHero>
 
       <Section labelledBy="about-title">
-        <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr]")}>
+        <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
           <div data-reveal>
             <SectionTitle id="about-title">{page.title}</SectionTitle>
             <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-7 text-ink/70">
@@ -56,64 +52,63 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
             </div>
           </div>
           {page.stats.length > 0 ? (
-            <div data-reveal style={revealDelay(1)}>
-              <Panel motif="a" art={false} className="h-full rounded-[22px]">
-                <dl>
-                  {page.stats.map((stat) => (
-                    <div key={stat.label} className="flex items-baseline justify-between gap-4 border-b border-white/15 py-4">
-                      <dt className="text-[13px] text-white/75">{stat.label}</dt>
-                      <dd className="text-2xl font-medium tracking-[-0.02em] text-white">{stat.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </Panel>
-            </div>
+            <dl data-reveal style={revealDelay(1)} className="self-end border-t border-ink/10">
+              {page.stats.map((stat) => (
+                <div key={stat.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-5">
+                  <dt className="text-sm text-ink/65">{stat.label}</dt>
+                  <dd className="text-3xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
           ) : null}
         </div>
       </Section>
 
-      <section aria-labelledby="highlights-title" className="pb-20 sm:pb-28">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-10">
-          <SectionTitle id="highlights-title">{page.highlightsTitle}</SectionTitle>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {page.highlights.map((highlight, index) => {
-              const motif = MOTIFS[index % MOTIFS.length];
-              const dark = motif !== "b";
-              return (
-                <li key={highlight.title} data-reveal style={revealDelay(index % 3)}>
-                  <Panel motif={motif} className="h-full min-h-56 rounded-[22px]">
-                    <h3
-                      className={cn(
-                        "text-xl font-bold tracking-[-0.02em]",
-                        dark ? "text-white" : "text-ihsaan-purple",
-                      )}
-                    >
+      <Section labelledBy="highlights-title" className="pt-0 sm:pt-0">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+          <PhotoFrame src={page.photo.src} alt={page.photo.alt} />
+          <div className="flex flex-col justify-center">
+            <SectionTitle id="highlights-title">{page.highlightsTitle}</SectionTitle>
+            <ol className="mt-10 border-t border-ink/10">
+              {page.highlights.map((highlight, index) => (
+                <li
+                  key={highlight.title}
+                  data-reveal
+                  style={revealDelay(index % 3)}
+                  className="flex items-baseline gap-6 border-b border-ink/10 py-6"
+                >
+                  <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
                       {highlight.title}
                     </h3>
-                    <p className={cn("mt-3 max-w-[22rem] text-[15px] leading-7", dark ? "text-white/90" : "text-black/75")}>
-                      {highlight.body}
-                    </p>
-                  </Panel>
+                    <p className="mt-2 max-w-lg text-[15px] leading-7 text-ink/70">{highlight.body}</p>
+                  </div>
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ol>
+          </div>
         </div>
-      </section>
+      </Section>
 
       {page.events && page.eventsTitle ? (
         <Section labelledBy="events-title" className="pt-0 sm:pt-0">
           <SectionTitle id="events-title">{page.eventsTitle}</SectionTitle>
-          <ul className="mt-10 divide-y divide-ink/10 rounded-[22px] bg-surface px-6 ring-1 ring-ink/5 sm:px-8">
-            {page.events.map((event) => (
+          <ul className="mt-10 border-t border-ink/10">
+            {page.events.map((event, index) => (
               <li
                 key={`${event.date}-${event.place}`}
                 data-reveal
-                className="grid gap-1 py-5 sm:grid-cols-[10rem_1fr_auto] sm:items-baseline sm:gap-6"
+                style={revealDelay(index % 3)}
+                className="grid gap-2 border-b border-ink/10 py-6 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-8"
               >
                 <span className="text-sm text-ink/65">{event.date}</span>
-                <span className="text-lg font-medium tracking-[-0.02em] text-ink">{event.place}</span>
-                <span className="text-sm text-ink/65 sm:max-w-md sm:text-right">{event.detail}</span>
+                <div>
+                  <p className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">{event.place}</p>
+                  <p className="mt-2 max-w-2xl text-[15px] leading-7 text-ink/70">{event.detail}</p>
+                </div>
               </li>
             ))}
           </ul>

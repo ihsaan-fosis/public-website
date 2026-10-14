@@ -13,7 +13,7 @@ const PHASE_BADGE: Partial<Record<EventPhase, string>> = {
 
 export function EventList({ items, label }: { items: readonly ClassifiedEvent[]; label: string }) {
   return (
-    <ul aria-label={label} className="divide-y divide-ink/10 rounded-[22px] bg-surface px-6 ring-1 ring-ink/5 sm:px-8">
+    <ul aria-label={label} className="border-t border-ink/10">
       {items.map(({ event, phase }, index) => {
         const badge = PHASE_BADGE[phase];
         return (
@@ -21,7 +21,7 @@ export function EventList({ items, label }: { items: readonly ClassifiedEvent[];
             key={event.id}
             data-reveal
             style={revealDelay(index % 3)}
-            className="grid gap-6 py-7 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12"
+            className="grid gap-6 border-b border-ink/10 py-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12"
           >
             <div>
               <div className="flex flex-wrap items-center gap-3">
@@ -32,7 +32,7 @@ export function EventList({ items, label }: { items: readonly ClassifiedEvent[];
                   </span>
                 ) : null}
               </div>
-              <h3 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-ink">{event.title}</h3>
+              <h3 className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">{event.title}</h3>
               <p className="mt-3 max-w-2xl text-[15px] leading-7 text-ink/70">{event.summary}</p>
               <dl className="mt-5 grid gap-x-6 gap-y-1 text-sm text-ink/75 sm:grid-cols-[4.5rem_1fr]">
                 <dt className="text-ink/65">When</dt>

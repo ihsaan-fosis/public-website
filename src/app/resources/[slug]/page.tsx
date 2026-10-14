@@ -93,7 +93,7 @@ export default async function CareerGuidePage({ params }: { params: Promise<Para
         <div className="mx-auto max-w-3xl">
           <GuideMarkdown source={guide.bodyMd} />
 
-          <aside className="mt-14 rounded-[22px] bg-surface p-8 ring-1 ring-ink/5">
+          <aside className="mt-14 border-t border-ink/10 pt-10">
             <Eyebrow>Career Essentials</Eyebrow>
             <p className="mt-3 text-[15px] leading-7 text-ink/70">
               This guide is part of IHSAAN Career Essentials, free materials for Muslim students building faith-conscious

@@ -12,14 +12,10 @@ describe("blog index", () => {
     expect(resources?.children?.map((child) => child.label)).toEqual([
       "Career Essentials",
       "Blog",
-      "Mentoring",
-      "Haqqathons",
     ]);
     expect(resources?.children?.map((child) => child.href)).toEqual([
       "/resources#career-essentials",
       "/blog",
-      "/mentoring",
-      "/haqqathons",
     ]);
   });
 

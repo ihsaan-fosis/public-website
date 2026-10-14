@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, Eyebrow, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
+import { ButtonLink, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
 import { BLOG_POSTS } from "@/content/blog";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -17,7 +18,7 @@ export default function BlogPage() {
   return (
     <>
       <PhotoHero
-        image="/media/faithful-talent.webp"
+        image="/media/gallery/student-conversations.webp"
         title="Blog."
         intro="Reflections and writing from the IHSAAN community. Each piece is published on this site so students can read it without leaving ihsaan.network."
       />
@@ -30,25 +31,30 @@ export default function BlogPage() {
         />
         <ul className="mt-12 grid gap-4">
           {BLOG_POSTS.map((post, index) => (
-            <li
-              key={post.slug}
-              data-reveal
-              style={revealDelay(index % 3)}
-              className="flex flex-col rounded-[22px] bg-surface p-8 ring-1 ring-ink/5 sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:p-10"
-            >
-              <div className="max-w-2xl">
-                <Eyebrow>{post.tags[0] ?? "Reflection"}</Eyebrow>
-                <h2 className="mt-3 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+            <li key={post.slug} data-reveal style={revealDelay(index % 3)}>
+              <article className="group relative isolate flex min-h-[30rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[36rem] lg:p-12">
+                <Image
+                  src={post.image.src}
+                  alt={post.image.alt}
+                  fill
+                  sizes="100vw"
+                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+                <p className="text-[11px] font-bold tracking-[0.18em] text-cream/80 uppercase">{post.tags[0] ?? "Reflection"}</p>
+                <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-5xl">
                   <Link href={`/blog/${post.slug}`} className="hover:underline">
                     {post.title}
                   </Link>
                 </h2>
-                <p className="mt-2 text-sm font-medium text-ink/65">By {post.author.name}</p>
-                <p className="mt-3 text-[15px] leading-7 text-ink/70">{post.summary}</p>
-              </div>
-              <div className="mt-8 flex shrink-0 flex-wrap items-center gap-4 sm:mt-0">
-                <ButtonLink href={`/blog/${post.slug}`}>Read article</ButtonLink>
-              </div>
+                <p className="mt-3 text-sm font-medium text-cream/80">By {post.author.name}</p>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-cream/80">{post.summary}</p>
+                <div className="mt-7">
+                  <ButtonLink href={`/blog/${post.slug}`} tone="white">
+                    Read article
+                  </ButtonLink>
+                </div>
+              </article>
             </li>
           ))}
         </ul>

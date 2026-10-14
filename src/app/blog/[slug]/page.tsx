@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, Container, displayClass, Eyebrow, Section } from "@/components/ui";
+import { ButtonLink, displayClass, Eyebrow, PhotoHero, Section } from "@/components/ui";
 import { BLOG_POSTS, getBlogPost } from "@/content/blog";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE_ORIGIN } from "@/lib/site";
@@ -68,8 +68,13 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
   return (
     <>
-      <section id="hero" aria-labelledby="article-title" className="pt-16 pb-10 sm:pt-24 sm:pb-14">
-        <Container>
+      <PhotoHero image={post.image.src} title={post.title} intro={post.summary} />
+
+      <Section labelledBy="article-body-title">
+        <h2 id="article-body-title" className="sr-only">
+          Article
+        </h2>
+        <article className="mx-auto max-w-3xl">
           <p className="text-sm font-medium text-ink/65">
             <Link href="/blog" className="hover:text-ink hover:underline">
               Blog
@@ -79,12 +84,8 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
             </span>
             <span>Article</span>
           </p>
-          <Eyebrow className="mt-8">{post.tags[0] ?? "Reflection"}</Eyebrow>
-          <h1 id="article-title" className={cn("mt-4 max-w-4xl text-[2.4rem] leading-[1.05] sm:text-6xl", displayClass)}>
-            {post.title}
-          </h1>
-          <p className="mt-6 max-w-2xl text-[15px] leading-7 text-ink/70">{post.summary}</p>
-          <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
+          <Eyebrow className="mt-6">{post.tags[0] ?? "Reflection"}</Eyebrow>
+          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
             <div>
               <dt className="sr-only">Author</dt>
               <dd className="font-medium text-ink">By {post.author.name}</dd>
@@ -106,18 +107,9 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               <dd>{post.tags.join(" · ")}</dd>
             </div>
           </dl>
-        </Container>
-      </section>
 
-      <Section labelledBy="article-body-title" className="pt-0 sm:pt-0">
-        <h2 id="article-body-title" className="sr-only">
-          Article
-        </h2>
-        <article className="mx-auto max-w-3xl">
           {post.lead ? (
-            <p className="rounded-[22px] bg-surface px-6 py-5 text-[15px] leading-7 text-ink/75 ring-1 ring-ink/5">
-              {post.lead}
-            </p>
+            <p className="mt-10 text-xl leading-[1.5] font-medium tracking-[-0.01em] text-ink">{post.lead}</p>
           ) : null}
 
           <div className="mt-10 space-y-5 text-[15px] leading-7 text-ink/75">
@@ -126,7 +118,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
             ))}
           </div>
 
-          <nav aria-label="Article sections" className="mt-12 rounded-[22px] bg-surface p-6 ring-1 ring-ink/5 sm:p-8">
+          <nav aria-label="Article sections" className="mt-12 border-t border-ink/10 pt-8">
             <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">In this article</p>
             <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
               {post.sections.map((section, index) => (
@@ -159,7 +151,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
             ))}
           </div>
 
-          <aside className="mt-12 rounded-[22px] bg-surface p-8 ring-1 ring-ink/5">
+          <aside className="mt-12 border-t border-ink/10 pt-10">
             <Eyebrow>Author</Eyebrow>
             <p className="mt-3 text-2xl font-bold tracking-[-0.02em] text-ink">{post.author.name}</p>
             <div className="mt-6 flex flex-wrap gap-3">

@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import GetInvolvedPage from "./page";
 
 function section(id: string) {
@@ -12,6 +12,7 @@ describe("get involved page", () => {
     render(<GetInvolvedPage />);
     expect(screen.getByRole("heading", { level: 2, name: "Ways to get involved" })).toBeTruthy();
     expect(screen.getByRole("button", { name: /Professionals/ })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /Organisations/ }));
     expect(screen.getByRole("link", { name: "Partner with us" }).getAttribute("href")).toBe("/contact");
     expect(screen.getByRole("link", { name: "Contact IHSAAN" }).getAttribute("href")).toBe("/contact");
   });

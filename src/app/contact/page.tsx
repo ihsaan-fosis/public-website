@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Panel } from "@/components/panel";
 import { PartnerWall } from "@/components/sections";
-import { Eyebrow, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { Eyebrow, PhotoHero, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "@/components/ui";
 import { COMMUNITY_PARTNERS, CONTACT_EMAIL, PARTNER_TIERS, SOCIAL_LINKS } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -22,29 +21,27 @@ export default function ContactPage() {
       <PhotoHero image="/media/impact.webp" title="We would love to hear from you." />
 
       <Section labelledBy="conversation-title">
-        <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <Panel motif="c" className="min-h-[24rem] rounded-[22px]">
-            <h2 id="conversation-title" className="text-3xl font-extrabold tracking-[-0.03em] sm:text-[2.6rem]">
-              Start a conversation
-            </h2>
-            <p className="mt-4 max-w-md text-[15px] leading-7 text-white/90">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+          <div data-reveal>
+            <SectionTitle id="conversation-title">Start a conversation</SectionTitle>
+            <p className="mt-6 max-w-md text-[15px] leading-7 text-ink/70">
               Email us about partnerships, programmes, mentoring or volunteering. Your message is handled through your
               email provider and is not submitted through this website.
             </p>
-            <div className="mt-auto pt-8">
-              <ButtonLink href={`mailto:${CONTACT_EMAIL}?subject=IHSAAN%20enquiry`} tone="white" external>
+            <div className="mt-8">
+              <ButtonLink href={`mailto:${CONTACT_EMAIL}?subject=IHSAAN%20enquiry`} external>
                 Email IHSAAN
               </ButtonLink>
             </div>
-          </Panel>
+          </div>
 
-          <dl className="flex flex-col rounded-[22px] bg-surface px-6 ring-1 ring-ink/5">
+          <dl data-reveal style={revealDelay(1)} className="flex flex-col border-t border-ink/10">
             <div className="border-b border-ink/10 py-6">
               <dt>
                 <Eyebrow>Email</Eyebrow>
               </dt>
               <dd className="mt-2">
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-medium text-ink hover:underline">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-xl font-medium tracking-[-0.02em] text-ink hover:underline">
                   {CONTACT_EMAIL}
                 </a>
               </dd>
@@ -53,17 +50,17 @@ export default function ContactPage() {
               <dt>
                 <Eyebrow>Location</Eyebrow>
               </dt>
-              <dd className="mt-2 text-lg font-medium text-ink">UK & Ireland</dd>
+              <dd className="mt-2 text-xl font-medium tracking-[-0.02em] text-ink">UK & Ireland</dd>
             </div>
             <div className="border-b border-ink/10 py-6">
               <dt>
                 <Eyebrow>Community and volunteering</Eyebrow>
               </dt>
               <dd className="mt-2 flex flex-wrap gap-x-6 gap-y-2">
-                <Link href="/ticket#community" className="text-lg font-medium text-ink hover:underline">
+                <Link href="/ticket#community" className="text-xl font-medium tracking-[-0.02em] text-ink hover:underline">
                   Join the WhatsApp community
                 </Link>
-                <Link href="/ticket#volunteer" className="text-lg font-medium text-ink hover:underline">
+                <Link href="/ticket#volunteer" className="text-xl font-medium tracking-[-0.02em] text-ink hover:underline">
                   Volunteer with IHSAAN
                 </Link>
               </dd>
@@ -79,7 +76,7 @@ export default function ContactPage() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-lg font-medium text-ink hover:underline"
+                    className="text-xl font-medium tracking-[-0.02em] text-ink hover:underline"
                   >
                     {link.label}
                   </a>
