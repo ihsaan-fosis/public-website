@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const DEFAULT_TITLE = "IHSAAN | Elevating Faith-Driven Talent";
+export const DEFAULT_TITLE = "IHSAAN | Faith. Excellence. Service.";
 
 const DEFAULT_IMAGE = "/media/hero-poster.webp";
 

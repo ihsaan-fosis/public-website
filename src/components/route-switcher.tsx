@@ -40,8 +40,6 @@ export function RouteSwitcher() {
               <button
                 type="button"
                 aria-pressed={index === active}
-                onMouseEnter={() => setActive(index)}
-                onFocus={() => setActive(index)}
                 onClick={() => setActive(index)}
                 className="flex w-full items-baseline gap-6 py-5 text-left"
               >
@@ -58,16 +56,38 @@ export function RouteSwitcher() {
             </li>
           ))}
         </ul>
-        <ul key={current.title} className="mt-8 flex animate-rise flex-wrap gap-2">
-          {current.points.map((point) => (
-            <li key={point} className="rounded-full border border-ink/15 px-3.5 py-1.5 text-xs text-ink/80">
-              {point}
-            </li>
-          ))}
-        </ul>
+        {current.points.length ? (
+          <ul key={current.title} className="mt-8 flex animate-rise flex-wrap gap-2">
+            {current.points.map((point) => (
+              <li key={point} className="rounded-full border border-ink/15 px-3.5 py-1.5 text-xs text-ink/80">
+                {point}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         <div className="mt-8">
-          <ButtonLink href={current.cta.href}>{current.cta.label}</ButtonLink>
+          <ButtonLink href={current.cta.href} external={current.cta.external}>
+            {current.cta.label}
+          </ButtonLink>
         </div>
+        {current.links ? (
+          <ul
+            key={`${current.title}-links`}
+            aria-label={`More ways in for ${current.title.toLowerCase()}`}
+            className="mt-8 animate-rise border-t border-ink/10"
+          >
+            {current.links.map((link) => (
+              <li key={link.href} className="border-b border-ink/10">
+                <a
+                  href={link.href}
+                  className="block py-4 text-[15px] font-semibold text-ink hover:underline hover:underline-offset-4"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </div>
   );

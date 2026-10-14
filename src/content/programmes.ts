@@ -113,8 +113,13 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Weekend hackathons where students build solutions to real community problems.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
-    image: "/media/haqqathons.webp",
-    photo: { src: "/media/haqqathons.webp", alt: "Participants building at an IHSAAN hackathon", width: 1800, height: 1646 },
+    image: "/media/hackathon-manchester-wide.webp",
+    photo: {
+      src: "/media/hackathon-manchester.webp",
+      alt: "Participants with laptops watching a talk at the IHSAAN hackathon in Manchester",
+      width: 1400,
+      height: 2292,
+    },
     about: [
       "A hackathon is a focused sprint where teams turn real-world problems into working ideas. Over a weekend, participants form teams, learn from mentors, prototype a solution and pitch it to partners who can help take it further.",
     ],
@@ -144,7 +149,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     },
     primary: { label: "See upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Become a partner", href: "/contact" },
-    relatedLinks: [{ label: "Visit Haqqathons", href: PUBLIC_DESTINATIONS.haqqathons.href, external: true }],
   },
   {
     slug: "mentorship",
@@ -171,7 +175,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       },
     ],
     primary: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
-    secondary: { label: "Become a mentor", href: "/contact" },
+    secondary: { label: "Become a mentor", href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, external: true },
   },
   {
     slug: "career-guides",

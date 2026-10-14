@@ -10,10 +10,7 @@ import {
   ProgrammesCarousel,
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { GET_INVOLVED, MISSION } from "@/content/site";
-
-const PROMISE =
-  "Every Muslim student deserves equal access to the mentorship, networks and opportunities needed to build a meaningful career.";
+import { GET_INVOLVED, MISSION, TAGLINE, VISION } from "@/content/site";
 
 export default function Home() {
   return (
@@ -23,7 +20,7 @@ export default function Home() {
         tall
         image="/media/hero-poster.webp"
         video={{ src: "/media/hero-video.mp4", portraitSrc: "/media/hero-video-mobile.mp4" }}
-        title="Faith. Excellence. Service."
+        title={TAGLINE}
         intro={MISSION}
       >
         <div className="flex flex-wrap gap-3">
@@ -34,13 +31,13 @@ export default function Home() {
         </div>
       </PhotoHero>
 
-      <section aria-labelledby="promise-title" className="relative py-24 sm:py-36">
+      <section aria-labelledby="vision-title" className="relative py-24 sm:py-36">
         <Container>
           <h2
-            id="promise-title"
+            id="vision-title"
             className={`max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
           >
-            <ScrollWords text={PROMISE} />
+            <ScrollWords text={VISION} />
           </h2>
         </Container>
       </section>
@@ -59,7 +56,7 @@ export default function Home() {
         <SectionHeading
           id="routes-title"
           title="Find your place at IHSAAN"
-          aside="Students, professionals and organisations all have a part to play in elevating faith-driven talent."
+          aside="Students, professionals and organisations all have a part to play in IHSAAN's work."
         />
         <div className="mt-12">
           <InvolvementPanels />

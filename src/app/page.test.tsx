@@ -41,7 +41,11 @@ describe("Home", () => {
     const ctas = ["Explore programmes", "Offer your time", "Partner with us"].map((name) =>
       within(routes).getByRole("link", { name }).getAttribute("href"),
     );
-    expect(ctas).toEqual(["/programmes", "/contact", "/contact"]);
+    expect(ctas).toEqual([
+      "/programmes",
+      "https://docs.google.com/forms/d/e/1FAIpQLSdrT7sgjnP6aqgL6qLwcEQZWr_qHHlf9AWa6Qr8ZEr77I9gTQ/viewform",
+      "/contact",
+    ]);
   });
 
   it("offers an evergreen route to events instead of a dated schedule", () => {

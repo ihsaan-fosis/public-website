@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import {
   CONTACT_EMAIL,
-  FACTS,
   FAQS,
   GALLERY,
   GET_INVOLVED,
@@ -14,27 +13,8 @@ import {
   type Partner,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { CountUp, MarqueeGroup } from "./motion";
-import { isDarkMotif, Panel } from "./panel";
+import { MarqueeGroup } from "./motion";
 import { Container, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "./ui";
-
-export function FactsCard({ footnote }: { footnote?: string }) {
-  return (
-    <Panel motif="a" art={false} className="h-full rounded-[22px]">
-      <dl>
-        {FACTS.map((fact) => (
-          <div key={fact.label} className="flex items-baseline justify-between gap-4 border-b border-white/15 py-3.5">
-            <dt className="text-[13px] text-white/75">{fact.label}</dt>
-            <dd className="text-xl font-medium tracking-[-0.02em] text-white">
-              <CountUp value={fact.value} />
-            </dd>
-          </div>
-        ))}
-      </dl>
-      {footnote ? <p className="mt-8 max-w-[16rem] text-sm font-medium text-white">{footnote}</p> : null}
-    </Panel>
-  );
-}
 
 function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
   return (
@@ -224,49 +204,6 @@ export function GalleryParallax({ action }: { action?: ReactNode }) {
   );
 }
 
-export function InvolvementCards() {
-  return (
-    <ul className="grid gap-4 lg:grid-cols-3">
-      {INVOLVEMENT_ROUTES.map((route, index) => {
-        const dark = isDarkMotif(route.motif);
-        return (
-          <li key={route.title} data-reveal style={revealDelay(index)}>
-            <Panel
-              motif={route.motif}
-              className="h-full min-h-[26rem] rounded-[22px] transition-transform duration-500 hover:-translate-y-1.5"
-            >
-              <h3 className={cn("text-2xl font-bold tracking-[-0.02em]", dark ? "text-white" : "text-ihsaan-purple")}>
-                {route.title}
-              </h3>
-              <p className={cn("mt-3 max-w-[22rem] text-[15px] leading-7", dark ? "text-white/90" : "text-black/75")}>
-                {route.body}
-              </p>
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {route.points.map((point) => (
-                  <li
-                    key={point}
-                    className={cn(
-                      "rounded-full border px-3 py-1 text-xs",
-                      dark ? "border-white/30 text-white" : "border-ihsaan-purple/25 text-ihsaan-purple",
-                    )}
-                  >
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-8">
-                <ButtonLink href={route.cta.href} tone={dark ? "white" : "accent"}>
-                  {route.cta.label}
-                </ButtonLink>
-              </div>
-            </Panel>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
 export function InvolvementPanels() {
   return (
     <ul className="grid gap-4 lg:grid-cols-3">
@@ -290,7 +227,7 @@ export function InvolvementPanels() {
             <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{route.title}</h3>
             <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{route.body}</p>
             <div className="mt-7">
-              <ButtonLink href={route.cta.href} tone="white">
+              <ButtonLink href={route.cta.href} external={route.cta.external} tone="white">
                 {route.cta.label}
               </ButtonLink>
             </div>
@@ -354,7 +291,7 @@ export function PartnersSection() {
       <Container>
         <SectionHeading
           id="partners-title"
-          title="Organisations backing faith-driven talent"
+          title="Organisations backing Muslim talent"
           aside="Our diamond and gold partners open doors through conferences, mentoring and roles."
         />
       </Container>

@@ -5,14 +5,14 @@ import { Poppins } from "next/font/google";
 import { RevealObserver } from "@/components/motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SOCIAL_LINKS, TAGLINE } from "@/content/site";
+import { MISSION, SOCIAL_LINKS } from "@/content/site";
 import { DEFAULT_TITLE, pageMetadata } from "@/lib/metadata";
 import { INDEXABLE, SITE_ORIGIN } from "../lib/site";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
 
 export const metadata: Metadata = {
-  ...pageMetadata({ description: TAGLINE, path: "/" }),
+  ...pageMetadata({ description: MISSION, path: "/" }),
   metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: DEFAULT_TITLE,

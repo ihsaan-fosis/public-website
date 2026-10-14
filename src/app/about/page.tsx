@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { BeliefChapter, MapChapter, StoryContinues, WhoChapter } from "@/components/story";
+import {
+  MapChapter,
+  PurposeChapter,
+  StoryContinues,
+  TeamChapter,
+  ValuesChapter,
+  WhoChapter,
+} from "@/components/story";
 import { PhotoHero } from "@/components/ui";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -19,9 +26,11 @@ export default function AboutPage() {
         title="Our story."
         intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and where the work has taken us."
       />
-      <BeliefChapter />
+      <PurposeChapter />
       <WhoChapter />
+      <ValuesChapter />
       <MapChapter />
+      <TeamChapter />
       <StoryContinues />
     </>
   );

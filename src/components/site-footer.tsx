@@ -90,7 +90,6 @@ export function SiteFooter() {
           </div>
           <FooterColumn title="Based in">
             <li>UK & Ireland</li>
-            <li>A national careers programme of FOSIS</li>
           </FooterColumn>
         </div>
 

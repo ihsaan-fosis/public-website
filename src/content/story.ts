@@ -126,8 +126,8 @@ export type WhoBeat = { title: string; body: string; photo: Photo };
 /** Who IHSAAN is, told in three beats. Each beat is a fact the home page does not state. */
 export const WHO_WE_ARE: readonly WhoBeat[] = [
   {
-    title: "Part of FOSIS",
-    body: "IHSAAN is the national careers programme of the Federation of Student Islamic Societies (FOSIS).",
+    title: "Grassroots and career-focused",
+    body: "IHSAAN is a grassroots organisation helping Muslim students and graduates across the UK and Ireland bridge the gap between university and professional life.",
     photo: { src: "/media/faithful-talent.webp", alt: "Faithful Talent interns at an IHSAAN session", width: 1800, height: 1114 },
   },
   {
@@ -140,4 +140,34 @@ export const WHO_WE_ARE: readonly WhoBeat[] = [
     body: "Alumni stay connected through the IHSAAN alumni network, and the WhatsApp community keeps the conversation going between events.",
     photo: { src: "/media/gallery/conference-audience.webp", alt: "An audience listening at an IHSAAN career conference", width: 2560, height: 1706 },
   },
+];
+
+export type Value = { name: string; term: string; body: string };
+
+export const VALUES: readonly Value[] = [
+  {
+    name: "Faith",
+    term: "Imaan",
+    body: "We act with integrity, honesty, and accountability to God and to those we serve.",
+  },
+  {
+    name: "Excellence",
+    term: "Ihsaan",
+    body: "We aim high, take ownership of our work, and keep improving to deliver real impact.",
+  },
+  {
+    name: "Service",
+    term: "Khidmah",
+    body: "We serve students, partners, and each other with respect, generosity, and care.",
+  },
+];
+
+export type Executive = { name: string; role: string };
+
+export const EXECUTIVE_TEAM: readonly Executive[] = [
+  { name: "Samir Sidat", role: "Chief Executive Officer" },
+  { name: "Eyad Abdelhady", role: "Chief Operating Officer" },
+  { name: "Musaddiq Iqbal", role: "Chief Operating Officer" },
+  { name: "Bushra Abdullah", role: "Chief People Officer" },
+  { name: "Yusuf Shamsi", role: "Chief Information Officer" },
 ];

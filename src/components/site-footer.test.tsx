@@ -22,6 +22,12 @@ describe("SiteFooter", () => {
     expect(screen.getByRole("link", { name: "Blog" }).getAttribute("href")).toBe("/blog");
   });
 
+  it("drops the FOSIS programme line and keeps where IHSAAN is based", () => {
+    const { container } = render(<SiteFooter />);
+    expect(container.textContent).not.toMatch(/national careers programme|FOSIS/);
+    expect(screen.getByText("UK & Ireland")).toBeTruthy();
+  });
+
   it("shows the closing wordmark without waiting for a scroll reveal it can never reach on phones", () => {
     const { container } = render(<SiteFooter />);
     const logos = container.querySelectorAll("img[src$='-logo-large.webp']");

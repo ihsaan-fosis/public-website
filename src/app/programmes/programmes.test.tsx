@@ -47,11 +47,14 @@ describe("programme pages", () => {
       return screen.getByRole("link", { name }).getAttribute("href");
     }
 
-    it("adds Haqqathons to the hackathons page beside its calendar and partnership actions", async () => {
-      await renderProgramme("hackathons");
-      expect(href("Visit Haqqathons")).toBe("https://haqqathons.com");
+    it("keeps the hackathons page on IHSAAN's own events and partnership actions, without the external Haqqathons site", async () => {
+      const { container } = await renderProgramme("hackathons");
       expect(href("See upcoming events")).toBe("https://luma.com/calendar/cal-8amaiM2VigRIqjq");
       expect(href("Become a partner")).toBe("/contact");
+      expect(container.innerHTML).not.toContain("haqqathons.com");
+      expect(screen.queryByRole("heading", { name: "Related links" })).toBeNull();
+      expect(screen.getByText(/British Muslim Heritage Centre, Manchester/)).toBeTruthy();
+      expect(screen.getByText("Dublin")).toBeTruthy();
     });
 
     it("adds the Civil Service reflection to career guides on the native blog without losing the guides or Instagram", async () => {
@@ -65,7 +68,7 @@ describe("programme pages", () => {
     it("keeps My Muslim Mentor on the mentorship page", async () => {
       await renderProgramme("mentorship");
       expect(href("Visit My Muslim Mentor")).toBe("https://mymuslimmentor.com/");
-      expect(href("Become a mentor")).toBe("/contact");
+      expect(href("Become a mentor")).toBe("https://mymuslimmentor.com/signup");
     });
 
     it("points the conferences page at the events route without inline scheduled cards", async () => {

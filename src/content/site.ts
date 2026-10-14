@@ -2,11 +2,13 @@ import { PUBLIC_DESTINATIONS } from "./links";
 
 export const CONTACT_EMAIL = "ihsaan@fosis.org.uk";
 
-export const MISSION =
-  "We equip Muslim students across the UK and Ireland with mentorship, networks, and career pathways.";
+export const TAGLINE = "Faith. Excellence. Service.";
 
-export const TAGLINE =
-  "IHSAAN empowers Muslim students with opportunities, mentorship, and networks for God-conscious careers.";
+export const VISION =
+  "We envision a world where every Muslim has the opportunity to fulfil their potential, unlock their dream career, and help build a more ethical society for all.";
+
+export const MISSION =
+  "We equip Muslim students with the opportunities and networks to build careers rooted in faith, excellence, and service.";
 
 export type NavLink = { href: string; label: string };
 
@@ -15,13 +17,11 @@ export type NavItem = NavLink & { children?: readonly NavLink[] };
 
 /**
  * Resource types in the Resources dropdown.
- * Career Essentials anchors the guides block; Blog, Mentoring and Haqqathons are own routes.
+ * Career Essentials anchors the guides block; Blog is its own route.
  */
 export const RESOURCE_NAV_LINKS: readonly NavLink[] = [
   { href: "/resources#career-essentials", label: "Career Essentials" },
   { href: "/blog", label: "Blog" },
-  { href: "/mentoring", label: "Mentoring" },
-  { href: "/haqqathons", label: "Haqqathons" },
 ];
 
 /** Programme detail pages in the Programmes dropdown. Overview stays on the parent link. */
@@ -67,14 +67,11 @@ export const LEGAL_LINKS: readonly NavLink[] = [
   { href: "/terms", label: "Terms and conditions" },
 ];
 
+export type ActionLink = NavLink & { external?: boolean };
+
 export type Photo = { src: string; alt: string; width: number; height: number };
 
 export type Stat = { value: string; label: string };
-
-export const FACTS: readonly Stat[] = [
-  { value: "Free", label: "Career guides" },
-  { value: "UK & IE", label: "Where we work" },
-];
 
 export type Programme = { slug: string; title: string; photo: Photo };
 
@@ -92,7 +89,7 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "hackathons",
     title: "Hackathons",
-    photo: { src: "/media/haqqathons.webp", alt: "Participants building at an IHSAAN hackathon", width: 1800, height: 1646 },
+    photo: { src: "/media/hackathon-manchester.webp", alt: "Participants with laptops watching a talk at the IHSAAN hackathon in Manchester", width: 1400, height: 2292 },
   },
   {
     slug: "mentorship",
@@ -156,14 +153,13 @@ export const COMMUNITY_PARTNERS: readonly Partner[] = [
   { name: "MC", src: "/partners/MC.webp", width: 800, height: 800 },
 ];
 
-export type Motif = "a" | "b" | "c";
-
 export type InvolvementRoute = {
   title: string;
   body: string;
   points: readonly string[];
-  motif: Motif;
-  cta: NavLink;
+  /** Destinations listed with the route instead of `points` when it has more than one way in. */
+  links?: readonly ActionLink[];
+  cta: ActionLink;
   photo: Photo;
 };
 
@@ -172,43 +168,57 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     title: "Students",
     body: "Join career conferences, hackathons and internship programmes, and use free career guides.",
     points: ["Career guides & resources", "Professional networks", "Faith-conscious support", "Skills workshops"],
-    motif: "a",
     cta: { href: "/programmes", label: "Explore programmes" },
     photo: { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
   },
   {
     title: "Professionals",
-    body: "Volunteer your experience, mentor emerging Muslim talent or contribute as a speaker and role model.",
-    points: ["Mentor emerging talent", "Speak at programmes", "Volunteer your experience"],
-    motif: "b",
-    cta: { href: "/contact", label: "Offer your time" },
+    body: "Join the IHSAAN professional network, mentor Muslim students on My Muslim Mentor and stay connected through the alumni network and WhatsApp community.",
+    points: [],
+    links: [
+      { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
+      { href: "/ticket#alumni", label: "Join the alumni network" },
+      { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Join the WhatsApp community", external: true },
+    ],
+    cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Offer your time", external: true },
     photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
   },
   {
     title: "Organisations",
-    body: "Partner with IHSAAN to host or sponsor programmes, share opportunities and connect with faith-driven talent.",
+    body: "Partner with IHSAAN to host or sponsor programmes, share opportunities and meet Muslim students and graduates.",
     points: ["Employer access", "Faith-aligned roles", "Mentorship network", "Dedicated programme support"],
-    motif: "c",
     cta: { href: "/contact", label: "Partner with us" },
     photo: { src: "/media/impact.webp", alt: "Students networking at an IHSAAN event", width: 2560, height: 1430 },
   },
 ];
 
 export type InvolvementAction = {
-  id: "membership" | "community" | "alumni" | "volunteer";
+  id: "membership" | "professional" | "mentor" | "community" | "alumni" | "volunteer";
   title: string;
   body: string;
-  cta: NavLink & { external?: boolean };
-  secondary?: NavLink & { external?: boolean };
+  cta: ActionLink;
+  secondary?: ActionLink;
 };
 
 export const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
   {
     id: "membership",
-    title: "Membership and professional network",
-    body: "Students and professionals can ask about joining IHSAAN and its professional network. We will confirm the current route and what it includes. The student portal is where members access the member platform. It is not a membership application.",
+    title: "Membership",
+    body: "Students can ask about joining IHSAAN. We will confirm the current route and what it includes. The student portal is where members access the member platform. It is not a membership application.",
     cta: { href: "/contact", label: "Ask about membership" },
     secondary: { href: MEMBER_PORTAL.href, label: MEMBER_PORTAL.label, external: true },
+  },
+  {
+    id: "professional",
+    title: "Professional network",
+    body: "Professionals can offer their time by joining the IHSAAN professional network and its sector-specific chats through a short Google Form. The form opens on Google Forms, not on this website.",
+    cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Join the professional network", external: true },
+  },
+  {
+    id: "mentor",
+    title: "Mentor on My Muslim Mentor",
+    body: "Professionals can mentor Muslim students through My Muslim Mentor. Sign up on the My Muslim Mentor website to register as a mentor. Its sign-up and booking happen there, not on this website.",
+    cta: { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
   },
   {
     id: "community",
@@ -280,7 +290,7 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/gallery/networking-overhead.webp", alt: "An overhead view of students queuing to meet employers", width: 1400, height: 1866 },
   { src: "/media/photo-collage.webp", alt: "A collage of moments from IHSAAN programmes", width: 1400, height: 1050 },
   { src: "/media/career-conference.webp", alt: "Audience at an IHSAAN career conference", width: 2560, height: 1442 },
-  { src: "/media/haqqathons.webp", alt: "Participants building at an IHSAAN hackathon", width: 1800, height: 1646 },
+  { src: "/media/hackathon-manchester.webp", alt: "Participants with laptops watching a talk at the IHSAAN hackathon in Manchester", width: 1400, height: 2292 },
   { src: "/media/impact.webp", alt: "Students networking at an IHSAAN event", width: 2560, height: 1430 },
   { src: "/media/faithful-talent.webp", alt: "Faithful Talent interns at an IHSAAN session", width: 1800, height: 1114 },
   { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },

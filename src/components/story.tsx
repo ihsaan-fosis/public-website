@@ -1,51 +1,134 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import { EVENTS_LINK, GET_INVOLVED } from "@/content/site";
+import { EVENTS_LINK, GET_INVOLVED, MISSION, VISION } from "@/content/site";
 import {
   CONFERENCE_CITIES,
   CONFERENCE_ROUTE,
   CONFERENCE_SIGNUPS,
+  EXECUTIVE_TEAM,
   MAP_DOTS,
   MAP_SIZE,
   ROUTE_PATH,
+  VALUES,
   WHO_WE_ARE,
 } from "@/content/story";
 import { cn } from "@/lib/utils";
-import { CountUp } from "./motion";
+import { CountUp, ScrollWords } from "./motion";
 import { PhotoBand } from "./sections";
-import { ButtonLink, Container, displayClass, revealDelay, Section, SectionHeading, SectionTitle } from "./ui";
+import {
+  ButtonLink,
+  Container,
+  displayClass,
+  PhotoFrame,
+  revealDelay,
+  Section,
+  SectionHeading,
+  SectionTitle,
+} from "./ui";
 
 /** Inline custom properties for the scroll-driven keyframes in globals.css (`Story page`). */
 function vars(values: Record<`--${string}`, string>): CSSProperties {
   return values as CSSProperties;
 }
 
-/** The founding belief, set like the home promise, then a panorama that opens out of a thin slit beneath it. */
-export function BeliefChapter() {
+/** The vision as the scroll-lit statement, then the mission over a panorama that opens out of a thin slit beneath it. */
+export function PurposeChapter() {
   return (
-    <section aria-labelledby="belief-title" className="relative py-24 sm:py-36">
+    <section aria-labelledby="vision-title" className="relative py-24 sm:py-36">
       <Container>
-        <p className="story-rise text-sm text-ink/65">More than a single event.</p>
-        <h2
-          id="belief-title"
+        <h2 id="vision-title" className="story-rise text-sm text-ink/65">
+          Our vision
+        </h2>
+        <p
           className={cn(
             "story-rise mt-5 max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem]",
             displayClass,
           )}
         >
-          A conference opens a door. Academies, mentors and alumni keep it open.
-        </h2>
+          <ScrollWords text={VISION} />
+        </p>
       </Container>
-      <div className="story-slit relative mx-2 mt-16 aspect-[2.2/1] overflow-hidden rounded-[28px] bg-night-2 sm:mx-3 sm:mt-24 sm:aspect-[2.85/1]">
+      <div className="story-slit relative isolate mx-2 mt-16 flex min-h-[80svh] overflow-hidden rounded-[28px] bg-night-2 sm:mx-3 sm:mt-24">
         <Image
           src="/media/impact-wide.webp"
           alt="A wide view of students at an IHSAAN programme"
           fill
           sizes="100vw"
-          className="story-slit-photo object-cover"
+          className="story-slit-photo -z-20 object-cover"
         />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/55 to-night/10" />
+        <div className="mt-auto w-full px-5 pt-16 pb-8 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12">
+          <h2 className="text-sm text-cream/70">Our mission</h2>
+          <p className="mt-4 max-w-4xl text-2xl leading-[1.15] font-extrabold tracking-[-0.03em] text-cream sm:text-4xl lg:text-5xl">
+            {MISSION}
+          </p>
+        </div>
       </div>
     </section>
+  );
+}
+
+/** The three values are the tagline, so the frame title spells it out and the meanings sit beside it. */
+export function ValuesChapter() {
+  return (
+    <PhotoBand image="/media/gallery/conference-panel.webp" labelledBy="values-title">
+      <h2
+        id="values-title"
+        className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
+      >
+        <span className="mb-6 block text-sm font-normal tracking-normal text-cream/70">Our values</span>
+        {VALUES.map((value) => (
+          <span key={value.name} className="block">
+            {value.name}
+            <span className="text-ihsaan-lavender">.</span>{" "}
+          </span>
+        ))}
+      </h2>
+      <ul className="mt-8 grid max-w-sm gap-6 sm:mt-10 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
+        {VALUES.map((value) => (
+          <li key={value.name}>
+            <p className="text-[11px] font-bold tracking-[0.18em] text-cream uppercase">
+              {value.name} · {value.term}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-cream/75">{value.body}</p>
+          </li>
+        ))}
+      </ul>
+    </PhotoBand>
+  );
+}
+
+/** Names set large under hairline rules beside a photo, like the route list on Get involved. No portraits yet. */
+export function TeamChapter() {
+  return (
+    <Section labelledBy="team-title">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+        <PhotoFrame src="/media/gallery/startup-talk.webp" alt="A speaker presenting a startup talk beside an IHSAAN banner" />
+        <div className="flex flex-col justify-center">
+          <SectionTitle id="team-title">Meet the executive team</SectionTitle>
+          <ul className="mt-10 border-t border-ink/10">
+            {EXECUTIVE_TEAM.map((member, index) => (
+              <li
+                key={member.name}
+                data-reveal
+                style={revealDelay(index)}
+                className="flex items-baseline gap-6 border-b border-ink/10 py-5"
+              >
+                <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-3xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
+                    {member.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink/65">{member.role}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Section>
   );
 }
 

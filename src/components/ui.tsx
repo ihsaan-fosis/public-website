@@ -100,6 +100,26 @@ export function SectionHeading({
   );
 }
 
+/** The tall photo beside an editorial list. `sticky` keeps it in view while a long list scrolls past on large screens. */
+export function PhotoFrame({ src, alt, sticky = false }: { src: string; alt: string; sticky?: boolean }) {
+  return (
+    <div className={cn(sticky && "lg:sticky lg:top-24 lg:self-start")}>
+      <div
+        data-reveal
+        className="group relative aspect-[4/5] overflow-hidden rounded-[28px] bg-night-2 max-lg:aspect-[4/3]"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 1280px) 533px, (min-width: 1024px) 42vw, 100vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+        />
+      </div>
+    </div>
+  );
+}
+
 type ButtonTone = "accent" | "light-outline" | "ghost" | "solid" | "white";
 
 /** Flat rounded-rectangle buttons (rounded-xl, a step down from the 22px panels): no gradients, glass, glow or arrows (docs/IHSAAN-DESIGN.md). */
