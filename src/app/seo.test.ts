@@ -169,6 +169,8 @@ describe("legacy URLs", () => {
 
   it.each([
     ["/haqqathons", "/programmes/hackathons"],
+    ["/programmes/faithful-talent", "/programmes/summer-internships"],
+    ["/programmes/career-guides", "/resources"],
     ["/mentoring", "/programmes/mentorship"],
   ])("sends the retired %s hub to %s", async (source, destination) => {
     expect((await redirects()).find((redirect) => redirect.source === source)).toEqual({

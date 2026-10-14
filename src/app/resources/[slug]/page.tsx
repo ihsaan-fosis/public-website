@@ -101,9 +101,6 @@ export default async function CareerGuidePage({ params }: { params: Promise<Para
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <ButtonLink href="/resources#career-essentials">Career Essentials</ButtonLink>
-              <ButtonLink href="/programmes/career-guides" tone="ghost">
-                About Career Guides
-              </ButtonLink>
             </div>
             {guide.sourceUrl ? (
               <p className="mt-6 text-[13px] leading-6 text-ink/65">

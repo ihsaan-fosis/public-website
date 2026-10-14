@@ -25,7 +25,7 @@ describe("SiteHeader", () => {
     },
   );
 
-  it.each(["/", "/about", "/programmes", "/impact", "/gallery", "/contact"])(
+  it.each(["/", "/about", "/programmes", "/impact", "/blog", "/gallery", "/contact"])(
     "targets the top of each destination in both menus from %s",
     (pathname) => {
       route.pathname = pathname;
@@ -36,6 +36,7 @@ describe("SiteHeader", () => {
           ["About", "/about"],
           ["Programmes", "/programmes"],
           ["Impact", "/impact"],
+          ["Blog", "/blog"],
           ["Gallery", "/gallery"],
           ["Contact", "/contact"],
         ] as const) {
@@ -47,11 +48,13 @@ describe("SiteHeader", () => {
     },
   );
 
-  it("shows Impact as a plain link with no dropdown, and Resources only in the footer", () => {
+  it("shows Impact and Blog as plain links with no dropdown, and Resources only in the footer", () => {
     render(<SiteHeader />);
     const desktop = screen.getByRole("navigation", { name: "Primary" });
     expect(within(desktop).getByRole("link", { name: "Impact" })).toHaveAttribute("href", "/impact");
+    expect(within(desktop).getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
     expect(within(desktop).queryByRole("button", { name: "Impact menu" })).toBeNull();
+    expect(within(desktop).queryByRole("button", { name: "Blog menu" })).toBeNull();
     expect(within(desktop).queryByRole("link", { name: "Resources" })).toBeNull();
     expect(within(desktop).queryByRole("button", { name: "Resources menu" })).toBeNull();
   });
@@ -61,10 +64,11 @@ describe("SiteHeader", () => {
 
     const expected = [
       ["Career Conferences", "/programmes/career-conferences"],
-      ["Faithful Talent", "/programmes/faithful-talent"],
       ["Hackathons", "/programmes/hackathons"],
+      ["Insight Events", "/programmes/insight-events"],
       ["Mentorship", "/programmes/mentorship"],
-      ["Career Guides", "/programmes/career-guides"],
+      ["Summer Internship Programme", "/programmes/summer-internships"],
+      ["Webinars & Workshops", "/programmes/webinars-workshops"],
     ] as const;
 
     const desktop = screen.getByRole("navigation", { name: "Primary" });
@@ -100,6 +104,7 @@ describe("SiteHeader", () => {
     ["/about", "About"],
     ["/programmes", "Programmes"],
     ["/impact", "Impact"],
+    ["/blog", "Blog"],
     ["/gallery", "Gallery"],
     ["/contact", "Contact"],
     ["/ticket", "Get involved"],
@@ -157,8 +162,8 @@ describe("SiteHeader", () => {
     const header = container.querySelector("header")!;
     const portalLinks = within(header).getAllByRole("link", { name: "Student portal", hidden: true });
     expect(portalLinks.map((link) => link.getAttribute("href"))).toEqual([
-      "https://portal.ihsaan.network",
-      "https://portal.ihsaan.network",
+      "https://portal.ihsaan.network/sign-in",
+      "https://portal.ihsaan.network/sign-in",
     ]);
     expect(screen.getAllByRole("link", { name: "Get involved", hidden: true })).toHaveLength(2);
   });

@@ -32,6 +32,16 @@ describe("programme pages", () => {
     }
   });
 
+  it("lists every other programme as a photo card link on a detail page, without repeating the current one", async () => {
+    const { container } = render(await ProgrammePage({ params: Promise.resolve({ slug: "hackathons" }) }));
+    const section = container.querySelector("section[aria-labelledby='more-title']")!;
+    const hrefs = [...section.querySelectorAll("li a")].map((link) => link.getAttribute("href"));
+    expect(hrefs).toEqual(
+      PROGRAMME_PAGES.filter(({ slug }) => slug !== "hackathons").map(({ slug }) => `/programmes/${slug}`),
+    );
+    expect(screen.getByRole("link", { name: "All programmes" }).getAttribute("href")).toBe("/programmes");
+  });
+
   it("renders a detail page with its headline and call to action", async () => {
     render(await ProgrammePage({ params: Promise.resolve({ slug: "career-conferences" }) }));
     expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Meet the employers who want you.");
@@ -57,14 +67,6 @@ describe("programme pages", () => {
       expect(screen.getByText("Dublin")).toBeTruthy();
     });
 
-    it("adds the Civil Service reflection to career guides on the native blog without losing the guides or Instagram", async () => {
-      const { container } = await renderProgramme("career-guides");
-      expect(href("Read a Civil Service internship reflection")).toBe("/blog/civil-service-summer-internship");
-      expect(href("Browse Career Essentials")).toBe("/resources");
-      expect(href("Follow for new guides")).toBe("https://www.instagram.com/ihsaan.network/");
-      expect(container.innerHTML).not.toContain("fbclid");
-    });
-
     it("keeps My Muslim Mentor on the mentorship page", async () => {
       await renderProgramme("mentorship");
       expect(href("Visit My Muslim Mentor")).toBe("https://mymuslimmentor.com/");
@@ -80,9 +82,37 @@ describe("programme pages", () => {
     });
 
     it("adds no related links section where a programme has none", async () => {
-      await renderProgramme("faithful-talent");
-      expect(screen.getByRole("heading", { level: 2, name: "Faithful Talent" })).toBeTruthy();
+      await renderProgramme("summer-internships");
+      expect(screen.getByRole("heading", { level: 2, name: "Summer Internship Programme" })).toBeTruthy();
       expect(screen.queryByRole("heading", { name: "Related links" })).toBeNull();
+    });
+
+    it("shows only the internship figures the impact page also publishes, with no unsourced role count", async () => {
+      const { container } = await renderProgramme("summer-internships");
+      expect(container.textContent).toContain("100+");
+      expect(container.textContent).toContain("30+");
+      expect(container.textContent).not.toContain("50+");
+      expect(container.textContent).not.toContain("Faithful Talent");
+    });
+
+    it("names insight-event examples by category only, without firms or guarantees", async () => {
+      const { container } = await renderProgramme("insight-events");
+      for (const category of ["Bulge bracket investment banks", "Big Four firms", "The FCA"]) {
+        expect(screen.getByRole("heading", { name: category })).toBeTruthy();
+      }
+      expect(container.textContent).toContain("does not guarantee an internship or a job offer");
+      expect(container.textContent).not.toMatch(/Goldman|Morgan|Barclays|Deloitte|PwC|KPMG|EY|Ernst/);
+      expect(href("See upcoming events")).toBe("/events");
+    });
+
+    it("describes every Roast My format and files Spring Week Academy under Webinars & Workshops", async () => {
+      await renderProgramme("webinars-workshops");
+      for (const format of ["Roast My CV", "Roast My Interview", "Roast My Assessment Centre", "Online panels and speaker events", "Bootcamps"]) {
+        expect(screen.getByRole("heading", { name: format })).toBeTruthy();
+      }
+      expect(screen.getByText("Interview practice, which may include a mock interview.")).toBeTruthy();
+      expect(screen.getByText(/Spring Week Academy/)).toBeTruthy();
+      expect(href("See upcoming events")).toBe("/events");
     });
   });
 

@@ -33,7 +33,7 @@ describe("get involved page", () => {
     const membership = section("membership");
     expect(membership.getByRole("link", { name: "Ask about membership" }).getAttribute("href")).toBe("/contact");
     expect(membership.getByRole("link", { name: "Student portal" }).getAttribute("href")).toBe(
-      "https://portal.ihsaan.network",
+      "https://portal.ihsaan.network/sign-in",
     );
     expect(membership.getByText(/not a membership application/)).toBeTruthy();
 

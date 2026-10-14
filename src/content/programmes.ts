@@ -77,18 +77,26 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     relatedLinks: [{ label: "See scheduled IHSAAN events", href: "/events" }],
   },
   {
-    slug: "faithful-talent",
-    title: "Faithful Talent",
-    summary: "The IHSAAN Summer Internship Programme, connecting Muslim students to faith-aligned employers.",
+    slug: "summer-internships",
+    title: "Summer Internship Programme",
+    summary: "Exclusive summer internships sourced by IHSAAN for Muslim students.",
     headline: "Internships built with you in mind.",
     intro:
       "Not every opportunity is built with Muslim students in mind. That is why we built the IHSAAN Summer Internship Programme for 2026.",
     image: "/media/faithful-talent.webp",
-    photo: { src: "/media/faithful-talent.webp", alt: "Faithful Talent interns at an IHSAAN session", width: 1800, height: 1114 },
+    photo: {
+      src: "/media/faithful-talent.webp",
+      alt: "Students listening to speakers at an informal IHSAAN session",
+      width: 1800,
+      height: 1114,
+    },
     about: [
-      "Faithful Talent is our Summer Internship Programme: faith-aligned opportunities across a range of industries, connecting Muslim students to companies where they can grow without compromising their values.",
+      "The IHSAAN Summer Internship Programme offers faith-aligned opportunities across a range of industries, connecting Muslim students to companies where they can grow without compromising their values.",
     ],
-    stats: [],
+    stats: [
+      { value: "100+", label: "Internships secured" },
+      { value: "30+", label: "Companies" },
+    ],
     highlightsTitle: "The 2026 programme",
     highlights: [
       {
@@ -104,7 +112,87 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Internship places gave students a clearer route into experience that matched both ambition and values.",
       },
     ],
-    primary: { label: "Partner with Faithful Talent", href: "/contact" },
+    primary: { label: "Partner with the programme", href: "/contact" },
+    secondary: { label: "Get involved", href: "/ticket" },
+  },
+  {
+    slug: "insight-events",
+    title: "Insight Events",
+    summary: "Skills workshops, panels and networking that put Muslim students in the room with leading employers.",
+    headline: "Get in the room.",
+    intro: "Insight events put Muslim students in front of leading employers for skills workshops, panels and networking.",
+    image: "/media/gallery/careers-evening.webp",
+    photo: {
+      src: "/media/gallery/careers-evening.webp",
+      alt: "Students at employer stands during an IHSAAN careers evening",
+      width: 2000,
+      height: 1126,
+    },
+    about: [
+      "Insight Events are corporate events run by IHSAAN. They give students a closer look at leading employers through skills workshops, panels and networking.",
+      "Events vary by employer and year, and attending one does not guarantee an internship or a job offer.",
+    ],
+    stats: [],
+    highlightsTitle: "Who takes part",
+    highlights: [
+      {
+        title: "Bulge bracket investment banks",
+        body: "An example of the organisations that host or take part in our insight events.",
+      },
+      {
+        title: "Big Four firms",
+        body: "An example of the organisations that host or take part in our insight events.",
+      },
+      {
+        title: "The FCA",
+        body: "An example of the organisations that host or take part in our insight events.",
+      },
+    ],
+    primary: { label: "See upcoming events", href: "/events" },
+    secondary: { label: "Partner with us", href: "/contact" },
+  },
+  {
+    slug: "webinars-workshops",
+    title: "Webinars & Workshops",
+    summary: "Online panels, speaker events, bootcamps and the Roast My series for CVs, interviews and assessment centres.",
+    headline: "Practise before it counts.",
+    intro: "Online and in-person sessions that build the skills students need for applications, interviews and assessment centres.",
+    image: "/media/gallery/startup-talk.webp",
+    photo: {
+      src: "/media/gallery/startup-talk.webp",
+      alt: "A speaker presenting a startup talk beside an IHSAAN banner",
+      width: 2000,
+      height: 1500,
+    },
+    about: [
+      "Webinars & Workshops brings together the skills-building sessions IHSAAN runs through the year: online panels, online speaker events, bootcamps and the Roast My series.",
+      "Our summer bootcamps and Spring Week Academy sit under this umbrella, alongside other initiatives.",
+    ],
+    stats: [],
+    highlightsTitle: "What we run",
+    highlights: [
+      {
+        title: "Roast My CV",
+        body: "A breakout-room session where someone reviews your CV.",
+      },
+      {
+        title: "Roast My Interview",
+        body: "Interview practice, which may include a mock interview.",
+      },
+      {
+        title: "Roast My Assessment Centre",
+        body: "A mock assessment centre in a team, followed by a presentation and feedback.",
+      },
+      {
+        title: "Online panels and speaker events",
+        body: "Professionals share their industries and career paths with students online.",
+      },
+      {
+        title: "Bootcamps",
+        body: "Skills-focused bootcamps, including our summer bootcamps.",
+      },
+    ],
+    primary: { label: "See upcoming events", href: "/events" },
     secondary: { label: "Get involved", href: "/ticket" },
   },
   {
@@ -113,12 +201,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Weekend hackathons where students build solutions to real community problems.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
-    image: "/media/hackathon-manchester-wide.webp",
+    image: "/media/hackathon-build-wide.webp",
     photo: {
-      src: "/media/hackathon-manchester.webp",
-      alt: "Participants with laptops watching a talk at the IHSAAN hackathon in Manchester",
-      width: 1400,
-      height: 2292,
+      src: "/media/hackathon-smiles.webp",
+      alt: "Hackathon participants smiling and giving thumbs up at their table",
+      width: 1280,
+      height: 1600,
     },
     about: [
       "A hackathon is a focused sprint where teams turn real-world problems into working ideas. Over a weekend, participants form teams, learn from mentors, prototype a solution and pitch it to partners who can help take it further.",
@@ -176,37 +264,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     primary: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
     secondary: { label: "Become a mentor", href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, external: true },
-  },
-  {
-    slug: "career-guides",
-    title: "Career Guides",
-    summary: "Free, step-by-step guides written for Muslim students navigating the UK job market.",
-    headline: "The role you want, step by step.",
-    intro: "Practical, step-by-step resources to help you land the role you want.",
-    image: "/media/career-guides.webp",
-    photo: { src: "/media/career-guides.webp", alt: "A board of IHSAAN career guides", width: 1800, height: 1748 },
-    about: [
-      "Our Career Guides are free, in-depth resources written specifically for Muslim students navigating the UK job market. Whether you are writing your first CV, preparing for an assessment centre or deciding between career paths, these guides give you the practical knowledge and confidence to take the next step.",
-      "All our guides are free to access. New guides are released regularly and shared across our social media channels.",
-    ],
-    stats: [],
-    highlightsTitle: "Topics covered",
-    highlights: [
-      { title: "CVs and cover letters", body: "How to stand out to recruiters." },
-      { title: "Interview preparation", body: "Competency-based, behavioural and technical interview tips." },
-      { title: "Assessment centres", body: "What to expect and how to prepare." },
-      { title: "Networking", body: "Building professional relationships authentically." },
-      { title: "Industry overviews", body: "Breaking into finance, law, tech, consulting and the public sector." },
-      { title: "Faith at work", body: "Practical advice on prayer, dress and workplace culture." },
-    ],
-    primary: { label: "Browse Career Essentials", href: "/resources" },
-    secondary: { label: "Follow for new guides", href: PUBLIC_DESTINATIONS.instagram.href, external: true },
-    relatedLinks: [
-      {
-        label: "Read a Civil Service internship reflection",
-        href: "/blog/civil-service-summer-internship",
-      },
-    ],
   },
 ];
 

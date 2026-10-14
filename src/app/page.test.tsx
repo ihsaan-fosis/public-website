@@ -11,7 +11,7 @@ describe("Home", () => {
     expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/ticket");
   });
 
-  it("lists the five programmes and the member portal under the #programmes anchor", () => {
+  it("lists the six programmes and the member portal under the #programmes anchor", () => {
     render(<Home />);
     const programmes = screen.getByRole("region", { name: "Explore what we offer" });
     expect(programmes.id).toBe("programmes");
@@ -20,14 +20,15 @@ describe("Home", () => {
       .map((heading) => heading.textContent);
     expect(titles).toEqual([
       "Career Conferences",
-      "Faithful Talent",
+      "Summer Internship Programme",
+      "Insight Events",
+      "Webinars & Workshops",
       "Hackathons",
       "Mentorship",
-      "Career Guides",
       "Member Portal",
     ]);
     expect(within(programmes).getByRole("link", { name: /Member Portal/ }).getAttribute("href")).toBe(
-      "https://portal.ihsaan.network",
+      "https://portal.ihsaan.network/sign-in",
     );
   });
 

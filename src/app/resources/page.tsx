@@ -46,7 +46,7 @@ export default function ResourcesPage() {
           aside="Step-by-step guides for intention, applications, interviews and faith at work. Written for Muslim students navigating the UK job market."
         />
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
-          <PhotoFrame src="/media/gallery/hackathon-laptop.webp" alt="A hackathon participant working on a laptop" sticky />
+          <PhotoFrame src="/media/hackathon-smiles.webp" alt="Hackathon participants smiling and giving thumbs up at their table" sticky />
           <div className="space-y-14">
             {categories.map((category) => (
               <div key={category.id} id={category.id} className="scroll-mt-28">

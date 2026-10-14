@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Programmes",
   description:
-    "Career conferences, internships, hackathons, mentorship and career guides for Muslim students across the UK and Ireland.",
+    "Career conferences, internships, insight events, workshops, hackathons and mentorship for Muslim students across the UK and Ireland.",
   path: "/programmes",
   socialDescription: "Everything IHSAAN offers Muslim students and young professionals across the UK and Ireland.",
 });
@@ -19,14 +19,14 @@ export default function ProgrammesPage() {
       <PhotoHero
         image="/media/impact-wide.webp"
         title="Explore what we offer."
-        intro="Five ways IHSAAN connects Muslim students and young professionals with employers, mentors and opportunities."
+        intro="Six ways IHSAAN connects Muslim students and young professionals with employers, mentors and opportunities."
       />
 
       <Section labelledBy="all-programmes-title">
         <SectionHeading
           id="all-programmes-title"
           title="Find your starting point"
-          aside="Conferences, internships, hackathons, mentorship and guides. Pick the path that fits where you are now."
+          aside="Conferences, internships, insight events, workshops, hackathons and mentorship. Pick the path that fits where you are now."
         />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PROGRAMME_PAGES.map((programme, index) => (

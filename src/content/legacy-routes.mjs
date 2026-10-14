@@ -10,9 +10,9 @@ export const LEGACY_PAGES = [
   { page: "who-we-are", destination: "/about", permanent: true },
   { page: "get-involved", destination: "/ticket", permanent: true },
   { page: "career-conferences", destination: "/programmes/career-conferences", permanent: true },
-  { page: "faithful-talent", destination: "/programmes/faithful-talent", permanent: true },
+  { page: "faithful-talent", destination: "/programmes/summer-internships", permanent: true },
   { page: "haqqathons", destination: "/programmes/hackathons", permanent: true },
-  { page: "career-guides", destination: "/programmes/career-guides", permanent: true },
+  { page: "career-guides", destination: "/resources", permanent: true },
   // The tracker is hidden for now; temporary so the old URL can point back to it later.
   { page: "opportunities-tracker", destination: "/programmes", permanent: false },
 ];
