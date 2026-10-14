@@ -25,7 +25,7 @@ gh auth switch --user ihsaan-fosis
 gh api user --jq .login
 ```
 
-Commits that should deploy on Vercel must be authored as `techihsaan <tech.ihsaan@fosis.org.uk>`. See `AGENTS.md`.
+Production is **Cloudflare Workers** (OpenNext). Deploy with `bun run deploy`. Author commits as `techihsaan <tech.ihsaan@fosis.org.uk>`. See `AGENTS.md`.
 
 ## Setup
 

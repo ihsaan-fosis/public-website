@@ -21,16 +21,26 @@ gh api user --jq .login   # must print ihsaan-fosis
 - Do not push, open PRs, or create issues as `mwijanarko1`, `fasalqna`, or any other logged-in account
 - Before remote git operations, confirm the active account matches `ihsaan-fosis`
 
-## Git commit author (Vercel)
+## Hosting and deploy
 
-Vercel only deploys commits authored as the team identity. The GitHub push account alone is not enough.
+Production runs on **Cloudflare Workers** via OpenNext (`@opennextjs/cloudflare`), not Vercel.
+
+- Config: `wrangler.jsonc` (custom domains `ihsaan.network` and `www.ihsaan.network`)
+- Deploy: `bun run deploy` (`opennextjs-cloudflare build && opennextjs-cloudflare deploy`)
+- Preview: `bun run preview`
+- Secrets (e.g. contact form): `wrangler secret put RESEND_API_KEY`
+- A git push alone does not ship; deploy is explicit through Wrangler/OpenNext
+
+## Git commit author
+
+Use the team identity on every commit that should go live (history and blame stay consistent even though Cloudflare does not gate deploys on author).
 
 ```bash
 git config --local user.name "techihsaan"
 git config --local user.email "tech.ihsaan@fosis.org.uk"
 ```
 
-- Author and committer must be `techihsaan <tech.ihsaan@fosis.org.uk>` on every commit that should go live
+- Author and committer must be `techihsaan <tech.ihsaan@fosis.org.uk>`
 - Confirm before commit: `git config --local --get user.email` prints `tech.ihsaan@fosis.org.uk`
 - Confirm after commit: `git log -1` shows that author (not a machine-local `Mikhail <…@….local>` address)
 - If HEAD was pushed with the wrong author, fix with a new commit under the team identity (or rewrite only when explicitly approved). Do not assume `gh auth switch` sets git author
@@ -50,6 +60,8 @@ git config --local user.email "tech.ihsaan@fosis.org.uk"
 - `bun run dev` starts the local development server on port 3000.
 - `bun run test:run` runs the test suite once.
 - `bun run build` creates a production build.
+- `bun run deploy` builds with OpenNext and deploys to Cloudflare Workers.
+- `bun run preview` builds and previews the Worker locally.
 - `bun run lint` runs Oxlint (includes anti-slop rules).
 
 ## Verification
