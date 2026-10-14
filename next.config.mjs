@@ -26,6 +26,8 @@ const nextConfig = {
         destination: "https://ihsaan.network/:path*",
         permanent: true,
       },
+      // Browsers cached the old broken www redirect to this literal path.
+      { source: "/\\:path\\*", destination: "/", permanent: true },
       ...LEGACY_PAGES.map(({ page, destination, permanent }) => ({
         source: `/pages/${page}.html`,
         destination,

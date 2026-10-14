@@ -196,6 +196,10 @@ describe("legacy URLs", () => {
       permanent: true,
     });
   });
+
+  it("rescues visitors who cached the broken www redirect", async () => {
+    expect((await redirects())[2]).toEqual({ source: "/\\:path\\*", destination: "/", permanent: true });
+  });
 });
 
 describe("deployment environment", () => {
