@@ -22,6 +22,8 @@ const nextConfig = {
       })),
       // Hidden until the tracker returns; temporary so its URL can come back.
       { source: "/programmes/opportunities-tracker", destination: "/programmes", permanent: false },
+      { source: "/haqqathons", destination: "/programmes/hackathons", permanent: true },
+      { source: "/mentoring", destination: "/programmes/mentorship", permanent: true },
     ];
   },
   async headers() {

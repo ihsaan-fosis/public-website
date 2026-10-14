@@ -21,8 +21,8 @@ describe("technical SEO routes", () => {
     expect(urls).not.toContain(`${ORIGIN}/resources/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
-    expect(urls).toContain(`${ORIGIN}/mentoring`);
-    expect(urls).toContain(`${ORIGIN}/haqqathons`);
+    expect(urls).not.toContain(`${ORIGIN}/mentoring`);
+    expect(urls).not.toContain(`${ORIGIN}/haqqathons`);
     expect(urls).not.toContain(`${ORIGIN}/404`);
     expect(urls.every((url) => url.startsWith(ORIGIN))).toBe(true);
   });
@@ -44,8 +44,9 @@ describe("llms.txt", () => {
     expect(body).toContain("- [/resources/intentions-behind-a-career](/resources/intentions-behind-a-career)");
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
-    expect(body).toContain("- [/mentoring](/mentoring) Mentoring hub");
-    expect(body).toContain("- [/haqqathons](/haqqathons) Haqqathons hub");
+    expect(body).not.toContain("/mentoring");
+    expect(body).not.toContain("/haqqathons");
+    expect(body).toContain("Faith. Excellence. Service.");
     for (const profile of [
       "https://www.instagram.com/ihsaan.network/",
       "https://www.linkedin.com/company/ihsaan-network/",
@@ -65,8 +66,6 @@ describe("page metadata", () => {
     ["/events", () => import("./events/page")],
     ["/resources", () => import("./resources/page")],
     ["/blog", () => import("./blog/page")],
-    ["/mentoring", () => import("./mentoring/page")],
-    ["/haqqathons", () => import("./haqqathons/page")],
     ["/gallery", () => import("./gallery/page")],
     ["/ticket", () => import("./ticket/page")],
     ["/programmes", () => import("./programmes/page")],
@@ -125,8 +124,8 @@ describe("page metadata", () => {
   it("lets the homepage inherit the layout title while keeping full social tags", () => {
     const metadata = pageMetadata({ description: "Home", path: "/" });
     expect(metadata.title).toBeUndefined();
-    expect(metadata.openGraph).toMatchObject({ title: "IHSAAN | Elevating Faith-Driven Talent", url: "/", images: ["/media/hero-poster.webp"] });
-    expect(metadata.twitter).toMatchObject({ title: "IHSAAN | Elevating Faith-Driven Talent", card: "summary_large_image" });
+    expect(metadata.openGraph).toMatchObject({ title: "IHSAAN | Faith. Excellence. Service.", url: "/", images: ["/media/hero-poster.webp"] });
+    expect(metadata.twitter).toMatchObject({ title: "IHSAAN | Faith. Excellence. Service.", card: "summary_large_image" });
   });
 });
 
@@ -163,6 +162,17 @@ describe("legacy URLs", () => {
     const all = await redirects();
     expect(all.find(({ source }) => source === "/pages/opportunities-tracker.html")).toMatchObject({ destination: "/programmes", permanent: false });
     expect(all.find(({ source }) => source === "/programmes/opportunities-tracker")).toMatchObject({ destination: "/programmes", permanent: false });
+  });
+
+  it.each([
+    ["/haqqathons", "/programmes/hackathons"],
+    ["/mentoring", "/programmes/mentorship"],
+  ])("sends the retired %s hub to %s", async (source, destination) => {
+    expect((await redirects()).find((redirect) => redirect.source === source)).toEqual({
+      source,
+      destination,
+      permanent: true,
+    });
   });
 
   it("sends www to the apex host", async () => {
