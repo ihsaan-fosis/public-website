@@ -1,24 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { BLOG_POSTS } from "@/content/blog";
-import { NAV_LINKS } from "@/content/site";
 import sitemap from "../sitemap";
 import BlogPage from "./page";
 import BlogPostPage, { generateStaticParams } from "./[slug]/page";
 
 describe("blog index", () => {
-  it("nests resource types under the Resources nav item", () => {
-    const resources = NAV_LINKS.find((link) => link.label === "Resources");
-    expect(resources?.href).toBe("/resources");
-    expect(resources?.children?.map((child) => child.label)).toEqual([
-      "Career Essentials",
-      "Blog",
-    ]);
-    expect(resources?.children?.map((child) => child.href)).toEqual([
-      "/resources#career-essentials",
-      "/blog",
-    ]);
-  });
-
   it("links every post to its native article page", () => {
     render(<BlogPage />);
     expect(BLOG_POSTS).toHaveLength(1);

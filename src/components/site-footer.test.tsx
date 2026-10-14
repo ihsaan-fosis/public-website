@@ -16,8 +16,10 @@ describe("SiteFooter", () => {
     expect(link.querySelector("svg") !== null || (link.textContent ?? "").trim() === name).toBe(true);
   });
 
-  it("links Events and Blog from the explore column", () => {
+  it("links Impact, Resources, Events and Blog from the explore column", () => {
     render(<SiteFooter />);
+    expect(screen.getByRole("link", { name: "Impact" }).getAttribute("href")).toBe("/impact");
+    expect(screen.getByRole("link", { name: "Resources" }).getAttribute("href")).toBe("/resources");
     expect(screen.getByRole("link", { name: "Events" }).getAttribute("href")).toBe("/events");
     expect(screen.getByRole("link", { name: "Blog" }).getAttribute("href")).toBe("/blog");
   });

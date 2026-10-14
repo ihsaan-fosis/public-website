@@ -15,6 +15,7 @@ describe("technical SEO routes", () => {
     expect(urls).toContain(`${ORIGIN}/privacy`);
     expect(urls).toContain(`${ORIGIN}/terms`);
     expect(urls).toContain(`${ORIGIN}/events`);
+    expect(urls).toContain(`${ORIGIN}/impact`);
     expect(urls).toContain(`${ORIGIN}/resources`);
     expect(urls).toContain(`${ORIGIN}/resources/intentions-behind-a-career`);
     expect(urls).toContain(`${ORIGIN}/resources/acing-interviews`);
@@ -40,6 +41,7 @@ describe("llms.txt", () => {
     const body = await llms().text();
 
     expect(body).toContain("- [/events](/events) Events:");
+    expect(body).toContain("- [/impact](/impact) Impact:");
     expect(body).toContain("- [/resources](/resources) Resources:");
     expect(body).toContain("- [/resources/intentions-behind-a-career](/resources/intentions-behind-a-career)");
     expect(body).toContain("- [/blog](/blog) Blog:");
@@ -64,6 +66,7 @@ describe("page metadata", () => {
     ["/about", () => import("./about/page")],
     ["/contact", () => import("./contact/page")],
     ["/events", () => import("./events/page")],
+    ["/impact", () => import("./impact/page")],
     ["/resources", () => import("./resources/page")],
     ["/blog", () => import("./blog/page")],
     ["/gallery", () => import("./gallery/page")],

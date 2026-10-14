@@ -7,14 +7,15 @@ import {
   nativeCareerGuides,
 } from "@/content/career-essentials";
 import { RESOURCES } from "@/content/resources";
-import { NAV_LINKS } from "@/content/site";
+import { NAV_LINKS, RESOURCES_LINK } from "@/content/site";
 import sitemap from "../sitemap";
 import CareerGuidePage, { generateStaticParams } from "./[slug]/page";
 import ResourcesPage from "./page";
 
 describe("resources page", () => {
-  it("points the Resources nav link at its own page", () => {
-    expect(NAV_LINKS.find((link) => link.label === "Resources")?.href).toBe("/resources");
+  it("keeps the guides index out of the header now that Impact has its slot, and links it from the footer set", () => {
+    expect(NAV_LINKS.map((link) => link.label)).toEqual(["About", "Programmes", "Impact", "Gallery", "Contact"]);
+    expect(RESOURCES_LINK).toEqual({ href: "/resources", label: "Resources" });
   });
 
   it("lists every Career Essentials guide from the member catalog", () => {

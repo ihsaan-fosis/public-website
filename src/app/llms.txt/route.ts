@@ -15,6 +15,7 @@ IHSAAN: ${TAGLINE} ${MISSION} Public site for Muslim students and young professi
 - [/](/) Home
 - [/about](/about) Our story
 - [/programmes](/programmes) Programmes: career conferences, Faithful Talent, hackathons, mentorship, career guides
+- [/impact](/impact) Impact: reach, results, how success is measured and the 2045 vision
 - [/resources](/resources) Resources: free Career Essentials guides and reflections
 ${guideLines}
 - [/blog](/blog) Blog: community reflections and writing

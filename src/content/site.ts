@@ -12,17 +12,8 @@ export const MISSION =
 
 export type NavLink = { href: string; label: string };
 
-/** Top-level chrome item. Optional `children` render as a Resources-style dropdown. */
+/** Top-level chrome item. Optional `children` render as a dropdown. */
 export type NavItem = NavLink & { children?: readonly NavLink[] };
-
-/**
- * Resource types in the Resources dropdown.
- * Career Essentials anchors the guides block; Blog is its own route.
- */
-export const RESOURCE_NAV_LINKS: readonly NavLink[] = [
-  { href: "/resources#career-essentials", label: "Career Essentials" },
-  { href: "/blog", label: "Blog" },
-];
 
 /** Programme detail pages in the Programmes dropdown. Overview stays on the parent link. */
 export const PROGRAMME_NAV_LINKS: readonly NavLink[] = [
@@ -40,11 +31,7 @@ export const NAV_LINKS: readonly NavItem[] = [
     label: "Programmes",
     children: PROGRAMME_NAV_LINKS,
   },
-  {
-    href: "/resources",
-    label: "Resources",
-    children: RESOURCE_NAV_LINKS,
-  },
+  { href: "/impact", label: "Impact" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
@@ -55,6 +42,9 @@ export const GET_INVOLVED: NavLink = { href: "/ticket", label: "Get involved" };
 export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
 
 export const BLOG_LINK: NavLink = { href: "/blog", label: "Blog" };
+
+/** Out of the header since Impact took its slot; the guides stay reachable from the footer and Career Guides. */
+export const RESOURCES_LINK: NavLink = { href: "/resources", label: "Resources" };
 
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network", label: "Student portal" };
 

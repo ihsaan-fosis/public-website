@@ -25,7 +25,7 @@ describe("SiteHeader", () => {
     },
   );
 
-  it.each(["/", "/about", "/programmes", "/resources", "/gallery", "/contact"])(
+  it.each(["/", "/about", "/programmes", "/impact", "/gallery", "/contact"])(
     "targets the top of each destination in both menus from %s",
     (pathname) => {
       route.pathname = pathname;
@@ -35,7 +35,7 @@ describe("SiteHeader", () => {
         for (const [label, href] of [
           ["About", "/about"],
           ["Programmes", "/programmes"],
-          ["Resources", "/resources"],
+          ["Impact", "/impact"],
           ["Gallery", "/gallery"],
           ["Contact", "/contact"],
         ] as const) {
@@ -47,43 +47,13 @@ describe("SiteHeader", () => {
     },
   );
 
-  it("exposes each resource type under the Resources dropdown on desktop and in the mobile menu", () => {
-    render(<SiteHeader />);
-
-    const expected = [
-      ["Career Essentials", "/resources#career-essentials"],
-      ["Blog", "/blog"],
-    ] as const;
-
-    const desktop = screen.getByRole("navigation", { name: "Primary" });
-    fireEvent.click(within(desktop).getByRole("button", { name: "Resources menu" }));
-    for (const [label, href] of expected) {
-      expect(within(desktop).getByRole("menuitem", { name: label })).toHaveAttribute("href", href);
-    }
-    expect(within(desktop).queryByRole("menuitem", { name: "All resources" })).toBeNull();
-
-    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
-    const mobile = screen.getByRole("navigation", { name: "Mobile primary" });
-    fireEvent.click(within(mobile).getByRole("button", { name: "Show Resources links" }));
-    for (const [label, href] of expected) {
-      expect(within(mobile).getByRole("link", { name: label })).toHaveAttribute("href", href);
-    }
-  });
-
-  it("keeps one desktop dropdown open at a time so Programmes and Resources never stack", () => {
+  it("shows Impact as a plain link with no dropdown, and Resources only in the footer", () => {
     render(<SiteHeader />);
     const desktop = screen.getByRole("navigation", { name: "Primary" });
-    const programmes = within(desktop).getByRole("button", { name: "Programmes menu" });
-    const resources = within(desktop).getByRole("button", { name: "Resources menu" });
-
-    fireEvent.click(programmes);
-    expect(programmes).toHaveAttribute("aria-expanded", "true");
-
-    fireEvent.click(resources);
-    expect(resources).toHaveAttribute("aria-expanded", "true");
-    expect(programmes).toHaveAttribute("aria-expanded", "false");
-    expect(within(desktop).queryByRole("menu", { name: "Programmes" })).toBeNull();
-    expect(within(desktop).queryByRole("menuitem", { name: "Haqqathons" })).toBeNull();
+    expect(within(desktop).getByRole("link", { name: "Impact" })).toHaveAttribute("href", "/impact");
+    expect(within(desktop).queryByRole("button", { name: "Impact menu" })).toBeNull();
+    expect(within(desktop).queryByRole("link", { name: "Resources" })).toBeNull();
+    expect(within(desktop).queryByRole("button", { name: "Resources menu" })).toBeNull();
   });
 
   it("exposes each programme under the Programmes dropdown on desktop and in the mobile menu", () => {
@@ -112,14 +82,6 @@ describe("SiteHeader", () => {
     }
   });
 
-  it("keeps Resources active while reading the blog", () => {
-    route.pathname = "/blog";
-    render(<SiteHeader />);
-    const desktop = screen.getByRole("navigation", { name: "Primary" });
-    fireEvent.click(within(desktop).getByRole("button", { name: "Resources menu" }));
-    expect(within(desktop).getByRole("menuitem", { name: "Blog" })).toHaveAttribute("aria-current", "page");
-  });
-
   it("keeps the programmes overview link active from a detail page and marks the open child", () => {
     route.pathname = "/programmes/career-conferences";
     render(<SiteHeader />);
@@ -137,8 +99,7 @@ describe("SiteHeader", () => {
     ["/", "IHSAAN home"],
     ["/about", "About"],
     ["/programmes", "Programmes"],
-    ["/resources", "Resources"],
-    ["/blog", "Blog"],
+    ["/impact", "Impact"],
     ["/gallery", "Gallery"],
     ["/contact", "Contact"],
     ["/ticket", "Get involved"],

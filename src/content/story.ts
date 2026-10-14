@@ -162,12 +162,37 @@ export const VALUES: readonly Value[] = [
   },
 ];
 
-export type Executive = { name: string; role: string };
+export type Executive = { name: string; role: string; background: string };
 
 export const EXECUTIVE_TEAM: readonly Executive[] = [
-  { name: "Samir Sidat", role: "Chief Executive Officer" },
-  { name: "Eyad Abdelhady", role: "Chief Operating Officer" },
-  { name: "Musaddiq Iqbal", role: "Chief Operating Officer" },
-  { name: "Bushra Abdullah", role: "Chief People Officer" },
-  { name: "Yusuf Shamsi", role: "Chief Information Officer" },
+  {
+    name: "Samir Sidat",
+    role: "Chief Executive Officer",
+    background: "Business Analyst, McKinsey & Company. Founded the Careers Team at Warwick ISoc.",
+  },
+  {
+    name: "Eyad Abdelhady",
+    role: "Co-Chief Operating Officer",
+    background: "Operations Officer, Warwick Economics Summit. ISoc president.",
+  },
+  {
+    name: "Musaddiq Iqbal",
+    role: "Co-Chief Operating Officer",
+    background: "Future Trainee Solicitor at Sidley Austin. Head of Charity, LSE ISOC.",
+  },
+  {
+    name: "Muhammad Islam",
+    role: "Chief Financial Officer",
+    background: "Treasurer, Sheffield ISoc. Finance Placement, NHS.",
+  },
+  {
+    name: "Bushra Abdullah",
+    role: "Chief People Officer",
+    background: "Charity Representative, Leeds Muslim Medics. Volunteer Support Worker.",
+  },
+  {
+    name: "Yusuf Shamsi",
+    role: "Chief Information Officer",
+    background: "Founder, Harmonise AI: building AI and automation systems for SMEs.",
+  },
 ];

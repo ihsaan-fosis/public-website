@@ -36,8 +36,9 @@ describe("our story page", () => {
       .map((row) => [within(row).getByRole("heading", { level: 3 }).textContent, row.querySelector("p")?.textContent]);
     expect(rows).toEqual([
       ["Samir Sidat", "Chief Executive Officer"],
-      ["Eyad Abdelhady", "Chief Operating Officer"],
-      ["Musaddiq Iqbal", "Chief Operating Officer"],
+      ["Eyad Abdelhady", "Co-Chief Operating Officer"],
+      ["Musaddiq Iqbal", "Co-Chief Operating Officer"],
+      ["Muhammad Islam", "Chief Financial Officer"],
       ["Bushra Abdullah", "Chief People Officer"],
       ["Yusuf Shamsi", "Chief Information Officer"],
     ]);
