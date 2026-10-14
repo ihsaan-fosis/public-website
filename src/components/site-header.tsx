@@ -34,16 +34,22 @@ export function Wordmark({ className }: { className?: string }) {
 const navLinkClass =
   "relative rounded-xl px-3.5 py-2 text-sm whitespace-nowrap font-semibold tracking-[0.08em] uppercase transition-colors";
 
-function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string }) {
+/** `open` lives in the header so opening one dropdown closes the other instead of stacking them. */
+function DesktopNavItem({
+  item,
+  pathname,
+  open,
+  setOpen,
+}: {
+  item: NavItem;
+  pathname: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) {
   const children = item.children;
   const active = itemIsActive(pathname, item);
-  const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -59,7 +65,7 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
       window.removeEventListener("mousedown", onPointer);
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   if (!children?.length) {
     return (
@@ -78,8 +84,12 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
     <div
       ref={rootRef}
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onPointerEnter={(event) => {
+        if (event.pointerType === "mouse") setOpen(true);
+      }}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse") setOpen(false);
+      }}
     >
       <div
         className={cn(
@@ -103,7 +113,7 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
           aria-controls={menuId}
           aria-label={`${item.label} menu`}
           className="rounded-lg p-1 hover:bg-ink/10"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpen(!open)}
         >
           <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden className={cn("transition-transform", open && "rotate-180")}>
             <path d="M2 3.5L5 6.5L8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -151,11 +161,13 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [menu, setMenu] = useState<string | null>(null);
   const scrollTarget = useRef<string | null>(null);
 
   useEffect(() => {
     setOpen(false);
     setExpanded(null);
+    setMenu(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -198,7 +210,13 @@ export function SiteHeader() {
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((item) => (
-            <DesktopNavItem key={item.href} item={item} pathname={pathname} />
+            <DesktopNavItem
+              key={item.href}
+              item={item}
+              pathname={pathname}
+              open={menu === item.href}
+              setOpen={(next) => setMenu((current) => (next ? item.href : current === item.href ? null : current))}
+            />
           ))}
         </nav>
 

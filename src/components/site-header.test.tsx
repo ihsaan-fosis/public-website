@@ -53,8 +53,6 @@ describe("SiteHeader", () => {
     const expected = [
       ["Career Essentials", "/resources#career-essentials"],
       ["Blog", "/blog"],
-      ["Mentoring", "/mentoring"],
-      ["Haqqathons", "/haqqathons"],
     ] as const;
 
     const desktop = screen.getByRole("navigation", { name: "Primary" });
@@ -70,6 +68,22 @@ describe("SiteHeader", () => {
     for (const [label, href] of expected) {
       expect(within(mobile).getByRole("link", { name: label })).toHaveAttribute("href", href);
     }
+  });
+
+  it("keeps one desktop dropdown open at a time so Programmes and Resources never stack", () => {
+    render(<SiteHeader />);
+    const desktop = screen.getByRole("navigation", { name: "Primary" });
+    const programmes = within(desktop).getByRole("button", { name: "Programmes menu" });
+    const resources = within(desktop).getByRole("button", { name: "Resources menu" });
+
+    fireEvent.click(programmes);
+    expect(programmes).toHaveAttribute("aria-expanded", "true");
+
+    fireEvent.click(resources);
+    expect(resources).toHaveAttribute("aria-expanded", "true");
+    expect(programmes).toHaveAttribute("aria-expanded", "false");
+    expect(within(desktop).queryByRole("menu", { name: "Programmes" })).toBeNull();
+    expect(within(desktop).queryByRole("menuitem", { name: "Haqqathons" })).toBeNull();
   });
 
   it("exposes each programme under the Programmes dropdown on desktop and in the mobile menu", () => {
