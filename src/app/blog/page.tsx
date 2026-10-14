@@ -32,23 +32,31 @@ export default function BlogPage() {
         <ul className="mt-12 grid gap-4">
           {BLOG_POSTS.map((post, index) => (
             <li key={post.slug} data-reveal style={revealDelay(index % 3)}>
-              <article className="group relative isolate flex min-h-[30rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[36rem] lg:p-12">
+              <article className="group relative isolate flex h-full min-h-[34rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[40rem]">
                 <Image
                   src={post.image.src}
                   alt={post.image.alt}
                   fill
                   sizes="100vw"
-                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
-                <p className="text-[11px] font-bold tracking-[0.18em] text-cream/80 uppercase">{post.tags[0] ?? "Reflection"}</p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-5xl">
+                <span
+                  aria-hidden
+                  className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40 sm:text-[7.5rem]"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="text-[11px] font-bold tracking-[0.18em] text-cream/80 uppercase">
+                  {post.tags[0] ?? "Reflection"}
+                </p>
+                <h3 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">
                   <Link href={`/blog/${post.slug}`} className="hover:underline">
                     {post.title}
                   </Link>
-                </h2>
+                </h3>
                 <p className="mt-3 text-sm font-medium text-cream/80">By {post.author.name}</p>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-cream/80">{post.summary}</p>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{post.summary}</p>
                 <div className="mt-7">
                   <ButtonLink href={`/blog/${post.slug}`} tone="white">
                     Read article

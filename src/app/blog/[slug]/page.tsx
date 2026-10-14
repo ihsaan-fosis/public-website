@@ -74,123 +74,136 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         <h2 id="article-body-title" className="sr-only">
           Article
         </h2>
-        <article className="mx-auto max-w-3xl">
-          <p className="text-sm font-medium text-ink/65">
-            <Link href="/blog" className="hover:text-ink hover:underline">
-              Blog
-            </Link>
-            <span aria-hidden className="mx-2 text-ink/30">
-              /
-            </span>
-            <span>Article</span>
-          </p>
-          <Eyebrow className="mt-6">{post.tags[0] ?? "Reflection"}</Eyebrow>
-          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
-            <div>
-              <dt className="sr-only">Author</dt>
-              <dd className="font-medium text-ink">By {post.author.name}</dd>
-            </div>
-            {post.published ? (
-              <div>
-                <dt className="sr-only">Published</dt>
-                <dd>
-                  <time dateTime={post.published}>
-                    {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(
-                      new Date(post.published),
-                    )}
-                  </time>
-                </dd>
-              </div>
-            ) : null}
-            <div>
-              <dt className="sr-only">Tags</dt>
-              <dd>{post.tags.join(" · ")}</dd>
-            </div>
-          </dl>
-
-          {post.lead ? (
-            <p className="mt-10 text-xl leading-[1.5] font-medium tracking-[-0.01em] text-ink">{post.lead}</p>
-          ) : null}
-
-          <div className="mt-10 space-y-5 text-[15px] leading-7 text-ink/75">
-            {post.intro.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-
-          <nav aria-label="Article sections" className="mt-12 border-t border-ink/10 pt-8">
-            <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">In this article</p>
-            <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
-              {post.sections.map((section, index) => (
-                <li key={section.id}>
-                  <a href={`#${section.id}`} className="font-medium hover:text-ink hover:underline">
-                    <span className="mr-2 text-ink/45">{String(index + 1).padStart(2, "0")}</span>
-                    {section.title}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-
-          <div className="mt-4 divide-y divide-ink/10 border-t border-ink/10">
-            {post.sections.map((section) => (
-              <section key={section.id} id={section.id} className="scroll-mt-28 py-10">
-                <h2 className={cn("text-[1.75rem] leading-[1.1] sm:text-4xl", displayClass)}>{section.title}</h2>
-                <div className="mt-5 space-y-4 text-[15px] leading-7 text-ink/75">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-
-          <div className="mt-4 space-y-4 border-t border-ink/10 pt-10 text-[15px] leading-7 text-ink/75">
-            {post.closing.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-
-          <aside className="mt-12 border-t border-ink/10 pt-10">
-            <Eyebrow>Author</Eyebrow>
-            <p className="mt-3 text-2xl font-bold tracking-[-0.02em] text-ink">{post.author.name}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {post.author.linkedin ? (
-                <ButtonLink href={post.author.linkedin} external>
-                  Connect on LinkedIn
-                </ButtonLink>
-              ) : null}
-              {post.author.email ? (
-                <ButtonLink href={`mailto:${post.author.email}`} external tone="ghost">
-                  {`Email ${post.author.name.split(" ")[0]}`}
-                </ButtonLink>
-              ) : null}
-            </div>
-            {post.originalSource ? (
-              <p className="mt-6 text-[13px] leading-6 text-ink/65">
-                First published as{" "}
-                <a
-                  href={post.originalSource.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-ink underline underline-offset-4"
-                >
-                  {post.originalSource.label}
-                </a>
-                . This page is the canonical IHSAAN version.
+        <article className="mx-auto max-w-3xl lg:max-w-5xl">
+          <div className="lg:grid lg:grid-cols-[14rem_minmax(0,48rem)] lg:items-start lg:gap-x-12 xl:grid-cols-[15rem_minmax(0,48rem)] xl:gap-x-16">
+            <div className="lg:col-start-2">
+              <p className="text-sm font-medium text-ink/65">
+                <Link href="/blog" className="hover:text-ink hover:underline">
+                  Blog
+                </Link>
+                <span aria-hidden className="mx-2 text-ink/30">
+                  /
+                </span>
+                <span>Article</span>
               </p>
-            ) : null}
-          </aside>
+              <Eyebrow className="mt-6">{post.tags[0] ?? "Reflection"}</Eyebrow>
+              <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
+                <div>
+                  <dt className="sr-only">Author</dt>
+                  <dd className="font-medium text-ink">By {post.author.name}</dd>
+                </div>
+                {post.published ? (
+                  <div>
+                    <dt className="sr-only">Published</dt>
+                    <dd>
+                      <time dateTime={post.published}>
+                        {new Intl.DateTimeFormat("en-GB", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        }).format(new Date(post.published))}
+                      </time>
+                    </dd>
+                  </div>
+                ) : null}
+                <div>
+                  <dt className="sr-only">Tags</dt>
+                  <dd>{post.tags.join(" · ")}</dd>
+                </div>
+              </dl>
 
-          <p className="mt-10 text-[13px] leading-6 text-ink/65">
-            <Link href="/blog" className="font-medium text-ink underline underline-offset-4">
-              Back to all writing
-            </Link>
-            {" · "}
-            <Link href="/resources" className="font-medium text-ink underline underline-offset-4">
-              Free resources
-            </Link>
-          </p>
+              {post.lead ? (
+                <p className="mt-10 text-xl leading-[1.5] font-medium tracking-[-0.01em] text-ink">{post.lead}</p>
+              ) : null}
+
+              <div className="mt-10 space-y-5 text-[15px] leading-7 text-ink/75">
+                {post.intro.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <nav
+              aria-label="Article sections"
+              className="mt-12 border-t border-ink/10 pt-8 lg:col-start-1 lg:row-span-2 lg:mt-0 lg:border-t-0 lg:pt-0 lg:sticky lg:top-24 lg:self-start"
+            >
+              <Eyebrow>In this article</Eyebrow>
+              <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
+                {post.sections.map((section, index) => (
+                  <li key={section.id}>
+                    <a href={`#${section.id}`} className="font-medium hover:text-ink hover:underline">
+                      <span className="mr-2 text-ink/45">{String(index + 1).padStart(2, "0")}</span>
+                      {section.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <div className="lg:col-start-2">
+              <div className="mt-4 divide-y divide-ink/10 border-t border-ink/10 lg:mt-12">
+                {post.sections.map((section) => (
+                  <section key={section.id} id={section.id} className="scroll-mt-28 py-10">
+                    <h2 className={cn("text-[1.75rem] leading-[1.1] sm:text-4xl", displayClass)}>{section.title}</h2>
+                    <div className="mt-5 space-y-4 text-[15px] leading-7 text-ink/75">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+
+              <div className="mt-4 space-y-4 border-t border-ink/10 pt-10 text-[15px] leading-7 text-ink/75">
+                {post.closing.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
+              <aside className="mt-12 border-t border-ink/10 pt-10">
+                <Eyebrow>Author</Eyebrow>
+                <p className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
+                  {post.author.name}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {post.author.linkedin ? (
+                    <ButtonLink href={post.author.linkedin} external>
+                      Connect on LinkedIn
+                    </ButtonLink>
+                  ) : null}
+                  {post.author.email ? (
+                    <ButtonLink href={`mailto:${post.author.email}`} external tone="ghost">
+                      {`Email ${post.author.name.split(" ")[0]}`}
+                    </ButtonLink>
+                  ) : null}
+                </div>
+                {post.originalSource ? (
+                  <p className="mt-6 text-[13px] leading-6 text-ink/65">
+                    First published as{" "}
+                    <a
+                      href={post.originalSource.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-ink underline underline-offset-4"
+                    >
+                      {post.originalSource.label}
+                    </a>
+                    . This page is the canonical IHSAAN version.
+                  </p>
+                ) : null}
+              </aside>
+
+              <p className="mt-10 text-[13px] leading-6 text-ink/65">
+                <Link href="/blog" className="font-medium text-ink underline underline-offset-4">
+                  Back to all writing
+                </Link>
+                {" · "}
+                <Link href="/resources" className="font-medium text-ink underline underline-offset-4">
+                  Free resources
+                </Link>
+              </p>
+            </div>
+          </div>
         </article>
       </Section>
 

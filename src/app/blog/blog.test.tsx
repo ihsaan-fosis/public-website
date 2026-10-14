@@ -56,4 +56,15 @@ describe("blog article pages", () => {
     expect(original.getAttribute("href")).toBe(post.originalSource!.href);
     expect(original.getAttribute("rel")).toContain("noopener");
   });
+
+  it("keeps the section list sticky on the left on large screens", async () => {
+    const post = BLOG_POSTS[0];
+    render(await BlogPostPage({ params: Promise.resolve({ slug: post.slug }) }));
+    const toc = screen.getByRole("navigation", { name: "Article sections" });
+    expect(toc.className).toContain("lg:sticky");
+    expect(toc.className).toContain("lg:top-24");
+    expect(toc.className).toContain("lg:col-start-1");
+    expect(screen.getByText("In this article")).toBeTruthy();
+    expect(screen.getByRole("link", { name: /Applying for the SIP/ }).getAttribute("href")).toBe("#applying");
+  });
 });
