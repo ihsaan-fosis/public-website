@@ -44,6 +44,7 @@ describe("impact page", () => {
     }
     expect(screen.getByRole("heading", { name: "Employers hire. Mentors give back." })).toBeTruthy();
     for (const voice of VOICES) {
+      expect(document.body.textContent).toContain(voice.kind);
       expect(document.body.textContent).toContain(voice.name);
       expect(document.body.textContent).toContain(voice.quote);
       expect(document.body.textContent).toContain(voice.role);

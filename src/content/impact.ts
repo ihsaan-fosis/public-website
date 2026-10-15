@@ -151,17 +151,19 @@ export const STORIES: readonly Story[] = [
   },
 ];
 
-export type Voice = { name: string; role: string; quote: string };
+export type Voice = { name: string; role: string; quote: string; kind: "Employer" | "Mentor" };
 
 export const VOICES: readonly Voice[] = [
   {
     name: "Saqhib Ali",
+    kind: "Employer",
     role: "CEO, ZeroPA. Summer Internship Programme employer partner",
     quote:
       "Ihsaan is a valuable service to the community. This year I was lucky enough to secure two interns through the programme. For graduates and under grads it gives opportunities when it appears none exist and for employers we can access enthusiastic, willing often experienced individuals.",
   },
   {
     name: "Aadam Ul Haq",
+    kind: "Mentor",
     role: "GenAI Engineer, NatWest. MyMuslimMentor mentor since launch",
     quote:
       "Being involved with MyMuslimMentor since it launched has been a really rewarding experience. I’ve had almost 10 mentees reach out to me so far… It creates an easy and meaningful way for people to give back… I’ve been fortunate to see some of the people I’ve mentored go on to secure jobs, although the credit is entirely theirs for putting in the work.",

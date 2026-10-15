@@ -240,14 +240,14 @@ export function StoriesChapter() {
   );
 }
 
-/** Employer and mentor voices as large pull quotes beside one photograph. */
+/** Employer and mentor voices as an editorial list beside one photograph, matching StoriesChapter. */
 export function VoicesBand() {
   return (
     <Section labelledBy="voices-title" className="pt-0 sm:pt-0">
       <SectionHeading
         id="voices-title"
         title="Employers hire. Mentors give back."
-        aside="From the people who open doors and give their time."
+        aside="The flywheel works because people on both sides keep showing up."
       />
       <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
         <div>
@@ -257,26 +257,24 @@ export function VoicesBand() {
                 key={voice.name}
                 data-reveal
                 style={revealDelay(index)}
-                className="border-b border-ink/10 py-10"
+                className="border-b border-ink/10 py-8"
               >
-                <figure>
-                  <blockquote
-                    className={cn(
-                      "max-w-3xl text-2xl leading-[1.3] tracking-[-0.02em] text-ink sm:text-[2rem] sm:leading-[1.25]",
-                      displayClass,
-                    )}
-                  >
+                <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">{voice.kind}</p>
+                <figure className="mt-4">
+                  <blockquote className="max-w-xl text-[15px] leading-7 text-ink/75">
                     &ldquo;{voice.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-6">
-                    <p className="text-[11px] font-bold tracking-[0.18em] text-ink uppercase">{voice.name}</p>
-                    <p className="mt-1 max-w-md text-sm leading-6 text-ink/65">{voice.role}</p>
+                  <figcaption className="mt-5">
+                    <p className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
+                      {voice.name}
+                    </p>
+                    <p className="mt-2 max-w-md text-sm leading-6 text-ink/65">{voice.role}</p>
                   </figcaption>
                 </figure>
               </li>
             ))}
           </ol>
-          <p className="mt-8 max-w-2xl text-[13px] leading-6 text-ink/65">{VOICES_SUMMARY}</p>
+          <p className="mt-8 max-w-xl text-[13px] leading-6 text-ink/65">{VOICES_SUMMARY}</p>
         </div>
         <PhotoFrame src={IMPACT_PHOTOS.voices.src} alt={IMPACT_PHOTOS.voices.alt} sticky />
       </div>
