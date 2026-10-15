@@ -3,11 +3,9 @@ import {
   FlywheelChapter,
   GapChapter,
   ImpactClosing,
-  MeasureChapter,
   PathwayChapter,
   StoriesChapter,
   TractionChapter,
-  VisionChapter,
   VoicesBand,
 } from "@/components/impact";
 import { ButtonLink, PhotoHero } from "@/components/ui";
@@ -17,9 +15,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Our Impact",
   description:
-    "How IHSAAN closes the gap from education to employment for Muslim students across the UK and Ireland: reach, results, how we measure success and where we are headed.",
+    "How IHSAAN closes the gap from education to employment for Muslim students across the UK and Ireland: reach, results, and where the work is headed.",
   path: "/impact",
-  socialDescription: "About 4,000 Muslim students engaged in two years. See IHSAAN's impact and how we measure it.",
+  socialDescription: "About 4,000 Muslim students engaged in two years. See IHSAAN's impact.",
 });
 
 export default function ImpactPage() {
@@ -43,8 +41,6 @@ export default function ImpactPage() {
       <TractionChapter />
       <StoriesChapter />
       <VoicesBand />
-      <MeasureChapter />
-      <VisionChapter />
       <ImpactClosing />
     </>
   );

@@ -2,21 +2,15 @@ import Image from "next/image";
 import { GET_INVOLVED, MISSION } from "@/content/site";
 import {
   ENGAGEMENT,
-  EVIDENCE_SOURCES,
   FLYWHEEL,
   GAP_QUOTE,
   GAP_STATEMENT,
   GAP_STATS,
   IMPACT_PHOTOS,
-  MEASURE_NOTE,
-  MEASURE_STAGES,
   PATHWAY,
   STORIES,
   TRACTION,
   TRACTION_CITIES,
-  VISION_2045,
-  VISION_2045_NOTE,
-  VISION_2045_STATEMENT,
   VOICES,
   VOICES_SUMMARY,
 } from "@/content/impact";
@@ -246,111 +240,46 @@ export function StoriesChapter() {
   );
 }
 
-/** Employer and mentor voices set in cream over a photograph, closing the loop the flywheel describes. */
+/** Employer and mentor voices as large pull quotes beside one photograph. */
 export function VoicesBand() {
   return (
-    <PhotoBand image={IMPACT_PHOTOS.voices.src} labelledBy="voices-title">
-      <h2 id="voices-title" className={FRAME_TITLE}>
-        <span className="block">
-          Employers hire<span className="text-ihsaan-lavender">.</span>
-        </span>
-        <span className="block">
-          Mentors give back<span className="text-ihsaan-lavender">.</span>
-        </span>
-      </h2>
-      <div className="mt-8 grid max-w-xl gap-8 sm:mt-10 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
-        {VOICES.map((voice) => (
-          <figure key={voice.name}>
-            <blockquote className="text-sm leading-6 text-cream/85">&ldquo;{voice.quote}&rdquo;</blockquote>
-            <figcaption className="mt-3">
-              <p className="text-[11px] font-bold tracking-[0.18em] text-cream uppercase">{voice.name}</p>
-              <p className="mt-1 text-sm text-cream/70">{voice.role}</p>
-            </figcaption>
-          </figure>
-        ))}
-        <p className="border-t border-cream/20 pt-5 text-sm leading-6 font-bold text-cream">{VOICES_SUMMARY}</p>
-      </div>
-    </PhotoBand>
-  );
-}
-
-/** The five-stage measurement framework as ruled rows, then where the evidence comes from. */
-export function MeasureChapter() {
-  return (
-    <Section labelledBy="measure-title">
+    <Section labelledBy="voices-title" className="pt-0 sm:pt-0">
       <SectionHeading
-        id="measure-title"
-        title="We measure every stage, from activity to impact"
-        aside="Every pound of funding is accountable."
+        id="voices-title"
+        title="Employers hire. Mentors give back."
+        aside="From the people who open doors and give their time."
       />
-      <ol className="mt-12 border-t border-ink/10">
-        {MEASURE_STAGES.map((stage, index) => (
-          <li
-            key={stage.name}
-            data-reveal
-            style={revealDelay(index % 3)}
-            className="grid gap-5 border-b border-ink/10 py-8 md:grid-cols-[0.9fr_1.1fr] md:gap-12"
-          >
-            <div className="flex items-baseline gap-6">
-              <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">{stage.when}</p>
-                <h3 className="mt-2 text-3xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
-                  {stage.name}
-                </h3>
-                <p className="mt-2 max-w-sm text-[15px] leading-7 text-ink/70">{stage.change}</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm text-ink/65">We measure</p>
-              <ul className="mt-3 space-y-2 text-[15px] leading-7 text-ink/75">
-                {stage.measures.map((measure) => (
-                  <li key={measure}>{measure}</li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <div className="mt-14 grid gap-8 sm:grid-cols-3">
-        {EVIDENCE_SOURCES.map((source, index) => (
-          <div key={source.title} data-reveal style={revealDelay(index)} className="border-t border-ink/15 pt-5">
-            <h3 className="text-[11px] font-bold tracking-[0.18em] text-ink uppercase">{source.title}</h3>
-            <p className="mt-3 text-[15px] leading-7 text-ink/70">{source.body}</p>
-          </div>
-        ))}
+      <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
+        <div>
+          <ol className="border-t border-ink/10">
+            {VOICES.map((voice, index) => (
+              <li
+                key={voice.name}
+                data-reveal
+                style={revealDelay(index)}
+                className="border-b border-ink/10 py-10"
+              >
+                <figure>
+                  <blockquote
+                    className={cn(
+                      "max-w-3xl text-2xl leading-[1.3] tracking-[-0.02em] text-ink sm:text-[2rem] sm:leading-[1.25]",
+                      displayClass,
+                    )}
+                  >
+                    &ldquo;{voice.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6">
+                    <p className="text-[11px] font-bold tracking-[0.18em] text-ink uppercase">{voice.name}</p>
+                    <p className="mt-1 max-w-md text-sm leading-6 text-ink/65">{voice.role}</p>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8 max-w-2xl text-[13px] leading-6 text-ink/65">{VOICES_SUMMARY}</p>
+        </div>
+        <PhotoFrame src={IMPACT_PHOTOS.voices.src} alt={IMPACT_PHOTOS.voices.alt} sticky />
       </div>
-      <p className="mt-10 max-w-2xl text-[13px] leading-6 text-ink/65">{MEASURE_NOTE}</p>
-    </Section>
-  );
-}
-
-/** What is proven, what comes next and where the work is headed, as three ruled columns. */
-export function VisionChapter() {
-  return (
-    <Section labelledBy="vision-2045-title" className="pt-0 sm:pt-0">
-      <Eyebrow>2045 vision</Eyebrow>
-      <SectionTitle id="vision-2045-title" className="mt-5">
-        {VISION_2045_STATEMENT}
-      </SectionTitle>
-      <div className="mt-14 grid gap-10 lg:grid-cols-3 lg:gap-12">
-        {VISION_2045.map((column, index) => (
-          <section key={column.label} data-reveal style={revealDelay(index)} className="border-t border-ink/15 pt-6">
-            <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">{column.label}</p>
-            <h3 className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
-              {column.title}
-            </h3>
-            <ul className="mt-6 space-y-3 text-[15px] leading-7 text-ink/75">
-              {column.points.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
-      <p className="mt-12 max-w-2xl text-[13px] leading-6 text-ink/65">{VISION_2045_NOTE}</p>
     </Section>
   );
 }
