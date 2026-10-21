@@ -4,6 +4,40 @@ import { verifyTurnstile } from "@/lib/turnstile";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const FROM = "IHSAAN Website <contact@ihsaan.network>";
+const MAX_BODY_BYTES = 64 * 1024;
+const PROVIDER_TIMEOUT_MS = 10_000;
+
+class BodyTooLargeError extends Error {}
+
+async function readJsonBody(request: Request): Promise<unknown> {
+  const declared = Number(request.headers.get("Content-Length"));
+  if (declared > MAX_BODY_BYTES) {
+    await request.body?.cancel();
+    throw new BodyTooLargeError();
+  }
+
+  const chunks: Uint8Array[] = [];
+  let received = 0;
+  const reader = request.body?.getReader();
+  while (reader) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    received += value.byteLength;
+    if (received > MAX_BODY_BYTES) {
+      await reader.cancel();
+      throw new BodyTooLargeError();
+    }
+    chunks.push(value);
+  }
+
+  const bytes = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+}
 
 function json(body: Record<string, unknown>, status: number) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
@@ -12,8 +46,9 @@ function json(body: Record<string, unknown>, status: number) {
 export async function POST(request: Request) {
   let payload: unknown;
   try {
-    payload = await request.json();
-  } catch {
+    payload = await readJsonBody(request);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) return json({ error: "That message is too large." }, 413);
     return json({ error: "Send the form as JSON." }, 400);
   }
 
@@ -35,17 +70,24 @@ export async function POST(request: Request) {
   try {
     human = await verifyTurnstile(parsed.data.turnstileToken, turnstileSecret, request.headers.get("CF-Connecting-IP"));
   } catch (error) {
-    console.error("contact: Turnstile verification unavailable", error);
+    console.error("contact: Turnstile verification unavailable", error instanceof Error ? error.name : "unknown");
     return json({ error: "Your message could not be sent." }, 502);
   }
   if (!human) return json({ error: "The security check failed. Please try again." }, 403);
 
   const { subject, text } = buildContactEmail(parsed.data);
-  const response = await fetch(RESEND_ENDPOINT, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from: FROM, to: [CONTACT_EMAIL], reply_to: parsed.data.email, subject, text }),
-  });
+  let response: Response;
+  try {
+    response = await fetch(RESEND_ENDPOINT, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: FROM, to: [CONTACT_EMAIL], reply_to: parsed.data.email, subject, text }),
+      signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
+    });
+  } catch (error) {
+    console.error("contact: Resend unavailable", error instanceof Error ? error.name : "unknown");
+    return json({ error: "Your message could not be sent." }, 502);
+  }
 
   if (!response.ok) {
     console.error("contact: Resend rejected the message", response.status);

@@ -19,7 +19,7 @@ function post(body: unknown) {
 }
 
 function siteverify(success: boolean) {
-  return Response.json({ success });
+  return Response.json({ success, hostname: "ihsaan.network" });
 }
 
 describe("POST /api/contact", () => {
