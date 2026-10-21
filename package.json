@@ -11,6 +11,7 @@
     "lint:oxlint": "node ./node_modules/oxlint/bin/oxlint",
     "test": "vitest",
     "test:run": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
