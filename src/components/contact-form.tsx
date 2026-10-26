@@ -24,7 +24,13 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAA
 type TurnstileApi = {
   render: (
     element: HTMLElement,
-    options: { sitekey: string; callback: (token: string) => void; "expired-callback": () => void; "error-callback": () => void },
+    options: {
+      sitekey: string;
+      size: "normal" | "compact";
+      callback: (token: string) => void;
+      "expired-callback": () => void;
+      "error-callback": () => void;
+    },
   ) => string;
   remove: (widgetId: string) => void;
 };
@@ -44,6 +50,8 @@ function TurnstileField({ onToken }: { onToken: (token: string) => void }) {
     if (widgetId.current !== null || !container.current || !window.turnstile) return;
     widgetId.current = window.turnstile.render(container.current, {
       sitekey: TURNSTILE_SITE_KEY,
+      // The normal widget is a fixed 300px, wider than the form card on small phones.
+      size: container.current.clientWidth < 300 ? "compact" : "normal",
       callback: onToken,
       "expired-callback": () => onToken(""),
       "error-callback": () => onToken(""),
