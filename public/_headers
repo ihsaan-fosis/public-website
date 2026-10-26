@@ -2,3 +2,8 @@
 # https://opennext.js.org/cloudflare/caching#static-assets-caching
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
+
+# The /_next/image handler only caches its output when the source is `immutable`.
+# Rename a file in public/media when replacing it, or browsers keep the old one.
+/media/*
+  Cache-Control: public,max-age=31536000,immutable
