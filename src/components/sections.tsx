@@ -254,7 +254,7 @@ export function InvolvementPanels() {
 
 function PartnerTile({ partner, decorative = false }: { partner: Partner; decorative?: boolean }) {
   return (
-    <div className="flex h-24 w-52 shrink-0 items-center justify-center px-6">
+    <div className="flex h-20 w-40 shrink-0 items-center justify-center px-4 sm:h-24 sm:w-52 sm:px-6">
       {/* Most logos ship on opaque white, so blending (not a tile) is what removes the box. */}
       <img
         src={partner.src}

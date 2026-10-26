@@ -8,12 +8,13 @@ function FooterColumn({ title, children }: { title: string; children: ReactNode 
   return (
     <div>
       <Eyebrow>{title}</Eyebrow>
-      <ul className="mt-4 space-y-2.5 text-sm text-ink/75">{children}</ul>
+      <ul className="mt-2 grid grid-cols-2 gap-x-6 text-sm text-ink/75 sm:mt-4 sm:grid-cols-1 sm:gap-y-2.5">{children}</ul>
     </div>
   );
 }
 
-const linkClass = "inline-block transition-transform duration-300 hover:translate-x-1 hover:text-ink";
+const linkClass =
+  "flex min-h-11 items-center transition-transform duration-300 hover:translate-x-1 hover:text-ink sm:inline-block sm:min-h-0";
 
 const socialIconClass = "size-5";
 
@@ -58,7 +59,7 @@ function SocialIcon({ label }: { label: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink/10 pt-20">
+    <footer className="border-t border-ink/10 pt-14 sm:pt-20">
       <Container>
         <div className="grid gap-10 pb-14 sm:grid-cols-3">
           <FooterColumn title="Explore">
@@ -72,7 +73,7 @@ export function SiteFooter() {
           </FooterColumn>
           <div>
             <Eyebrow>Follow</Eyebrow>
-            <ul className="mt-4 flex items-center gap-4 text-ink/75">
+            <ul className="mt-4 flex items-center gap-4 text-ink/75 max-sm:-mx-3 max-sm:mt-1 max-sm:gap-0">
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
@@ -80,7 +81,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="inline-flex transition-colors duration-300 hover:text-ink"
+                    className="inline-flex items-center justify-center transition-colors duration-300 hover:text-ink max-sm:size-11"
                   >
                     <SocialIcon label={link.label} />
                   </a>
@@ -89,7 +90,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <FooterColumn title="Based in">
-            <li>UK & Ireland</li>
+            <li className="flex min-h-11 items-center sm:block sm:min-h-0">UK & Ireland</li>
           </FooterColumn>
         </div>
 
@@ -105,10 +106,10 @@ export function SiteFooter() {
               @mikhailbuilds
             </a>
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 max-sm:flex-wrap max-sm:gap-y-0">
             <nav aria-label="Legal" className="flex gap-6">
               {LEGAL_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className="hover:text-ink">
+                <Link key={link.href} href={link.href} className="hover:text-ink max-sm:inline-flex max-sm:whitespace-nowrap max-sm:min-h-11 max-sm:items-center">
                   {link.label}
                 </Link>
               ))}

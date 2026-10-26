@@ -14,7 +14,8 @@ export const metadata: Metadata = pageMetadata({
   socialDescription: "Free Career Essentials guides and career resources from IHSAAN.",
 });
 
-const linkClass = "mt-4 inline-block text-sm font-semibold text-ink underline underline-offset-4 hover:text-ink/70";
+const linkClass =
+  "mt-4 inline-block text-sm font-semibold text-ink underline underline-offset-4 hover:text-ink/70 max-sm:mt-1 max-sm:inline-flex max-sm:min-h-11 max-sm:items-center";
 
 function GuideLink({ href, external, children }: { href: string; external?: boolean; children: string }) {
   return external ? (
@@ -62,7 +63,7 @@ export default function ResourcesPage() {
                         className="border-b border-ink/10 py-6"
                       >
                         <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink">{guide.title}</h3>
-                        <p className="mt-2 max-w-xl text-[15px] leading-7 text-ink/70">{guide.summary}</p>
+                        <p className="mt-2 max-w-xl text-[15px] leading-7 wrap-anywhere text-ink/70">{guide.summary}</p>
                         <GuideLink href={destination.href} external={destination.external}>
                           {destination.external ? "Open guide" : "Read guide"}
                         </GuideLink>
