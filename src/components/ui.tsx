@@ -32,7 +32,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-20 sm:py-28", className)}>
+    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-14 sm:py-28", className)}>
       <Container>{children}</Container>
     </section>
   );
@@ -137,7 +137,7 @@ const BUTTON_BASE =
 type ButtonSize = "default" | "compact";
 
 const BUTTON_SIZES: Record<ButtonSize, string> = {
-  default: "min-h-[52px] px-8 text-[12.5px] tracking-[0.14em]",
+  default: "min-h-[52px] px-8 text-[12.5px] tracking-[0.14em] max-sm:w-full",
   compact: "min-h-9 px-4 text-[11px] tracking-[0.12em]",
 };
 
@@ -268,7 +268,7 @@ export function PhotoHero({
             className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-0"
             style={{ animationDelay: `${300 + words.length * 90}ms` }}
           >
-            {intro ? <p className="max-w-sm text-sm leading-6 text-cream/70">{intro}</p> : null}
+            {intro ? <p className="max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm">{intro}</p> : null}
             {children}
           </div>
         </div>

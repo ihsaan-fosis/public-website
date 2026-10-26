@@ -203,6 +203,13 @@
   text-shadow: 0 1px 2px rgba(6, 22, 41, 0.5), 0 6px 20px rgba(6, 22, 41, 0.35);
 }
 
+/* On phones the headline carries the frame: 14vw keeps the longest single word ("Programme") inside a 320px screen. */
+@media (width < 40rem) {
+  .hero-title-editorial {
+    font-size: min(3.5rem, 14vw);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .hero-frame {
@@ -237,7 +244,7 @@
 
     .why-reveal {
       view-timeline-name: --why;
-      height: 320svh;
+      height: 220svh;
       --why-inset: 30% 8%;
       --why-part-start: translateY(-24svh);
       --why-part-end: translateY(24svh);
@@ -245,6 +252,7 @@
 
     @media (min-width: 48rem) {
       .why-reveal {
+        height: 320svh;
         --why-inset: 22% 33%;
         --why-part-start: translateX(-28vw);
         --why-part-end: translateX(28vw);

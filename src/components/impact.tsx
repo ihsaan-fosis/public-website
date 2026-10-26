@@ -34,7 +34,7 @@ const FRAME_TITLE =
 /** The gap the work sits in: one scroll-lit statement, the three figures behind it, and the report's own words. */
 export function GapChapter() {
   return (
-    <Section labelledBy="gap-title" className="py-24 sm:py-36">
+    <Section labelledBy="gap-title" className="py-16 sm:py-36">
       <p className="text-sm text-ink/65">The problem</p>
       <h2
         id="gap-title"

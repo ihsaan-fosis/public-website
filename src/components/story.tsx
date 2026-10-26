@@ -34,7 +34,7 @@ function vars(values: Record<`--${string}`, string>): CSSProperties {
 /** The vision as the scroll-lit statement, then the mission over a panorama that opens out of a thin slit beneath it. */
 export function PurposeChapter() {
   return (
-    <section aria-labelledby="vision-title" className="relative py-24 sm:py-36">
+    <section aria-labelledby="vision-title" className="relative py-16 sm:py-36">
       <Container>
         <h2 id="vision-title" className="story-rise text-sm text-ink/65">
           Our vision
@@ -186,7 +186,7 @@ export function MapChapter() {
   return (
     <section aria-labelledby="map-title" className="story-map relative">
       <div className="story-map-stage">
-        <Container className="grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-10">
+        <Container className="grid items-center gap-10 py-14 sm:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-10">
           <div>
             <SectionTitle id="map-title">From one campus to the next</SectionTitle>
             <p className="mt-6 max-w-md text-sm leading-6 text-ink/65">

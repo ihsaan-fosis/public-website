@@ -182,7 +182,7 @@ const GALLERY_PREVIEW = GALLERY.slice(0, 12);
 export function GalleryParallax({ action }: { action?: ReactNode }) {
   const columns = GALLERY_DRIFT.map((_, column) => GALLERY_PREVIEW.filter((_, index) => index % GALLERY_DRIFT.length === column));
   return (
-    <section aria-labelledby="gallery-title" className="relative overflow-clip py-20 sm:py-28">
+    <section aria-labelledby="gallery-title" className="relative overflow-clip py-14 sm:py-28">
       <Container className="relative z-10">
         <SectionHeading id="gallery-title" title="Moments from our programmes" action={action} />
       </Container>
@@ -301,7 +301,7 @@ function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[
 
 export function PartnersSection() {
   return (
-    <section aria-labelledby="partners-title" className="relative py-20 sm:py-28">
+    <section aria-labelledby="partners-title" className="relative py-14 sm:py-28">
       <Container>
         <SectionHeading
           id="partners-title"
