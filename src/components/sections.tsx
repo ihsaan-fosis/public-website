@@ -16,42 +16,56 @@ import { cn } from "@/lib/utils";
 import { MarqueeGroup } from "./motion";
 import { Container, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "./ui";
 
+/** One list, two layouts: a scannable row list on phones, and from tablet width the tall cards of the pinned rail (globals.css `.hscroll`). */
 function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
   return (
-    <li className="shrink-0">
+    <li className="shrink-0 max-md:border-b max-md:border-ink/10">
       <Link
         href={offer.href}
-        className="group relative block h-[min(62svh,40rem)] min-h-[24rem] w-[82vw] overflow-hidden rounded-[28px] bg-night-2 sm:w-[48vw] lg:w-[34vw]"
+        className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-4 py-3 md:relative md:block md:h-[min(62svh,40rem)] md:min-h-[24rem] md:w-[48vw] md:overflow-hidden md:rounded-[28px] md:bg-night-2 md:py-0 lg:w-[34vw]"
       >
-        <Image
-          src={offer.photo.src}
-          alt={offer.photo.alt}
-          fill
-          sizes="(min-width: 1024px) 34vw, (min-width: 640px) 48vw, 82vw"
-          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+        <div className="relative row-span-2 size-[4.75rem] overflow-hidden rounded-2xl bg-night-2 md:absolute md:inset-0 md:size-auto md:rounded-none">
+          <Image
+            src={offer.photo.src}
+            alt={offer.photo.alt}
+            fill
+            sizes="(min-width: 1024px) 34vw, (min-width: 768px) 48vw, 76px"
+            className="object-cover transition-transform duration-[1200ms] ease-out md:group-hover:scale-110"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60 max-md:hidden" />
         <span
           aria-hidden
-          className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40 sm:text-[7.5rem]"
+          className="col-start-2 self-end text-xs tracking-[0.14em] text-ink/45 md:absolute md:top-4 md:right-6 md:text-[7.5rem] md:leading-none md:font-extrabold md:tracking-[-0.06em] md:text-cream/20 md:transition-colors md:duration-700 md:group-hover:text-cream/40"
         >
           {String(index + 1).padStart(2, "0")}
         </span>
-        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-          <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{offer.title}</h3>
+        <div className="col-start-2 self-start md:absolute md:inset-x-0 md:bottom-0 md:p-8">
+          <h3 className="text-xl font-medium tracking-[-0.03em] text-ink max-md:mt-0.5 max-md:leading-tight md:text-4xl md:font-extrabold md:tracking-[-0.035em] md:text-cream">
+            {offer.title}
+          </h3>
         </div>
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden
+          className="col-start-3 row-span-2 row-start-1 size-5 text-ink/45 transition-transform duration-300 group-hover:translate-x-1 md:hidden"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M9 6l6 6-6 6" />
+        </svg>
       </Link>
     </li>
   );
 }
 
-/** Vertical scroll drives a pinned horizontal rail on wide screens (globals.css `.hscroll`); phones swipe natively. */
 export function ProgrammesCarousel({ action }: { action?: ReactNode }) {
   return (
     <section
       id="programmes"
       aria-labelledby="programmes-title"
-      className="hscroll relative py-20 sm:py-28 md:[--hscroll-length:360svh] lg:[--hscroll-length:300svh]"
+      className="hscroll relative py-14 sm:py-28 md:[--hscroll-length:360svh] lg:[--hscroll-length:300svh]"
     >
       <div className="hscroll-sticky">
         <Container>
@@ -67,13 +81,13 @@ export function ProgrammesCarousel({ action }: { action?: ReactNode }) {
               </div>
             }
           />
-          <div aria-hidden className="mt-8 h-px w-full bg-ink/10">
+          <div aria-hidden className="mt-8 h-px w-full bg-ink/10 max-md:hidden">
             <div className="hscroll-progress h-full bg-ink/60" />
           </div>
         </Container>
-        <div data-reveal className="hscroll-viewport mt-10">
-          <div className="hscroll-track w-max px-5 sm:px-10 xl:px-[calc((100vw-80rem)/2+2.5rem)]">
-            <ul aria-label="Programmes" className="flex gap-4 sm:gap-6">
+        <div data-reveal className="hscroll-viewport mt-8 md:mt-10">
+          <div className="hscroll-track px-5 sm:px-10 md:w-max xl:px-[calc((100vw-80rem)/2+2.5rem)]">
+            <ul aria-label="Programmes" className="flex flex-col border-t border-ink/10 md:flex-row md:gap-6 md:border-t-0">
               {OFFERS.map((offer, index) => (
                 <OfferSlide key={offer.title} offer={offer} index={index} />
               ))}
