@@ -10,7 +10,7 @@ import {
   ProgrammesCarousel,
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { GET_INVOLVED, MISSION, TAGLINE, VISION } from "@/content/site";
+import { MEMBER_PORTAL_SIGNUP, MISSION, TAGLINE, VISION } from "@/content/site";
 import { SITE_ORIGIN } from "@/lib/site";
 
 // Google reads the site name shown above search results from WebSite data on the homepage.
@@ -33,15 +33,12 @@ export default function Home() {
         title={TAGLINE}
         intro={MISSION}
       >
-        <div className="flex flex-wrap gap-3">
-          <ButtonLink href={GET_INVOLVED.href}>{GET_INVOLVED.label}</ButtonLink>
-          <ButtonLink href="/programmes" tone="light-outline">
-            Explore programmes
-          </ButtonLink>
-        </div>
+        <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white" className="w-full">
+          {MEMBER_PORTAL_SIGNUP.label}
+        </ButtonLink>
       </PhotoHero>
 
-      <section aria-labelledby="vision-title" className="relative py-24 sm:py-36">
+      <section aria-labelledby="vision-title" className="relative py-16 sm:py-36">
         <Container>
           <h2
             id="vision-title"

@@ -48,6 +48,11 @@ export const RESOURCES_LINK: NavLink = { href: "/resources", label: "Resources" 
 
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network/sign-in", label: "Student portal" };
 
+export const MEMBER_PORTAL_SIGNUP: NavLink = {
+  href: "https://portal.ihsaan.network/sign-up",
+  label: "Start your career journey",
+};
+
 export const SOCIAL_LINKS: readonly NavLink[] = (["instagram", "linkedin", "tiktok", "youtube"] as const).map(
   (key) => PUBLIC_DESTINATIONS[key],
 );
