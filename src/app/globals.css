@@ -210,6 +210,13 @@
   }
 }
 
+/* The photo hero's title is the page's single anchor on desktop, so it runs larger than the other frame titles. */
+@media (width >= 64rem) {
+  .hero-title-photo {
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .hero-frame {

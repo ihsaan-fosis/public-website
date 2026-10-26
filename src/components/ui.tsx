@@ -186,7 +186,7 @@ export function ButtonLink({
   );
 }
 
-/** Inset, rounded full-bleed photo frame: a stacked headline anchored bottom-left, with the intro above the actions set to its right on large screens so the media stays the focus. */
+/** Inset, rounded full-bleed photo frame: a stacked headline anchored bottom-left, with the intro and actions set on one row beneath it on large screens (intro left, actions right) so the media stays the focus. */
 export function PhotoHero({
   image,
   video,
@@ -239,10 +239,10 @@ export function PhotoHero({
         />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)] lg:bg-[radial-gradient(55%_60%_at_10%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
-        <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12 lg:grid lg:grid-cols-[1fr_auto] lg:content-end lg:items-end lg:gap-x-12">
-          <h1 aria-label={title} className="hero-title-editorial leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
+        <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
+          <h1 aria-label={title} className="hero-title-editorial hero-title-photo lg:max-w-6xl lg:text-balance leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
             {words.map((word, index) => {
               const endsSentence = word.endsWith(".");
               return (
@@ -265,10 +265,10 @@ export function PhotoHero({
             })}
           </h1>
           <div
-            className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-0"
+            className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0"
             style={{ animationDelay: `${300 + words.length * 90}ms` }}
           >
-            {intro ? <p className="max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm">{intro}</p> : null}
+            {intro ? <p className="max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm lg:max-w-xl lg:text-[17px] lg:leading-7">{intro}</p> : null}
             {children}
           </div>
         </div>

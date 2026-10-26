@@ -33,7 +33,7 @@ export default function Home() {
         title={TAGLINE}
         intro={MISSION}
       >
-        <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white" className="w-full">
+        <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white">
           {MEMBER_PORTAL_SIGNUP.label}
         </ButtonLink>
       </PhotoHero>
