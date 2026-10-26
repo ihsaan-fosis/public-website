@@ -5,12 +5,14 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-08",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "workers_dev": false,
+  "workers_dev": true,
   "preview_urls": false,
-  "routes": [
-    { "pattern": "ihsaan.network", "custom_domain": true },
-    { "pattern": "www.ihsaan.network", "custom_domain": true }
-  ],
+  // TEMP (2026-10-21): apex/www pointed back to Vercel old static site (ihsaan-official).
+  // Domains detached so Cloudflare DNS can use Vercel A/CNAME records.
+  // To restore this Worker on the domain: put the two custom_domain routes back, then
+  // `cf workers triggers deploy --profile techihsaan` (deletes the Vercel DNS rows and
+  // recreates AAAA 100::). See .pstack/domain-vercel-rollback.md.
+  "routes": [],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
