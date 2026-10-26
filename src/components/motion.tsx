@@ -195,7 +195,10 @@ export function ThemeToggle({ className }: { className?: string }) {
 
 /**
  * The hero's background video and slow zoom, with a control to pause both (WCAG 2.2.2).
- * Playback starts from script rather than `autoPlay`, so reduced-motion visitors keep the poster and never download the video.
+ * Muted autoplay is allowed by WCAG; 2.2.2 only requires a pause control. Playback starts from
+ * script rather than the `autoPlay` attribute so reduced-motion visitors keep the poster and
+ * never download the video. Mobile browsers often reject the first `play()` while `preload="none"`,
+ * so motion-ok visitors bump preload and retry once data is ready.
  */
 export type HeroVideoSources = {
   src: string;
@@ -210,24 +213,57 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
   preload(poster, { as: "image", fetchPriority: "high" });
 
   // Blocked autoplay rejects; the poster stays and the control offers Play.
-  const play = (video: HTMLVideoElement) => Promise.resolve(video.play()).catch(() => undefined);
+  const play = (media: HTMLVideoElement) => Promise.resolve(media.play()).catch(() => undefined);
 
   useEffect(() => {
-    if (ref.current && !prefersReducedMotion()) play(ref.current);
-    if (!("matchMedia" in window)) return;
+    const el = ref.current;
+    if (!el) return;
+
+    let cancelled = false;
+    const cleanups: Array<() => void> = [];
+
+    const tryPlay = () => {
+      if (cancelled || prefersReducedMotion()) return;
+      // `preload="none"` leaves nothing buffered; iOS/Safari often reject that first play().
+      if (el.preload === "none") el.preload = "auto";
+      void Promise.resolve(el.play()).catch(() => {
+        if (cancelled || prefersReducedMotion()) return;
+        const retry = () => {
+          if (!cancelled && !prefersReducedMotion()) void play(el);
+        };
+        el.addEventListener("loadeddata", retry, { once: true });
+        cleanups.push(() => el.removeEventListener("loadeddata", retry));
+        if (el.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) el.load();
+      });
+    };
+
+    tryPlay();
+
+    if (!("matchMedia" in window)) {
+      return () => {
+        cancelled = true;
+        cleanups.forEach((fn) => fn());
+      };
+    }
+
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = (event: MediaQueryListEvent) => {
-      if (event.matches) ref.current?.pause();
+      if (event.matches) el.pause();
+      else tryPlay();
     };
     query.addEventListener("change", onChange);
-    return () => query.removeEventListener("change", onChange);
+    return () => {
+      cancelled = true;
+      cleanups.forEach((fn) => fn());
+      query.removeEventListener("change", onChange);
+    };
   }, []);
 
   const toggle = () => {
-    const video = ref.current;
-    if (!video) return;
-    if (video.paused) play(video);
-    else video.pause();
+    const media = ref.current;
+    if (!media) return;
+    if (media.paused) play(media);
+    else media.pause();
   };
 
   return (
@@ -255,7 +291,7 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause background video" : "Play background video"}
-        className="absolute right-4 bottom-4 z-10 flex size-8 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:right-6 sm:bottom-6"
+        className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:top-auto sm:right-6 sm:bottom-6"
       >
         <svg viewBox="0 0 24 24" aria-hidden className="size-3" fill="currentColor">
           {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />}

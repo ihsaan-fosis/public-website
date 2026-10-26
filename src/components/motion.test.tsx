@@ -56,10 +56,39 @@ describe("HeroVideo", () => {
     reducedMotion(false);
     const media = mockMedia();
     const { container } = render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
+    const video = container.querySelector("video");
 
     expect(media.play).toHaveBeenCalledOnce();
+    expect(video?.preload).toBe("auto");
     expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
     expect(zoomLayer(container)).not.toHaveClass("[animation-play-state:paused]");
+  });
+
+  it("retries play after the first attempt is blocked once media data is ready", async () => {
+    reducedMotion(false);
+    const paused = new WeakMap<HTMLMediaElement, boolean>();
+    const play = vi.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(function (this: HTMLMediaElement) {
+      if (play.mock.calls.length === 1) return Promise.reject(new DOMException("NotAllowedError"));
+      paused.set(this, false);
+      this.dispatchEvent(new Event("play"));
+      return Promise.resolve();
+    });
+    vi.spyOn(HTMLMediaElement.prototype, "paused", "get").mockImplementation(function (this: HTMLMediaElement) {
+      return paused.get(this) ?? true;
+    });
+    vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(function (this: HTMLMediaElement) {
+      queueMicrotask(() => this.dispatchEvent(new Event("loadeddata")));
+    });
+
+    render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
+
+    await act(async () => {
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(play).toHaveBeenCalledTimes(2);
+    expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
   });
 
   it("pauses the video and the zoom from the control, then resumes", () => {

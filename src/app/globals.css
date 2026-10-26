@@ -199,6 +199,8 @@
 /* Editorial title (home hero, Why IHSAAN story and closing CTA): a headline-scale stack that sits quietly over the media instead of competing with it. */
 .hero-title-editorial {
   font-size: clamp(2.25rem, 4.4vw, 4rem);
+  /* Soft night shadow so cream type lifts off the photo/video without a hard outline. */
+  text-shadow: 0 1px 2px rgba(6, 22, 41, 0.5), 0 6px 20px rgba(6, 22, 41, 0.35);
 }
 
 @media (prefers-reduced-motion: no-preference) {
