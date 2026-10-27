@@ -138,10 +138,10 @@ export function ImpactStory() {
               className="w-[clamp(12rem,22vw,20rem)]"
             />
           </div>
-          <div className="flex w-full flex-col px-5 pt-24 pb-8 sm:px-10 sm:pt-28 sm:pb-10 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12 lg:px-12 lg:pb-12">
+          <div className="flex w-full flex-col justify-end px-5 pt-24 pb-8 sm:px-10 sm:pt-28 sm:pb-10 lg:px-12 lg:pb-12">
             <h2
               id="why-title"
-              className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
+              className={BAND_TITLE}
             >
               {WHY_LINES.map((line, index) => (
                 <span key={line} className="why-reveal-line block">
@@ -150,8 +150,8 @@ export function ImpactStory() {
                 </span>
               ))}
             </h2>
-            <div className="why-reveal-aside mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
-              <p className="max-w-sm text-sm leading-6 text-cream/70">
+            <div className={cn("why-reveal-aside", BAND_ROW)}>
+              <p className={BAND_INTRO}>
                 The word Ihsaan means excellence, striving for the highest standard in everything we do as a form of
                 devotion to God. We work across universities in the UK and Ireland.
               </p>
@@ -421,12 +421,15 @@ export function PhotoBand({
             className="object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
           />
         </div>
-        <div aria-hidden className="absolute inset-0 -z-10 bg-night/60" />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_50%_100%,rgba(101,64,138,0.6),transparent_70%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
         />
-        <div className="flex w-full flex-col px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:grid lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:gap-x-12 lg:px-12 lg:pb-12">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)] lg:bg-[radial-gradient(55%_60%_at_10%_100%,rgba(101,64,138,0.55),transparent_70%)]"
+        />
+        <div className="flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
           {children}
         </div>
       </div>
@@ -441,7 +444,7 @@ export function ClosingCta() {
     <PhotoBand image="/media/gallery/conference-audience.webp" labelledBy="cta-title">
       <h2
         id="cta-title"
-        className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
+        className={BAND_TITLE}
       >
         {CTA_LINES.map((line, index) => (
           <span key={line} className="block">
@@ -450,12 +453,12 @@ export function ClosingCta() {
           </span>
         ))}
       </h2>
-      <div className="mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
-        <p className="max-w-sm text-sm leading-6 text-cream/70">
+      <div className={BAND_ROW}>
+        <p className={BAND_INTRO}>
           Programmes, mentors and opportunities for Muslim students across the UK and Ireland.
         </p>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={GET_INVOLVED.href}>
+          <ButtonLink href={GET_INVOLVED.href} tone="white">
             Apply now
           </ButtonLink>
           <ButtonLink href="/contact" tone="light-outline">

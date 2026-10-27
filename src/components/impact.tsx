@@ -16,7 +16,7 @@ import {
 } from "@/content/impact";
 import { cn } from "@/lib/utils";
 import { CountUp, ScrollWords } from "./motion";
-import { PhotoBand } from "./sections";
+import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   displayClass,
@@ -27,9 +27,6 @@ import {
   SectionHeading,
   SectionTitle,
 } from "./ui";
-
-const FRAME_TITLE =
-  "hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0";
 
 /** The gap the work sits in: one scroll-lit statement, the three figures behind it, and the report's own words. */
 export function GapChapter() {
@@ -288,7 +285,7 @@ const CLOSING_LINES = ["Let's close", "the gap", "together."] as const;
 export function ImpactClosing() {
   return (
     <PhotoBand image={IMPACT_PHOTOS.closing.src} labelledBy="impact-cta-title">
-      <h2 id="impact-cta-title" className={FRAME_TITLE}>
+      <h2 id="impact-cta-title" className={BAND_TITLE}>
         {CLOSING_LINES.map((line, index) => (
           <span key={line} className="block">
             {line}
@@ -296,8 +293,8 @@ export function ImpactClosing() {
           </span>
         ))}
       </h2>
-      <div className="mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
-        <p className="max-w-sm text-sm leading-6 text-cream/70">
+      <div className={BAND_ROW}>
+        <p className={BAND_INTRO}>
           Partner with IHSAAN, mentor a student or bring your organisation to the next conference. Samir Sidat, Chief
           Executive Officer:{" "}
           <a href="mailto:ceo.ihsaan@fosis.org.uk" className="font-medium text-cream underline underline-offset-4">
@@ -306,7 +303,9 @@ export function ImpactClosing() {
           .
         </p>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact">Partner with us</ButtonLink>
+          <ButtonLink href="/contact" tone="white">
+            Partner with us
+          </ButtonLink>
           <ButtonLink href={GET_INVOLVED.href} tone="light-outline">
             Get involved
           </ButtonLink>

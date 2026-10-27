@@ -14,7 +14,7 @@ import {
 } from "@/content/story";
 import { cn } from "@/lib/utils";
 import { CountUp, ScrollWords } from "./motion";
-import { PhotoBand } from "./sections";
+import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   Container,
@@ -74,7 +74,7 @@ export function ValuesChapter() {
     <PhotoBand image="/media/gallery/conference-panel.webp" labelledBy="values-title">
       <h2
         id="values-title"
-        className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
+        className={BAND_TITLE}
       >
         <span className="mb-6 block text-sm font-normal tracking-normal text-cream/70">Our values</span>
         {VALUES.map((value) => (
@@ -84,7 +84,7 @@ export function ValuesChapter() {
           </span>
         ))}
       </h2>
-      <ul className="mt-8 grid max-w-sm gap-6 sm:mt-10 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
+      <ul className="mt-8 grid max-w-sm gap-6 sm:mt-10 lg:mt-8 lg:max-w-none lg:grid-cols-3 lg:gap-12">
         {VALUES.map((value) => (
           <li key={value.name}>
             <p className="text-[11px] font-bold tracking-[0.18em] text-cream uppercase">
@@ -289,7 +289,7 @@ export function StoryContinues() {
     <PhotoBand image="/media/gallery/student-conversations.webp" labelledBy="continues-title">
       <h2
         id="continues-title"
-        className="hero-title-editorial mt-auto pt-10 leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:row-start-3 lg:self-end lg:pt-0"
+        className={BAND_TITLE}
       >
         {CONTINUES_LINES.map((line, index) => (
           <span key={line} className="block">
@@ -298,12 +298,14 @@ export function StoryContinues() {
           </span>
         ))}
       </h2>
-      <div className="mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:col-start-2 lg:row-start-3 lg:mt-0 lg:self-end">
-        <p className="max-w-sm text-sm leading-6 text-cream/70">
+      <div className={BAND_ROW}>
+        <p className={BAND_INTRO}>
           Come to an event, join the community or help us run the next one.
         </p>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={GET_INVOLVED.href}>{GET_INVOLVED.label}</ButtonLink>
+          <ButtonLink href={GET_INVOLVED.href} tone="white">
+            {GET_INVOLVED.label}
+          </ButtonLink>
           <ButtonLink href={EVENTS_LINK.href} tone="light-outline">
             See upcoming events
           </ButtonLink>
