@@ -20,7 +20,6 @@ import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   displayClass,
-  Eyebrow,
   PhotoFrame,
   revealDelay,
   Section,
@@ -32,10 +31,9 @@ import {
 export function GapChapter() {
   return (
     <Section labelledBy="gap-title" className="py-16 sm:py-36">
-      <p className="text-sm text-ink/65">The problem</p>
       <h2
         id="gap-title"
-        className={cn("mt-5 max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem]", displayClass)}
+        className={cn("max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem]", displayClass)}
       >
         <ScrollWords text={GAP_STATEMENT} />
       </h2>
@@ -76,8 +74,7 @@ export function PathwayChapter() {
         <PhotoFrame src={IMPACT_PHOTOS.pathway.src} alt={IMPACT_PHOTOS.pathway.alt} sticky />
         <div>
           <div data-reveal>
-            <Eyebrow>Our model</Eyebrow>
-            <SectionTitle id="pathway-title" className="mt-5">
+            <SectionTitle id="pathway-title">
               One pathway from first question to first offer
             </SectionTitle>
             <p className="mt-6 max-w-xl text-[15px] leading-7 text-ink/70">
@@ -163,7 +160,7 @@ export function TractionChapter() {
       />
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
         <div data-reveal>
-          <Eyebrow>Students engaged at events, by academic year</Eyebrow>
+          <p className="text-sm text-ink/65">Students engaged at events, by academic year</p>
           <ul className="mt-6 border-t border-ink/10">
             {ENGAGEMENT.map((year) => (
               <li key={year.label} className="border-b border-ink/10 py-7">
@@ -218,7 +215,7 @@ export function StoriesChapter() {
         <ol className="border-t border-ink/10">
           {STORIES.map((story, index) => (
             <li key={story.outcome} data-reveal style={revealDelay(index % 3)} className="border-b border-ink/10 py-8">
-              <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">{story.programme}</p>
+              <p className="text-sm text-ink/65">{story.programme}</p>
               <h3 className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
                 {story.outcome}
               </h3>
@@ -256,7 +253,7 @@ export function VoicesBand() {
                 style={revealDelay(index)}
                 className="border-b border-ink/10 py-8"
               >
-                <p className="text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase">{voice.kind}</p>
+                <p className="text-sm text-ink/65">{voice.kind}</p>
                 <figure className="mt-4">
                   <blockquote className="max-w-xl text-[15px] leading-7 text-ink/75">
                     &ldquo;{voice.quote}&rdquo;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, displayClass, Eyebrow, PhotoHero, Section } from "@/components/ui";
+import { ButtonLink, displayClass, PhotoHero, Section } from "@/components/ui";
 import { BLOG_POSTS, getBlogPost } from "@/content/blog";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE_ORIGIN } from "@/lib/site";
@@ -86,7 +86,6 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 </span>
                 <span>Article</span>
               </p>
-              <Eyebrow className="mt-6">{post.tags[0] ?? "Reflection"}</Eyebrow>
               <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
                 <div>
                   <dt className="sr-only">Author</dt>
@@ -127,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               aria-label="Article sections"
               className="mt-12 border-t border-ink/10 pt-8 lg:col-start-1 lg:row-span-2 lg:mt-0 lg:border-t-0 lg:pt-0 lg:sticky lg:top-24 lg:self-start"
             >
-              <Eyebrow>In this article</Eyebrow>
+              <p className="text-sm font-medium text-ink">In this article</p>
               <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
                 {post.sections.map((section, index) => (
                   <li key={section.id}>
@@ -161,7 +160,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               </div>
 
               <aside className="mt-12 border-t border-ink/10 pt-10">
-                <Eyebrow>Author</Eyebrow>
+                <p className="text-sm text-ink/65">Author</p>
                 <p className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
                   {post.author.name}
                 </p>

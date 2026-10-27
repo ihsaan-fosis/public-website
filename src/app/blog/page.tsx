@@ -47,10 +47,7 @@ export default function BlogPage() {
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <p className="text-[11px] font-bold tracking-[0.18em] text-cream/80 uppercase">
-                  {post.tags[0] ?? "Reflection"}
-                </p>
-                <h3 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">
+                <h3 className="max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">
                   <Link href={`/blog/${post.slug}`} className="hover:underline">
                     {post.title}
                   </Link>
