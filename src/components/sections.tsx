@@ -351,28 +351,36 @@ export function FaqSection() {
   return (
     <Section labelledBy="faq-title">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div data-reveal>
-          <SectionTitle id="faq-title" compact>
-            Good to know before you join
+        <div data-reveal className="lg:sticky lg:top-24 lg:self-start">
+          <SectionTitle id="faq-title" className="[&>h2]:text-black dark:[&>h2]:text-ink">
+            Frequently asked questions
           </SectionTitle>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-ink/65">
-            Something else on your mind? Email {CONTACT_EMAIL} and the team will get back to you.
+          <p className="mt-5 max-w-sm text-base leading-7 text-black/80 dark:text-ink/80">
+            Straight answers to the questions students and partners ask us most. Can&apos;t find yours? Email{" "}
+            {CONTACT_EMAIL} and the team will get back to you.
           </p>
-          <ButtonLink href="/contact" tone="solid" className="mt-8">
-            Ask us anything
+          <ButtonLink href="/contact" tone="accent" className="mt-8">
+            Contact us
           </ButtonLink>
         </div>
-        <div data-reveal style={revealDelay(1)} className="border-t border-ink/10">
+        <div data-reveal style={revealDelay(1)} className="border-t border-ihsaan-blue/15">
           {FAQS.map((faq, index) => (
-            <details key={faq.question} name="faq" open={index === 0} className="group border-b border-ink/10">
-              <summary className="flex cursor-pointer items-center justify-between gap-6 py-5 text-[15px] font-medium text-ink transition-colors hover:text-ihsaan-light-blue">
+            <details key={faq.question} name="faq" open={index === 0} className="group border-b border-ihsaan-blue/15">
+              <summary className="flex cursor-pointer items-center justify-between gap-6 py-6 text-lg font-medium text-black sm:text-xl dark:text-ink transition-colors hover:text-ihsaan-light-blue">
                 {faq.question}
                 <span
                   aria-hidden
-                  className="relative flex size-9 shrink-0 items-center justify-center rounded-full bg-ink/5 transition-all duration-300 group-open:rotate-180 group-open:bg-accent group-open:text-accent-ink before:absolute before:h-px before:w-3 before:bg-current after:absolute after:h-3 after:w-px after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0"
+                  className="relative flex size-9 shrink-0 items-center justify-center rounded-full bg-ihsaan-blue/10 text-ihsaan-blue transition-all duration-300 group-open:rotate-180 group-open:bg-ihsaan-blue group-open:text-white dark:bg-ihsaan-light-blue/20 dark:text-ihsaan-light-blue dark:group-open:bg-ihsaan-light-blue dark:group-open:text-black before:absolute before:h-px before:w-3 before:bg-current after:absolute after:h-3 after:w-px after:bg-current after:transition-transform after:duration-300 group-open:after:scale-y-0"
                 />
               </summary>
-              <p className="max-w-2xl pr-12 pb-6 text-sm leading-7 text-ink/65">{faq.answer}</p>
+              <div className="max-w-2xl pr-12 pb-7">
+                <p className="text-base leading-7 text-black/80 dark:text-ink/80">{faq.answer}</p>
+                {faq.cta ? (
+                  <ButtonLink href={faq.cta.href} external={faq.cta.external} tone="accent" size="compact" className="mt-5">
+                    {faq.cta.label}
+                  </ButtonLink>
+                ) : null}
+              </div>
             </details>
           ))}
         </div>
@@ -380,6 +388,13 @@ export function FaqSection() {
     </Section>
   );
 }
+
+/** PhotoBand copy follows the photo hero: a large stacked headline bottom-left, then the intro and actions on one row beneath it. */
+export const BAND_TITLE =
+  "hero-title-editorial hero-title-photo leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:max-w-6xl lg:text-balance";
+export const BAND_ROW =
+  "mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0";
+export const BAND_INTRO = "max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm lg:max-w-xl lg:text-[17px] lg:leading-7";
 
 /** Inset full-bleed photo band for the closing call to action. */
 export function PhotoBand({

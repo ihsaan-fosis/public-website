@@ -46,7 +46,7 @@ export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
 /** Guides stay reachable from the footer; Blog is a top-level header link. */
 export const RESOURCES_LINK: NavLink = { href: "/resources", label: "Resources" };
 
-export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network/sign-in", label: "Student portal" };
+export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network/sign-in", label: "Member portal" };
 
 export const MEMBER_PORTAL_SIGNUP: NavLink = {
   href: "https://portal.ihsaan.network/sign-up",
@@ -262,33 +262,54 @@ export const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
   },
 ];
 
-export type FaqItem = { question: string; answer: string };
+export type FaqItem = { question: string; answer: string; cta?: ActionLink };
 
 export const FAQS: readonly FaqItem[] = [
   {
     question: "What is IHSAAN?",
     answer:
-      "IHSAAN was founded with a simple but powerful belief: every Muslim student deserves equal access to the mentorship, networks and opportunities needed to build a meaningful career. The word Ihsaan means excellence, striving for the highest standard in everything we do as a form of devotion to God. We work across universities in the UK and Ireland.",
+      "IHSAAN began with a simple belief: every Muslim student deserves equal access to the mentorship, networks and opportunities needed to build a meaningful career. The word Ihsaan means excellence, and we treat striving for the highest standard as a form of devotion to God. Today we work with students across universities in the UK and Ireland.",
+  },
+  {
+    question: "What is the member portal?",
+    answer:
+      "The member portal is IHSAAN's digital home for members. Once you have an account, you can browse and sign up for events, connect with mentoring, read member resources and keep your details in one place, rather than filling in separate forms each time. Where they are available, you can also follow opportunities and applications there. This website stays open to everyone, and the portal is where you sign in to take part. To get started, choose Member portal in the menu to sign in, or create an account from our home page.",
+    cta: { label: "Open the member portal", href: MEMBER_PORTAL.href, external: true },
   },
   {
     question: "Who can get involved?",
     answer:
-      "Everyone. Students can join our career conferences, hackathons and internship programme; professionals can volunteer or become mentors; and organisations can partner with us.",
+      "Whatever your stage, there is a place for you. Students can join our career conferences, hackathons and internship programme. Professionals can mentor students or volunteer their time, and organisations can partner with us to host, sponsor or share opportunities. Our Get involved page walks through each route.",
+    cta: { label: "Get involved", href: GET_INVOLVED.href },
+  },
+  {
+    question: "What programmes does IHSAAN run?",
+    answer:
+      "We run six programmes: Career Conferences, Hackathons, Insight Events, Mentorship, the Summer Internship Programme, and Webinars and Workshops. Together they cover meeting employers, building skills, finding a mentor and gaining real experience, so you can start with whichever fits where you are right now.",
+    cta: { label: "Explore programmes", href: "/programmes" },
+  },
+  {
+    question: "Can I get a mentor?",
+    answer:
+      "Yes. Through My Muslim Mentor we offer 1:1 mentorship with professionals in your field, tailored to your goals. Since launching in June 2025 it has supported 1,307 mentees, with 140+ verified mentors across 15+ industries. If you are a working professional and would like to give back, you can sign up as a mentor there too.",
+    cta: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
+  },
+  {
+    question: "Do you help students find internships?",
+    answer:
+      "We do. Through the IHSAAN Summer Internship Programme we work with employers who are actively opening internship pathways for Muslim talent, and for 2026 that meant 100+ internships secured across 30+ companies. Our insight events are a good way to get in front of employers too, though attending one does not guarantee an internship or a job offer.",
+    cta: { label: "Explore the internship programme", href: "/programmes/summer-internships" },
   },
   {
     question: "Are your resources free?",
     answer:
-      "Yes. All our Career Guides are free to access. New guides are released regularly and shared across our social channels.",
-  },
-  {
-    question: "Where does IHSAAN run its programmes?",
-    answer:
-      "Across the UK and Ireland. Career conferences are held at universities and venues nationwide, and our hackathons have run in Manchester and Dublin.",
+      "Yes. Every one of our Career Guides is free to read, and we release new ones regularly. We share them on our social channels as they come out, so follow us there to hear first.",
   },
   {
     question: "How can my organisation partner with IHSAAN?",
     answer:
-      "Partnership routes include sponsoring or hosting a career conference, providing mentors through our mentorship programmes, sharing internships and graduate roles with our community, and co-delivering workshops, panels or skills sessions.",
+      "There are several ways, and we are happy to talk through what would suit you best. You can sponsor or host a career conference, provide mentors through our mentorship programmes, share internships and graduate roles with our community, or co-deliver workshops, panels and skills sessions. Get in touch through our contact page and we will take it from there.",
+    cta: { label: "Partner with us", href: "/contact" },
   },
 ];
 
