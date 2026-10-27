@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ClosingCta } from "@/components/sections";
+import { ClosingCta, PartnerWall } from "@/components/sections";
+import { MapChapter } from "@/components/story";
 import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
+import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
@@ -66,9 +68,11 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </div>
       </Section>
 
+      {page.conferenceMap ? <MapChapter /> : null}
+
       <Section labelledBy="highlights-title" className="pt-0 sm:pt-0">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
-          <PhotoFrame src={page.photo.src} alt={page.photo.alt} />
+          <PhotoFrame src={page.photo.src} alt={page.photo.alt} sticky />
           <div className="flex flex-col justify-center">
             <SectionTitle id="highlights-title">{page.highlightsTitle}</SectionTitle>
             <ol className="mt-10 border-t border-ink/10">
@@ -95,6 +99,22 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </div>
       </Section>
 
+      {page.portalInvite ? (
+        <Section labelledBy="portal-title" className="pt-0 sm:pt-0">
+          <div data-reveal className="grid gap-8 border-y border-ink/10 py-10 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16">
+            <div>
+              <SectionTitle id="portal-title">{page.portalInvite.title}</SectionTitle>
+              <p className="mt-6 max-w-xl text-[15px] leading-7 text-ink/70">{page.portalInvite.body}</p>
+            </div>
+            <div>
+              <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external>
+                {page.portalInvite.label}
+              </ButtonLink>
+            </div>
+          </div>
+        </Section>
+      ) : null}
+
       {page.events && page.eventsTitle ? (
         <Section labelledBy="events-title" className="pt-0 sm:pt-0">
           <SectionTitle id="events-title">{page.eventsTitle}</SectionTitle>
@@ -117,6 +137,15 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </Section>
       ) : null}
 
+      {page.partners && page.partnersTitle ? (
+        <Section labelledBy="partners-title" className="pt-0 sm:pt-0">
+          <SectionTitle id="partners-title">{page.partnersTitle}</SectionTitle>
+          <div className="mt-10">
+            <PartnerWall partners={page.partners} />
+          </div>
+        </Section>
+      ) : null}
+
       {page.quote ? (
         <Section labelledBy="quote-title" className="pt-0 sm:pt-0">
           <h2 id="quote-title" className="sr-only">
@@ -128,26 +157,6 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
             </blockquote>
             <figcaption className="mt-5 text-sm text-ink/65">{page.quote.source}</figcaption>
           </figure>
-        </Section>
-      ) : null}
-
-      {page.relatedLinks ? (
-        <Section labelledBy="related-title" className="pt-0 sm:pt-0">
-          <SectionTitle id="related-title">Related links</SectionTitle>
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {page.relatedLinks.map((link) => (
-              <li key={link.href}>
-                <ButtonLink href={link.href} external={link.external} tone="ghost">
-                  {link.label}
-                </ButtonLink>
-              </li>
-            ))}
-          </ul>
-          {page.relatedLinks.some((link) => link.external) ? (
-            <p className="mt-6 max-w-2xl text-[13px] leading-6 text-ink/65">
-              External links open on other websites, which have their own privacy policies.
-            </p>
-          ) : null}
         </Section>
       ) : null}
 

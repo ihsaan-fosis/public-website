@@ -76,7 +76,7 @@ describe("programme pages", () => {
 
     it("points the conferences page at the events route without inline scheduled cards", async () => {
       await renderProgramme("career-conferences");
-      expect(href("See scheduled IHSAAN events")).toBe("/events");
+      expect(screen.queryByRole("link", { name: "See scheduled IHSAAN events" })).toBeNull();
       expect(href("View upcoming events")).toBe("https://luma.com/calendar/cal-8amaiM2VigRIqjq");
       expect(href("Host or sponsor a conference")).toBe("/contact");
       expect(screen.queryByText(/Spring Week Academy|Career Conference 2026/)).toBeNull();

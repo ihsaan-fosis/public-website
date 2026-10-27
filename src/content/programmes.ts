@@ -1,5 +1,5 @@
 import { PUBLIC_DESTINATIONS } from "./links";
-import { GET_INVOLVED, type Photo, type Stat } from "./site";
+import { GET_INVOLVED, type Partner, type Photo, type Stat } from "./site";
 
 export type ProgrammeAction = { label: string; href: string; external?: boolean };
 
@@ -24,9 +24,14 @@ export type ProgrammePage = {
   eventsTitle?: string;
   events?: readonly ProgrammeEvent[];
   quote?: { text: string; source: string };
+  partnersTitle?: string;
+  partners?: readonly Partner[];
   primary: ProgrammeAction;
   secondary?: ProgrammeAction;
-  relatedLinks?: readonly ProgrammeAction[];
+  /** Show the conference signups map, which reads the events below. */
+  conferenceMap?: boolean;
+  /** Invite visitors to join the member portal, where this programme's opportunities are released. */
+  portalInvite?: { title: string; body: string; label: string };
 };
 
 export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
@@ -43,6 +48,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Held at universities and venues across the UK and Ireland, they give students the chance to explore career paths, attend skills workshops and build the networks that will shape their futures.",
     ],
     stats: [],
+    conferenceMap: true,
+    portalInvite: {
+      title: "Internships are released in the member portal",
+      body: "Opportunities from our conferences, including internships, are released through the IHSAAN member portal. Apply to join and you can follow them and apply in one place.",
+      label: "Apply to join the portal",
+    },
     highlightsTitle: "What to expect",
     highlights: [
       { title: "Keynote talks", body: "Professionals across finance, law, technology, healthcare, consulting and more." },
@@ -74,7 +85,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     primary: { label: "View upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Host or sponsor a conference", href: "/contact" },
-    relatedLinks: [{ label: "See scheduled IHSAAN events", href: "/events" }],
   },
   {
     slug: "summer-internships",
@@ -112,6 +122,11 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Internship places gave students a clearer route into experience that matched both ambition and values.",
       },
     ],
+    portalInvite: {
+      title: "The Summer 2026 programme has now closed",
+      body: "To stay up to date with future programmes, apply to join IHSAAN as a member. Opportunities are released through the member portal, so you can follow them and apply in one place.",
+      label: "Apply for IHSAAN membership",
+    },
     primary: { label: "Partner with the programme", href: "/contact" },
     secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
@@ -230,6 +245,15 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         place: "Dublin",
         detail: "35+ participants. Expanded the IHSAAN hackathon programme in Ireland.",
       },
+    ],
+    partnersTitle: "Our hackathon partners",
+    partners: [
+      { name: "ZeroPa", src: "/partners/ZeroPa.webp", width: 480, height: 125 },
+      { name: "Action For Humanity", src: "/partners/ActionForHumanity.webp", width: 480, height: 271 },
+      { name: "Redwood Founders", src: "/partners/RedwoodFounders.webp", width: 200, height: 200 },
+      { name: "Medology", src: "/partners/Medology.svg", width: 1125, height: 300 },
+      { name: "Cur8 Capital", src: "/partners/Cur8Capital.webp", width: 400, height: 300 },
+      { name: "Manchester City Council", src: "/partners/ManchesterCityCouncil.webp", width: 480, height: 93 },
     ],
     quote: {
       text: "The hackathon was an incredible experience. I learned so much from the people around me, got hands on experience with the latest AI tools and loved seeing participants build solutions to real world problems.",
