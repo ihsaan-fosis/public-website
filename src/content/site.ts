@@ -38,7 +38,9 @@ export const NAV_LINKS: readonly NavItem[] = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const GET_INVOLVED: NavLink = { href: "/get-involved", label: "Get involved" };
+export const GET_INVOLVED: NavLink = { href: "/start", label: "Get started" };
+
+export const PROFESSIONALS_LINK: NavLink = { href: "/professionals", label: "Professionals" };
 
 /** Kept out of `NAV_LINKS` so the primary row stays readable beside the wordmark and CTAs. */
 export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
@@ -177,7 +179,7 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     points: [],
     links: [
       { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
-      { href: `${GET_INVOLVED.href}#alumni`, label: "Join the alumni network" },
+      { href: `${PROFESSIONALS_LINK.href}#alumni`, label: "Join the alumni network" },
       { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Join the WhatsApp community", external: true },
     ],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Offer your time", external: true },
@@ -192,75 +194,55 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
   },
 ];
 
-export type InvolvementAudience = "students" | "professionals" | "organisations";
-
-export const INVOLVEMENT_AUDIENCES: readonly { value: InvolvementAudience | "all"; label: string }[] = [
-  { value: "all", label: "Everyone" },
-  { value: "students", label: "Students" },
-  { value: "professionals", label: "Professionals" },
-  { value: "organisations", label: "Organisations" },
-];
-
 export type InvolvementAction = {
-  id: "programmes" | "professional" | "mentor" | "community" | "alumni" | "volunteer" | "partner";
+  id: "professional" | "mentor" | "community" | "alumni" | "volunteer" | "partner";
   title: string;
   body: string;
-  audiences: readonly InvolvementAudience[];
   cta: ActionLink;
   secondary?: ActionLink;
 };
 
-export const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
-  {
-    id: "programmes",
-    title: "Programmes for students",
-    body: "Students can join career conferences, hackathons, internships, insight events and skills sessions across the UK and Ireland.",
-    audiences: ["students"],
-    cta: { href: "/programmes", label: "Explore programmes" },
-  },
+const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
   {
     id: "professional",
     title: "Professional network",
     body: "Professionals can offer their time by joining the IHSAAN professional network and its sector-specific chats through a short Google Form. The form opens on Google Forms, not on this website.",
-    audiences: ["professionals"],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Join the professional network", external: true },
   },
   {
     id: "mentor",
     title: "Mentor on My Muslim Mentor",
     body: "Professionals can mentor Muslim students through My Muslim Mentor. Sign up on the My Muslim Mentor website to register as a mentor. Its sign-up and booking happen there, not on this website.",
-    audiences: ["professionals"],
     cta: { href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, label: "Become a mentor on MMM", external: true },
   },
   {
     id: "community",
     title: "WhatsApp community",
     body: "Apply to join the IHSAAN WhatsApp community through a short Google Form. Submitting the form is a request to join, not an automatic invitation, and admission is handled separately by IHSAAN. The form opens on Google Forms, not on this website.",
-    audiences: ["students", "professionals"],
     cta: { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Apply to join the WhatsApp community", external: true },
   },
   {
     id: "alumni",
     title: "Alumni network",
     body: "Alumni who want to stay connected with IHSAAN can get in touch and ask how to take part in the alumni network.",
-    audiences: ["professionals"],
     cta: { href: "/contact", label: "Ask about the alumni network" },
   },
   {
     id: "volunteer",
     title: "Volunteer for IHSAAN",
     body: "Volunteer roles with IHSAAN are unpaid. Browse open roles, read each description, and apply on this website.",
-    audiences: ["students", "professionals", "organisations"],
     cta: { href: "/volunteer", label: "View volunteer openings" },
   },
   {
     id: "partner",
     title: "Partner with IHSAAN",
     body: "Organisations can host or sponsor programmes, share opportunities and meet Muslim students and graduates through a partnership conversation with the team.",
-    audiences: ["organisations"],
     cta: { href: "/contact", label: "Partner with us" },
   },
 ];
+
+export const PROFESSIONAL_ACTIONS = INVOLVEMENT_ACTIONS.filter(({ id }) => id !== "partner");
+export const ORGANISATION_ACTIONS = INVOLVEMENT_ACTIONS.filter(({ id }) => id === "partner");
 
 export type FaqItem = { question: string; answer: string; cta?: ActionLink };
 
@@ -273,14 +255,14 @@ export const FAQS: readonly FaqItem[] = [
   {
     question: "What is the member portal?",
     answer:
-      "The member portal is IHSAAN's digital home for members. Once you have an account, you can browse and sign up for events, connect with mentoring, read member resources and keep your details in one place, rather than filling in separate forms each time. Where they are available, you can also follow opportunities and applications there. This website stays open to everyone, and the portal is where you sign in to take part. To get started, choose Member portal in the menu to sign in, or create an account from our home page.",
+      "The member portal is IHSAAN's digital home for members. Once you have an account, you can browse and sign up for events, connect with mentoring, read member resources and keep your details in one place, rather than filling in separate forms each time. Where they are available, you can also follow opportunities and applications there. This website stays open to everyone, and the portal is where you sign in to take part. To get started, create an account on our Get started page, or choose Member portal in the menu to sign in.",
     cta: { label: "Open the member portal", href: MEMBER_PORTAL.href, external: true },
   },
   {
     question: "Who can get involved?",
     answer:
-      "Whatever your stage, there is a place for you. Students can join our career conferences, hackathons and internship programme. Professionals can mentor students or volunteer their time, and organisations can partner with us to host, sponsor or share opportunities. Our Get involved page walks through each route.",
-    cta: { label: "Get involved", href: GET_INVOLVED.href },
+      "Whatever your stage, there is a place for you. Students can join our career conferences, hackathons and internship programme. Professionals can mentor students or volunteer their time, and organisations can partner with us to host, sponsor or share opportunities. Students start on our Get started page, and professionals and organisations have a page of their own.",
+    cta: { label: "Get started", href: GET_INVOLVED.href },
   },
   {
     question: "What programmes does IHSAAN run?",

@@ -113,7 +113,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       },
     ],
     primary: { label: "Partner with the programme", href: "/contact" },
-    secondary: { label: "Get involved", href: GET_INVOLVED.href },
+    secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
   {
     slug: "insight-events",
@@ -193,7 +193,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       },
     ],
     primary: { label: "See upcoming events", href: "/events" },
-    secondary: { label: "Get involved", href: GET_INVOLVED.href },
+    secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
   {
     slug: "hackathons",

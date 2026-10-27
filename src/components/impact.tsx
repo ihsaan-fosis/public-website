@@ -307,7 +307,7 @@ export function ImpactClosing() {
             Partner with us
           </ButtonLink>
           <ButtonLink href={GET_INVOLVED.href} tone="light-outline">
-            Get involved
+            Get started
           </ButtonLink>
         </div>
       </div>

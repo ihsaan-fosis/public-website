@@ -70,7 +70,7 @@ describe("our story page", () => {
     expect(document.body.textContent).toContain("From bootcamps and webinars to conferences and career events");
     expect(document.body.textContent).not.toContain("Our Spring Week Academies are led by students");
     expect(document.body.textContent).not.toMatch(/FOSIS|Federation of Student Islamic Societies/);
-    expect(screen.getByRole("link", { name: "Get involved" }).getAttribute("href")).toBe("/get-involved");
+    expect(screen.getByRole("link", { name: "Get started" }).getAttribute("href")).toBe("/start");
     expect(screen.getByRole("link", { name: "See upcoming events" }).getAttribute("href")).toBe("/events");
   });
 });

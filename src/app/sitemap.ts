@@ -69,7 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   },
   {
-    url: SITE_ORIGIN + "/get-involved",
+    url: SITE_ORIGIN + "/start",
+    changeFrequency: "weekly",
+    priority: 0.7,
+  },
+  {
+    url: SITE_ORIGIN + "/professionals",
     changeFrequency: "weekly",
     priority: 0.7,
   },

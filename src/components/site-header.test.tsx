@@ -16,7 +16,7 @@ describe("SiteHeader", () => {
     window.history.replaceState(null, "", "/");
   });
 
-  it.each(["/", "/about", "/programmes/career-conferences", "/gallery", "/contact", "/get-involved"])(
+  it.each(["/", "/about", "/programmes/career-conferences", "/gallery", "/contact", "/start"])(
     "keeps the wordmark pointing to the top of home from %s",
     (pathname) => {
       route.pathname = pathname;
@@ -43,8 +43,8 @@ describe("SiteHeader", () => {
           expect(within(nav).getByRole("link", { name: label, hidden: true })).toHaveAttribute("href", href);
         }
       }
-      expect(screen.getAllByRole("link", { name: "Get involved", hidden: true }).map((link) => link.getAttribute("href")))
-        .toEqual(["/get-involved", "/get-involved"]);
+      expect(screen.getAllByRole("link", { name: "Get started", hidden: true }).map((link) => link.getAttribute("href")))
+        .toEqual(["/start", "/start"]);
     },
   );
 
@@ -107,7 +107,7 @@ describe("SiteHeader", () => {
     ["/blog", "Blog"],
     ["/gallery", "Gallery"],
     ["/contact", "Contact"],
-    ["/get-involved", "Get involved"],
+    ["/start", "Get started"],
   ])("scrolls to the exact page top when re-clicking %s", (pathname, name) => {
     route.pathname = pathname;
     const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
@@ -157,14 +157,14 @@ describe("SiteHeader", () => {
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
-  it("links to the student portal subdomain beside Get involved, on desktop and in the mobile menu", () => {
+  it("links to the member portal subdomain beside Get started, on desktop and in the mobile menu", () => {
     const { container } = render(<SiteHeader />);
     const header = container.querySelector("header")!;
-    const portalLinks = within(header).getAllByRole("link", { name: "Student portal", hidden: true });
+    const portalLinks = within(header).getAllByRole("link", { name: "Member portal", hidden: true });
     expect(portalLinks.map((link) => link.getAttribute("href"))).toEqual([
       "https://portal.ihsaan.network/sign-in",
       "https://portal.ihsaan.network/sign-in",
     ]);
-    expect(screen.getAllByRole("link", { name: "Get involved", hidden: true })).toHaveLength(2);
+    expect(screen.getAllByRole("link", { name: "Get started", hidden: true })).toHaveLength(2);
   });
 });

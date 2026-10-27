@@ -23,7 +23,8 @@ ${guideLines}
 - [/events](/events) Events: upcoming career conferences and academies, with the full events calendar
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
-- [/get-involved](/get-involved) Get involved
+- [/start](/start) Get started
+- [/professionals](/professionals) Professionals
 - [/volunteer](/volunteer) Volunteer openings
 - [/tech-team](/tech-team) IHSAAN Tech Team
 - [/privacy](/privacy) Privacy policy

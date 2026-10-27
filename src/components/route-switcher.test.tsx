@@ -30,7 +30,7 @@ describe("RouteSwitcher", () => {
         .map((link) => [link.textContent, link.getAttribute("href")]),
     ).toEqual([
       ["Become a mentor on MMM", "https://mymuslimmentor.com/signup"],
-      ["Join the alumni network", "/get-involved#alumni"],
+      ["Join the alumni network", "/professionals#alumni"],
       [
         "Join the WhatsApp community",
         "https://docs.google.com/forms/d/e/1FAIpQLSehrwaRiPVkVI3UVq23jv4SZBZ540kC2D-PW84OeUIT9FIu6Q/viewform",

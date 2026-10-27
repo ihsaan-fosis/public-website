@@ -23,6 +23,8 @@ describe("technical SEO routes", () => {
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/tech-team`);
+    expect(urls).toContain(`${ORIGIN}/start`);
+    expect(urls).toContain(`${ORIGIN}/professionals`);
     expect(urls).not.toContain(`${ORIGIN}/mentoring`);
     expect(urls).not.toContain(`${ORIGIN}/haqqathons`);
     expect(urls).not.toContain(`${ORIGIN}/404`);
@@ -48,6 +50,8 @@ describe("llms.txt", () => {
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
     expect(body).toContain("- [/tech-team](/tech-team) IHSAAN Tech Team");
+    expect(body).toContain("- [/start](/start)");
+    expect(body).toContain("- [/professionals](/professionals) Professionals");
     expect(body).not.toContain("/mentoring");
     expect(body).not.toContain("/haqqathons");
     expect(body).toContain("Faith. Excellence. Service.");
@@ -64,6 +68,7 @@ describe("llms.txt", () => {
 });
 
 describe("page metadata", () => {
+  const professionalsPage = "./professionals/page";
   const pages = [
     ["/about", () => import("./about/page")],
     ["/contact", () => import("./contact/page")],
@@ -72,7 +77,8 @@ describe("page metadata", () => {
     ["/resources", () => import("./resources/page")],
     ["/blog", () => import("./blog/page")],
     ["/gallery", () => import("./gallery/page")],
-    ["/get-involved", () => import("./get-involved/page")],
+    ["/start", () => import("./start/page")],
+    ["/professionals", () => import(professionalsPage)],
     ["/volunteer", () => import("./volunteer/page")],
     ["/tech-team", () => import("./tech-team/page")],
     ["/programmes", () => import("./programmes/page")],
@@ -82,6 +88,11 @@ describe("page metadata", () => {
 
   it.each(pages)("gives %s its own canonical, share image and social title", async (path, load) => {
     const { metadata } = await load();
+    if (path === "/professionals") expect(metadata.title).toBe("Professionals");
+    if (path === "/start") {
+      expect(metadata.description).toEqual(expect.any(String));
+      expect(metadata.description).not.toMatch(/mentor|partner/i);
+    }
     expect(metadata.alternates?.canonical).toBe(path);
     expect(metadata.openGraph).toMatchObject({ url: path, siteName: "IHSAAN", images: ["/media/hero-poster.webp"] });
     expect(metadata.twitter).toMatchObject({ title: `${metadata.title} | IHSAAN`, images: ["/media/hero-poster.webp"] });

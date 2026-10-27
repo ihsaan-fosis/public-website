@@ -138,7 +138,7 @@ export function ImpactStory() {
               className="w-[clamp(12rem,22vw,20rem)]"
             />
           </div>
-          <div className="flex w-full flex-col justify-end px-5 pt-24 pb-8 sm:px-10 sm:pt-28 sm:pb-10 lg:px-12 lg:pb-12">
+          <div className="flex w-full flex-col justify-end px-5 pt-[24svh] pb-8 sm:px-10 sm:pt-28 sm:pb-10 lg:px-12 lg:pb-12">
             <h2
               id="why-title"
               className={BAND_TITLE}
@@ -233,7 +233,7 @@ export function InvolvementPanels() {
     <ul className="grid gap-4 lg:grid-cols-3">
       {INVOLVEMENT_ROUTES.map((route, index) => (
         <li key={route.title} data-reveal style={revealDelay(index)}>
-          <article className="group relative isolate flex h-full min-h-[34rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[40rem]">
+          <article className="group relative isolate flex h-full min-h-[28rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 pt-44 sm:min-h-[34rem] sm:p-8 lg:min-h-[40rem]">
             <Image
               src={route.photo.src}
               alt={route.photo.alt}
@@ -402,7 +402,7 @@ export function FaqSection() {
 
 /** PhotoBand copy follows the photo hero: a large stacked headline bottom-left, then the intro and actions on one row beneath it. */
 export const BAND_TITLE =
-  "hero-title-editorial hero-title-photo leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:max-w-6xl lg:text-balance";
+  "hero-title-editorial hero-title-photo max-sm:text-[9.5vw]! leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:max-w-6xl lg:text-balance";
 export const BAND_ROW =
   "mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0";
 export const BAND_INTRO = "max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm lg:max-w-xl lg:text-[17px] lg:leading-7";
@@ -440,7 +440,7 @@ export function PhotoBand({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)] lg:bg-[radial-gradient(55%_60%_at_10%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
-        <div className="flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
+        <div className="flex w-full flex-col justify-end px-5 pt-[24svh] pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
           {children}
         </div>
       </div>

@@ -4,11 +4,11 @@ import Home from "./page";
 vi.mock("next/navigation", () => ({ useRouter: () => ({ replace: vi.fn() }), usePathname: () => "/" }));
 
 describe("Home", () => {
-  it("leads with the IHSAAN headline and a route into getting involved", () => {
+  it("leads with the IHSAAN headline and a route into getting started", () => {
     render(<Home />);
     expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Faith. Excellence. Service.");
     expect(document.getElementById("hero")).not.toBeNull();
-    expect(screen.getAllByRole("link", { name: /Get involved/ })[0].getAttribute("href")).toBe("/get-involved");
+    expect(screen.getAllByRole("link", { name: /Start your career journey/ })[0].getAttribute("href")).toBe("/start");
   });
 
   it("lists the six programmes and the member portal under the #programmes anchor", () => {

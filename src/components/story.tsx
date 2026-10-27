@@ -140,7 +140,7 @@ export function WhoChapter() {
       <ul className="mt-12 grid gap-4 lg:grid-cols-3">
         {WHO_WE_ARE.map((beat, index) => (
           <li key={beat.title} data-reveal style={revealDelay(index)}>
-            <article className="group relative isolate flex h-full min-h-[28rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 sm:p-8 lg:min-h-[36rem]">
+            <article className="group relative isolate flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 pt-44 sm:min-h-[28rem] sm:p-8 lg:min-h-[36rem]">
               <Image
                 src={beat.photo.src}
                 alt={beat.photo.alt}

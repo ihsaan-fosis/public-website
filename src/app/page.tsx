@@ -10,7 +10,7 @@ import {
   ProgrammesCarousel,
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { MEMBER_PORTAL_SIGNUP, MISSION, TAGLINE, VISION } from "@/content/site";
+import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, MISSION, TAGLINE, VISION } from "@/content/site";
 import { SITE_ORIGIN } from "@/lib/site";
 
 // Google reads the site name shown above search results from WebSite data on the homepage.
@@ -33,7 +33,7 @@ export default function Home() {
         title={TAGLINE}
         intro={MISSION}
       >
-        <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white">
+        <ButtonLink href={GET_INVOLVED.href} tone="white">
           {MEMBER_PORTAL_SIGNUP.label}
         </ButtonLink>
       </PhotoHero>

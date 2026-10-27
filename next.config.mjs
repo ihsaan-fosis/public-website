@@ -44,7 +44,9 @@ const nextConfig = {
       { source: "/programmes/career-guides", destination: "/resources", permanent: true },
       { source: "/haqqathons", destination: "/programmes/hackathons", permanent: true },
       { source: "/mentoring", destination: "/programmes/mentorship", permanent: true },
-      { source: "/ticket", destination: "/get-involved", permanent: true },
+      { source: "/ticket", destination: "/start", permanent: true },
+      // Temporary so /get-involved can be reused later without browsers holding a cached redirect.
+      { source: "/get-involved", destination: "/start", permanent: false },
     ];
   },
   async headers() {

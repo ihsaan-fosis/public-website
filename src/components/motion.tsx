@@ -40,7 +40,7 @@ export function RevealObserver() {
   return null;
 }
 
-const NUMBER = /^(\D*)(\d[\d,]*)(.*)$/;
+const NUMBER = /^(\D*)(\d[\d,]*(?:\.\d+)?)(.*)$/;
 
 /** Counts a numeric value up from zero when it scrolls into view. Non-numeric values render as-is. */
 export function CountUp({ value, className }: { value: string; className?: string }) {
@@ -53,7 +53,9 @@ export function CountUp({ value, className }: { value: string; className?: strin
     if (!parts || !node || !canObserve() || prefersReducedMotion()) return;
     const [, prefix, digits, suffix] = parts;
     const target = Number(digits.replace(/,/g, ""));
-    const format = (n: number) => `${prefix}${Math.round(n).toLocaleString("en-GB")}${suffix}`;
+    const decimals = digits.split(".")[1]?.length ?? 0;
+    const format = (n: number) =>
+      `${prefix}${n.toLocaleString("en-GB", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}${suffix}`;
     let frame = 0;
     setDisplay(format(0));
     const observer = new IntersectionObserver(
