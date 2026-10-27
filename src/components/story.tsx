@@ -13,13 +13,12 @@ import {
   WHO_WE_ARE,
 } from "@/content/story";
 import { cn } from "@/lib/utils";
-import { CountUp, ScrollWords } from "./motion";
+import { CountUp } from "./motion";
 import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   Container,
   displayClass,
-  PhotoFrame,
   revealDelay,
   Section,
   SectionHeading,
@@ -31,133 +30,216 @@ function vars(values: Record<`--${string}`, string>): CSSProperties {
   return values as CSSProperties;
 }
 
-/** The vision as the scroll-lit statement, then the mission over a panorama that opens out of a thin slit beneath it. */
+/** Where small photo pills sit in the vision: after the word at each index, with a photo that is decoration only. */
+const VISION_PILLS: Record<number, string> = {
+  2: "/media/gallery/hackathon-team.webp",
+  13: "/media/gallery/hackathon-mentor.webp",
+  21: "/media/gallery/employer-pitch.webp",
+};
+
+/** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`), with photo pills set between them. */
+function FocusWords({ text }: { text: string }) {
+  const words = text.split(" ");
+  return words.map((word, index) => (
+    <span key={`${word}-${index}`}>
+      <span className="story-focus-word" style={vars({ "--p": String(index / words.length) })}>
+        {word}
+      </span>
+      {index < words.length - 1 ? " " : ""}
+      {VISION_PILLS[index] ? (
+        <span
+          aria-hidden
+          className="story-pill relative mr-[0.26em] inline-block h-[0.78em] w-[1.9em] translate-y-[0.04em] overflow-hidden rounded-full bg-night-2 align-baseline"
+          style={vars({ "--p": String(index / words.length) })}
+        >
+          <Image src={VISION_PILLS[index]} alt="" fill sizes="160px" className="object-cover" />
+        </span>
+      ) : null}
+    </span>
+  ));
+}
+
+/** Words that rise out of a mask once the photo frame has opened (`.story-word`). Words from `brightFrom` on are the emphasis. */
+function RisingWords({ text, brightFrom = 0 }: { text: string; brightFrom?: number }) {
+  const words = text.split(" ");
+  return words.map((word, index) => (
+    <span key={`${word}-${index}`} className={index < brightFrom ? "text-cream/70" : undefined}>
+      <span className="story-word-mask">
+        <span className="story-word" style={vars({ "--p": String(index / words.length) })}>
+          {word}
+        </span>
+      </span>
+      {index < words.length - 1 ? " " : ""}
+    </span>
+  ));
+}
+
+/**
+ * The vision comes into focus word by word with three photo pills set into the line. The mission is a photo frame that
+ * opens from a narrow window as it scrolls in, its words rising once it is open, with the three values at full
+ * strength so it hands over to them. Both stay in the normal flow, so the page keeps its section, frame, section
+ * rhythm, and both read as plain text and a plain frame where scroll timelines are unsupported.
+ */
 export function PurposeChapter() {
   return (
-    <section aria-labelledby="vision-title" className="relative py-16 sm:py-36">
-      <Container>
-        <h2 id="vision-title" className="story-rise text-sm text-ink/65">
+    <>
+      <Section labelledBy="vision-title" className="pt-6 pb-16 sm:pt-10 sm:pb-28">
+        <h2 id="vision-title" className="text-sm text-ink/65">
           Our vision
         </h2>
         <p
           className={cn(
-            "story-rise mt-5 max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem]",
+            "story-vision mt-6 max-w-6xl text-[2rem] leading-[1.18] sm:text-6xl sm:leading-[1.14] lg:text-[4.5rem] lg:leading-[1.1]",
             displayClass,
           )}
         >
-          <ScrollWords text={VISION} />
+          <FocusWords text={VISION} />
         </p>
-      </Container>
-      <div className="story-slit relative isolate mx-2 mt-16 flex min-h-[80svh] overflow-hidden rounded-[28px] bg-night-2 sm:mx-3 sm:mt-24">
-        <Image
-          src="/media/impact-wide.webp"
-          alt="A wide view of students at an IHSAAN programme"
-          fill
-          sizes="100vw"
-          className="story-slit-photo -z-20 object-cover"
-        />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/55 to-night/10" />
-        <div className="mt-auto w-full px-5 pt-16 pb-8 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12">
-          <h2 className="text-sm text-cream/70">Our mission</h2>
-          <p className="mt-4 max-w-4xl text-2xl leading-[1.15] font-extrabold tracking-[-0.03em] text-cream sm:text-4xl lg:text-5xl">
-            {MISSION}
+      </Section>
+      <div className="story-mission">
+        <PhotoBand image="/media/gallery/employer-conversations.webp" labelledBy="mission-title">
+          <h2 id="mission-title" className="text-sm text-cream/75">
+            Our mission
+          </h2>
+          <p className="mt-5 max-w-5xl text-3xl leading-[1.12] font-extrabold tracking-[-0.035em] text-cream sm:text-5xl lg:text-[3.75rem]">
+            <RisingWords text={MISSION} brightFrom={MISSION.split(" ").indexOf("faith,")} />
           </p>
-        </div>
+        </PhotoBand>
       </div>
-    </section>
+    </>
   );
 }
 
-/** The three values are the tagline, so the frame title spells it out and the meanings sit beside it. */
+/**
+ * The three values are the tagline, so the heading spells it out. Each word starts as an outline and fills in solid as it
+ * scrolls to the middle of the screen. Side by side each word sits level with its meaning
+ * (the heading and the list share three subgrid rows); on a phone the tagline stacks first and each meaning names itself.
+ */
 export function ValuesChapter() {
   return (
-    <PhotoBand image="/media/gallery/conference-panel.webp" labelledBy="values-title">
-      <h2
-        id="values-title"
-        className={BAND_TITLE}
-      >
-        <span className="mb-6 block text-sm font-normal tracking-normal text-cream/70">Our values</span>
-        {VALUES.map((value) => (
-          <span key={value.name} className="block">
-            {value.name}
-            <span className="text-ihsaan-lavender">.</span>{" "}
-          </span>
-        ))}
-      </h2>
-      <ul className="mt-8 grid max-w-sm gap-6 sm:mt-10 lg:mt-8 lg:max-w-none lg:grid-cols-3 lg:gap-12">
-        {VALUES.map((value) => (
-          <li key={value.name}>
-            <p className="text-[11px] font-bold tracking-[0.18em] text-cream uppercase">
-              {value.name} · {value.term}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-cream/75">{value.body}</p>
-          </li>
-        ))}
-      </ul>
-    </PhotoBand>
-  );
-}
-
-/** Names set large under hairline rules beside a photo, like the route list on Get involved. No portraits yet. */
-export function TeamChapter() {
-  return (
-    <Section labelledBy="team-title">
-      <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
-        <PhotoFrame src="/media/gallery/startup-talk.webp" alt="A speaker presenting a startup talk beside an IHSAAN banner" />
-        <div className="flex flex-col justify-center">
-          <SectionTitle id="team-title">Meet the executive team</SectionTitle>
-          <ul className="mt-10 border-t border-ink/10">
-            {EXECUTIVE_TEAM.map((member, index) => (
-              <li
-                key={member.name}
+    <Section labelledBy="values-title">
+      <div className="grid gap-10 lg:grid-cols-[1.4fr_0.6fr] lg:gap-16">
+        <div className="grid lg:grid-cols-[auto_1fr] lg:grid-rows-[auto_repeat(3,auto)]">
+          <h2
+            id="values-title"
+            className={cn(displayClass, "lg:row-span-4 lg:grid lg:grid-rows-subgrid")}
+          >
+            <span className="mb-8 block text-sm font-normal tracking-normal text-ink/65 lg:mb-0 lg:pb-10">Our values</span>
+            {VALUES.map((value, index) => (
+              <span
+                key={value.name}
                 data-reveal
                 style={revealDelay(index)}
-                className="flex items-baseline gap-6 border-b border-ink/10 py-5"
+                className="block text-5xl leading-[1.1] sm:text-6xl lg:border-t lg:border-ink/10 lg:py-7 lg:pr-12 lg:text-[3.75rem]"
               >
-                <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-3xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
-                    {member.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-ink/65">{member.role}</p>
-                </div>
+                <span className="relative inline-block">
+                  <span className="story-fill-base">
+                    {value.name}
+                    <span className="sr-only">.</span>
+                  </span>
+                  <span aria-hidden className="story-fill-solid">
+                    {value.name}
+                  </span>
+                </span>{" "}
+              </span>
+            ))}
+          </h2>
+          <ul className="mt-10 lg:col-start-2 lg:row-span-3 lg:row-start-2 lg:mt-0 lg:grid lg:grid-rows-subgrid">
+            {VALUES.map((value, index) => (
+              <li
+                key={value.name}
+                data-reveal
+                style={revealDelay(index)}
+                className="border-t border-ink/10 py-6 lg:flex lg:flex-col lg:justify-center lg:py-7"
+              >
+                <p className="text-[11px] font-bold tracking-[0.18em] text-ink uppercase">
+                  {value.name} · {value.term}
+                </p>
+                <p className="mt-2 max-w-md text-[15px] leading-7 text-ink/70">{value.body}</p>
               </li>
             ))}
           </ul>
+        </div>
+        <div
+          data-reveal
+          className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-night-2 sm:aspect-[16/9] lg:aspect-auto lg:min-h-[28rem]"
+        >
+          <div aria-hidden className="parallax-zoom absolute inset-0">
+            <Image
+              src="/media/gallery/conference-selfie.webp"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </Section>
   );
 }
 
-/** Who IHSAAN is, in three photo panels built like the home page's involvement panels. */
+/** One list of names set large under hairline rules, like the route list on Get involved, each led by a portrait. */
+export function TeamChapter() {
+  return (
+    <Section labelledBy="team-title">
+      <SectionTitle id="team-title">Meet the executive team</SectionTitle>
+      <ul className="mt-10 border-t border-ink/10">
+        {EXECUTIVE_TEAM.map((member, index) => (
+          <li
+            key={member.name}
+            data-reveal
+            style={revealDelay(index)}
+            className="flex items-center gap-5 border-b border-ink/10 py-4 sm:gap-8 sm:py-5"
+          >
+            <div className="relative size-16 shrink-0 overflow-hidden rounded-2xl bg-ink/5 sm:size-24">
+              {member.portrait ? (
+                <Image src={member.portrait} alt="" fill sizes="96px" className="object-cover" />
+              ) : (
+                <span aria-hidden className="flex size-full items-center justify-center text-lg font-medium text-ink/55 sm:text-2xl">
+                  {member.name.split(" ").map((part) => part[0]).join("")}
+                </span>
+              )}
+            </div>
+            <div className="md:flex md:flex-1 md:items-center md:justify-between md:gap-8">
+              <h3 className="text-3xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
+                {member.name}
+              </h3>
+              <p className="mt-1 text-sm text-ink/65 md:mt-0 md:text-base">{member.role}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  );
+}
+
+/** Who IHSAAN is, as an editorial list under hairlines: the beat, what it means, and a small photo of it. */
 export function WhoChapter() {
   return (
     <Section labelledBy="who-title">
       <SectionHeading id="who-title" title="Who we are" />
-      <ul className="mt-12 grid gap-4 lg:grid-cols-3">
+      <ul className="mt-12 border-t border-ink/10">
         {WHO_WE_ARE.map((beat, index) => (
-          <li key={beat.title} data-reveal style={revealDelay(index)}>
-            <article className="group relative isolate flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-[28px] bg-night-2 p-6 pt-44 sm:min-h-[28rem] sm:p-8 lg:min-h-[36rem]">
+          <li
+            key={beat.title}
+            data-reveal
+            style={revealDelay(index)}
+            className="group grid items-center gap-5 border-b border-ink/10 py-7 sm:py-9 lg:grid-cols-[1fr_1fr_15rem] lg:gap-12"
+          >
+            <h3 className="max-w-lg text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl lg:text-[2.1rem]">
+              {beat.title}
+            </h3>
+            <p className="max-w-md text-[15px] leading-7 text-ink/70">{beat.body}</p>
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[22px] bg-night-2 lg:aspect-[4/3]">
               <Image
                 src={beat.photo.src}
                 alt={beat.photo.alt}
                 fill
-                sizes="(min-width: 1280px) 416px, (min-width: 1024px) 31vw, 100vw"
-                className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+                sizes="(min-width: 1024px) 240px, 100vw"
+                className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/70 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
-              <span
-                aria-hidden
-                className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{beat.title}</h3>
-              <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{beat.body}</p>
-            </article>
+            </div>
           </li>
         ))}
       </ul>

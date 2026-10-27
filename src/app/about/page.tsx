@@ -26,8 +26,8 @@ export default function AboutPage() {
         title="Our story."
         intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and where the work has taken us."
       />
-      <PurposeChapter />
       <WhoChapter />
+      <PurposeChapter />
       <ValuesChapter />
       <MapChapter />
       <TeamChapter />

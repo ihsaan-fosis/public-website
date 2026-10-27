@@ -521,28 +521,62 @@
   transform: translateY(0);
 }
 
+/* The solid copy of a value only exists to be wiped in over the outline, so it is off wherever that runs nowhere. */
+.story-fill-solid {
+  display: none;
+}
+
 /*
  * Story page (/about). Static by default: the panorama is open and the route is drawn. Scroll-driven browsers
  * without reduced motion get the reveals and the pinned map.
  */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .story-rise {
-      animation: story-rise-in linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 32%;
+    /* Vision: each word pulls into focus, staggered along the scroll. */
+    .story-vision {
+      view-timeline-name: --vision;
     }
 
-    .story-slit {
-      animation: story-slit-open linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 50%;
+    .story-focus-word {
+      display: inline-block;
+      animation: story-focus linear both;
+      animation-timeline: --vision;
+      animation-range: cover calc(2% + var(--p) * 18%) cover calc(14% + var(--p) * 18%);
     }
 
-    .story-slit-photo {
-      animation: zoom-settle linear both;
+    .story-pill {
+      animation: story-fill-sweep linear both;
+      animation-timeline: --vision;
+      animation-range: cover calc(4% + var(--p) * 18%) cover calc(18% + var(--p) * 18%);
+    }
+
+    /* Mission: the frame opens from a narrow window, then its words rise out of their masks. */
+    .story-mission {
+      view-timeline-name: --mission;
+      animation: story-mission-open linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 60%;
+      animation-range: cover 4% cover 30%;
+    }
+
+    .story-word {
+      animation: story-word-rise linear both;
+      animation-timeline: --mission;
+      animation-range: cover calc(30% + var(--p) * 14%) cover calc(40% + var(--p) * 14%);
+    }
+
+    /* Values: the outlined word fills in solid, left to right, as it reaches the middle of the screen. */
+    .story-fill-base {
+      color: transparent;
+      -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-ink) 45%, transparent);
+    }
+
+    .story-fill-solid {
+      display: block;
+      position: absolute;
+      inset: 0;
+      animation: story-fill-sweep linear both;
+      animation-timeline: view();
+      animation-range: cover 18% cover 46%;
     }
 
     /* Phones see the map below its copy, so the route draws as the map itself crosses the viewport. */
@@ -605,20 +639,47 @@
   }
 }
 
-@keyframes story-rise-in {
+.story-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.story-word {
+  display: inline-block;
+}
+
+@keyframes story-focus {
   from {
-    opacity: 0;
-    transform: translateY(40px);
-    filter: blur(6px);
+    opacity: 0.15;
+    filter: blur(14px);
+    transform: translateY(0.18em);
   }
 }
 
-@keyframes story-slit-open {
+@keyframes story-mission-open {
   from {
-    clip-path: inset(46% 0 round 28px);
+    clip-path: inset(16% 24% round 28px);
   }
   to {
     clip-path: inset(0 round 28px);
+  }
+}
+
+@keyframes story-fill-sweep {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes story-word-rise {
+  from {
+    transform: translateY(110%);
   }
 }
 

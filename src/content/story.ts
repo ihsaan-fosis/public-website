@@ -162,13 +162,13 @@ export const VALUES: readonly Value[] = [
   },
 ];
 
-export type Executive = { name: string; role: string };
+export type Executive = { name: string; role: string; portrait?: string };
 
 export const EXECUTIVE_TEAM: readonly Executive[] = [
-  { name: "Samir Sidat", role: "Chief Executive Officer" },
-  { name: "Eyad Abdelhady", role: "Co-Chief Operating Officer" },
-  { name: "Musaddiq Iqbal", role: "Co-Chief Operating Officer" },
-  { name: "Muhammad Islam", role: "Chief Financial Officer" },
+  { name: "Samir Sidat", role: "Chief Executive Officer", portrait: "/media/team/samir.webp" },
+  { name: "Eyad Abdelhady", role: "Co-Chief Operating Officer", portrait: "/media/team/eyad.webp" },
+  { name: "Musaddiq Iqbal", role: "Co-Chief Operating Officer", portrait: "/media/team/musaddiq.webp" },
+  { name: "Muhammad Islam", role: "Chief Financial Officer", portrait: "/media/team/muhammad.webp" },
   { name: "Bushra Abdullah", role: "Chief People Officer" },
-  { name: "Yusuf Shamsi", role: "Chief Information Officer" },
+  { name: "Yusuf Shamsi", role: "Chief Information Officer", portrait: "/media/team/yusuf.webp" },
 ];
