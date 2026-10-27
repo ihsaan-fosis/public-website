@@ -301,22 +301,42 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
   );
 }
 
-/** Wraps the partner marquees with one control that pauses every row. Reduced motion already renders them static. */
-export function MarqueeGroup({ children, className }: { children: ReactNode; className?: string }) {
+/** Wraps the partner marquees with one control that pauses every row. With a `title`, the control sits beside it. Reduced motion already renders the rows static. */
+export function MarqueeGroup({
+  children,
+  className,
+  title,
+}: {
+  children: ReactNode;
+  className?: string;
+  title?: ReactNode;
+}) {
   const [paused, setPaused] = useState(false);
+
+  const control = (
+    <button
+      type="button"
+      onClick={() => setPaused(!paused)}
+      aria-label={paused ? "Play partner logos" : "Pause partner logos"}
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5 motion-reduce:hidden"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="currentColor">
+        {paused ? (
+          <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />
+        ) : (
+          <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" />
+        )}
+      </svg>
+    </button>
+  );
 
   return (
     <div data-paused={paused || undefined} className={cn("group/marquee", className)}>
-      {children}
-      <div className="mx-auto flex w-full max-w-7xl justify-end px-5 pt-3 motion-reduce:hidden sm:px-10">
-        <button
-          type="button"
-          onClick={() => setPaused(!paused)}
-          className="inline-flex min-h-10 items-center rounded-full px-4 text-xs font-medium text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5"
-        >
-          {paused ? "Play partner logos" : "Pause partner logos"}
-        </button>
+      <div className="mx-auto mb-12 flex w-full max-w-7xl flex-col items-center justify-center gap-5 px-5 sm:flex-row sm:gap-6 sm:px-10">
+        {title}
+        {control}
       </div>
+      {children}
     </div>
   );
 }

@@ -118,7 +118,7 @@ export function ImpactStory() {
         </div>
         <div className="why-reveal-frame relative isolate flex h-full min-h-[calc(100svh-1rem)] overflow-hidden rounded-[28px] bg-night-2 sm:min-h-[calc(100svh-1.5rem)]">
           <Image
-            src="/media/career-conference.webp"
+            src="/media/career-conference-hd.webp"
             alt=""
             fill
             sizes="100vw"
@@ -176,6 +176,18 @@ const GALLERY_DRIFT = [
 /** Every column gets each aspect once, so the columns end level whatever the source photo shapes. */
 const GALLERY_ASPECTS = ["aspect-[4/5]", "aspect-square", "aspect-[4/3]", "aspect-[3/4]"] as const;
 
+/** Width / height of each entry in GALLERY_ASPECTS, in the same order. */
+const GALLERY_RATIOS = [4 / 5, 1, 4 / 3, 3 / 4] as const;
+
+/**
+ * `object-cover` crops a landscape photo to a taller tile, so the browser has to draw it wider than the tile.
+ * Size the request for the photo's full width, or it is upscaled and blurs.
+ */
+function galleryPhotoSizes(photo: { width: number; height: number }, tileRatio: number) {
+  const crop = Math.min(2, Math.max(1, photo.width / photo.height / tileRatio));
+  return `(min-width: 640px) ${Math.round(33 * crop)}vw, ${Math.round(50 * crop)}vw`;
+}
+
 /** Four rows of three; the full set lives on /gallery. */
 const GALLERY_PREVIEW = GALLERY.slice(0, 12);
 
@@ -193,24 +205,22 @@ export function GalleryParallax({ action }: { action?: ReactNode }) {
             className={cn("parallax-column flex flex-col gap-3 sm:gap-4", column === 2 && "max-sm:hidden")}
             style={{ "--drift-from": GALLERY_DRIFT[column].from, "--drift-to": GALLERY_DRIFT[column].to } as CSSProperties}
           >
-            {photos.map((photo, row) => (
-              <li
-                key={photo.src}
-                className={cn(
-                  "overflow-hidden rounded-[22px] bg-night-2",
-                  GALLERY_ASPECTS[(row + column) % GALLERY_ASPECTS.length],
-                )}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.width}
-                  height={photo.height}
-                  sizes="(min-width: 640px) 33vw, 50vw"
-                  className="parallax-zoom h-full w-full object-cover"
-                />
-              </li>
-            ))}
+            {photos.map((photo, row) => {
+              const shape = (row + column) % GALLERY_ASPECTS.length;
+              return (
+                <li key={photo.src} className={cn("overflow-hidden rounded-[22px] bg-night-2", GALLERY_ASPECTS[shape])}>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    quality={85}
+                    sizes={galleryPhotoSizes(photo, GALLERY_RATIOS[shape])}
+                    className="parallax-zoom h-full w-full object-cover"
+                  />
+                </li>
+              );
+            })}
           </ul>
         ))}
       </div>
@@ -254,7 +264,7 @@ export function InvolvementPanels() {
 
 function PartnerTile({ partner, decorative = false }: { partner: Partner; decorative?: boolean }) {
   return (
-    <div className="flex h-20 w-40 shrink-0 items-center justify-center px-4 sm:h-24 sm:w-52 sm:px-6">
+    <div className="flex h-20 w-44 shrink-0 items-center justify-center px-4 sm:h-24 sm:w-56 sm:px-5">
       {/* Most logos ship on opaque white, so blending (not a tile) is what removes the box. */}
       <img
         src={partner.src}
@@ -262,7 +272,7 @@ function PartnerTile({ partner, decorative = false }: { partner: Partner; decora
         width={partner.width}
         height={partner.height}
         loading="lazy"
-        className="max-h-11 w-auto max-w-full object-contain opacity-65 mix-blend-multiply grayscale transition-opacity duration-300 hover:opacity-100 dark:mix-blend-screen dark:invert"
+        className="h-12 w-auto max-w-full object-contain mix-blend-multiply sm:h-14 transition-opacity duration-300 dark:opacity-65 dark:mix-blend-screen dark:grayscale dark:invert dark:hover:opacity-100"
       />
     </div>
   );
@@ -302,14 +312,15 @@ function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[
 export function PartnersSection() {
   return (
     <section aria-labelledby="partners-title" className="relative py-14 sm:py-28">
-      <Container>
-        <SectionHeading
-          id="partners-title"
-          title="Organisations backing Muslim talent"
-          aside="Our diamond and gold partners open doors through conferences, mentoring and roles."
-        />
-      </Container>
-      <MarqueeGroup className="mt-12">
+      <MarqueeGroup
+        title={
+          <div data-reveal>
+            <SectionTitle id="partners-title" className="text-center [&>h2]:mx-auto">
+              Professional Backgrounds Across Our Events
+            </SectionTitle>
+          </div>
+        }
+      >
         <div data-reveal className="space-y-3">
           {PARTNER_TIERS.map((tier, index) => (
             <div key={tier.name}>
