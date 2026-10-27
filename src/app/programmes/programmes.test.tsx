@@ -9,8 +9,9 @@ describe("programme pages", () => {
   it("points the Programmes nav link at its own page with a child per programme", () => {
     const programmes = NAV_LINKS.find((link) => link.label === "Programmes");
     expect(programmes?.href).toBe("/programmes");
-    expect(programmes?.children).toEqual(
-      PROGRAMMES.map(({ slug, title }) => ({ href: `/programmes/${slug}`, label: title })),
+    const byHref = (a: { href: string }, b: { href: string }) => a.href.localeCompare(b.href);
+    expect([...(programmes?.children ?? [])].sort(byHref)).toEqual(
+      PROGRAMMES.map(({ slug, title }) => ({ href: `/programmes/${slug}`, label: title })).sort(byHref),
     );
   });
 

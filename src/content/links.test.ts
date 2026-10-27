@@ -4,7 +4,12 @@ import { PUBLIC_DESTINATIONS } from "./links";
 const destinations = Object.entries(PUBLIC_DESTINATIONS);
 
 describe("approved destinations", () => {
-  it.each(destinations)("%s is an HTTPS URL without captured tracking parameters", (_key, { href }) => {
+  it.each(destinations)("%s is an internal path or an HTTPS URL without captured tracking parameters", (_key, { href }) => {
+    if (href.startsWith("/")) {
+      // Internal paths (such as /volunteer) stay on this site.
+      expect(href).not.toMatch(/^\/\/|[?#]/);
+      return;
+    }
     const url = new URL(href);
     expect(url.protocol).toBe("https:");
     expect(url.search).toBe("");

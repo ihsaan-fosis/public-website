@@ -14,7 +14,7 @@ import ResourcesPage from "./page";
 
 describe("resources page", () => {
   it("keeps the guides index out of the header now that Impact has its slot, and links it from the footer set", () => {
-    expect(NAV_LINKS.map((link) => link.label)).toEqual(["About", "Programmes", "Impact", "Gallery", "Contact"]);
+    expect(NAV_LINKS.map((link) => link.label)).toEqual(["About", "Programmes", "Impact", "Blog", "Gallery", "Contact"]);
     expect(RESOURCES_LINK).toEqual({ href: "/resources", label: "Resources" });
   });
 
