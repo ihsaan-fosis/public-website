@@ -36,6 +36,7 @@ export default function GalleryPage() {
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
+                quality={85}
                 sizes="(min-width: 1280px) 384px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
                 className="h-auto w-full transition-transform duration-[1200ms] ease-out group-hover:scale-105"
               />

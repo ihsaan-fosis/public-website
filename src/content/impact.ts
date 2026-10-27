@@ -7,7 +7,7 @@ function galleryPhoto(src: string): Photo {
   return photo;
 }
 
-export const IMPACT_HERO_IMAGE = "/media/impact.webp";
+export const IMPACT_HERO_IMAGE = "/media/impact-hd.webp";
 
 export type GapStat = { value: string; label: string; note: string; source: string };
 

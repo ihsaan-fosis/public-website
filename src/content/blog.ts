@@ -47,7 +47,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     },
     tags: ["Reflections and insights", "Civil Service", "Public sector"],
     image: {
-      src: "/media/faithful-talent.webp",
+      src: "/media/faithful-talent-hd.webp",
       alt: "IHSAAN students in a programme session",
     },
     lead: "Sections on applying, the online assessment and the interview are especially useful if you are preparing an application.",

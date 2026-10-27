@@ -74,12 +74,12 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "career-conferences",
     title: "Career Conferences",
-    photo: { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
+    photo: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
   },
   {
     slug: "summer-internships",
     title: "Summer Internship Programme",
-    photo: { src: "/media/faithful-talent.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 1800, height: 1114 },
+    photo: { src: "/media/faithful-talent-hd.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 3840, height: 2378 },
   },
   {
     slug: "insight-events",
@@ -99,7 +99,7 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "mentorship",
     title: "Mentorship",
-    photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
+    photo: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
   },
 ];
 
@@ -110,7 +110,7 @@ export const OFFERS: readonly Offer[] = [
   {
     href: MEMBER_PORTAL.href,
     title: "Member Portal",
-    photo: { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
+    photo: { src: "/media/opp-tracker-hd.webp", alt: "Students working together on a laptop", width: 2741, height: 3713 },
   },
 ];
 
@@ -122,25 +122,25 @@ export const PARTNER_TIERS: readonly PartnerTier[] = [
   {
     name: "Diamond partners",
     partners: [
-      { name: "Accenture", src: "/partners/accenture.webp", width: 207, height: 40 },
-      { name: "PwC", src: "/partners/PWC.webp", width: 66, height: 50 },
-      { name: "Cube Network", src: "/partners/CubeNetwork.webp", width: 132, height: 30 },
-      { name: "Wahed", src: "/partners/Wahed.webp", width: 214, height: 40 },
-      { name: "Deen Developers", src: "/partners/DeenDeveleopers.webp", width: 100, height: 40 },
-      { name: "My Fridays", src: "/partners/My-Fridays.webp", width: 144, height: 34 },
-      { name: "Greentech", src: "/partners/Greentech.webp", width: 104, height: 40 },
+      { name: "Accenture", src: "/partners/accenture.webp", width: 219, height: 61 },
+      { name: "PwC", src: "/partners/PWC.webp", width: 500, height: 245 },
+      { name: "Cube Network", src: "/partners/CubeNetwork.webp", width: 225, height: 220 },
+      { name: "Wahed", src: "/partners/Wahed.webp", width: 388, height: 70 },
+      { name: "Deen Developers", src: "/partners/DeenDeveleopers.webp", width: 311, height: 156 },
+      { name: "My Fridays", src: "/partners/My-Fridays.webp", width: 400, height: 103 },
+      { name: "Greentech", src: "/partners/Greentech.webp", width: 381, height: 97 },
     ],
   },
   {
     name: "Gold partners",
     partners: [
-      { name: "SMBF", src: "/partners/SMBF.webp", width: 178, height: 34 },
-      { name: "MIPP", src: "/partners/MIPP.webp", width: 80, height: 50 },
-      { name: "MIRE", src: "/partners/MIRE.webp", width: 215, height: 30 },
-      { name: "Muslims at Amazon", src: "/partners/MuslimsatAmazon.webp", width: 191, height: 30 },
-      { name: "MTF Finance", src: "/partners/MTF-Finance.webp", width: 168, height: 40 },
-      { name: "Rail", src: "/partners/Rail.webp", width: 195, height: 34 },
-      { name: "Wharf Sisters", src: "/partners/WharfSisters.webp", width: 189, height: 34 },
+      { name: "SMBF", src: "/partners/SMBF.webp", width: 360, height: 124 },
+      { name: "MIPP", src: "/partners/MIPP.webp", width: 200, height: 200 },
+      { name: "MIRE", src: "/partners/MIRE.webp", width: 352, height: 149 },
+      { name: "Muslims at Amazon", src: "/partners/MuslimsatAmazon.webp", width: 123, height: 107 },
+      { name: "MTF Finance", src: "/partners/MTF-Finance.webp", width: 400, height: 170 },
+      { name: "Rail", src: "/partners/Rail.webp", width: 225, height: 225 },
+      { name: "Wharf Sisters", src: "/partners/WharfSisters.webp", width: 298, height: 92 },
     ],
   },
 ];
@@ -169,7 +169,7 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     body: "Join career conferences, hackathons and internship programmes, and use free career guides.",
     points: ["Career guides & resources", "Professional networks", "Faith-conscious support", "Skills workshops"],
     cta: { href: "/programmes", label: "Explore programmes" },
-    photo: { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
+    photo: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
   },
   {
     title: "Professionals",
@@ -181,14 +181,14 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
       { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Join the WhatsApp community", external: true },
     ],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Offer your time", external: true },
-    photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
+    photo: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
   },
   {
     title: "Organisations",
     body: "Partner with IHSAAN to host or sponsor programmes, share opportunities and meet Muslim students and graduates.",
     points: ["Employer access", "Faith-aligned roles", "Mentorship network", "Dedicated programme support"],
     cta: { href: "/contact", label: "Partner with us" },
-    photo: { src: "/media/impact.webp", alt: "Students networking at an IHSAAN event", width: 2560, height: 1430 },
+    photo: { src: "/media/impact-hd.webp", alt: "Students networking at an IHSAAN event", width: 3840, height: 2145 },
   },
 ];
 
@@ -321,7 +321,7 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/gallery/startup-talk.webp", alt: "A speaker presenting a startup talk beside an IHSAAN banner", width: 2000, height: 1500 },
   { src: "/media/gallery/hackathon-mentor.webp", alt: "A mentor leaning in to help a team during the hackathon", width: 2000, height: 1333 },
   { src: "/media/gallery/careers-fair.webp", alt: "A student speaking with an employer at a careers fair", width: 1400, height: 2488 },
-  { src: "/media/gallery/networking-hall.webp", alt: "Students networking in the hall at an IHSAAN career conference", width: 2560, height: 1442 },
+  { src: "/media/gallery/networking-hall.webp", alt: "Students networking in the hall at an IHSAAN career conference", width: 3840, height: 2162 },
   { src: "/media/gallery/hackathon-table.webp", alt: "Three students coding together at a shared hackathon table", width: 2000, height: 1333 },
   { src: "/media/gallery/manchester-foyer.webp", alt: "Students gathering in a University of Manchester foyer", width: 2000, height: 1126 },
   { src: "/media/gallery/hackathon-focus.webp", alt: "A team of three focused on laptops by the windows", width: 2000, height: 1333 },
@@ -338,13 +338,13 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/gallery/careers-fair-hall.webp", alt: "A busy hall of employer stands at an IHSAAN careers fair", width: 1400, height: 1866 },
   { src: "/media/gallery/networking-overhead.webp", alt: "An overhead view of students queuing to meet employers", width: 1400, height: 1866 },
   { src: "/media/gallery/hackathon-hall.webp", alt: "The heritage hall during a hackathon presentation", width: 977, height: 1600 },
-  { src: "/media/photo-collage.webp", alt: "A collage of moments from IHSAAN programmes", width: 1400, height: 1050 },
-  { src: "/media/career-conference.webp", alt: "Audience at an IHSAAN career conference", width: 2560, height: 1442 },
+  { src: "/media/photo-collage-hd.png", alt: "A collage of moments from IHSAAN programmes", width: 1440, height: 1080 },
+  { src: "/media/career-conference-hd.webp", alt: "Audience at an IHSAAN career conference", width: 3840, height: 2162 },
   { src: "/media/hackathon-smiles.webp", alt: "Hackathon participants smiling and giving thumbs up at their table", width: 1280, height: 1600 },
-  { src: "/media/impact.webp", alt: "Students networking at an IHSAAN event", width: 2560, height: 1430 },
-  { src: "/media/faithful-talent.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 1800, height: 1114 },
-  { src: "/media/opp-tracker.webp", alt: "Students working together on a laptop", width: 1600, height: 2168 },
-  { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
-  { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
+  { src: "/media/impact-hd.webp", alt: "Students networking at an IHSAAN event", width: 3840, height: 2145 },
+  { src: "/media/faithful-talent-hd.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 3840, height: 2378 },
+  { src: "/media/opp-tracker-hd.webp", alt: "Students working together on a laptop", width: 2741, height: 3713 },
+  { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
+  { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
   { src: "/media/impact-wide.webp", alt: "A wide view of an IHSAAN programme", width: 2560, height: 900 },
 ];

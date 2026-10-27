@@ -35,7 +35,7 @@ export default function ResourcesPage() {
   return (
     <>
       <PhotoHero
-        image="/media/career-guides.webp"
+        image="/media/career-guides-hd.webp"
         title="Free resources."
         intro={`${CAREER_GUIDES.length} Career Essentials guides and community reflections you can use anytime. Most guides are published on this site.`}
       />

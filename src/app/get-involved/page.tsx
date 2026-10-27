@@ -16,7 +16,7 @@ export default function GetInvolvedPage() {
   return (
     <>
       <PhotoHero
-        image="/media/career-conference.webp"
+        image="/media/career-conference-hd.webp"
         title="Get involved."
         intro="Whether you are a student, a professional or an organisation, there is a concrete step you can take with IHSAAN today."
       />

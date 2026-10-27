@@ -128,7 +128,7 @@ export const WHO_WE_ARE: readonly WhoBeat[] = [
   {
     title: "Grassroots and career-focused",
     body: "IHSAAN is a grassroots organisation helping Muslim students and graduates across the UK and Ireland bridge the gap between university and professional life.",
-    photo: { src: "/media/faithful-talent.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 1800, height: 1114 },
+    photo: { src: "/media/faithful-talent-hd.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 3840, height: 2378 },
   },
   {
     title: "Programmes built around people",

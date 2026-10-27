@@ -36,8 +36,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Large-scale events connecting Muslim students with leading employers, role models and career pathways.",
     headline: "Meet the employers who want you.",
     intro: "Connecting Muslim students with leading employers, role models and career pathways across the UK and Ireland.",
-    image: "/media/career-conference.webp",
-    photo: { src: "/media/career-conferences.webp", alt: "Students at an IHSAAN career conference", width: 1800, height: 1536 },
+    image: "/media/career-conference-hd.webp",
+    photo: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
     about: [
       "Our career conferences are the IHSAAN flagship programme: large-scale, professionally organised events that bring Muslim students face to face with employers, industry leaders and successful professionals.",
       "Held at universities and venues across the UK and Ireland, they give students the chance to explore career paths, attend skills workshops and build the networks that will shape their futures.",
@@ -83,12 +83,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "Internships built with you in mind.",
     intro:
       "Not every opportunity is built with Muslim students in mind. That is why we built the IHSAAN Summer Internship Programme for 2026.",
-    image: "/media/faithful-talent.webp",
+    image: "/media/faithful-talent-hd.webp",
     photo: {
-      src: "/media/faithful-talent.webp",
+      src: "/media/faithful-talent-hd.webp",
       alt: "Students listening to speakers at an informal IHSAAN session",
-      width: 1800,
-      height: 1114,
+      width: 3840,
+      height: 2378,
     },
     about: [
       "The IHSAAN Summer Internship Programme offers faith-aligned opportunities across a range of industries, connecting Muslim students to companies where they can grow without compromising their values.",
@@ -244,8 +244,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "My Muslim Mentor pairs students with professionals in their field for 1:1 mentorship.",
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
-    image: "/media/mmm.webp",
-    photo: { src: "/media/mmm.webp", alt: "My Muslim Mentor stickers on a purple table", width: 1500, height: 2524 },
+    image: "/media/mmm-hd.webp",
+    photo: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
     about: [
       "Our mentorship programmes connect working professionals with Muslim students who are navigating their career journeys.",
       "Professionals share their experience, open doors and help shape the next generation of leaders. Students get guidance from someone who has been where they want to go.",

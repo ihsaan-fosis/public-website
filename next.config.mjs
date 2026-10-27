@@ -10,7 +10,12 @@ const TALLY_ORIGIN = "https://tally.so";
 const nextConfig = {
   reactStrictMode: true,
   // Photographs go through next/image; only first-party files under /public/media may be optimised.
-  images: { localPatterns: [{ pathname: "/media/**", search: "" }] },
+  images: {
+    localPatterns: [{ pathname: "/media/**", search: "" }],
+    qualities: [75, 85],
+    // Next's default tops out at 3840, which sends a full-bleed hero at 0.9 MB to any 2x laptop. 2560 stays sharp for a hero.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2560],
+  },
   async redirects() {
     return [
       // OpenNext leaves `:path*` unsubstituted when it matches nothing, so the bare root needs its own rule.
