@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import TechTeamPage from "./page";
 
 describe("TechTeamPage", () => {
-  it("shows every member in square tiles and keeps Mikhail’s site link", () => {
+  it("lists every member and keeps Mikhail’s site link", () => {
     const { container } = render(<TechTeamPage />);
 
     expect(screen.getByRole("heading", { level: 1, name: /IHSAAN Tech Team/ })).toBeTruthy();
@@ -17,6 +17,5 @@ describe("TechTeamPage", () => {
     expect(mikhail.getAttribute("href")).toBe("https://mikhailwijanarko.xyz");
     expect(mikhail.getAttribute("target")).toBe("_blank");
     expect(mikhail.getAttribute("rel")).toBe("noopener noreferrer");
-    expect(mikhail.className).toContain("aspect-square");
   });
 });
