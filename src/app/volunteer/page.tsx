@@ -20,7 +20,7 @@ export default function VolunteerOpeningsPage() {
         title="Volunteer with IHSAAN."
         intro={VOLUNTEER_INTRO.unpaidNote}
       >
-        <ButtonLink href="#openings">View open roles</ButtonLink>
+        <ButtonLink href="#openings" tone="white">View open roles</ButtonLink>
       </PhotoHero>
 
       <Section id="openings" labelledBy="openings-title" className="scroll-mt-24">

@@ -10,7 +10,7 @@ export function NotFoundContent() {
       intro="The link may be out of date, or the page may have moved."
     >
       <div className="flex flex-wrap gap-3">
-        <ButtonLink href="/">Back to home</ButtonLink>
+        <ButtonLink href="/" tone="white">Back to home</ButtonLink>
         <ButtonLink href="/contact" tone="light-outline">
           Contact us
         </ButtonLink>

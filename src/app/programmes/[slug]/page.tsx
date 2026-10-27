@@ -34,7 +34,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
     <>
       <PhotoHero image={page.image} title={page.headline} intro={page.intro}>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={page.primary.href} external={page.primary.external}>
+          <ButtonLink href={page.primary.href} external={page.primary.external} tone="white">
             {page.primary.label}
           </ButtonLink>
           {page.secondary ? (

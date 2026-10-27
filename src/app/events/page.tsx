@@ -30,7 +30,7 @@ export default function EventsPage() {
         title="Events."
         intro="Career conferences and student-led academies across the UK and Ireland. Each event opens on Luma, where registration, approval and joining details are managed."
       >
-        <ButtonLink href={PUBLIC_DESTINATIONS.eventsCalendar.href} external>
+        <ButtonLink href={PUBLIC_DESTINATIONS.eventsCalendar.href} external tone="white">
           View the full IHSAAN calendar
         </ButtonLink>
       </PhotoHero>

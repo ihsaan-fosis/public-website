@@ -29,7 +29,7 @@ export default function ImpactPage() {
         intro="Closing the gap from education to employment. About 4,000 Muslim students engaged in two years, and a model built to compound."
       >
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact">Partner with us</ButtonLink>
+          <ButtonLink href="/contact" tone="white">Partner with us</ButtonLink>
           <ButtonLink href="/programmes" tone="light-outline">
             Our programmes
           </ButtonLink>
