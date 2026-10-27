@@ -44,10 +44,21 @@ export function revealDelay(index: number): CSSProperties {
   return style;
 }
 
-export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+export function Eyebrow({
+  children,
+  className,
+  dot = true,
+}: {
+  children: ReactNode;
+  className?: string;
+  /** Purple accent dot. Off in the footer so column labels stay text-only. */
+  dot?: boolean;
+}) {
   return (
     <p className={cn("flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] text-ink/65 uppercase", className)}>
-      <span aria-hidden className="size-1.5 rounded-full bg-gradient-to-br from-ihsaan-purple to-ihsaan-light-blue" />
+      {dot ? (
+        <span aria-hidden className="size-1.5 rounded-full bg-gradient-to-br from-ihsaan-purple to-ihsaan-light-blue" />
+      ) : null}
       {children}
     </p>
   );

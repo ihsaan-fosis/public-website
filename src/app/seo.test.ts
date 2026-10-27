@@ -22,6 +22,7 @@ describe("technical SEO routes", () => {
     expect(urls).not.toContain(`${ORIGIN}/resources/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
+    expect(urls).toContain(`${ORIGIN}/tech-team`);
     expect(urls).not.toContain(`${ORIGIN}/mentoring`);
     expect(urls).not.toContain(`${ORIGIN}/haqqathons`);
     expect(urls).not.toContain(`${ORIGIN}/404`);
@@ -46,6 +47,7 @@ describe("llms.txt", () => {
     expect(body).toContain("- [/resources/intentions-behind-a-career](/resources/intentions-behind-a-career)");
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
+    expect(body).toContain("- [/tech-team](/tech-team) IHSAAN Tech Team");
     expect(body).not.toContain("/mentoring");
     expect(body).not.toContain("/haqqathons");
     expect(body).toContain("Faith. Excellence. Service.");
@@ -72,6 +74,7 @@ describe("page metadata", () => {
     ["/gallery", () => import("./gallery/page")],
     ["/get-involved", () => import("./get-involved/page")],
     ["/volunteer", () => import("./volunteer/page")],
+    ["/tech-team", () => import("./tech-team/page")],
     ["/programmes", () => import("./programmes/page")],
     ["/privacy", () => import("./privacy/page")],
     ["/terms", () => import("./terms/page")],

@@ -7,7 +7,7 @@ import { Container, Eyebrow } from "./ui";
 function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div>
-      <Eyebrow>{title}</Eyebrow>
+      <Eyebrow dot={false}>{title}</Eyebrow>
       <ul className="mt-2 grid grid-cols-2 gap-x-6 text-sm text-ink/75 sm:mt-4 sm:grid-cols-1 sm:gap-y-2.5">{children}</ul>
     </div>
   );
@@ -72,7 +72,7 @@ export function SiteFooter() {
             ))}
           </FooterColumn>
           <div>
-            <Eyebrow>Follow</Eyebrow>
+            <Eyebrow dot={false}>Follow</Eyebrow>
             <ul className="mt-4 flex items-center gap-4 text-ink/75 max-sm:-mx-3 max-sm:mt-1 max-sm:gap-0">
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.href}>
@@ -97,14 +97,9 @@ export function SiteFooter() {
         <div className="flex flex-col gap-3 text-xs text-ink/65 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} IHSAAN. All rights reserved. Made by{" "}
-            <a
-              href="https://mikhailwijanarko.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-ink"
-            >
-              @mikhailbuilds
-            </a>
+            <Link href="/tech-team" className="font-medium text-ink underline underline-offset-4">
+              IHSAAN Tech Team
+            </Link>
           </p>
           <div className="flex items-center gap-6 max-sm:flex-wrap max-sm:gap-y-0">
             <nav aria-label="Legal" className="flex gap-6">

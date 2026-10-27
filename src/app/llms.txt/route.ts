@@ -25,6 +25,7 @@ ${guideLines}
 - [/contact](/contact) Contact
 - [/get-involved](/get-involved) Get involved
 - [/volunteer](/volunteer) Volunteer openings
+- [/tech-team](/tech-team) IHSAAN Tech Team
 - [/privacy](/privacy) Privacy policy
 - [/terms](/terms) Terms and conditions
 
