@@ -33,7 +33,7 @@ function OfferSlide({ offer, index }: { offer: Offer; index: number }) {
             className="object-cover transition-transform duration-[1200ms] ease-out md:group-hover:scale-110"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60 max-md:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-t from-night/95 via-night/60 to-night/10 max-md:hidden" />
         <span
           aria-hidden
           className="col-start-2 self-end text-xs tracking-[0.14em] text-ink/45 md:absolute md:top-4 md:right-6 md:text-[7.5rem] md:leading-none md:font-extrabold md:tracking-[-0.06em] md:text-cream/20 md:transition-colors md:duration-700 md:group-hover:text-cream/40"
@@ -126,7 +126,7 @@ export function ImpactStory() {
           />
           <div
             aria-hidden
-            className="why-reveal-shade absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.6)_0%,rgba(6,22,41,0.2)_40%,rgba(6,22,41,0.92)_100%),radial-gradient(60%_60%_at_0%_100%,rgba(101,64,138,0.6),transparent_70%)]"
+            className="why-reveal-shade absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.6)_0%,rgba(6,22,41,0.2)_40%,rgba(6,22,41,0.92)_100%)]"
           />
           <div aria-hidden className="why-reveal-logo absolute inset-0 z-10 items-center justify-center bg-ihsaan-blue">
             <img
@@ -241,7 +241,7 @@ export function InvolvementPanels() {
               sizes="(min-width: 1280px) 416px, (min-width: 1024px) 31vw, 100vw"
               className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/70 to-night/10 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/70 to-night/10" />
             <span
               aria-hidden
               className="absolute top-4 right-6 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40"
@@ -435,10 +435,6 @@ export function PhotoBand({
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)] lg:bg-[radial-gradient(55%_60%_at_10%_100%,rgba(101,64,138,0.55),transparent_70%)]"
         />
         <div className="flex w-full flex-col justify-end px-5 pt-[24svh] pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
           {children}

@@ -248,10 +248,6 @@ export function PhotoHero({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_90%_100%,rgba(101,64,138,0.55),transparent_70%)] lg:bg-[radial-gradient(55%_60%_at_10%_100%,rgba(101,64,138,0.55),transparent_70%)]"
-        />
         <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
           <h1 aria-label={title} className="hero-title-editorial hero-title-photo lg:max-w-6xl lg:text-balance leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
             {words.map((word, index) => {

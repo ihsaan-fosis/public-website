@@ -60,7 +60,7 @@ function PhotoTile({
           sizes="(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw"
           className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/55 to-night/5 transition-colors duration-700 group-hover:via-ihsaan-purple/60" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/55 to-night/5" />
         <span
           aria-hidden
           className="absolute top-3 right-5 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40"
