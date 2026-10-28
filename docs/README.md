@@ -1,40 +1,38 @@
 # Team documentation
 
-Start with the [repository README](../README.md) for local setup and environment
-variables. Read [CONTRIBUTING.md](CONTRIBUTING.md) before you submit a change.
-Contributors use their own GitHub account and commit identity. Maintainers own
-merges, production secrets, and releases.
+This index lists the shared guides for the IHSAAN public website.
+The [main README](../README.md) contains the local setup procedure.
 
-## Current project guidance
+## Setup and contribution
 
-- [Product context](context.md) defines the audience, public-site scope, domain,
-  and member-portal boundary.
-- [Codebase map](CODEBASE_MAP.md) maps current routes, content modules, shared
-  components, and verification commands.
-- [Design system](IHSAAN-DESIGN.md) records the brand guide and the public
-  website's design language. Section 9 applies to public pages. The document
-  marks unresolved brand-source conflicts and product-level additions.
-- [Agent instructions](../AGENTS.md) define repository conventions. The account,
-  hosting, and team-author sections apply only to authorized maintainers.
+| Document | Purpose |
+| --- | --- |
+| [Local setup](../README.md) | Install the site and configure the local contact challenge. |
+| [Contributor guide](CONTRIBUTING.md) | Prepare, verify, and submit a pull request using your own account. |
+| [Environment reference](ENVIRONMENT.md) | Look up variables, defaults, file order, and test keys. |
+| [Agent rules](../AGENTS.md) | Follow repository rules and distinguish contributor actions from maintainer operations. |
 
-## Security follow-ups
+## Product and implementation
 
-The security audit is retained because it records unresolved follow-ups. It does
-not establish current deployment status or passing checks.
+| Document | Purpose |
+| --- | --- |
+| [Product context](context.md) | Understand the audience, scope, and separation from the member portal. |
+| [Codebase map](CODEBASE_MAP.md) | Locate routes, modules, package scripts, and configuration. |
+| [Design reference](IHSAAN-DESIGN.md) | Look up brand values and the public website's component rules. Section 9 applies to public pages. |
 
-- [Security audit](SECURITY-AUDIT.md) records the 21 October 2026 findings,
-  verification limits, and operational follow-ups. Recheck advisories and the
-  affected flows before a release.
+## Releases and security
 
-## Maintain the documentation
+| Document | Purpose |
+| --- | --- |
+| [Maintainer procedures](MAINTAINERS.md) | Configure and verify an authorized Worker release. |
+| [Security audit](SECURITY-AUDIT.md) | Review the 21 October 2026 findings and unresolved follow-ups. The report is not current verification. |
 
-Update the relevant guide in the same PR as a command, variable, route, or
-workflow change. Check relative links and commands against the checkout. Keep
-historical results dated rather than presenting them as new verification.
+## Documentation sources
 
-Keep personal accounts, absolute machine paths, private session identifiers,
-credentials, and local logs out of shared docs. Team contact addresses and
-approved organisation copy are separate from personal development details.
+`docs/` is tracked in Git. Current website copy and external destinations live
+in `src/content/`. Historical plans and duplicate source copy are not current
+project guidance.
 
-The `docs/` directory is tracked. `.claude/`, `.pstack/`, `.ui-quality/`, and
-`.papercuts.jsonl` are local agent state and are ignored. Do not force-add them.
+`.claude/`, `.pstack/`, `.ui-quality/`, and `.papercuts.jsonl` are ignored local
+state. Shared documentation excludes personal development accounts, absolute
+machine paths, private session identifiers, credentials, and local logs.

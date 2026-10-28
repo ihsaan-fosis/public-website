@@ -1,97 +1,109 @@
-# Agent Instructions
+# Follow the repository rules
 
-## Project
+This repository contains the IHSAAN public website at `https://ihsaan.network`.
+The private member portal lives in `ihsaan-fosis/member-platform`.
+Read the [product context](docs/context.md) for the boundary between them.
 
-IHSAAN public website (`ihsaan.network`), built with Next.js 16, React 19, TypeScript, Tailwind CSS 4, Vitest, and Bun.
+## Follow the contributor workflow
 
-Official domain: `https://ihsaan.network`
-
-Related private repo: `ihsaan-fosis/member-platform` (member portal). This repo is the public marketing / content site only.
-
-## Contributors
-
-Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before making changes. Use your own
-GitHub account and commit identity. Submit changes through a topic branch and
+Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before you change files.
+Use your own GitHub account and commit identity. Submit a topic branch through
 a pull request to `main`. Do not deploy.
 
-The **GitHub account**, **Hosting and deploy**, and **Git commit author** sections
-below apply only to authorized maintainer operations. Contributors and their
-coding agents must ignore those sections and follow `docs/CONTRIBUTING.md` instead.
-The remaining project instructions apply to everyone.
+The following sections apply only to authorized maintainer operations:
+
+- **GitHub account**.
+- **Hosting and deploy**.
+- **Git commit author**.
+
+Contributors and their coding agents must ignore those sections.
+Follow the remaining rules and the contributor guide instead.
 
 ## GitHub account
 
-Maintainers only. Use the **`ihsaan-fosis`** GitHub CLI profile for authorized
-maintainer Git and `gh` operations in this repository.
+Maintainers only. Use `ihsaan-fosis` for authorized maintainer Git and `gh`
+operations in `ihsaan-fosis/public-website`.
+
+Before remote Git operations, select and check the account:
 
 ```bash
-gh auth switch --user ihsaan-fosis
-gh api user --jq .login   # must print ihsaan-fosis
+gh auth switch --hostname github.com --user ihsaan-fosis
+gh api --hostname github.com user --jq .login
 ```
 
-- Remote owner: `ihsaan-fosis/public-website`
-- Do not perform maintainer operations under another logged-in account
-- Before remote git operations, confirm the active account matches `ihsaan-fosis`
+The login must be `ihsaan-fosis`. Do not continue under another account.
 
 ## Hosting and deploy
 
-Maintainers only. The repository targets **Cloudflare Workers** via OpenNext
-(`@opennextjs/cloudflare`). Deployment requires separate authorization.
+Maintainers only. Follow [the release procedure](docs/MAINTAINERS.md) for
+approved secret changes and deployments. Deployment requires separate approval.
 
-- Config: `wrangler.jsonc`. Its `routes` array is currently empty, so this Worker
-  does not attach `ihsaan.network` or `www.ihsaan.network` through that config.
-  Confirm the active hosting and DNS setup before a release. Do not infer live
-  hosting from the build target.
-- Deploy: `bun run deploy` (`opennextjs-cloudflare build && opennextjs-cloudflare deploy`)
-- Preview: `bun run preview`
-- Contact secrets: use the project Wrangler CLI to set `RESEND_API_KEY` and
-  `TURNSTILE_SECRET_KEY` on the intended Worker. See [README.md](README.md#maintainer-operations).
-- A git push alone does not ship; deploy is explicit through Wrangler/OpenNext
+Confirm the active hosting and DNS before a release. `wrangler.jsonc` targets
+Cloudflare Workers through OpenNext, but its `routes` array is empty.
+The Worker configuration attaches neither the apex nor the `www` domain.
+Do not infer live hosting from the build target.
+
+Use `bun run preview` for the local Worker preview.
+Use `bun run deploy` only for an approved build and deployment.
+A Git push does not run that command.
 
 ## Git commit author
 
-Maintainers only. Use the team identity for authorized maintainer commits.
-Contributors keep their own identity.
+Maintainers only. Set the repository-local team identity before maintainer commits:
 
 ```bash
 git config --local user.name "techihsaan"
 git config --local user.email "tech.ihsaan@fosis.org.uk"
 ```
 
-- Author and committer must be `techihsaan <tech.ihsaan@fosis.org.uk>`
-- Confirm before commit: `git config --local --get user.email` prints `tech.ihsaan@fosis.org.uk`
-- Confirm after commit: `git log -1` shows the team author, not a machine-local identity
-- If HEAD was pushed with the wrong author, fix with a new commit under the team identity (or rewrite only when explicitly approved). Do not assume `gh auth switch` sets git author
+Check the effective author and committer before a commit:
 
-## Working Guidelines
+```bash
+git var GIT_AUTHOR_IDENT
+git var GIT_COMMITTER_IDENT
+```
 
-- Keep changes small and limited to the requested scope.
-- Follow existing patterns in `src/` before introducing new abstractions or dependencies.
-- Use **Bun** for package management and project commands (`bun install`, `bun add`, `bun run …`). Do not use npm or yarn.
-- Never commit secrets. Use `.env.local` for local environment values.
-- Preserve unrelated worktree changes.
-- Keep local agent state out of Git. `.claude/`, `.pstack/`, `.ui-quality/`, and
-  `.papercuts.jsonl` are ignored. Shared documentation belongs in tracked `docs/`.
-- Production canonical URL is `https://ihsaan.network`. Keep `NEXT_PUBLIC_APP_URL` and metadata aligned with that domain (use `http://localhost:3000` only for local dev).
+Both identities must be `techihsaan <tech.ihsaan@fosis.org.uk>`.
+After the commit, check the author with `git log -1`.
+If a pushed commit has the wrong author, use the team identity for new commits.
+Do not rewrite existing commits without explicit approval.
+`gh auth switch` does not set the Git author.
+Contributors keep their own identity.
 
-## Commands
+## Keep changes within scope
 
-- `bun install` installs dependencies.
-- `bun run dev` starts the local development server on port 3000.
-- `bun run test:run` runs the test suite once.
-- `bun run build` creates a production build.
-- `bun run deploy` builds with OpenNext and deploys to Cloudflare Workers.
-- `bun run preview` builds and previews the Worker locally.
-- `bun run lint` runs Oxlint (includes anti-slop rules).
+Follow these rules for each change:
 
-## Verification
+- Change only the requested behavior. Keep unrelated worktree edits intact.
+- Follow existing patterns in `src/` before you add dependencies or abstractions.
+- Use Bun for dependencies and project commands. Do not use npm or Yarn.
+- Keep secrets out of Git. Use local environment files for local values.
+- Put shared documentation in `docs/`. Keep only the main `README.md` and this
+  file at the repository root.
+- Keep `.claude/`, `.pstack/`, `.ui-quality/`, and `.papercuts.jsonl` out of Git.
+  These paths are ignored local state.
+- Keep production metadata on `https://ihsaan.network`.
+  Use `http://localhost:3000` only for local development.
 
-Run the narrowest relevant test first. Before finishing, review `git diff` and confirm every changed line belongs to the request.
+## Verify the requested behavior
 
-Prefer E2E coverage for behavior changes. Use integration coverage when E2E is
-disproportionate or cannot reach the affected behavior, and explain why. Do not
-add unit tests. Existing unit tests may be run as supporting checks.
+Run the narrowest relevant check first. Follow the
+[verification procedure](docs/CONTRIBUTING.md#verify-the-change).
+Use the existing [package scripts](docs/CODEBASE_MAP.md#package-scripts).
+Before you finish, review `git diff` and confirm that each changed line belongs
+to the request.
 
-## Project References
+Prefer E2E coverage for behavior changes. If E2E is disproportionate or cannot
+reach the behavior, use integration coverage and state why.
+Do not add unit tests. Existing unit tests can support other verification.
 
-Read `README.md`, `docs/context.md`, `docs/CODEBASE_MAP.md`, and `docs/IHSAAN-DESIGN.md` before making architectural, product, or UI decisions. Match visual work to `docs/IHSAAN-DESIGN.md`.
+## Read the relevant guides
+
+Before architectural, product, or UI decisions, read these documents:
+
+- [Local setup](README.md).
+- [Product context](docs/context.md).
+- [Codebase map](docs/CODEBASE_MAP.md).
+- [Design reference](docs/IHSAAN-DESIGN.md).
+
+Match visual work to the public website rules in section 9 of the design reference.

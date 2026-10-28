@@ -1,51 +1,51 @@
 # Contribute to the IHSAAN public website
 
-Submit changes through pull requests to `main` in
+Submit pull requests to `main` in
 [`ihsaan-fosis/public-website`](https://github.com/ihsaan-fosis/public-website).
-Do not push contributions directly to `main`. Maintainers review and merge PRs
-and handle production deployment.
+Do not push contributions directly to `main`.
+Maintainers review and merge PRs and handle deployment.
 
-## Use your own account and commit identity
+## Use your own account and identity
 
-The following sections in [AGENTS.md](../AGENTS.md) are for maintainers only.
-Ignore them when you contribute, including when you use a coding agent:
+Use your own GitHub account, Git name, and email address.
+Ignore these maintainer-only sections of [AGENTS.md](../AGENTS.md), including
+when you use a coding agent:
 
-- **GitHub account**: Use your own GitHub account. Do not switch to
-  `ihsaan-fosis` or request shared account credentials.
-- **Hosting and deploy**: Do not deploy the site, change production secrets, or
-  run `bun run deploy`. Submit a PR instead.
-- **Git commit author**: Use your own Git name and email. Do not set your commit
-  author to `techihsaan <tech.ihsaan@fosis.org.uk>`.
+- **GitHub account**. Do not switch to `ihsaan-fosis` or request shared credentials.
+- **Hosting and deploy**. Do not deploy, change production secrets, or run
+  `bun run deploy`. Submit a PR instead.
+- **Git commit author**. Do not use `techihsaan <tech.ihsaan@fosis.org.uk>` as
+  your commit identity.
 
-The same maintainer-only account, author, and deployment instructions in
-[README.md](../README.md) do not apply to contributors. Follow the remaining
-project instructions in `AGENTS.md`.
+Follow the remaining agent rules. The same account, author, and deployment
+exceptions apply to [maintainer procedures](MAINTAINERS.md).
 
-## Prepare your changes
+## Prepare the change
 
-1. Read the [setup instructions](../README.md#setup),
-   [product context](context.md), and [codebase map](CODEBASE_MAP.md).
-   For UI changes, also read the [design system](IHSAAN-DESIGN.md).
-2. Create a topic branch from the latest `main`, such as
-   `docs/contributing` or `fix/contact-form`. If you lack branch access, use a
-   fork if repository permissions allow it, or ask a maintainer for access.
-3. Use Bun for package management and project commands. Follow the existing
-   patterns in `src/` before you add dependencies or abstractions.
-4. Keep the change focused on one problem. Discuss large features or
-   architectural changes with a maintainer before implementation.
-5. Keep secrets, credentials, `.env.local`, build output, and unrelated edits
-   out of your commits. Never request or copy production secrets for local use.
+1. Follow the [local setup guide](../README.md#set-up-the-site).
+2. Read the [product context](context.md) and [codebase map](CODEBASE_MAP.md).
+3. For UI changes, read the [design reference](IHSAAN-DESIGN.md).
+4. Create a topic branch from the latest `main`, such as `docs/contributing`
+   or `fix/contact-form`.
+5. Keep the change focused on one problem.
 
-Shared documentation in `docs/` is tracked. Local agent state in `.claude/`,
-`.pstack/`, `.ui-quality/`, and `.papercuts.jsonl` is ignored. Do not force-add it
-or copy personal accounts, absolute machine paths, or session records into docs.
-See the [environment guide](../README.md#environment) before you test the contact
-form. A configured Resend key can send real email.
+If you lack branch access, use a fork when repository permissions allow it.
+Otherwise, ask a maintainer for access. Discuss large features and architectural
+changes before implementation.
+
+Use Bun for dependencies and project commands. Follow existing patterns in
+`src/` before you add dependencies or abstractions.
+
+Keep secrets, local environment files, build output, and unrelated edits out of
+your commits. Do not request production secrets for local work.
+Before you test the contact form, read the [environment reference](ENVIRONMENT.md).
+A configured Resend key can send real email.
 
 ## Verify the change
 
-For code changes, run the narrowest relevant check first, then the project
-checks before you request review:
+For code changes, run the narrowest relevant check first.
+Stop the development server before the production build.
+Run the project checks sequentially in one checkout before you request review:
 
 ```bash
 bun run lint
@@ -53,32 +53,41 @@ bun run test:run
 bun run build
 ```
 
-Stop the development server before the production build. Run these commands
-sequentially in the same checkout.
+For HTTP integration checks, start the local server in a separate terminal.
+Run the suite against that server:
 
-For running-app integration checks, start the local server separately, then run
-`BASE_URL=http://localhost:3000 bun run test:integration`. Stop the server before
-the build. The focused contact security suite can run without a server through
-`bun run test:integration tests/integration/contact-security.spec.ts`.
+```bash
+BASE_URL=http://localhost:3000 bun run test:integration
+```
 
-Reproduce the affected user flow and confirm the result. For bug fixes, provide
-before-and-after evidence from the same reproduction. Prefer E2E regression
-coverage. Use integration coverage when E2E is disproportionate or cannot reach
-the affected behavior, and explain why. Do not add unit tests.
+The focused contact security suite needs no running server:
 
-For UI changes, check desktop and mobile layouts and attach screenshots of the
-affected states. If the PR changes an interaction, also describe the steps you
-used to verify it. A screenshot alone does not prove that an interaction works.
+```bash
+bun run test:integration tests/integration/contact-security.spec.ts
+```
 
-For documentation-only changes, check the commands, links, and rendered text.
-State when application checks are not applicable. Report any failed or skipped
-check and its reason. Do not claim a check passed unless you ran it.
-Run `git diff --check` before you commit.
+Match the evidence to the change:
 
-## Write focused commits and PRs
+- Reproduce the affected user flow and confirm the result.
+- For a bug fix, show the same reproduction before and after the fix.
+- Prefer end-to-end (E2E) regression coverage. If E2E is disproportionate or
+  cannot reach the behavior, use integration coverage and explain why.
+  Do not add unit tests.
+- For UI changes, check desktop and mobile layouts. Attach screenshots of the
+  affected states. For interactions, include the steps and assertions as well.
+  A screenshot alone does not prove that an interaction works.
+- For documentation changes, check commands, links, and rendered text.
+  Explain when application checks do not apply.
 
-Keep commits small and complete. Separate unrelated changes so that reviewers
-can assess each problem without unrelated formatting or refactors.
+Report failed or skipped checks and their reasons.
+Claim a pass only for checks you ran.
+Before you commit, run `git diff --check` and review the full diff.
+
+## Write focused commits
+
+Keep each commit complete and limited to one problem.
+Separate unrelated changes, formatting, and refactors.
+Remove accidental edits, unused code, and comments that repeat the code.
 
 Use Conventional Commit titles for commits and PRs:
 
@@ -88,45 +97,56 @@ type(scope): short imperative subject
 
 Use `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf` as the type.
 Name the changed area in the scope. For example,
-`docs(contributing): explain the contributor PR workflow`. Do not add a trailing
-period.
-
-Before you open a PR, review the full diff and remove accidental changes,
-unused code, and comments that repeat the code. Keep the title and description
-plain and specific.
+`docs(contributing): explain the contributor PR workflow`.
+Do not add a trailing period.
 
 ## Open a pull request
 
-Push your topic branch and open a PR against `main`. Open the PR ready for
-review after verification. Link a related issue when one exists.
+1. Push your topic branch.
+2. Open a PR against `main` after verification.
+3. Link the related issue, if one exists.
+4. Describe the change using the template below.
 
-Keep the description short enough to read in under a minute. Use the following
-headings in order. Always include scope and verification. Omit other sections
-when they add no information.
+Keep the description short enough to read in under a minute.
+Always include scope and verification. Omit other sections when they add no
+information. Keep the remaining headings in the template's order.
 
 ```markdown
 ## Why
-Describe the problem and your approach in one to three sentences.
+State the problem and approach in one to three sentences.
 
 ## What changed
 - Summarize the main changes in one to three bullets.
 
 ## Scope
-- State what this PR covers and what it deliberately leaves out.
+- State what the PR includes and deliberately excludes.
 
 ## Tradeoffs
-Explain a rejected alternative only when reviewers need that context.
+Explain a rejected alternative when reviewers need the context.
 
-## Blast Radius
-Name the affected users or behavior and any compatibility or deployment risks.
+## Blast radius
+Name the affected users, behavior, and compatibility or deployment risks.
 
 ## Verification
-- Name each check you ran and its result, or explain why you skipped it.
+- Name each check and result. Explain any skipped check.
 ```
 
-Attach screenshots or other evidence when they support a claim. Link long logs
-instead of pasting them into the description. Redact secrets and personal data.
+Attach screenshots or other evidence when they support a claim.
+Link long logs instead of pasting them. Redact secrets and personal data.
 
-Address review feedback with focused follow-up commits. Keep the PR description
-and verification results current. Do not force-push a shared branch without
-agreement from its collaborators. Leave the merge and deployment to maintainers.
+## Address review feedback
+
+Make focused follow-up commits. Keep the PR description and verification
+results current. Do not force-push a shared branch without agreement from its
+collaborators. Leave the merge and deployment to maintainers.
+
+## Maintain shared documentation
+
+Update the relevant guide when a command, variable, route, or workflow changes.
+Check relative links against the checkout. Keep historical results dated.
+Do not present old results as current verification.
+
+Keep shared Markdown files in `docs/`, except the root `README.md` and `AGENTS.md`.
+Do not force-add `.claude/`, `.pstack/`, `.ui-quality/`, or `.papercuts.jsonl`.
+Keep personal accounts, absolute machine paths, private session records, and
+credentials out of shared documentation.
