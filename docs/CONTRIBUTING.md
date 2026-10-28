@@ -7,7 +7,7 @@ and handle production deployment.
 
 ## Use your own account and commit identity
 
-The following sections in [AGENTS.md](AGENTS.md) are for maintainers only.
+The following sections in [AGENTS.md](../AGENTS.md) are for maintainers only.
 Ignore them when you contribute, including when you use a coding agent:
 
 - **GitHub account**: Use your own GitHub account. Do not switch to
@@ -18,14 +18,14 @@ Ignore them when you contribute, including when you use a coding agent:
   author to `techihsaan <tech.ihsaan@fosis.org.uk>`.
 
 The same maintainer-only account, author, and deployment instructions in
-[README.md](README.md) do not apply to contributors. Follow the remaining
+[README.md](../README.md) do not apply to contributors. Follow the remaining
 project instructions in `AGENTS.md`.
 
 ## Prepare your changes
 
-1. Read the [setup instructions](README.md#setup),
-   [product context](docs/context.md), and [codebase map](docs/CODEBASE_MAP.md).
-   For UI changes, also read the [design system](docs/IHSAAN-DESIGN.md).
+1. Read the [setup instructions](../README.md#setup),
+   [product context](context.md), and [codebase map](CODEBASE_MAP.md).
+   For UI changes, also read the [design system](IHSAAN-DESIGN.md).
 2. Create a topic branch from the latest `main`, such as
    `docs/contributing` or `fix/contact-form`. If you lack branch access, use a
    fork if repository permissions allow it, or ask a maintainer for access.
@@ -39,7 +39,7 @@ project instructions in `AGENTS.md`.
 Shared documentation in `docs/` is tracked. Local agent state in `.claude/`,
 `.pstack/`, `.ui-quality/`, and `.papercuts.jsonl` is ignored. Do not force-add it
 or copy personal accounts, absolute machine paths, or session records into docs.
-See the [environment guide](README.md#environment) before you test the contact
+See the [environment guide](../README.md#environment) before you test the contact
 form. A configured Resend key can send real email.
 
 ## Verify the change

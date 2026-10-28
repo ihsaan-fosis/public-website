@@ -59,5 +59,5 @@ part of routine verification.
 
 See the [source inventory](LINKTREE-INVENTORY.md) and the
 [historical integration plan](LINKTREE-INTEGRATION-PLAN.md) for the original
-research. Use [CONTRIBUTING.md](../CONTRIBUTING.md) for current delivery and
+research. Use [CONTRIBUTING.md](CONTRIBUTING.md) for current delivery and
 verification requirements.

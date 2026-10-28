@@ -10,13 +10,13 @@ Related private repo: `ihsaan-fosis/member-platform` (member portal). This repo 
 
 ## Contributors
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before making changes. Use your own
+Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before making changes. Use your own
 GitHub account and commit identity. Submit changes through a topic branch and
 a pull request to `main`. Do not deploy.
 
 The **GitHub account**, **Hosting and deploy**, and **Git commit author** sections
 below apply only to authorized maintainer operations. Contributors and their
-coding agents must ignore those sections and follow `CONTRIBUTING.md` instead.
+coding agents must ignore those sections and follow `docs/CONTRIBUTING.md` instead.
 The remaining project instructions apply to everyone.
 
 ## GitHub account

@@ -5,7 +5,7 @@ It is not a current staff directory or a verification of the cited claims.
 Confirm names, roles, statistics, and quotations with the team before publishing
 new copy. Current website content lives in `src/content/`.
 For product scope and contribution rules, use [context.md](context.md) and
-[CONTRIBUTING.md](../CONTRIBUTING.md).
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Supplied narrative
 

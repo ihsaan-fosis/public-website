@@ -7,7 +7,7 @@ The member portal is a separate application.
 
 ## Contribute
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) for the branch workflow, PR guidelines,
+Read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for the branch workflow, PR guidelines,
 verification requirements, and review process. Use your own GitHub account and
 commit identity. Submit a pull request to `main`; do not push directly to `main`
 or deploy. The maintainer-only account, author, and deployment rules in
@@ -91,15 +91,16 @@ template. Next.js manages `NODE_ENV`; do not set it manually.
 Run lint and tests before a build. Stop the development server before a
 production build, and run builds and checks sequentially in one checkout.
 Application checks support, but do not replace, verification of the affected
-user flow. See [CONTRIBUTING.md](CONTRIBUTING.md#verify-the-change).
+user flow. See [CONTRIBUTING.md](docs/CONTRIBUTING.md#verify-the-change).
 
 ## Project structure
 
 ```
 ihsaan-public-website/
 ├── AGENTS.md
-├── CONTRIBUTING.md
 ├── docs/
+│   ├── CONTRIBUTING.md       # Contributor workflow and PR guidelines
+│   ├── SECURITY-AUDIT.md     # Historical security audit
 │   ├── CODEBASE_MAP.md       # Module map (start here for navigation)
 │   ├── context.md            # Product context
 │   └── IHSAAN-DESIGN.md      # Visual system
@@ -157,9 +158,9 @@ Deployment and live contact checks require separate approval.
 ## Docs
 
 - [Documentation index](docs/README.md)
-- [Contributor guide](CONTRIBUTING.md)
+- [Contributor guide](docs/CONTRIBUTING.md)
 - [Product context](docs/context.md)
 - [Codebase map](docs/CODEBASE_MAP.md)
 - [IHSAAN design system](docs/IHSAAN-DESIGN.md)
 - [Agent instructions](AGENTS.md)
-- [Historical security audit](SECURITY-AUDIT.md)
+- [Historical security audit](docs/SECURITY-AUDIT.md)

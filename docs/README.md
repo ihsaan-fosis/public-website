@@ -1,7 +1,7 @@
 # Team documentation
 
 Start with the [repository README](../README.md) for local setup and environment
-variables. Read [CONTRIBUTING.md](../CONTRIBUTING.md) before you submit a change.
+variables. Read [CONTRIBUTING.md](CONTRIBUTING.md) before you submit a change.
 Contributors use their own GitHub account and commit identity. Maintainers own
 merges, production secrets, and releases.
 
@@ -30,7 +30,7 @@ current availability, deployment status, or passing checks.
   proposal and its alternatives, not the current task list.
 - [Linktree implementation report](LINKTREE-IMPLEMENTATION-REPORT.md) summarizes
   the initial delivery and its publication holds.
-- [Security audit](../SECURITY-AUDIT.md) records the 21 October 2026 findings,
+- [Security audit](SECURITY-AUDIT.md) records the 21 October 2026 findings,
   verification limits, and operational follow-ups. Recheck advisories and the
   affected flows before a release.
 

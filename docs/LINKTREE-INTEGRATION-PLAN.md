@@ -5,7 +5,7 @@ followed. See the [implementation report](LINKTREE-IMPLEMENTATION-REPORT.md).
 This plan records the original research and alternatives, not current tasks or
 instructions. Routes and publication decisions have changed since it was written.
 Use the [codebase map](CODEBASE_MAP.md) and
-[contributor guide](../CONTRIBUTING.md) for current development guidance.
+[contributor guide](CONTRIBUTING.md) for current development guidance.
 
 Prepared on 12 October 2026. Evidence is in the [complete Linktree inventory](LINKTREE-INVENTORY.md).
 The inventory contains all 19 profile destinations, exact URLs, destination checks, five event schedules, and two supplementary application links.

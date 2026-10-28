@@ -66,8 +66,8 @@ Repository: `ihsaan-fosis/public-website`. Run project commands from its root.
 | `oxlint.config.mjs`, `tools/oxlint/` | Oxlint + anti-slop / shadcn lint wiring |
 | `docs/IHSAAN-DESIGN.md` | Visual system source of truth |
 | `docs/context.md` | Product purpose, domain, scope |
-| `docs/README.md`, `CONTRIBUTING.md` | Documentation index and contribution workflow |
-| `docs/LINKTREE-*.md`, `SECURITY-AUDIT.md` | Dated source inventories and historical reports, not current verification |
+| `docs/README.md`, `docs/CONTRIBUTING.md` | Documentation index and contribution workflow |
+| `docs/LINKTREE-*.md`, `docs/SECURITY-AUDIT.md` | Dated source inventories and historical reports, not current verification |
 
 ## Routes
 

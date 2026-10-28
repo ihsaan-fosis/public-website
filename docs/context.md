@@ -76,4 +76,4 @@ Worker serves `ihsaan.network`.
 Confirm launch copy, destination ownership, and any restored programme surfaces
 with the team. Keep content, redirects, and discovery routes consistent. Do not
 add authentication or member-platform data to this public site as part of a
-content change. See [the contributor guide](../CONTRIBUTING.md).
+content change. See [the contributor guide](CONTRIBUTING.md).
