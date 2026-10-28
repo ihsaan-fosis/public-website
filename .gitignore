@@ -41,13 +41,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local docs and template leftover paths
-/docs
+# local reference material
 /for-agent
 
 # agent scratch
 /tmp/
 .commandcode/
+/.claude/
+/.pstack/
+/.ui-quality/
+/.papercuts.jsonl
 
 # OpenNext
 .open-next
