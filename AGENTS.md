@@ -8,9 +8,21 @@ Official domain: `https://ihsaan.network`
 
 Related private repo: `ihsaan-fosis/member-platform` (member portal). This repo is the public marketing / content site only.
 
+## Contributors
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before making changes. Use your own
+GitHub account and commit identity. Submit changes through a topic branch and
+a pull request to `main`. Do not deploy.
+
+The **GitHub account**, **Hosting and deploy**, and **Git commit author** sections
+below apply only to authorized maintainer operations. Contributors and their
+coding agents must ignore those sections and follow `CONTRIBUTING.md` instead.
+The remaining project instructions apply to everyone.
+
 ## GitHub account
 
-Use the **`ihsaan-fosis`** GitHub CLI profile for every git and `gh` operation in this repository.
+Maintainers only. Use the **`ihsaan-fosis`** GitHub CLI profile for authorized
+maintainer Git and `gh` operations in this repository.
 
 ```bash
 gh auth switch --user ihsaan-fosis
@@ -18,22 +30,28 @@ gh api user --jq .login   # must print ihsaan-fosis
 ```
 
 - Remote owner: `ihsaan-fosis/public-website`
-- Do not push, open PRs, or create issues as `mwijanarko1`, `fasalqna`, or any other logged-in account
+- Do not perform maintainer operations under another logged-in account
 - Before remote git operations, confirm the active account matches `ihsaan-fosis`
 
 ## Hosting and deploy
 
-Production runs on **Cloudflare Workers** via OpenNext (`@opennextjs/cloudflare`), not Vercel.
+Maintainers only. The repository targets **Cloudflare Workers** via OpenNext
+(`@opennextjs/cloudflare`). Deployment requires separate authorization.
 
-- Config: `wrangler.jsonc` (custom domains `ihsaan.network` and `www.ihsaan.network`)
+- Config: `wrangler.jsonc`. Its `routes` array is currently empty, so this Worker
+  does not attach `ihsaan.network` or `www.ihsaan.network` through that config.
+  Confirm the active hosting and DNS setup before a release. Do not infer live
+  hosting from the build target.
 - Deploy: `bun run deploy` (`opennextjs-cloudflare build && opennextjs-cloudflare deploy`)
 - Preview: `bun run preview`
-- Secrets (e.g. contact form): `wrangler secret put RESEND_API_KEY`
+- Contact secrets: use the project Wrangler CLI to set `RESEND_API_KEY` and
+  `TURNSTILE_SECRET_KEY` on the intended Worker. See [README.md](README.md#maintainer-operations).
 - A git push alone does not ship; deploy is explicit through Wrangler/OpenNext
 
 ## Git commit author
 
-Use the team identity on every commit that should go live (history and blame stay consistent even though Cloudflare does not gate deploys on author).
+Maintainers only. Use the team identity for authorized maintainer commits.
+Contributors keep their own identity.
 
 ```bash
 git config --local user.name "techihsaan"
@@ -42,7 +60,7 @@ git config --local user.email "tech.ihsaan@fosis.org.uk"
 
 - Author and committer must be `techihsaan <tech.ihsaan@fosis.org.uk>`
 - Confirm before commit: `git config --local --get user.email` prints `tech.ihsaan@fosis.org.uk`
-- Confirm after commit: `git log -1` shows that author (not a machine-local `Mikhail <…@….local>` address)
+- Confirm after commit: `git log -1` shows the team author, not a machine-local identity
 - If HEAD was pushed with the wrong author, fix with a new commit under the team identity (or rewrite only when explicitly approved). Do not assume `gh auth switch` sets git author
 
 ## Working Guidelines
@@ -52,6 +70,8 @@ git config --local user.email "tech.ihsaan@fosis.org.uk"
 - Use **Bun** for package management and project commands (`bun install`, `bun add`, `bun run …`). Do not use npm or yarn.
 - Never commit secrets. Use `.env.local` for local environment values.
 - Preserve unrelated worktree changes.
+- Keep local agent state out of Git. `.claude/`, `.pstack/`, `.ui-quality/`, and
+  `.papercuts.jsonl` are ignored. Shared documentation belongs in tracked `docs/`.
 - Production canonical URL is `https://ihsaan.network`. Keep `NEXT_PUBLIC_APP_URL` and metadata aligned with that domain (use `http://localhost:3000` only for local dev).
 
 ## Commands
@@ -67,6 +87,10 @@ git config --local user.email "tech.ihsaan@fosis.org.uk"
 ## Verification
 
 Run the narrowest relevant test first. Before finishing, review `git diff` and confirm every changed line belongs to the request.
+
+Prefer E2E coverage for behavior changes. Use integration coverage when E2E is
+disproportionate or cannot reach the affected behavior, and explain why. Do not
+add unit tests. Existing unit tests may be run as supporting checks.
 
 ## Project References
 

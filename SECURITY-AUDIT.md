@@ -1,12 +1,23 @@
 # IHSAAN public website security audit
 
-Date: 2026-10-21. Scope: this public website and a separately coordinated audit of the member portal. Sonnet 5.5, effort high, implemented production fixes. Pi GPT 6.1 Sol authored regression coverage, verified results and performed lead/self-review. This was not an independent review.
+Audit date: 2026-10-21. Scope: this public website. The implementation received
+lead/self-review, not an independent review.
+
+This is a historical snapshot, not a current security certification. Results and
+dependency advisory status below describe the audit date. Re-run the relevant
+checks before a release. Local session logs are not part of the shared repository.
 
 ## Result
 
-Public-site application findings are fixed and locally verified. The final production build, type check, lint, 12 security integration cases, 9 existing contact-route cases and five real local HTTP checks pass. The full existing suite still has five failures, reproduced unchanged in a separate baseline checkout.
+At the audit date, public-site application findings were fixed and locally
+verified. The production build, type check, lint, 12 security integration cases,
+9 existing contact-route cases, and five real local HTTP checks passed. The full
+suite had five failures, reproduced unchanged in a separate baseline checkout.
 
-One upstream high-severity dependency advisory remains without a published patch. No commit, push, deployment, remote configuration change, production-data mutation or production exploit probe was performed. Local fixes do not establish that production is patched.
+At that date, one upstream high-severity dependency advisory had no published
+patch. The audit did not include a deployment, remote configuration change,
+production-data mutation, or production exploit probe. Local fixes did not
+establish that production was patched.
 
 ## Findings
 
@@ -22,15 +33,24 @@ One upstream high-severity dependency advisory remains without a published patch
 
 The integration suite uses the real contact route, schema, email construction and Turnstile helper together. Only third-party HTTP is replaced, preventing real mail delivery and allowing deterministic hostile provider responses. Integration is appropriate because valid live challenge tokens and real email sends are not safe or deterministic regression fixtures. No new unit tests were authored. The existing route test received only a provider-fixture compatibility update.
 
-- Run `bun run test:integration`: 12 passed.
-- Initial application regression: 8 failed, 1 passed in `.pstack/security-contact-before.log`.
-- Local dummy-key regression: 1 failed, 11 passed before the follow-up fix in `.pstack/security-local-test-key-before.log`.
-- Final compiled-app verification and real HTTP response metadata: `.pstack/security-final-results.json`.
-- Final build, type check, integration, existing contact tests and lint logs: `.pstack/security-final-*.log`.
+- Contact security integration suite: 12 passed at the audit date.
+- Initial application regression: 8 failed, 1 passed.
+- Local dummy-key regression: 1 failed, 11 passed before the follow-up fix.
+- Final build, type check, contact security integration, existing contact tests,
+  and lint passed at the audit date. These are historical results, not new runs.
 - HTTP checks against `bun run start`, with provider credentials explicitly empty: GET 405, malformed JSON 400, oversized JSON 413, honeypot 200 and missing configuration 503. The POST responses are JSON with `Cache-Control: no-store`. The spawned server process group was stopped.
-- Before/after dependency audit: `.pstack/security-audit-before.json`, `.pstack/security-audit-after.json`.
-- Documented dummy-key response, containing no user credentials: `.pstack/security-turnstile-test.headers`, `.pstack/security-turnstile-test.json`.
-- Existing full suite: 249 passed, 5 failed. A separate checkout of unchanged HEAD with its original lockfile reproduces the same five failures: one invalid volunteer URL expectation, two stale contact-page expectations and two stale navigation expectations. See `.pstack/security-tests.log`, `.pstack/security-baseline-tests.log` and `.pstack/security-verification-results.json`. Those unrelated tests were not changed.
+- The dependency audit reported only P5 after the overrides. Re-check the
+  advisory before assuming that it remains unresolved.
+- Existing full suite at the audit date: 249 passed, 5 failed. A separate baseline
+  checkout reproduced the same failures: one volunteer URL expectation, two
+  contact-page expectations, and two navigation expectations. Those failures
+  were outside the audit scope. This does not describe the current suite.
+
+To recheck the contact regression without a running server, use
+`bun run test:integration tests/integration/contact-security.spec.ts`.
+Run `bun run lint`, `bun run test:run`, and `bun run build` for supporting checks.
+Use `bun audit` to recheck dependency advisories. Do not submit real contact
+messages or change production configuration without approval.
 
 ## Other boundaries inspected
 
@@ -45,13 +65,5 @@ The integration suite uses the real contact route, schema, email construction an
 
 After an explicitly authorized release, verify the actual OpenNext Worker response paths and real contact submission with production Turnstile/Resend configuration. Review Cloudflare widget allowed hostnames and request-rate rules. Keep preview routes from receiving production secrets unnecessarily. No live email send or authenticated production configuration review was performed here.
 
-The member portal has its own Pi-led, Sonnet-implemented audit in thread `mcp:cd6cc71b-c551-441b-b0d0-782fd6f3389c`. Its destructive public Convex endpoints and identity findings must be treated separately from the lower-risk public-site findings. Do not infer that this public-site verification proves portal authorization or deployment safety.
-
-## Delegation records
-
-Both public implementation rounds used `claudeAgent`, `claude-sonnet-5-5`, effort `high`; test assets remained owned by the Pi lead.
-
-- `node:delegated-task:command%3Amcp%3A4c37cb18-a4a4-49a3-af25-b9bd6ae55b38%3Adelegate-task%3Asecurity-public-sonnet-round-1`
-- `node:delegated-task:command%3Amcp%3A4c37cb18-a4a4-49a3-af25-b9bd6ae55b38%3Adelegate-task%3Asecurity-public-sonnet-round-2`
-
-Preserve unrelated untracked `.pstack/` and `.ui-quality/` content. Only the security-prefixed artifacts and this task's test/config files belong to this audit.
+The member portal is a separate system and requires its own security review.
+This public-site audit does not establish portal authorization or deployment safety.
