@@ -17,19 +17,11 @@ merges, production secrets, and releases.
 - [Agent instructions](../AGENTS.md) define repository conventions. The account,
   hosting, and team-author sections apply only to authorized maintainers.
 
-## Source material and historical reports
+## Security follow-ups
 
-These documents preserve source copy and dated decisions. They do not establish
-current availability, deployment status, or passing checks.
+The security audit is retained because it records unresolved follow-ups. It does
+not establish current deployment status or passing checks.
 
-- [Organisation source copy](ihsaan-context.md) preserves supplied editorial
-  material. Confirm claims and team roles before reuse.
-- [Linktree inventory](LINKTREE-INVENTORY.md) records the destinations checked on
-  12 October 2026. Advertising click identifiers have been removed.
-- [Linktree integration plan](LINKTREE-INTEGRATION-PLAN.md) records the original
-  proposal and its alternatives, not the current task list.
-- [Linktree implementation report](LINKTREE-IMPLEMENTATION-REPORT.md) summarizes
-  the initial delivery and its publication holds.
 - [Security audit](SECURITY-AUDIT.md) records the 21 October 2026 findings,
   verification limits, and operational follow-ups. Recheck advisories and the
   affected flows before a release.
