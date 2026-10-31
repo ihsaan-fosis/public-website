@@ -11,7 +11,7 @@ describe("get involved member landing page", () => {
     const heroLinks = within(hero).getAllByRole("link");
     expect(heroLinks[0]).toHaveAccessibleName("Create your account");
     expect(heroLinks[0]).toHaveAttribute("href", "https://portal.ihsaan.network/sign-up");
-    expect(within(hero).getByRole("link", { name: "Professionals and organisations", exact: true }))
+    expect(within(hero).getByRole("link", { name: "Are you a professional?", exact: true }))
       .toHaveAttribute("href", "/professionals");
     const accountLinks = screen.getAllByRole("link", { name: "Create your account", exact: true });
     expect(accountLinks.length).toBeGreaterThanOrEqual(2);

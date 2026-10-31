@@ -103,7 +103,7 @@ export default function GetStartedPage() {
             {SIGN_UP_LABEL}
           </ButtonLink>
           <ButtonLink href={PROFESSIONALS_LINK.href} tone="light-outline">
-            Professionals and organisations
+            Are you a professional?
           </ButtonLink>
         </div>
       </PhotoHero>
@@ -176,13 +176,13 @@ export default function GetStartedPage() {
         </h2>
         <div className={BAND_ROW}>
           <p className={BAND_INTRO}>Create your account and choose where to begin.</p>
-          <div className="flex flex-col items-start gap-4">
+          <div className="flex flex-wrap gap-3">
             <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white">
               {SIGN_UP_LABEL}
             </ButtonLink>
-            <a href={PROFESSIONALS_LINK.href} className="text-sm font-medium text-cream/80 underline underline-offset-4">
-              Professional or organisation? Start here
-            </a>
+            <ButtonLink href={PROFESSIONALS_LINK.href} tone="light-outline">
+              Are you a professional?
+            </ButtonLink>
           </div>
         </div>
       </PhotoBand>
