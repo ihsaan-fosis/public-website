@@ -40,7 +40,7 @@ describe("SiteHeader", () => {
     },
   );
 
-  it("shows Impact and Blog as plain links with no dropdown, and Resources only in the footer", () => {
+  it("shows Impact and Blog as plain links with no dropdown, and no Resources navigation", () => {
     render(<SiteHeader />);
     const desktop = screen.getByRole("navigation", { name: "Primary" });
     expect(within(desktop).getByRole("link", { name: "Impact" })).toHaveAttribute("href", "/impact");

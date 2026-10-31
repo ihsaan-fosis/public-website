@@ -35,6 +35,7 @@ export const NAV_LINKS: readonly NavItem[] = [
   { href: "/impact", label: "Impact" },
   { href: "/blog", label: "Blog" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/volunteer", label: "Volunteer" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -44,9 +45,6 @@ export const PROFESSIONALS_LINK: NavLink = { href: "/professionals", label: "Pro
 
 /** Kept out of `NAV_LINKS` so the primary row stays readable beside the wordmark and CTAs. */
 export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
-
-/** Guides stay reachable from the footer; Blog is a top-level header link. */
-export const RESOURCES_LINK: NavLink = { href: "/resources", label: "Resources" };
 
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network/sign-in", label: "Member portal" };
 
@@ -101,7 +99,7 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "mentorship",
     title: "Mentorship",
-    photo: { src: "/media/gallery/mentor-chat.webp", alt: "A student in conversation with a mentor through My Muslim Mentor", width: 2560, height: 1710 },
+    photo: { src: "/media/gallery/mentor-chat.webp", alt: "A woman taking notes during an IHSAAN session", width: 2560, height: 1710 },
   },
 ];
 
@@ -171,7 +169,7 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     body: "Join career conferences, hackathons and internship programmes, and use free career guides.",
     points: ["Career guides & resources", "Professional networks", "Faith-conscious support", "Skills workshops"],
     cta: { href: "/programmes", label: "Explore programmes" },
-    photo: { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students sitting in rows at an IHSAAN careers workshop", width: 2560, height: 1707 },
+    photo: { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students watching a partner brief in the heritage hall at an IHSAAN hackathon", width: 2560, height: 1707 },
   },
   {
     title: "Professionals",
@@ -305,10 +303,10 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/gallery/hackathon-coding-closeup.webp", alt: "A student coding at a hackathon", width: 2560, height: 1707 },
   { src: "/media/gallery/conference-hall-wide.webp", alt: "A lecture theatre of students at an IHSAAN career conference", width: 1928, height: 2560 },
   { src: "/media/gallery/hackathon-bench.webp", alt: "Two hackathon participants smiling together on a bench", width: 1707, height: 2560 },
-  { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students sitting in rows at an IHSAAN careers workshop", width: 2560, height: 1707 },
+  { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students watching a partner brief in the heritage hall at an IHSAAN hackathon", width: 2560, height: 1707 },
   { src: "/media/gallery/hackathon-three.webp", alt: "Three students working on laptops together at a hackathon", width: 2560, height: 1707 },
   { src: "/media/gallery/manchester-conference-2026.webp", alt: "An audience watching a panel at an IHSAAN careers conference", width: 2560, height: 1440 },
-  { src: "/media/gallery/mentor-chat.webp", alt: "A student in conversation with a mentor through My Muslim Mentor", width: 2560, height: 1710 },
+  { src: "/media/gallery/mentor-chat.webp", alt: "A woman taking notes during an IHSAAN session", width: 2560, height: 1710 },
   { src: "/media/gallery/workshop-tables.webp", alt: "Professionals and students working together at tables", width: 2560, height: 1707 },
   { src: "/media/gallery/speaker-portrait.webp", alt: "A speaker presenting at an IHSAAN workshop", width: 1710, height: 2560 },
   { src: "/media/gallery/students-at-work.webp", alt: "Students working together at an IHSAAN programme session", width: 2560, height: 1707 },
@@ -348,8 +346,8 @@ export const GALLERY: readonly Photo[] = [
 ];
 
 /**
- * The strip shown on the home and Get started pages. These photos appear nowhere else on the site, so neither
- * page repeats a photograph it has already shown, and the archive holds the rest.
+ * The strip shown on the home and Get started pages. Neither page repeats a photograph it has already shown, and
+ * the archive holds the rest.
  */
 export const GALLERY_PREVIEW: readonly Photo[] = [
   "/media/gallery/hackathon-rows.webp",
@@ -357,10 +355,10 @@ export const GALLERY_PREVIEW: readonly Photo[] = [
   "/media/gallery/hackathon-hall.webp",
   "/media/career-conferences-hd.webp",
   "/media/hackathon-smiles.webp",
-  "/media/gallery/workshop-audience.webp",
+  "/media/gallery/conference-hall-wide.webp",
   "/media/gallery/conference-audience-side.webp",
   "/media/gallery/students-studying.webp",
-  "/media/gallery/employer-conversation-wide.webp",
+  "/media/gallery/careers-fair-hall.webp",
 ].map((src) => {
   const photo = GALLERY.find((candidate) => candidate.src === src);
   if (!photo) throw new Error(`Gallery preview photo is not in GALLERY: ${src}`);

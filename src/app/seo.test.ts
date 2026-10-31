@@ -16,10 +16,6 @@ describe("technical SEO routes", () => {
     expect(urls).toContain(`${ORIGIN}/terms`);
     expect(urls).toContain(`${ORIGIN}/events`);
     expect(urls).toContain(`${ORIGIN}/impact`);
-    expect(urls).toContain(`${ORIGIN}/resources`);
-    expect(urls).toContain(`${ORIGIN}/resources/intentions-behind-a-career`);
-    expect(urls).toContain(`${ORIGIN}/resources/acing-interviews`);
-    expect(urls).not.toContain(`${ORIGIN}/resources/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/tech-team`);
@@ -40,13 +36,11 @@ describe("technical SEO routes", () => {
 });
 
 describe("llms.txt", () => {
-  it("lists the events and resources routes and every approved social profile", async () => {
+  it("lists the events and blog routes and every approved social profile", async () => {
     const body = await llms().text();
 
     expect(body).toContain("- [/events](/events) Events:");
     expect(body).toContain("- [/impact](/impact) Impact:");
-    expect(body).toContain("- [/resources](/resources) Resources:");
-    expect(body).toContain("- [/resources/intentions-behind-a-career](/resources/intentions-behind-a-career)");
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
     expect(body).toContain("- [/tech-team](/tech-team) IHSAAN Tech Team");
@@ -74,7 +68,6 @@ describe("page metadata", () => {
     ["/contact", () => import("./contact/page")],
     ["/events", () => import("./events/page")],
     ["/impact", () => import("./impact/page")],
-    ["/resources", () => import("./resources/page")],
     ["/blog", () => import("./blog/page")],
     ["/gallery", () => import("./gallery/page")],
     ["/start", () => import("./start/page")],
@@ -124,21 +117,6 @@ describe("page metadata", () => {
     expect(metadata.twitter).toMatchObject({ title: `${post.title} | IHSAAN`, description: post.summary });
   });
 
-  it("gives Career Essentials guides article Open Graph tags and a guide canonical", async () => {
-    const { nativeCareerGuides } = await import("@/content/career-essentials");
-    const guide = nativeCareerGuides()[0];
-    const { generateMetadata } = await import("./resources/[slug]/page");
-    const metadata = await generateMetadata({ params: Promise.resolve({ slug: guide.slug }) });
-    const path = `/resources/${guide.slug}`;
-    expect(metadata.alternates?.canonical).toBe(path);
-    expect(metadata.openGraph).toMatchObject({
-      type: "article",
-      url: path,
-      title: `${guide.title} | IHSAAN`,
-    });
-    expect(metadata.twitter).toMatchObject({ title: `${guide.title} | IHSAAN`, description: guide.summary });
-  });
-
   it("lets the homepage inherit the layout title while keeping full social tags", () => {
     const metadata = pageMetadata({ description: "Home", path: "/" });
     expect(metadata.title).toBeUndefined();
@@ -185,7 +163,6 @@ describe("legacy URLs", () => {
   it.each([
     ["/haqqathons", "/programmes/hackathons"],
     ["/programmes/faithful-talent", "/programmes/summer-internships"],
-    ["/programmes/career-guides", "/resources"],
     ["/mentoring", "/programmes/mentorship"],
   ])("sends the retired %s hub to %s", async (source, destination) => {
     expect((await redirects()).find((redirect) => redirect.source === source)).toEqual({

@@ -12,7 +12,6 @@ export const LEGACY_PAGES = [
   { page: "career-conferences", destination: "/programmes/career-conferences", permanent: true },
   { page: "faithful-talent", destination: "/programmes/summer-internships", permanent: true },
   { page: "haqqathons", destination: "/programmes/hackathons", permanent: true },
-  { page: "career-guides", destination: "/resources", permanent: true },
   // The tracker is hidden for now; temporary so the old URL can point back to it later.
   { page: "opportunities-tracker", destination: "/programmes", permanent: false },
 ];

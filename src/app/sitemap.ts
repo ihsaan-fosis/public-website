@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "../content/blog";
-import { nativeCareerGuides } from "../content/career-essentials";
 import { PROGRAMME_PAGES } from "../content/programmes";
 import { SITE_ORIGIN } from "../lib/site";
 
@@ -43,16 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   },
-  {
-    url: SITE_ORIGIN + "/resources",
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  ...nativeCareerGuides().map(({ slug }) => ({
-    url: `${SITE_ORIGIN}/resources/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  })),
   {
     url: SITE_ORIGIN + "/blog",
     changeFrequency: "weekly",
