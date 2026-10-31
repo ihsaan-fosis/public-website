@@ -3,7 +3,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { CountUp } from "@/components/motion";
 import { BAND_INTRO, BAND_ROW, BAND_TITLE, GalleryParallax, PhotoBand } from "@/components/sections";
-import { StickySignUp } from "@/components/sticky-signup";
 import { ButtonLink, PhotoHero, Section, SectionHeading, revealDelay } from "@/components/ui";
 import { TRACTION } from "@/content/impact";
 import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, PROFESSIONALS_LINK, PROGRAMMES, type Photo } from "@/content/site";
@@ -77,7 +76,7 @@ export default function GetStartedPage() {
   return (
     <div>
       <PhotoHero
-        image="/media/career-conference-hd.webp"
+        image="/media/gallery/hackathon-team.webp"
         title="Turn your degree into a career."
         intro="Join IHSAAN's community of Muslim students and graduates."
       >
@@ -132,25 +131,12 @@ export default function GetStartedPage() {
               <h3 className="mt-4 text-3xl leading-tight font-extrabold tracking-[-0.035em] text-ink sm:text-4xl">
                 {step}
               </h3>
-              {index === 0 ? (
-                <div className="mt-6">
-                  <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external>
-                    {SIGN_UP_LABEL}
-                  </ButtonLink>
-                </div>
-              ) : null}
             </li>
           ))}
         </ol>
       </Section>
 
-      <GalleryParallax
-        action={
-          <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external>
-            {SIGN_UP_LABEL}
-          </ButtonLink>
-        }
-      />
+      <GalleryParallax showHeading={false} />
 
       <PhotoBand image="/media/gallery/conference-audience.webp" labelledBy="join-cta-title">
         <h2 id="join-cta-title" className={BAND_TITLE}>
@@ -168,7 +154,6 @@ export default function GetStartedPage() {
           </div>
         </div>
       </PhotoBand>
-      <StickySignUp />
     </div>
   );
 }

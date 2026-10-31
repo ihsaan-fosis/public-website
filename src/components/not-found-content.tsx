@@ -3,7 +3,7 @@ import { PhotoHero, ButtonLink } from "./ui";
 export function NotFoundContent() {
   return (
     <PhotoHero
-      image="/media/impact-wide.webp"
+      image="/media/hackathon-manchester-wide.webp"
       // Next ships the not-found boundary with every page, so its hero must not compete with the real page's LCP.
       lcp={false}
       title="This page could not be found."

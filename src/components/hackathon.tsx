@@ -88,7 +88,7 @@ export function HackathonStatement() {
         >
           <StatementLine before="Form a" photo="/media/gallery/hackathon-team.webp" after="team." />
           <StatementLine before="Build a" photo="/media/gallery/hackathon-coding.webp" after="prototype." />
-          <StatementLine before="Pitch it to" photo="/media/gallery/hackathon-partners.webp" after="partners." caret />
+          <StatementLine before="Pitch it to" photo="/media/gallery/hackathon-talk-upright.webp" after="partners." caret />
         </h2>
       </Container>
     </section>
@@ -103,8 +103,8 @@ const DRIFT = [
 
 const WALL = [
   ["/media/gallery/hackathon-coding-closeup.webp", "/media/gallery/hackathon-bench.webp", "/media/gallery/hackathon-partners.webp"],
-  ["/media/gallery/hackathon-three.webp", "/media/gallery/hackathon-mentor.webp", "/media/gallery/hackathon-hall.webp"],
-  ["/media/gallery/hackathon-long-table.webp", "/media/gallery/hackathon-team.webp", "/media/hackathon-smiles.webp"],
+  ["/media/gallery/hackathon-three.webp", "/media/gallery/hackathon-mentor.webp", "/media/gallery/students-studying.webp"],
+  ["/media/gallery/hackathon-long-table.webp", "/media/gallery/hackathon-discussion.webp", "/media/hackathon-smiles.webp"],
 ] as const;
 
 const WALL_LABELS = ["build", "pair", "test", "debug", "review", "demo", "commit", "ship", "merge"] as const;

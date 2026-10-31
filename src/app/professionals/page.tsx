@@ -17,7 +17,7 @@ export default function ProfessionalsPage() {
   return (
     <>
       <PhotoHero
-        image="/media/mmm-hd.webp"
+        image="/media/gallery/hackathon-mentor.webp"
         title="Give back."
         intro="Share your experience with Muslim students, or bring your organisation alongside IHSAAN."
       >
@@ -47,7 +47,7 @@ export default function ProfessionalsPage() {
         <SectionHeading id="organisations-title" title="For organisations" />
         <InvolvementActions
           actions={ORGANISATION_ACTIONS}
-          photo={{ src: "/media/impact-hd.webp", alt: "Students networking at an IHSAAN event" }}
+          photo={{ src: "/media/gallery/employer-stands.webp", alt: "Employer stands and students at an IHSAAN careers fair" }}
         />
       </Section>
     </>

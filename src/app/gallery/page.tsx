@@ -44,7 +44,7 @@ export default function GalleryPage() {
           ))}
         </ul>
       </Section>
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/hackathon-coding.webp" />
     </>
   );
 }

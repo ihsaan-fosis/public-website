@@ -32,7 +32,7 @@ export function Wordmark({ className }: { className?: string }) {
 }
 
 const navLinkClass =
-  "relative rounded-xl px-3.5 py-2 text-sm whitespace-nowrap font-semibold tracking-[0.08em] uppercase transition-colors";
+  "relative rounded-xl px-2.5 py-2 text-sm whitespace-nowrap font-semibold tracking-[0.08em] uppercase transition-colors";
 
 /** `open` lives in the header so opening one dropdown closes the other instead of stacking them. */
 function DesktopNavItem({
@@ -195,7 +195,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className="sticky top-0 z-50"
+      className="sticky top-0 z-50 sm:-mb-3"
       onClickCapture={(event) => {
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const link = event.target instanceof Element ? event.target.closest("a") : null;
@@ -233,12 +233,12 @@ export function SiteHeader() {
           scrolled ? "opacity-100" : "opacity-0",
         )}
       />
-      <div className="relative flex h-16 w-full items-center justify-between gap-3 px-5 sm:px-10">
-        <Link href="/" scroll={false} aria-label="IHSAAN home" className="flex h-11 items-center">
+      <div className="relative flex h-16 w-full items-center justify-between gap-3 px-5 sm:h-19 sm:px-10">
+        <Link href="/" scroll={false} aria-label="IHSAAN home" className="flex h-11 shrink-0 items-center">
           <Wordmark className="h-6 w-auto" />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
           {NAV_LINKS.map((item) => (
             <DesktopNavItem
               key={item.href}
@@ -255,7 +255,6 @@ export function SiteHeader() {
             href={MEMBER_PORTAL.href}
             external
             tone="ghost"
-            size="compact"
             className="whitespace-nowrap max-sm:hidden"
           >
             {MEMBER_PORTAL.label}
@@ -263,14 +262,13 @@ export function SiteHeader() {
           <ButtonLink
             href={GET_INVOLVED.href}
             scroll={false}
-            size="compact"
             className="whitespace-nowrap max-sm:hidden"
           >
             {GET_INVOLVED.label}
           </ButtonLink>
           <button
             type="button"
-            className="flex size-10 items-center justify-center rounded-xl text-ink hover:bg-ink/10 lg:hidden"
+            className="flex size-10 items-center justify-center rounded-xl text-ink hover:bg-ink/10 xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -298,7 +296,7 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          "absolute inset-x-0 top-full grid bg-page transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden",
+          "absolute inset-x-0 top-full grid bg-page transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] xl:hidden",
           open ? "grid-rows-[1fr] border-b border-ink/10" : "grid-rows-[0fr]",
         )}
       >

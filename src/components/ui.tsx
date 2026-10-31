@@ -143,12 +143,12 @@ const BUTTON_TONES: Record<ButtonTone, string> = {
 };
 
 const BUTTON_BASE =
-  "inline-flex items-center justify-center rounded-xl font-bold uppercase ring-1 transition-[translate,scale,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgb(0_0_0/0.22)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:translate-y-0 active:scale-[0.98] active:shadow-none";
+  "inline-flex items-center justify-center rounded-xl font-bold uppercase ring-1 transition-[translate,scale] duration-200 ease-out hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent active:translate-y-0 active:scale-[0.98]";
 
 type ButtonSize = "default" | "compact";
 
 const BUTTON_SIZES: Record<ButtonSize, string> = {
-  default: "min-h-[52px] px-8 text-[12.5px] tracking-[0.14em] max-sm:w-full",
+  default: "min-h-[46px] px-7 text-[12px] tracking-[0.14em] max-sm:w-full",
   compact: "min-h-9 px-4 text-[11px] tracking-[0.12em]",
 };
 

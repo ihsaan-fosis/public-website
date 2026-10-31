@@ -123,7 +123,7 @@ const PRINTS: readonly Print[] = [
   { src: "/media/gallery/networking-overhead.webp", place: "sm:col-start-1 sm:row-start-3 sm:row-span-3 row-span-2", scatter: { x: "-1rem", y: "2.5rem", r: "3deg" } },
   { src: "/media/gallery/conference-audience-side.webp", place: "sm:col-start-2 sm:row-start-3 sm:row-span-3 row-span-2", scatter: { x: "0.5rem", y: "3rem", r: "-2.5deg" } },
   { src: "/media/gallery/conference-hall-wide.webp", place: "sm:col-start-3 sm:row-start-4 sm:row-span-2 row-span-2", scatter: { x: "-1rem", y: "3rem", r: "-3deg" } },
-  { src: "/media/gallery/conference-audience.webp", place: "sm:col-start-4 sm:row-start-3 sm:row-span-3 row-span-2", scatter: { x: "1rem", y: "2rem", r: "2deg" } },
+  { src: "/media/gallery/manchester-foyer.webp", place: "sm:col-start-4 sm:row-start-3 sm:row-span-3 row-span-2", scatter: { x: "1rem", y: "2rem", r: "2deg" } },
 ];
 
 /** A tangle of prints that tidies itself into a mosaic as it scrolls into view. */

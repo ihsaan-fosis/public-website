@@ -27,6 +27,8 @@ export type ProgrammePage = {
   headline: string;
   intro: string;
   image: string;
+  /** The photograph behind the closing call to action, which no other page repeats. */
+  closingImage: string;
   photo: Photo;
   about: readonly string[];
   stats: readonly Stat[];
@@ -52,7 +54,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Large-scale events connecting Muslim students with leading employers, role models and career pathways.",
     headline: "Meet the employers who want you.",
     intro: "Connecting Muslim students with leading employers, role models and career pathways across the UK and Ireland.",
-    image: "/media/career-conference-london-hd.webp",
+    image: "/media/career-conferences-hd.webp",
+    closingImage: "/media/gallery/careers-fair-hall.webp",
     photo: { src: "/media/gallery/conference-hall-wide.webp", alt: "A lecture theatre of students at an IHSAAN career conference", width: 1928, height: 2560 },
     about: [
       "Our career conferences are the IHSAAN flagship programme: large-scale, professionally organised events that bring Muslim students face to face with employers, industry leaders and successful professionals.",
@@ -110,6 +113,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     intro:
       "Not every opportunity is built with Muslim students in mind. That is why we built the IHSAAN Summer Internship Programme for 2026.",
     image: "/media/gallery/employer-stands.webp",
+    closingImage: "/media/gallery/students-studying.webp",
     photo: {
       src: "/media/gallery/students-at-work.webp",
       alt: "Students working together at an IHSAAN programme session",
@@ -153,6 +157,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "Get in the room.",
     intro: "Insight events put Muslim students in front of leading employers for skills workshops, panels and networking.",
     image: "/media/gallery/london-conference-2024.webp",
+    closingImage: "/media/gallery/manchester-conference-2026.webp",
     photo: {
       src: "/media/gallery/conference-panel.webp",
       alt: "Students in a lecture theatre watching a panel at an IHSAAN careers conference",
@@ -189,11 +194,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "Practise before it counts.",
     intro: "Online and in-person sessions that build the skills students need for applications, interviews and assessment centres.",
     image: "/media/gallery/workshop-tables.webp",
+    closingImage: "/media/gallery/heritage-hall-audience.webp",
     photo: {
-      src: "/media/gallery/hackathon-talk-upright.webp",
-      alt: "An audience watching a workshop talk at an IHSAAN event",
-      width: 1126,
-      height: 2000,
+      src: "/media/gallery/speaker-portrait.webp",
+      alt: "A speaker presenting at an IHSAAN workshop",
+      width: 1710,
+      height: 2560,
     },
     about: [
       "Webinars & Workshops brings together the skills-building sessions IHSAAN runs through the year: online panels, online speaker events, bootcamps and the Roast My series.",
@@ -233,6 +239,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
     image: "/media/hackathon-build-wide.webp",
+    closingImage: "/media/gallery/hackathon-rows.webp",
     photo: {
       src: "/media/gallery/hackathon-bench.webp",
       alt: "Two hackathon participants smiling together on a bench",
@@ -292,6 +299,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
     image: "/media/mmm-hd.webp",
+    closingImage: "/media/gallery/students-collaborating.webp",
     photo: { src: "/media/gallery/employer-pitch.webp", alt: "A Redwood Founders representative talking one to one with a student", width: 2000, height: 1500 },
     about: [
       "Our mentorship programmes connect working professionals with Muslim students who are navigating their career journeys.",

@@ -196,7 +196,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </Section>
       ) : null}
 
-      <ClosingCta image={isHackathon ? "/media/gallery/hackathon-rows.webp" : undefined} />
+      <ClosingCta image={page.closingImage} />
     </>
   );
 }

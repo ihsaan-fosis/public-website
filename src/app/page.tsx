@@ -10,7 +10,7 @@ import {
   ProgrammesCarousel,
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, MISSION, TAGLINE, VISION } from "@/content/site";
+import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, MISSION, PROFESSIONALS_LINK, TAGLINE, VISION } from "@/content/site";
 import { SITE_ORIGIN } from "@/lib/site";
 
 // Google reads the site name shown above search results from WebSite data on the homepage.
@@ -33,9 +33,14 @@ export default function Home() {
         title={TAGLINE}
         intro={MISSION}
       >
-        <ButtonLink href={GET_INVOLVED.href} tone="white">
-          {MEMBER_PORTAL_SIGNUP.label}
-        </ButtonLink>
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href={GET_INVOLVED.href} tone="white">
+            {MEMBER_PORTAL_SIGNUP.label}
+          </ButtonLink>
+          <ButtonLink href={PROFESSIONALS_LINK.href} tone="light-outline">
+            Are you a professional?
+          </ButtonLink>
+        </div>
       </PhotoHero>
 
       <section aria-labelledby="vision-title" className="relative py-16 sm:py-36">
@@ -82,7 +87,7 @@ export default function Home() {
 
       <FaqSection />
 
-      <ClosingCta />
+      <ClosingCta image="/media/career-conference-london-hd.webp" />
 
       <script
         type="application/ld+json"

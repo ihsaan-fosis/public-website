@@ -177,5 +177,5 @@ export const IMPACT_PHOTOS = {
   pathway: galleryPhoto("/media/gallery/careers-fair-hall.webp"),
   stories: galleryPhoto("/media/gallery/conference-selfie.webp"),
   voices: galleryPhoto("/media/gallery/employer-stands.webp"),
-  closing: galleryPhoto("/media/gallery/careers-evening.webp"),
+  closing: galleryPhoto("/media/gallery/conference-panel.webp"),
 } as const;

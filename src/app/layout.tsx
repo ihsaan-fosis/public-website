@@ -72,7 +72,7 @@ const themeScript = `(function(){var d=document.documentElement;d.classList.add(
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-GB" className={poppins.variable} data-theme="light" suppressHydrationWarning>
+    <html lang="en-GB" className={poppins.variable} data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

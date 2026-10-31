@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import {
-  CONTACT_EMAIL,
   FAQS,
   GALLERY_PREVIEW,
   GET_INVOLVED,
@@ -189,14 +188,19 @@ function galleryPhotoSizes(photo: { width: number; height: number }, tileRatio: 
 }
 
 /** Three rows of three, drawn from the preview set so no page shows a photo it uses elsewhere. */
-export function GalleryParallax({ action }: { action?: ReactNode }) {
+export function GalleryParallax({ action, showHeading = true }: { action?: ReactNode; showHeading?: boolean }) {
   const columns = GALLERY_DRIFT.map((_, column) => GALLERY_PREVIEW.filter((_, index) => index % GALLERY_DRIFT.length === column));
   return (
-    <section aria-labelledby="gallery-title" className="relative overflow-clip py-14 sm:py-28">
-      <Container className="relative z-10">
-        <SectionHeading id="gallery-title" title="Moments from our programmes" action={action} />
-      </Container>
-      <div className="mt-14 grid grid-cols-2 gap-3 px-2 sm:grid-cols-3 sm:gap-4 sm:px-3">
+    <section
+      {...(showHeading ? { "aria-labelledby": "gallery-title" } : { "aria-label": "Moments from our programmes" })}
+      className="relative overflow-clip py-14 sm:py-28"
+    >
+      {showHeading ? (
+        <Container className="relative z-10">
+          <SectionHeading id="gallery-title" title="Moments from our programmes" action={action} />
+        </Container>
+      ) : null}
+      <div className={cn("grid grid-cols-2 gap-3 px-2 sm:grid-cols-3 sm:gap-4 sm:px-3", showHeading && "mt-14")}>
         {columns.map((photos, column) => (
           <ul
             key={GALLERY_DRIFT[column].from}
@@ -247,7 +251,7 @@ export function InvolvementPanels() {
               {String(index + 1).padStart(2, "0")}
             </span>
             <h3 className="text-3xl font-extrabold tracking-[-0.035em] text-cream sm:text-4xl">{route.title}</h3>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{route.body}</p>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80 lg:min-h-36 xl:min-h-24">{route.body}</p>
             <div className="mt-7">
               <ButtonLink href={route.cta.href} external={route.cta.external} tone="white">
                 {route.cta.label}
@@ -365,8 +369,7 @@ export function FaqSection() {
             Frequently asked questions
           </SectionTitle>
           <p className="mt-5 max-w-sm text-base leading-7 text-black/80 dark:text-ink/80">
-            Straight answers to the questions students and partners ask us most. Can&apos;t find yours? Email{" "}
-            {CONTACT_EMAIL} and the team will get back to you.
+            Straight answers to the questions students and partners ask us most. Can&apos;t find yours? Use Contact us below and the team will get back to you.
           </p>
           <ButtonLink href="/contact" tone="accent" className="mt-8">
             Contact us
@@ -385,7 +388,7 @@ export function FaqSection() {
               <div className="max-w-2xl pr-12 pb-7">
                 <p className="text-base leading-7 text-black/80 dark:text-ink/80">{faq.answer}</p>
                 {faq.cta ? (
-                  <ButtonLink href={faq.cta.href} external={faq.cta.external} tone="accent" size="compact" className="mt-5">
+                  <ButtonLink href={faq.cta.href} external={faq.cta.external} tone="accent" className="mt-5">
                     {faq.cta.label}
                   </ButtonLink>
                 ) : null}
@@ -445,7 +448,7 @@ export function PhotoBand({
 const CTA_LINES = ["Start your", "career journey", "with IHSAAN."] as const;
 
 /** Each page closes on its own photograph, so the same photo does not end every route. */
-export function ClosingCta({ image = "/media/career-conference-london-hd.webp" }: { image?: string } = {}) {
+export function ClosingCta({ image }: { image: string }) {
   return (
     <PhotoBand image={image} labelledBy="cta-title">
       <h2
