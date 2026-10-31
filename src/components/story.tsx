@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import { EVENTS_LINK, GET_INVOLVED, MISSION, VISION } from "@/content/site";
+import { PUBLIC_DESTINATIONS } from "@/content/links";
+import { MISSION, VISION } from "@/content/site";
 import {
   CONFERENCE_CITIES,
   CONFERENCE_ROUTE,
@@ -34,7 +35,7 @@ function vars(values: Record<`--${string}`, string>): CSSProperties {
 const VISION_PILLS: Record<number, string> = {
   2: "/media/gallery/hackathon-team.webp",
   13: "/media/gallery/hackathon-mentor.webp",
-  21: "/media/gallery/employer-pitch.webp",
+  21: "/media/gallery/careers-fair-hall.webp",
 };
 
 /** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`), with photo pills set between them. */
@@ -363,12 +364,12 @@ export function MapChapter() {
   );
 }
 
-const CONTINUES_LINES = ["The story", "continues", "with you."] as const;
+const CONTINUES_LINES = ["Help the", "next generation", "in."] as const;
 
-/** The close, built like the home closing call to action. */
+/** The close speaks to employers and professionals, who are who this page is written for. */
 export function StoryContinues() {
   return (
-    <PhotoBand image="/media/gallery/student-conversations.webp" labelledBy="continues-title">
+    <PhotoBand image="/media/gallery/startup-talk.webp" labelledBy="continues-title">
       <h2
         id="continues-title"
         className={BAND_TITLE}
@@ -382,14 +383,15 @@ export function StoryContinues() {
       </h2>
       <div className={BAND_ROW}>
         <p className={BAND_INTRO}>
-          Come to an event, join the community or help us run the next one.
+          Mentor a Muslim student, speak at an event, or open doors at your organisation. Professionals and employers
+          are how this work reaches further.
         </p>
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={GET_INVOLVED.href} tone="white">
-            {GET_INVOLVED.label}
+          <ButtonLink href="/contact?topic=partnerships" tone="white">
+            Partner with us
           </ButtonLink>
-          <ButtonLink href={EVENTS_LINK.href} tone="light-outline">
-            See upcoming events
+          <ButtonLink href={PUBLIC_DESTINATIONS.myMuslimMentorSignup.href} external tone="light-outline">
+            Become a mentor
           </ButtonLink>
         </div>
       </div>

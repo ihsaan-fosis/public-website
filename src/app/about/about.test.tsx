@@ -56,13 +56,7 @@ describe("our story page", () => {
     ]);
   });
 
-  it("describes the conference route for screen readers", () => {
-    render(<AboutPage />);
-    expect(screen.getByRole("img", { name: /Map of the UK and Ireland/ }).textContent).toContain("Glasgow");
-    expect(screen.getByText(/Leeds, 3 Feb 2026, 143 signups/)).toBeTruthy();
-  });
-
-  it("tells who IHSAAN is and closes with a way to get involved", () => {
+  it("tells who IHSAAN is and closes by inviting professionals and employers in", () => {
     render(<AboutPage />);
     expect(screen.getByRole("heading", { name: "Who we are" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Grassroots and career-focused" })).toBeTruthy();
@@ -70,7 +64,11 @@ describe("our story page", () => {
     expect(document.body.textContent).toContain("From bootcamps and webinars to conferences and career events");
     expect(document.body.textContent).not.toContain("Our Spring Week Academies are led by students");
     expect(document.body.textContent).not.toMatch(/FOSIS|Federation of Student Islamic Societies/);
-    expect(screen.getByRole("link", { name: "Get started" }).getAttribute("href")).toBe("/start");
-    expect(screen.getByRole("link", { name: "See upcoming events" }).getAttribute("href")).toBe("/events");
+    expect(screen.getByRole("link", { name: "Partner with us" }).getAttribute("href")).toBe(
+      "/contact?topic=partnerships",
+    );
+    expect(screen.getByRole("link", { name: "Become a mentor" }).getAttribute("href")).toBe(
+      "https://mymuslimmentor.com/signup",
+    );
   });
 });

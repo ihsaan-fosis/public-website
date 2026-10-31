@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  MapChapter,
   PurposeChapter,
   StoryContinues,
   TeamChapter,
@@ -24,12 +23,11 @@ export default function AboutPage() {
       <PhotoHero
         image="/media/gallery/networking-hall.webp"
         title="Our story."
-        intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and where the work has taken us."
+        intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and what we stand for."
       />
       <WhoChapter />
       <PurposeChapter />
       <ValuesChapter />
-      <MapChapter />
       <TeamChapter />
       <StoryContinues />
     </>
