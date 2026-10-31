@@ -244,6 +244,12 @@ An owner decision dated 14 October 2026 separates this style from the member
 portal at `portal.ihsaan.network`.
 Public pages exclude flat brand-colour panels, raised text boxes,
 boxed lists, dashboard stat tiles, and card-like tables.
+
+New public work has no eyebrows. An eyebrow is a small, uppercase or tracked
+label set above a heading, with or without a dot. Do not add `Eyebrow` or copy
+its styling. A title is either the heading itself or `sr-only` when a statement
+carries the section. The `Eyebrow` uses already in the footer, resources, and
+`EventList` are legacy. Remove them when you next change those surfaces.
 The member portal's purple, white, and sky motif panels do not belong here.
 
 Text lists sit directly on the page background under thin rules.
@@ -313,7 +319,7 @@ Labels are small, bold, uppercase, and widely spaced. Body copy is Regular.
 | Reading copy | `text-[15px] leading-7` | Paragraphs and card bodies. |
 | Short copy | `text-sm leading-6` | Hero intros, asides, and photo-card copy. |
 | Fine print | `text-[13px] leading-6 text-ink/65` | Notes and disclaimers. |
-| Label above a heading | `text-[11px] font-bold tracking-[0.18em] uppercase` | `Eyebrow`, with a purple-to-light-blue dot. |
+| Label above a heading (legacy) | `text-[11px] font-bold tracking-[0.18em] uppercase` | `Eyebrow`. Do not use in new work (section 9.1). |
 | Button label | `text-[12.5px] font-bold tracking-[0.14em] uppercase` | `ButtonLink`. |
 | Decorative numeral | `text-[5.5rem] sm:text-[7.5rem] font-extrabold tracking-[-0.06em] text-cream/20` | Numbered photo cards. |
 
@@ -475,6 +481,7 @@ Public pages meet these criteria:
   except the conversion-page pattern's short closing line.
 - No horizontal scroll at 390px or 1440px, in either theme or with reduced motion.
 - No member-portal motif panels, raised text cards, or boxed lists.
+- No eyebrows above headings (section 9.1).
 
 ### 9.11 Departures from the brand guide
 
