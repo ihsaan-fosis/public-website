@@ -43,10 +43,10 @@ export const GET_INVOLVED: NavLink = { href: "/start", label: "Get started" };
 
 export const PROFESSIONALS_LINK: NavLink = { href: "/professionals", label: "Professionals" };
 
-/** Kept out of `NAV_LINKS` so the primary row stays readable beside the wordmark and CTAs. */
-export const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
-
 export const MEMBER_PORTAL: NavLink = { href: "https://portal.ihsaan.network/sign-in", label: "Member portal" };
+
+/** Events live in the member portal. Kept out of `NAV_LINKS` so the primary row stays readable. */
+export const EVENTS_LINK: NavLink = { href: MEMBER_PORTAL.href, label: "Events" };
 
 export const MEMBER_PORTAL_SIGNUP: NavLink = {
   href: "https://portal.ihsaan.network/sign-up",

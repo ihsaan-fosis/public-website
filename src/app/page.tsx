@@ -58,7 +58,7 @@ export default function Home() {
 
       <ProgrammesCarousel
         action={
-          <ButtonLink href="/events" tone="ghost">
+          <ButtonLink href={GET_INVOLVED.href} tone="ghost">
             View events
           </ButtonLink>
         }

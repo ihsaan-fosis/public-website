@@ -51,7 +51,7 @@ describe("Home", () => {
 
   it("offers an evergreen route to events instead of a dated schedule", () => {
     const { container } = render(<Home />);
-    expect(screen.getByRole("link", { name: "View events" }).getAttribute("href")).toBe("/events");
+    expect(screen.getByRole("link", { name: "View events" }).getAttribute("href")).toBe("/start");
     expect(container.textContent).not.toMatch(/Spring Week Academy|Career Conference 2026/);
   });
 

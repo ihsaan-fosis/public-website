@@ -184,7 +184,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "An example of the organisations that host or take part in our insight events.",
       },
     ],
-    primary: { label: "See upcoming events", href: "/events" },
+    primary: { label: "See upcoming events", href: GET_INVOLVED.href },
     secondary: { label: "Partner with us", href: "/contact" },
   },
   {
@@ -229,7 +229,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Skills-focused bootcamps, including our summer bootcamps.",
       },
     ],
-    primary: { label: "See upcoming events", href: "/events" },
+    primary: { label: "See upcoming events", href: GET_INVOLVED.href },
     secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
   {

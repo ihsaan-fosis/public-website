@@ -13,7 +13,6 @@ IHSAAN: ${TAGLINE} ${MISSION} Public site for Muslim students and young professi
 - [/impact](/impact) Impact: reach, results, how success is measured and the 2045 vision
 - [/blog](/blog) Blog: community reflections and writing
 - [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship) Civil Service summer internship reflection
-- [/events](/events) Events: upcoming career conferences and academies, with the full events calendar
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
 - [/start](/start) Get started

@@ -70,7 +70,7 @@ describe("programme pages", () => {
       expect(href("Become a mentor")).toBe("https://mymuslimmentor.com/signup");
     });
 
-    it("points the conferences page at the events route without inline scheduled cards", async () => {
+    it("points the conferences page at the Luma calendar without inline scheduled cards", async () => {
       await renderProgramme("career-conferences");
       expect(screen.queryByRole("link", { name: "See scheduled IHSAAN events" })).toBeNull();
       expect(href("View upcoming events")).toBe("https://luma.com/calendar/cal-8amaiM2VigRIqjq");
@@ -99,7 +99,7 @@ describe("programme pages", () => {
       }
       expect(container.textContent).toContain("does not guarantee an internship or a job offer");
       expect(container.textContent).not.toMatch(/Goldman|Morgan|Barclays|Deloitte|PwC|KPMG|EY|Ernst/);
-      expect(href("See upcoming events")).toBe("/events");
+      expect(href("See upcoming events")).toBe("/start");
     });
 
     it("describes every Roast My format and files Spring Week Academy under Webinars & Workshops", async () => {
@@ -109,7 +109,7 @@ describe("programme pages", () => {
       }
       expect(screen.getByText("Interview practice, which may include a mock interview.")).toBeTruthy();
       expect(screen.getByText(/Spring Week Academy/)).toBeTruthy();
-      expect(href("See upcoming events")).toBe("/events");
+      expect(href("See upcoming events")).toBe("/start");
     });
   });
 

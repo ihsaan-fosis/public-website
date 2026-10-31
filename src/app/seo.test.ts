@@ -14,7 +14,7 @@ describe("technical SEO routes", () => {
     expect(urls).toContain(`${ORIGIN}/`);
     expect(urls).toContain(`${ORIGIN}/privacy`);
     expect(urls).toContain(`${ORIGIN}/terms`);
-    expect(urls).toContain(`${ORIGIN}/events`);
+    expect(urls).not.toContain(`${ORIGIN}/events`);
     expect(urls).toContain(`${ORIGIN}/impact`);
     expect(urls).toContain(`${ORIGIN}/blog`);
     expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
@@ -36,10 +36,10 @@ describe("technical SEO routes", () => {
 });
 
 describe("llms.txt", () => {
-  it("lists the events and blog routes and every approved social profile", async () => {
+  it("lists the blog routes and every approved social profile without the retired events route", async () => {
     const body = await llms().text();
 
-    expect(body).toContain("- [/events](/events) Events:");
+    expect(body).not.toContain("/events");
     expect(body).toContain("- [/impact](/impact) Impact:");
     expect(body).toContain("- [/blog](/blog) Blog:");
     expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
@@ -66,7 +66,6 @@ describe("page metadata", () => {
   const pages = [
     ["/about", () => import("./about/page")],
     ["/contact", () => import("./contact/page")],
-    ["/events", () => import("./events/page")],
     ["/impact", () => import("./impact/page")],
     ["/blog", () => import("./blog/page")],
     ["/gallery", () => import("./gallery/page")],
@@ -161,6 +160,7 @@ describe("legacy URLs", () => {
   });
 
   it.each([
+    ["/events", "/start"],
     ["/haqqathons", "/programmes/hackathons"],
     ["/programmes/faithful-talent", "/programmes/summer-internships"],
     ["/mentoring", "/programmes/mentorship"],

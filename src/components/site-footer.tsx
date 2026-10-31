@@ -65,9 +65,15 @@ export function SiteFooter() {
           <FooterColumn title="Explore">
             {[...NAV_LINKS, EVENTS_LINK, GET_INVOLVED, PROFESSIONALS_LINK].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className={linkClass}>
-                  {link.label}
-                </Link>
+                {link.href.startsWith("/") ? (
+                  <Link href={link.href} className={linkClass}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a href={link.href} className={linkClass}>
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </FooterColumn>

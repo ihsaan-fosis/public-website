@@ -20,7 +20,7 @@ describe("SiteFooter", () => {
     render(<SiteFooter />);
     expect(screen.getByRole("link", { name: "Impact" }).getAttribute("href")).toBe("/impact");
     expect(screen.queryByRole("link", { name: "Resources" })).toBeNull();
-    expect(screen.getByRole("link", { name: "Events" }).getAttribute("href")).toBe("/events");
+    expect(screen.getByRole("link", { name: "Events" }).getAttribute("href")).toBe("https://portal.ihsaan.network/sign-in");
     expect(screen.getByRole("link", { name: "Blog" }).getAttribute("href")).toBe("/blog");
     expect(screen.getByRole("link", { name: "Professionals", exact: true }).getAttribute("href")).toBe("/professionals");
   });
