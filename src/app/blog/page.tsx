@@ -108,7 +108,7 @@ export default function BlogPage() {
   return (
     <>
       <PhotoHero
-        image="/media/gallery/mentor-chat.webp"
+        image="/media/gallery/students-collaborating.webp"
         title="Blog."
         intro="Reflections and writing from the IHSAAN community. Each piece is published on this site so students can read it without leaving ihsaan.network."
       />
