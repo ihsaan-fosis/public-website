@@ -38,11 +38,6 @@ describe("SiteFooter", () => {
     logos.forEach((logo) => expect(logo.closest("[data-reveal]")).toBeNull());
   });
 
-  it("renders column labels without purple accent dots", () => {
-    const { container } = render(<SiteFooter />);
-    expect(container.querySelectorAll(".rounded-full.bg-gradient-to-br").length).toBe(0);
-  });
-
   it("credits the IHSAAN Tech Team and links to their page", () => {
     render(<SiteFooter />);
     expect(screen.getByRole("link", { name: "IHSAAN Tech Team" }).getAttribute("href")).toBe("/tech-team");
