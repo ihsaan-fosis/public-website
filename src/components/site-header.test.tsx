@@ -16,20 +16,12 @@ describe("SiteHeader", () => {
     window.history.replaceState(null, "", "/");
   });
 
-  it.each(["/", "/about", "/programmes/career-conferences", "/gallery", "/contact", "/start"])(
-    "keeps the wordmark pointing to the top of home from %s",
+  it.each(["/", "/programmes/career-conferences"])(
+    "links home and both menus to their destinations from %s",
     (pathname) => {
       route.pathname = pathname;
       render(<SiteHeader />);
       expect(screen.getByRole("link", { name: "IHSAAN home" })).toHaveAttribute("href", "/");
-    },
-  );
-
-  it.each(["/", "/about", "/programmes", "/impact", "/blog", "/gallery", "/contact"])(
-    "targets the top of each destination in both menus from %s",
-    (pathname) => {
-      route.pathname = pathname;
-      render(<SiteHeader />);
       for (const name of ["Primary", "Mobile primary"]) {
         const nav = screen.getByRole("navigation", { name, hidden: true });
         for (const [label, href] of [

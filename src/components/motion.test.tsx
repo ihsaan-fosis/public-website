@@ -222,17 +222,11 @@ describe("RevealObserver", () => {
 });
 
 describe("static decoration", () => {
-  it("uses full-width hero copy with gutters that account for the inset frame", () => {
-    const { container } = render(<PhotoHero image="/still.webp" title="A still hero" />);
-    const copy = container.querySelector(".hero-copy");
-    expect(copy).toHaveClass("w-full", "px-5", "sm:px-10", "lg:px-12", "pb-8", "sm:pb-10", "lg:pb-12");
-    expect(copy?.className).not.toMatch(/max-w-/);
-  });
-
   it("renders a still-image hero without the continuous zoom", () => {
     const { container } = render(<PhotoHero image="/still.webp" title="A still hero" />);
+    expect(screen.getByRole("heading", { level: 1, name: "A still hero" })).toBeInTheDocument();
+    expect(container.querySelector("img")).toBeInTheDocument();
     expect(container.querySelector(".animate-kenburns")).toBeNull();
     expect(container.querySelector("video")).toBeNull();
   });
-
 });

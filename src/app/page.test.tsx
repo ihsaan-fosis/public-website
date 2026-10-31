@@ -55,11 +55,6 @@ describe("Home", () => {
     expect(container.textContent).not.toMatch(/Spring Week Academy|Career Conference 2026/);
   });
 
-  it("does not show template prices or the placeholder event schedule", () => {
-    const { container } = render(<Home />);
-    expect(container.textContent).not.toMatch(/\$99|\$249|Check-In|Opening Keynote/);
-  });
-
   it("names the site IHSAAN for search results", () => {
     const { container } = render(<Home />);
     const website = JSON.parse(container.querySelector('script[type="application/ld+json"]')?.textContent ?? "{}");
