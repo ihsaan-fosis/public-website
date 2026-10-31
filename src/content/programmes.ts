@@ -5,7 +5,13 @@ export type ProgrammeAction = { label: string; href: string; external?: boolean 
 
 export type ProgrammeHighlight = { title: string; body: string };
 
-export type ProgrammeEvent = { date: string; place: string; detail: string };
+export type ProgrammeEvent = {
+  date: string;
+  place: string;
+  detail: string;
+  /** A headline number for the event, shown large beside it. */
+  figure?: { value: string; label: string };
+};
 
 export type ProgrammePage = {
   slug: string;
@@ -226,10 +232,15 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     about: [
       "A hackathon is a focused sprint where teams turn real-world problems into working ideas. Over a weekend, participants form teams, learn from mentors, prototype a solution and pitch it to partners who can help take it further.",
     ],
-    stats: [],
+    stats: [
+      { value: "125+", label: "Participants in 2026" },
+      { value: "5", label: "Partner organisations in Manchester" },
+      { value: "2", label: "Cities in 2026" },
+    ],
     highlightsTitle: "How it works",
     highlights: [
-      { title: "Form a team", body: "Students work in teams to prototype practical solutions for real community challenges." },
+      { title: "Form a team", body: "Students join teams to take on real community challenges." },
+      { title: "Build a prototype", body: "Teams turn a real-world problem into a working idea over the weekend." },
       { title: "Learn from mentors", body: "Mentors support participants from early ideas through to final pitches." },
       { title: "Pitch to partners", body: "Teams present to partners who can help take the strongest ideas further." },
     ],
@@ -238,12 +249,14 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       {
         date: "2026",
         place: "British Muslim Heritage Centre, Manchester",
-        detail: "90+ participants. Collaborated with 5 partner organisations including AFH, ZeroPa, Redwood, Medology and the local council.",
+        detail: "Collaborated with 5 partner organisations including AFH, ZeroPa, Redwood, Medology and the local council.",
+        figure: { value: "90+", label: "participants" },
       },
       {
         date: "2026",
         place: "Dublin",
-        detail: "35+ participants. Expanded the IHSAAN hackathon programme in Ireland.",
+        detail: "Expanded the IHSAAN hackathon programme in Ireland.",
+        figure: { value: "35+", label: "participants" },
       },
     ],
     partnersTitle: "Our hackathon partners",
