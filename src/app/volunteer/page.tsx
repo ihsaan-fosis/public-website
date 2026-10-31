@@ -3,6 +3,7 @@ import { PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui"
 import { VolunteerOpenings } from "@/components/volunteer-openings";
 import { VOLUNTEER_INTRO } from "@/content/volunteer";
 import { pageMetadata } from "@/lib/metadata";
+import { getVolunteerOpenings } from "@/lib/volunteer-roles";
 
 export const metadata: Metadata = pageMetadata({
   title: "Volunteer openings",
@@ -12,7 +13,11 @@ export const metadata: Metadata = pageMetadata({
   socialDescription: "Volunteer with IHSAAN. Explore open roles and apply on this website.",
 });
 
-export default function VolunteerOpeningsPage() {
+// Roles come from the member platform, so each request reads the current board instead of freezing it at build time.
+export const dynamic = "force-dynamic";
+
+export default async function VolunteerOpeningsPage() {
+  const openings = await getVolunteerOpenings();
   return (
     <>
       <PhotoHero
@@ -27,16 +32,15 @@ export default function VolunteerOpeningsPage() {
         <SectionHeading
           id="openings-title"
           title="Open positions"
-          aside={VOLUNTEER_INTRO.positionsIntro}
+          aside={
+            <>
+              <span className="font-semibold text-ink">{openings.length}</span> open{" "}
+              {openings.length === 1 ? "role" : "roles"}
+            </>
+          }
         />
-        <p data-reveal className="mt-8 max-w-2xl text-sm leading-6 text-ink/65">
-          {VOLUNTEER_INTRO.responseNote}
-        </p>
-        <p data-reveal className="mt-3 max-w-2xl text-sm leading-6 text-ink/65">
-          {VOLUNTEER_INTRO.unpaidNote}
-        </p>
 
-        <VolunteerOpenings />
+        <VolunteerOpenings openings={openings} />
       </Section>
     </>
   );

@@ -3,8 +3,8 @@ import VolunteerOpeningsPage from "./page";
 import { VOLUNTEER_APPLICATION_FORM_URL, VOLUNTEER_OPENINGS } from "@/content/volunteer";
 
 describe("volunteer openings", () => {
-  it("lists only the general application, with the unpaid note and no mission section", () => {
-    render(<VolunteerOpeningsPage />);
+  it("lists only the general application, with the unpaid note and no mission section", async () => {
+    render(await VolunteerOpeningsPage());
     expect(screen.getByRole("heading", { level: 1, name: "Volunteer with IHSAAN." })).toBeTruthy();
     expect(screen.getAllByText(/unpaid/i).length).toBeGreaterThan(0);
     expect(screen.queryByRole("heading", { name: "Mission" })).toBeNull();
@@ -13,8 +13,8 @@ describe("volunteer openings", () => {
     expect(screen.queryByRole("link", { name: /General Application/ })).toBeNull();
   });
 
-  it("opens the Tally application form in a modal", () => {
-    render(<VolunteerOpeningsPage />);
+  it("opens the Tally application form in a modal", async () => {
+    render(await VolunteerOpeningsPage());
     expect(screen.queryByRole("dialog")).toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: /General Application/ }));
