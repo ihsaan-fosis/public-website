@@ -277,6 +277,21 @@
       animation-range: cover 0% cover 100%;
     }
 
+    /* A tangle of prints that straightens into a tidy mosaic, each at its own offset. */
+    .conf-settle {
+      animation: conf-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+
+    /* The highlighter pass over the phrases where the student's story turns. */
+    .conf-mark {
+      background-size: 0% 62%;
+      animation: conf-mark linear both;
+      animation-timeline: view();
+      animation-range: cover 18% cover 42%;
+    }
+
     .why-reveal {
       view-timeline-name: --why;
       height: 220svh;
@@ -413,6 +428,22 @@
   }
 }
 
+/* Career conferences: a marker pass under the lower part of the line, drawn with a background so it wraps across lines. */
+.conf-mark {
+  --conf-mark: color-mix(in srgb, var(--color-ihsaan-purple) 34%, transparent);
+  margin-inline: -0.08em;
+  padding-inline: 0.08em;
+  border-radius: 0.15em;
+  background: linear-gradient(var(--conf-mark), var(--conf-mark)) no-repeat 0 88% / 100% 62%;
+  color: var(--color-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+[data-theme="dark"] .conf-mark {
+  --conf-mark: color-mix(in srgb, var(--color-ihsaan-purple) 62%, transparent);
+}
+
 @keyframes hero-recede {
   to {
     transform: scale(0.92);
@@ -475,6 +506,24 @@
     opacity: 0;
     transform: translateY(48px);
     filter: blur(8px);
+  }
+}
+
+@keyframes conf-settle {
+  from {
+    transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes conf-mark {
+  from {
+    background-size: 0% 62%;
+  }
+  to {
+    background-size: 100% 62%;
   }
 }
 

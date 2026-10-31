@@ -3,7 +3,12 @@ import { GET_INVOLVED, type Partner, type Photo, type Stat } from "./site";
 
 export type ProgrammeAction = { label: string; href: string; external?: boolean };
 
-export type ProgrammeHighlight = { title: string; body: string };
+export type ProgrammeHighlight = {
+  title: string;
+  body: string;
+  /** A gallery photograph set beside the highlight. */
+  image?: string;
+};
 
 export type ProgrammeEvent = {
   date: string;
@@ -55,29 +60,34 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     stats: [],
     conferenceMap: true,
-    portalInvite: {
-      title: "Internships are released in the member portal",
-      body: "Opportunities from our conferences, including internships, are released through the IHSAAN member portal. Apply to join and you can follow them and apply in one place.",
-      label: "Apply to join the portal",
-    },
     highlightsTitle: "What to expect",
     highlights: [
-      { title: "Keynote talks", body: "Professionals across finance, law, technology, healthcare, consulting and more." },
+      {
+        title: "Keynote talks",
+        body: "Professionals across finance, law, technology, healthcare, consulting and more.",
+        image: "/media/gallery/conference-audience.webp",
+      },
       {
         title: "Employer exhibition stands",
         body: "Discover roles, internships and graduate schemes directly from employers.",
+        image: "/media/gallery/employer-conversations.webp",
       },
       {
         title: "Panel discussions",
         body: "Insights on navigating faith and career, social mobility and different industries.",
+        image: "/media/gallery/conference-panel.webp",
       },
-      { title: "Practical workshops", body: "CVs, interviews, networking, personal branding and other career skills." },
+      {
+        title: "Practical workshops",
+        body: "CVs, interviews, networking, personal branding and other career skills.",
+        image: "/media/gallery/workshop-tables.webp",
+      },
       {
         title: "Networking sessions",
         body: "Meet professionals who understand the unique journey of Muslim graduates.",
+        image: "/media/gallery/student-conversations.webp",
       },
     ],
-    eventsTitle: "Conference signups",
     events: [
       { date: "15 Oct 2024", place: "Birmingham", detail: "286 signups" },
       { date: "6 Nov 2024", place: "London", detail: "458 signups" },
