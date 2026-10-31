@@ -39,7 +39,7 @@ export default function ProfessionalsPage() {
         />
         <InvolvementActions
           actions={PROFESSIONAL_ACTIONS}
-          photo={{ src: "/media/gallery/student-conversations.webp", alt: "Students talking between conference sessions" }}
+          photo={{ src: "/media/gallery/employer-stand-redwood.webp", alt: "Professionals meeting students at a Redwood Founders stand" }}
         />
       </Section>
 

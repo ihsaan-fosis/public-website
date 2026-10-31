@@ -76,32 +76,32 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "career-conferences",
     title: "Career Conferences",
-    photo: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
+    photo: { src: "/media/gallery/london-conference-2024-wide.webp", alt: "Students listening to a speaker at an IHSAAN career conference in London", width: 2560, height: 1928 },
   },
   {
     slug: "summer-internships",
     title: "Summer Internship Programme",
-    photo: { src: "/media/faithful-talent-hd.webp", alt: "Students listening to speakers at an informal IHSAAN session", width: 3840, height: 2378 },
+    photo: { src: "/media/gallery/students-collaborating.webp", alt: "Two students working together on laptops at an IHSAAN programme session", width: 2560, height: 1707 },
   },
   {
     slug: "insight-events",
     title: "Insight Events",
-    photo: { src: "/media/gallery/careers-evening.webp", alt: "Students at employer stands during an IHSAAN careers evening", width: 2000, height: 1126 },
+    photo: { src: "/media/gallery/manchester-conference-2026.webp", alt: "An audience watching a panel at an IHSAAN careers conference", width: 2560, height: 1440 },
   },
   {
     slug: "webinars-workshops",
     title: "Webinars & Workshops",
-    photo: { src: "/media/gallery/startup-talk.webp", alt: "A speaker presenting a startup talk beside an IHSAAN banner", width: 2000, height: 1500 },
+    photo: { src: "/media/gallery/speaker-portrait.webp", alt: "A speaker presenting at an IHSAAN workshop", width: 1710, height: 2560 },
   },
   {
     slug: "hackathons",
     title: "Hackathons",
-    photo: { src: "/media/hackathon-smiles.webp", alt: "Hackathon participants smiling and giving thumbs up at their table", width: 1280, height: 1600 },
+    photo: { src: "/media/gallery/hackathon-coding-closeup.webp", alt: "A student coding at an IHSAAN hackathon", width: 2560, height: 1707 },
   },
   {
     slug: "mentorship",
     title: "Mentorship",
-    photo: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
+    photo: { src: "/media/gallery/mentor-chat.webp", alt: "A student in conversation with a mentor through My Muslim Mentor", width: 2560, height: 1710 },
   },
 ];
 
@@ -171,7 +171,7 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
     body: "Join career conferences, hackathons and internship programmes, and use free career guides.",
     points: ["Career guides & resources", "Professional networks", "Faith-conscious support", "Skills workshops"],
     cta: { href: "/programmes", label: "Explore programmes" },
-    photo: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
+    photo: { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students sitting in rows at an IHSAAN careers workshop", width: 2560, height: 1707 },
   },
   {
     title: "Professionals",
@@ -183,14 +183,14 @@ export const INVOLVEMENT_ROUTES: readonly InvolvementRoute[] = [
       { href: PUBLIC_DESTINATIONS.whatsappCommunityForm.href, label: "Join the WhatsApp community", external: true },
     ],
     cta: { href: PUBLIC_DESTINATIONS.professionalNetworkForm.href, label: "Offer your time", external: true },
-    photo: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
+    photo: { src: "/media/gallery/workshop-tables.webp", alt: "Professionals and students working together at tables", width: 2560, height: 1707 },
   },
   {
     title: "Organisations",
     body: "Partner with IHSAAN to host or sponsor programmes, share opportunities and meet Muslim students and graduates.",
     points: ["Employer access", "Faith-aligned roles", "Mentorship network", "Dedicated programme support"],
     cta: { href: "/contact", label: "Partner with us" },
-    photo: { src: "/media/impact-hd.webp", alt: "Students networking at an IHSAAN event", width: 3840, height: 2145 },
+    photo: { src: "/media/gallery/employer-stand-redwood.webp", alt: "A Redwood Founders stand at a Midlands careers conference", width: 1920, height: 2560 },
   },
 ];
 
@@ -296,31 +296,47 @@ export const FAQS: readonly FaqItem[] = [
 ];
 
 export const GALLERY: readonly Photo[] = [
+  { src: "/media/gallery/workshop-audience.webp", alt: "Students watching a talk in an IHSAAN event hall", width: 2560, height: 1707 },
+  { src: "/media/gallery/conference-audience-side.webp", alt: "Students listening to a speaker at an IHSAAN conference", width: 1928, height: 2560 },
+  { src: "/media/gallery/students-studying.webp", alt: "A student working at a laptop during an IHSAAN session", width: 2560, height: 1707 },
+  { src: "/media/gallery/employer-conversation-wide.webp", alt: "A student and an employer in conversation at a careers conference", width: 1440, height: 2560 },
+  { src: "/media/gallery/students-collaborating.webp", alt: "Two students working together on laptops", width: 2560, height: 1707 },
+  { src: "/media/gallery/employer-stand-redwood.webp", alt: "A Redwood Founders stand at a Midlands careers conference", width: 1920, height: 2560 },
+  { src: "/media/gallery/hackathon-coding-closeup.webp", alt: "A student coding at a hackathon", width: 2560, height: 1707 },
+  { src: "/media/gallery/conference-hall-wide.webp", alt: "A lecture theatre of students at an IHSAAN career conference", width: 1928, height: 2560 },
+  { src: "/media/gallery/hackathon-bench.webp", alt: "Two hackathon participants smiling together on a bench", width: 1707, height: 2560 },
+  { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students sitting in rows at an IHSAAN careers workshop", width: 2560, height: 1707 },
+  { src: "/media/gallery/hackathon-three.webp", alt: "Three students working on laptops together at a hackathon", width: 2560, height: 1707 },
+  { src: "/media/gallery/manchester-conference-2026.webp", alt: "An audience watching a panel at an IHSAAN careers conference", width: 2560, height: 1440 },
+  { src: "/media/gallery/mentor-chat.webp", alt: "A student in conversation with a mentor through My Muslim Mentor", width: 2560, height: 1710 },
+  { src: "/media/gallery/workshop-tables.webp", alt: "Professionals and students working together at tables", width: 2560, height: 1707 },
+  { src: "/media/gallery/speaker-portrait.webp", alt: "A speaker presenting at an IHSAAN workshop", width: 1710, height: 2560 },
+  { src: "/media/gallery/students-at-work.webp", alt: "Students working together at an IHSAAN programme session", width: 2560, height: 1707 },
+  { src: "/media/gallery/hackathon-long-table.webp", alt: "A long table of teams coding during an IHSAAN hackathon", width: 2560, height: 1707 },
+  { src: "/media/gallery/london-conference-2024.webp", alt: "A speaker addressing students at an IHSAAN career conference", width: 2560, height: 1928 },
+  { src: "/media/gallery/london-conference-2024-wide.webp", alt: "Students listening to a speaker at an IHSAAN career conference in London", width: 2560, height: 1928 },
+  { src: "/media/gallery/hackathon-rows.webp", alt: "Teams of students coding together at an IHSAAN hackathon", width: 2560, height: 1707 },
+  { src: "/media/career-conference-london-hd.webp", alt: "An audience at an IHSAAN career conference in London", width: 2560, height: 1928 },
   { src: "/media/gallery/conference-panel.webp", alt: "Students in a lecture theatre watching a panel at an IHSAAN career conference", width: 2000, height: 1126 },
   { src: "/media/gallery/hackathon-team.webp", alt: "A hackathon team smiling beside their project on a laptop", width: 2000, height: 1336 },
-  { src: "/media/gallery/hackathon-smiles.webp", alt: "Hackathon participants smiling and giving thumbs up at their table", width: 2000, height: 1333 },
   { src: "/media/gallery/employer-stands.webp", alt: "Students meeting employers at the KPMG Network of Women stand", width: 2000, height: 1126 },
   { src: "/media/gallery/startup-talk.webp", alt: "A speaker presenting a startup talk beside an IHSAAN banner", width: 2000, height: 1500 },
   { src: "/media/gallery/hackathon-mentor.webp", alt: "A mentor leaning in to help a team during the hackathon", width: 2000, height: 1333 },
   { src: "/media/gallery/careers-fair.webp", alt: "A student speaking with an employer at a careers fair", width: 1400, height: 2488 },
-  { src: "/media/gallery/networking-hall.webp", alt: "Students networking in the hall at an IHSAAN career conference", width: 3840, height: 2162 },
-  { src: "/media/gallery/hackathon-table.webp", alt: "Three students coding together at a shared hackathon table", width: 2000, height: 1333 },
+  { src: "/media/gallery/networking-hall.webp", alt: "Students networking in the hall at an IHSAAN career conference", width: 2560, height: 1442 },
   { src: "/media/gallery/manchester-foyer.webp", alt: "Students gathering in a University of Manchester foyer", width: 2000, height: 1126 },
-  { src: "/media/gallery/hackathon-focus.webp", alt: "A team of three focused on laptops by the windows", width: 2000, height: 1333 },
   { src: "/media/gallery/student-conversations.webp", alt: "Students talking between conference sessions", width: 2000, height: 1126 },
   { src: "/media/gallery/conference-audience.webp", alt: "An audience listening at an IHSAAN career conference", width: 2560, height: 1706 },
   { src: "/media/gallery/hackathon-discussion.webp", alt: "Students discussing their idea around a laptop", width: 2000, height: 1333 },
   { src: "/media/gallery/careers-evening.webp", alt: "Students at employer stands during an IHSAAN careers evening", width: 2000, height: 1126 },
   { src: "/media/gallery/hackathon-partners.webp", alt: "Participants coding beside a partner organisation banner", width: 2000, height: 1333 },
   { src: "/media/gallery/employer-pitch.webp", alt: "A Redwood Founders representative talking with a student at their stand", width: 2000, height: 1500 },
-  { src: "/media/gallery/hackathon-collab.webp", alt: "Two participants reviewing something on a phone together", width: 2000, height: 1333 },
   { src: "/media/gallery/conference-selfie.webp", alt: "Students taking a group selfie at a careers fair", width: 1400, height: 1866 },
-  { src: "/media/gallery/hackathon-talk.webp", alt: "Audience watching a partner talk in the heritage hall", width: 2000, height: 1126 },
+  { src: "/media/gallery/hackathon-talk-upright.webp", alt: "Audience watching a partner talk in the heritage hall", width: 1126, height: 2000 },
   { src: "/media/gallery/employer-conversations.webp", alt: "Students in conversation at employer tables", width: 2000, height: 1500 },
   { src: "/media/gallery/careers-fair-hall.webp", alt: "A busy hall of employer stands at an IHSAAN careers fair", width: 1400, height: 1866 },
   { src: "/media/gallery/networking-overhead.webp", alt: "An overhead view of students queuing to meet employers", width: 1400, height: 1866 },
   { src: "/media/gallery/hackathon-hall.webp", alt: "The heritage hall during a hackathon presentation", width: 977, height: 1600 },
-  { src: "/media/photo-collage-hd.png", alt: "A collage of moments from IHSAAN programmes", width: 1440, height: 1080 },
   { src: "/media/career-conference-hd.webp", alt: "Audience at an IHSAAN career conference", width: 3840, height: 2162 },
   { src: "/media/hackathon-smiles.webp", alt: "Hackathon participants smiling and giving thumbs up at their table", width: 1280, height: 1600 },
   { src: "/media/impact-hd.webp", alt: "Students networking at an IHSAAN event", width: 3840, height: 2145 },
@@ -330,3 +346,23 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
   { src: "/media/impact-wide.webp", alt: "A wide view of an IHSAAN programme", width: 2560, height: 900 },
 ];
+
+/**
+ * The strip shown on the home and Get started pages. These photos appear nowhere else on the site, so neither
+ * page repeats a photograph it has already shown, and the archive holds the rest.
+ */
+export const GALLERY_PREVIEW: readonly Photo[] = [
+  "/media/gallery/hackathon-rows.webp",
+  "/media/gallery/networking-overhead.webp",
+  "/media/gallery/hackathon-hall.webp",
+  "/media/career-conferences-hd.webp",
+  "/media/hackathon-smiles.webp",
+  "/media/gallery/workshop-audience.webp",
+  "/media/gallery/conference-audience-side.webp",
+  "/media/gallery/students-studying.webp",
+  "/media/gallery/employer-conversation-wide.webp",
+].map((src) => {
+  const photo = GALLERY.find((candidate) => candidate.src === src);
+  if (!photo) throw new Error(`Gallery preview photo is not in GALLERY: ${src}`);
+  return photo;
+});

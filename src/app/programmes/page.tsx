@@ -61,7 +61,7 @@ export default function ProgrammesPage() {
 
       <PartnersSection />
 
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/hackathon-long-table.webp" />
     </>
   );
 }

@@ -138,7 +138,7 @@ export const WHO_WE_ARE: readonly WhoBeat[] = [
   {
     title: "A community that stays",
     body: "Alumni stay connected through the IHSAAN alumni network, and the WhatsApp community keeps the conversation going between events.",
-    photo: { src: "/media/gallery/conference-audience.webp", alt: "An audience listening at an IHSAAN career conference", width: 2560, height: 1706 },
+    photo: { src: "/media/gallery/heritage-hall-audience.webp", alt: "Students sitting in rows at an IHSAAN careers workshop", width: 2000, height: 1333 },
   },
 ];
 

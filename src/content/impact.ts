@@ -93,7 +93,7 @@ export const FLYWHEEL: readonly FlywheelStage[] = [
     title: "Return",
     body: "Alumni open doors for the next cohort. The IHSAAN Alumni Network turns successful students into mentors, speakers, referrers, and hiring contacts.",
     proof: "Every returning alumnus makes the next student's journey easier",
-    photo: galleryPhoto("/media/gallery/student-conversations.webp"),
+    photo: galleryPhoto("/media/gallery/networking-hall.webp"),
   },
 ];
 

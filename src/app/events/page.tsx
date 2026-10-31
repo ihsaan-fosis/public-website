@@ -63,7 +63,7 @@ export default function EventsPage() {
         </Section>
       ) : null}
 
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/careers-fair.webp" />
     </>
   );
 }
