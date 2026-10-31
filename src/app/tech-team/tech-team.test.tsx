@@ -9,7 +9,7 @@ describe("TechTeamPage", () => {
     expect(container.querySelector("img[src*='hackathon-team']")).toBeNull();
     expect(container.textContent).not.toMatch(/\b0[1-5]\b/);
 
-    for (const name of ["Mikhail Wijanarko", "Rayyan Islam", "Kanzah", "Mahe", "Nour Meligy"]) {
+    for (const name of ["Mikhail Wijanarko", "Rayyan Islam", "Kanzah Hussain", "Mahe", "Nour Meligy"]) {
       expect(screen.getByRole("heading", { name })).toBeTruthy();
     }
 
