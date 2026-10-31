@@ -49,6 +49,12 @@ describe("programme pages", () => {
     expect(screen.getByRole("link", { name: /View upcoming events/ })).toBeTruthy();
   });
 
+  it("describes the conference route on a screen-reader map", async () => {
+    render(await ProgrammePage({ params: Promise.resolve({ slug: "career-conferences" }) }));
+    expect(screen.getByRole("img", { name: /Map of the UK and Ireland/ }).textContent).toContain("Glasgow");
+    expect(screen.getByText(/Leeds, 3 Feb 2026, 143 signups/)).toBeTruthy();
+  });
+
   describe("destination links", () => {
     async function renderProgramme(slug: string) {
       return render(await ProgrammePage({ params: Promise.resolve({ slug }) }));
