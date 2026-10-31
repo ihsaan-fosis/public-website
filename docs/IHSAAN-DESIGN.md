@@ -461,7 +461,6 @@ Reading pages and conversion pages have the exceptions below.
 | Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events and quote, related links, closing action. |
 | Story | `/about` | Photo hero, vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
 | Conversion | `/start`, `/contact` | Photo hero, unboxed contact columns or next steps beside a photo, short closing line. No repeated home audience switcher, FAQ, partners, or closing photo band. |
-| Listing | `/events` | Photo hero with one action, `SectionTitle` per group, `EventList`, fine print, closing action. |
 | Article | `/blog/[slug]` | Photo hero when a photo exists, otherwise text hero. A `max-w-3xl` column with 15px `text-ink/75` copy, breadcrumb, optional `Eyebrow`, metadata, lead, contents, author sections, and closing action. Rules use `border-ink/10`. |
 | Utility | `/privacy`, `/terms` | `LegalPage`, text hero with date, and `max-w-3xl` ruled sections. No closing action. |
 | Error | 404 | `PhotoHero` with `lcp={false}` and two actions. No extra sections. |

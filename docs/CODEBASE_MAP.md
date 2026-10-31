@@ -25,7 +25,6 @@ Public routes have these entry points:
 | `/impact` | `src/app/impact/page.tsx` |
 | `/blog` | `src/app/blog/page.tsx` |
 | `/blog/[slug]` | `src/app/blog/[slug]/page.tsx` |
-| `/events` | `src/app/events/page.tsx` |
 | `/contact` | `src/app/contact/page.tsx` |
 | `/start` | `src/app/start/page.tsx` |
 | `/professionals` | `src/app/professionals/page.tsx` |
