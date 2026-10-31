@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HackathonEvents, HackathonIntro, HackathonPartners, HackathonStatement, HackathonWall } from "@/components/hackathon";
+import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } from "@/components/conference";
 import { ClosingCta, PartnerWall } from "@/components/sections";
 import { MapChapter } from "@/components/story";
 import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
@@ -33,6 +34,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
   if (!page) notFound();
 
   const isHackathon = page.slug === "hackathons";
+  const isConference = page.slug === "career-conferences";
 
   return (
     <>
@@ -51,6 +53,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {isHackathon ? (
         <HackathonIntro title={page.title} about={page.about} stats={page.stats} photo={INTRO_PHOTO} />
+      ) : isConference ? (
+        <ConferenceIntro title={page.title} about={page.about} />
       ) : (
         <Section labelledBy="about-title">
           <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
@@ -83,6 +87,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
           <HackathonStatement />
           <HackathonWall />
         </>
+      ) : isConference ? (
+        <ConferenceDay title={page.highlightsTitle} highlights={page.highlights} />
       ) : (
         <Section labelledBy="highlights-title" className="pt-0 sm:pt-0">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
@@ -113,6 +119,13 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
           </div>
         </Section>
       )}
+
+      {isConference ? (
+        <>
+          <ConferenceOutcome />
+          <ConferenceWall />
+        </>
+      ) : null}
 
       {page.portalInvite ? (
         <Section labelledBy="portal-title" className="pt-0 sm:pt-0">
