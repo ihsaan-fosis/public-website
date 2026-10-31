@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HackathonEvents, HackathonIntro, HackathonPartners, HackathonStatement, HackathonWall } from "@/components/hackathon";
 import { ClosingCta, PartnerWall } from "@/components/sections";
 import { MapChapter } from "@/components/story";
-import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "@/components/ui";
+import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -35,7 +33,6 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
   if (!page) notFound();
 
   const isHackathon = page.slug === "hackathons";
-  const others = PROGRAMME_PAGES.filter((programme) => programme.slug !== page.slug);
 
   return (
     <>
@@ -185,46 +182,6 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
           </figure>
         </Section>
       ) : null}
-
-      <Section labelledBy="more-title" className="pt-0 sm:pt-0">
-        <SectionHeading
-          id="more-title"
-          title="Other programmes"
-          action={
-            <div>
-              <ButtonLink href="/programmes" tone="ghost">
-                All programmes
-              </ButtonLink>
-            </div>
-          }
-        />
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {others.map((programme, index) => (
-            <li key={programme.slug} data-reveal style={revealDelay(index % 3)}>
-              <Link
-                href={`/programmes/${programme.slug}`}
-                className="group relative isolate flex h-full min-h-[17rem] flex-col justify-end overflow-hidden rounded-[22px] bg-night-2 p-6 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-accent sm:min-h-[19rem]"
-              >
-                <Image
-                  src={programme.photo.src}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1280px) 416px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
-                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night/95 via-night/55 to-night/10" />
-                <span
-                  aria-hidden
-                  className="absolute top-3 right-5 text-[5.5rem] leading-none font-extrabold tracking-[-0.06em] text-cream/20 transition-colors duration-700 group-hover:text-cream/40"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-2xl font-extrabold tracking-[-0.035em] text-cream sm:text-3xl">{programme.title}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
 
       <ClosingCta image={isHackathon ? "/media/gallery/hackathon-rows.webp" : undefined} />
     </>

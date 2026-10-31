@@ -33,16 +33,6 @@ describe("programme pages", () => {
     }
   });
 
-  it("lists every other programme as a photo card link on a detail page, without repeating the current one", async () => {
-    const { container } = render(await ProgrammePage({ params: Promise.resolve({ slug: "hackathons" }) }));
-    const section = container.querySelector("section[aria-labelledby='more-title']")!;
-    const hrefs = [...section.querySelectorAll("li a")].map((link) => link.getAttribute("href"));
-    expect(hrefs).toEqual(
-      PROGRAMME_PAGES.filter(({ slug }) => slug !== "hackathons").map(({ slug }) => `/programmes/${slug}`),
-    );
-    expect(screen.getByRole("link", { name: "All programmes" }).getAttribute("href")).toBe("/programmes");
-  });
-
   it("renders a detail page with its headline and call to action", async () => {
     render(await ProgrammePage({ params: Promise.resolve({ slug: "career-conferences" }) }));
     expect(screen.getByRole("heading", { level: 1 }).getAttribute("aria-label")).toBe("Meet the employers who want you.");
