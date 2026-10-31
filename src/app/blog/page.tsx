@@ -72,7 +72,7 @@ export default function BlogPage() {
         </p>
       </Section>
 
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/startup-talk.webp" />
     </>
   );
 }

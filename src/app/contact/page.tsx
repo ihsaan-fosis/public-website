@@ -21,7 +21,7 @@ export default async function ContactPage({
 
   return (
     <>
-      <PhotoHero image="/media/impact-hd.webp" title="We would love to hear from you." />
+      <PhotoHero image="/media/gallery/student-conversations.webp" title="We would love to hear from you." />
 
       <Section labelledBy="conversation-title">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">

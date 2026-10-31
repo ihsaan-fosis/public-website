@@ -4,7 +4,7 @@ import type { CSSProperties, ReactNode } from "react";
 import {
   CONTACT_EMAIL,
   FAQS,
-  GALLERY,
+  GALLERY_PREVIEW,
   GET_INVOLVED,
   INVOLVEMENT_ROUTES,
   OFFERS,
@@ -188,9 +188,7 @@ function galleryPhotoSizes(photo: { width: number; height: number }, tileRatio: 
   return `(min-width: 640px) ${Math.round(33 * crop)}vw, ${Math.round(50 * crop)}vw`;
 }
 
-/** Four rows of three; the full set lives on /gallery. */
-const GALLERY_PREVIEW = GALLERY.slice(0, 12);
-
+/** Three rows of three, drawn from the preview set so no page shows a photo it uses elsewhere. */
 export function GalleryParallax({ action }: { action?: ReactNode }) {
   const columns = GALLERY_DRIFT.map((_, column) => GALLERY_PREVIEW.filter((_, index) => index % GALLERY_DRIFT.length === column));
   return (
@@ -293,7 +291,7 @@ function MarqueeHalf({ partners, decorative }: { partners: readonly Partner[]; d
   );
 }
 
-function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[]; reverse?: boolean }) {
+export function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[]; reverse?: boolean }) {
   return (
     <div className="group flex overflow-hidden py-1 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
       <div
@@ -446,9 +444,10 @@ export function PhotoBand({
 
 const CTA_LINES = ["Start your", "career journey", "with IHSAAN."] as const;
 
-export function ClosingCta() {
+/** Each page closes on its own photograph, so the same photo does not end every route. */
+export function ClosingCta({ image = "/media/career-conference-london-hd.webp" }: { image?: string } = {}) {
   return (
-    <PhotoBand image="/media/gallery/conference-audience.webp" labelledBy="cta-title">
+    <PhotoBand image={image} labelledBy="cta-title">
       <h2
         id="cta-title"
         className={BAND_TITLE}

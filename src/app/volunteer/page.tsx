@@ -16,7 +16,7 @@ export default function VolunteerOpeningsPage() {
   return (
     <>
       <PhotoHero
-        image="/media/gallery/student-conversations.webp"
+        image="/media/gallery/hackathon-partners.webp"
         title="Volunteer with IHSAAN."
         intro={VOLUNTEER_INTRO.unpaidNote}
       >

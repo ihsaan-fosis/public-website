@@ -47,7 +47,7 @@ export default function ResourcesPage() {
           aside="Step-by-step guides for intention, applications, interviews and faith at work. Written for Muslim students navigating the UK job market."
         />
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
-          <PhotoFrame src="/media/hackathon-smiles.webp" alt="Hackathon participants smiling and giving thumbs up at their table" sticky />
+          <PhotoFrame src="/media/gallery/hackathon-discussion.webp" alt="Students discussing their work around a laptop" sticky />
           <div className="space-y-14">
             {categories.map((category) => (
               <div key={category.id} id={category.id} className="scroll-mt-28">
@@ -97,7 +97,7 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/hackathon-team.webp" />
     </>
   );
 }

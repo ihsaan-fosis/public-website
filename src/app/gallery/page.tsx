@@ -17,7 +17,7 @@ export default function GalleryPage() {
   return (
     <>
       <PhotoHero
-        image="/media/impact-wide.webp"
+        image="/media/gallery-hero.webp"
         title="Programme gallery."
         intro="Moments from our career conferences, hackathons, internships and mentoring programmes."
       />
