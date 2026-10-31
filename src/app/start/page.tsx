@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { CountUp } from "@/components/motion";
 import { BAND_INTRO, BAND_ROW, BAND_TITLE, GalleryParallax, PhotoBand } from "@/components/sections";
-import { ButtonLink, PhotoHero, Section, SectionHeading, revealDelay } from "@/components/ui";
+import { ButtonLink, PhotoFrame, PhotoHero, Section, SectionHeading, SectionTitle, revealDelay } from "@/components/ui";
 import { TRACTION } from "@/content/impact";
 import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, PROFESSIONALS_LINK, PROGRAMMES, type Photo } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,25 @@ const PROOF = PROOF_LABELS.map((label) => {
   return stat;
 });
 
-const STEPS = ["Create your account", "Pick a programme", "Show up and grow"] as const;
+/** The member areas live at portal.ihsaan.network. Opportunities stays out while the tracker is hidden on this site. */
+const PORTAL_AREAS = [
+  {
+    title: "Events",
+    body: "Browse upcoming IHSAAN events, sign up in one step and get your joining details by email once you are accepted.",
+  },
+  {
+    title: "Mentoring",
+    body: "Find a mentor through our mentoring partner, My Muslim Mentor.",
+  },
+  {
+    title: "Resources",
+    body: "Read the Careers Essentials guides on applications, interviews and LinkedIn.",
+  },
+  {
+    title: "Applications",
+    body: "Keep track of every role you apply for in one place.",
+  },
+] as const;
 
 function PhotoTile({
   photo,
@@ -117,23 +135,37 @@ export default function GetStartedPage() {
         </ul>
       </Section>
 
-      <Section labelledBy="steps-title" className="pt-0 sm:pt-0">
-        <SectionHeading id="steps-title" title="How it works" />
-        <ol className="mt-12 grid gap-10 lg:grid-cols-3 lg:gap-8">
-          {STEPS.map((step, index) => (
-            <li key={step} data-reveal style={revealDelay(index)} className="stat-rule pt-6">
-              <span
-                aria-hidden
-                className="block text-[7rem] leading-none font-extrabold tracking-[-0.06em] text-ink/15 sm:text-[9rem]"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-4 text-3xl leading-tight font-extrabold tracking-[-0.035em] text-ink sm:text-4xl">
-                {step}
-              </h3>
-            </li>
-          ))}
-        </ol>
+      <Section labelledBy="portal-title" className="pt-0 sm:pt-0">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+          <PhotoFrame
+            src="/media/gallery/students-studying.webp"
+            alt="Two students working through something together on a laptop"
+            sticky
+          />
+          <div className="flex flex-col justify-center">
+            <SectionTitle id="portal-title">Inside the member portal</SectionTitle>
+            <ol className="mt-10 border-t border-ink/10">
+              {PORTAL_AREAS.map((area, index) => (
+                <li
+                  key={area.title}
+                  data-reveal
+                  style={revealDelay(index % 3)}
+                  className="flex items-baseline gap-6 border-b border-ink/10 py-6"
+                >
+                  <span aria-hidden className="w-6 shrink-0 text-xs text-ink/45">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
+                      {area.title}
+                    </h3>
+                    <p className="mt-2 max-w-lg text-[15px] leading-7 text-ink/70">{area.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </Section>
 
       <GalleryParallax showHeading={false} />

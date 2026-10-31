@@ -24,7 +24,7 @@ describe("get involved member landing page", () => {
   it("offers programme benefits and how it works without the old audience chooser", () => {
     const { container } = render(<GetInvolvedPage />);
     expect(screen.getByRole("heading", { name: "What you get", exact: true })).toBeVisible();
-    expect(screen.getByRole("heading", { name: "How it works", exact: true })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Inside the member portal", exact: true })).toBeVisible();
     expect(screen.queryByRole("combobox")).toBeNull();
     expect(screen.queryByRole("link", { name: "Explore programmes", exact: true })).toBeNull();
     expect(screen.queryByRole("button", { name: "Explore programmes", exact: true })).toBeNull();
@@ -33,6 +33,7 @@ describe("get involved member landing page", () => {
     visible.querySelectorAll('[aria-hidden="true"], [hidden], script, style, template').forEach((node) => node.remove());
     expect(visible.textContent).not.toMatch(/membership|filter by audience|show steps for/i);
     for (const name of [
+      "How it works",
       "Not sure where to start?",
       "Ways to get involved",
       "Good to know before you join",
