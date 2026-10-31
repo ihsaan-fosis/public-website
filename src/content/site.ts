@@ -89,7 +89,7 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "webinars-workshops",
     title: "Webinars & Workshops",
-    photo: { src: "/media/gallery/speaker-portrait.webp", alt: "A speaker presenting at an IHSAAN workshop", width: 1710, height: 2560 },
+    photo: { src: "/media/gallery/workshop-audience.webp", alt: "Students watching a talk in an IHSAAN event hall", width: 2560, height: 1707 },
   },
   {
     slug: "hackathons",
@@ -99,7 +99,7 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     slug: "mentorship",
     title: "Mentorship",
-    photo: { src: "/media/gallery/mentor-chat.webp", alt: "A woman taking notes during an IHSAAN session", width: 2560, height: 1710 },
+    photo: { src: "/media/gallery/employer-pitch.webp", alt: "A Redwood Founders representative talking one to one with a student", width: 2000, height: 1500 },
   },
 ];
 

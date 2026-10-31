@@ -196,10 +196,10 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     image: "/media/gallery/workshop-tables.webp",
     closingImage: "/media/gallery/heritage-hall-audience.webp",
     photo: {
-      src: "/media/gallery/speaker-portrait.webp",
-      alt: "A speaker presenting at an IHSAAN workshop",
-      width: 1710,
-      height: 2560,
+      src: "/media/gallery/workshop-audience.webp",
+      alt: "Students watching a talk in an IHSAAN event hall",
+      width: 2560,
+      height: 1707,
     },
     about: [
       "Webinars & Workshops brings together the skills-building sessions IHSAAN runs through the year: online panels, online speaker events, bootcamps and the Roast My series.",
