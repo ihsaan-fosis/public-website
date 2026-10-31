@@ -248,7 +248,7 @@ boxed lists, dashboard stat tiles, and card-like tables.
 New public work has no eyebrows. An eyebrow is a small, uppercase or tracked
 label set above a heading, with or without a dot. Do not add `Eyebrow` or copy
 its styling. A title is either the heading itself or `sr-only` when a statement
-carries the section. The `Eyebrow` uses already in the footer, resources, and
+carries the section. The `Eyebrow` uses already in the footer and
 `EventList` are legacy. Remove them when you next change those surfaces.
 The member portal's purple, white, and sky motif panels do not belong here.
 
@@ -320,7 +320,7 @@ Labels are small, bold, uppercase, and widely spaced. Body copy is Regular.
 | Short copy | `text-sm leading-6` | Hero intros, asides, and photo-card copy. |
 | Fine print | `text-[13px] leading-6 text-ink/65` | Notes and disclaimers. |
 | Label above a heading (legacy) | `text-[11px] font-bold tracking-[0.18em] uppercase` | `Eyebrow`. Do not use in new work (section 9.1). |
-| Button label | `text-[12.5px] font-bold tracking-[0.14em] uppercase` | `ButtonLink`. |
+| Button label | `text-[12px] font-bold tracking-[0.14em] uppercase` | `ButtonLink`. |
 | Decorative numeral | `text-[5.5rem] sm:text-[7.5rem] font-extrabold tracking-[-0.06em] text-cream/20` | Numbered photo cards. |
 
 `displayClass` in `src/components/ui.tsx` is
@@ -382,12 +382,12 @@ These components and source patterns define the public pages:
 | Component or pattern | Source | Contract |
 | --- | --- | --- |
 | Photo hero | `PhotoHero` in `src/components/ui.tsx` | Opens most pages. `tall` is for home only. A short title, optional one- or two-sentence `intro`, and at most two action children. |
-| Text hero | `src/app/resources/[slug]/page.tsx`, `LegalPage` | Opens a page without its own photo. Left-aligned `h1`, a 15px lead at `text-ink/70`, and at most one action. Breadcrumbs, `Eyebrow`, and metadata are optional. |
+| Text hero | `LegalPage` | Opens a page without its own photo. Left-aligned `h1`, a 15px lead at `text-ink/70`, and at most one action. Breadcrumbs, `Eyebrow`, and metadata are optional. |
 | Statement | `ScrollWords` in `src/components/motion.tsx` | One promise sentence inside an `h2`, at most once per page. |
 | Section heading | `SectionHeading` in `src/components/ui.tsx` | Full-width title with optional one-sentence `aside` and button `action`. |
 | Section title | `SectionTitle` in `src/components/ui.tsx` | Narrow-column title or title inside a `data-reveal` wrapper. `compact` applies beside other content. |
-| Photo card | `InvolvementPanels`, `OfferSlide`, programme cards, blog cards | An item with its own photo. Filled image, `from-night/95 via-night/60 to-night/10` shade, top-right numeral, cream title, and `white` button. |
-| Editorial list | `TeamChapter`, programme highlights, `/start`, `/resources`, `EventList` in `src/components/event-list.tsx` | Unboxed rows with `border-t` on the list, `border-b` on each row, `border-ink/10`, and staggered `data-reveal`. Optional `text-ink/45` numerals. |
+| Photo card | `InvolvementPanels`, `OfferSlide`, programme cards | An item with its own photo. Filled image, `from-night/95 via-night/60 to-night/10` shade, top-right numeral, cream title, and `white` button. |
+| Editorial list | `TeamChapter`, programme highlights, `/start`, the `/blog` lead story and post rows, `EventList` in `src/components/event-list.tsx` | Unboxed rows with `border-t` on the list, `border-b` on each row, `border-ink/10`, and staggered `data-reveal`. Optional `text-ink/45` numerals. |
 | Photo frame | `PhotoFrame` in `src/components/ui.tsx` | A tall photo beside an editorial list in a `lg:grid-cols-[0.8fr_1fr]` split. `sticky` keeps the photo visible beside a long list. |
 | Statement with opening frame | `PurposeChapter` in `src/components/story.tsx` | A statement followed by a full-width `.story-slit` photo frame with cream copy. |
 | FAQ | `FaqSection` in `src/components/sections.tsx` | Expandable `details` rows under thin rules. |
@@ -414,7 +414,7 @@ Non-link controls share `buttonClassName` from `src/components/ui.tsx`.
 | `solid` | Standalone action in a text column, such as the FAQ contact link. |
 
 Action groups contain at most two buttons, primary first, in a
-`flex flex-wrap gap-3` row. `size="compact"` is reserved for the header.
+`flex flex-wrap gap-3` row. Every button, including the header and FAQ buttons, uses the default size. `size="compact"` exists but no page uses it.
 Inline links use `font-medium text-ink underline underline-offset-4`.
 List links can use `hover:underline` instead of a permanent underline.
 
@@ -428,7 +428,7 @@ The implementation uses these patterns:
 | Entrance | `data-reveal` lets `RevealObserver` fade and lift content on entry. Siblings use `style={revealDelay(index % 3)}`. |
 | Shared photo hover | `PhotoFrame` and the shared offer cards scale images to 110% over 1200ms with `ease-out`. |
 | Card hover | Cards can lift by `-translate-y-1` to `-translate-y-1.5`. |
-| Button hover | Buttons lift by 2px with a soft shadow. |
+| Button hover | Buttons lift by 1px over 200ms, with no shadow or colour change. Pressing scales to 98%. |
 | Scroll-driven motion | `.parallax-zoom`, `.parallax-column`, and `hero-*` use CSS scroll timelines under `@supports (animation-timeline: view())` and `prefers-reduced-motion: no-preference`. |
 
 The motion contract has these constraints:
@@ -457,12 +457,12 @@ Reading pages and conversion pages have the exceptions below.
 | Page type | Examples | Pattern |
 | --- | --- | --- |
 | Landing | `/` | Tall photo hero with two actions, statement, `ImpactStory`, `ProgrammesCarousel`, photo cards, media walls, FAQ, closing action. |
-| Index | `/programmes`, `/blog`, `/resources`, `/gallery` | Photo hero, section heading, photo cards or an editorial list beside a sticky photo, optional supporting section, closing action. |
+| Index | `/programmes`, `/blog`, `/gallery` | Photo hero, section heading, photo cards or an editorial list beside a sticky photo, optional supporting section, closing action. |
 | Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events and quote, related links, closing action. |
 | Story | `/about` | Photo hero, vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
 | Conversion | `/start`, `/contact` | Photo hero, unboxed contact columns or next steps beside a photo, short closing line. No repeated home audience switcher, FAQ, partners, or closing photo band. |
 | Listing | `/events` | Photo hero with one action, `SectionTitle` per group, `EventList`, fine print, closing action. |
-| Article | `/blog/[slug]`, `/resources/[slug]` | Photo hero when a photo exists, otherwise text hero. A `max-w-3xl` column with 15px `text-ink/75` copy, breadcrumb, optional `Eyebrow`, metadata, lead, contents, author sections, and closing action. Rules use `border-ink/10`. |
+| Article | `/blog/[slug]` | Photo hero when a photo exists, otherwise text hero. A `max-w-3xl` column with 15px `text-ink/75` copy, breadcrumb, optional `Eyebrow`, metadata, lead, contents, author sections, and closing action. Rules use `border-ink/10`. |
 | Utility | `/privacy`, `/terms` | `LegalPage`, text hero with date, and `max-w-3xl` ruled sections. No closing action. |
 | Error | 404 | `PhotoHero` with `lcp={false}` and two actions. No extra sections. |
 
@@ -492,13 +492,12 @@ These website choices require brand-owner sign-off before becoming core standard
 | Body size | Reading copy is 15px and short copy is 14px, above the 13px maximum. The accessibility exception is recorded in section 3. |
 | Heading size | Wide-screen headings exceed 34px. |
 | Page colours | The page uses off-white `#f6f4f0` and a navy dark theme with cream text, rather than pure white. The cream resembles the superseded 2025 palette. |
-| Gradients and shadows | Navy photo gradients and soft button-hover shadows are website additions. No resting shadows or blurred colour backgrounds sit behind sections. |
+| Gradients and shadows | Navy photo gradients are a website addition. No resting shadows or blurred colour backgrounds sit behind sections. |
 
 ### 9.12 Recorded implementation differences
 
-As recorded in October 2026, the text hero is duplicated in
-`src/app/resources/[slug]/page.tsx` and `LegalPage` at different title sizes.
-A shared text-hero component does not yet define those pages.
+As recorded in October 2026, `LegalPage` is the only text hero. A shared
+text-hero component does not yet define it.
 
 The home page renders both `ImpactStory` and `ProgrammesCarousel`.
 That implementation conflicts with the recorded one-pinned-sequence limit in

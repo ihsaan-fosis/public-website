@@ -23,8 +23,6 @@ Public routes have these entry points:
 | `/programmes/[slug]` | `src/app/programmes/[slug]/page.tsx` |
 | `/gallery` | `src/app/gallery/page.tsx` |
 | `/impact` | `src/app/impact/page.tsx` |
-| `/resources` | `src/app/resources/page.tsx` |
-| `/resources/[slug]` | `src/app/resources/[slug]/page.tsx` |
 | `/blog` | `src/app/blog/page.tsx` |
 | `/blog/[slug]` | `src/app/blog/[slug]/page.tsx` |
 | `/events` | `src/app/events/page.tsx` |
@@ -55,7 +53,6 @@ Public routes have these entry points:
 | `/get-involved` | `/start`, temporarily |
 | `/ticket` | `/start` |
 | `/programmes/faithful-talent` | `/programmes/summer-internships` |
-| `/programmes/career-guides` | `/resources` |
 | `/haqqathons` | `/programmes/hackathons` |
 | `/mentoring` | `/programmes/mentorship` |
 
@@ -73,12 +70,11 @@ Shared text, records, and destinations live in these modules:
 | `src/content/programmes.ts` | Copy and records for programme detail pages. |
 | `src/content/impact.ts` | Impact copy and figures from the IHSAAN Partnership Proposal 2026/27. Photos resolve through `GALLERY`. |
 | `src/content/story.ts` | Organisation copy, team profiles, and conference-route data. |
-| `src/content/resources.ts` | Approved free-resource destinations. |
-| `src/content/career-essentials.ts`, `src/content/career-essentials.catalog.json` | Career guide content. |
+| `src/content/career-essentials.ts`, `src/content/career-essentials.catalog.json` | Career guide content. Not rendered on the public site, which leaves guides to the member portal. |
 | `src/content/blog.ts` | Blog index and article content. |
 | `src/content/links.ts` | Shared external destinations. |
 | `src/content/events.ts` | Scheduled public events. |
-| `src/content/volunteer.ts`, `src/content/tech-team.ts` | Volunteer openings and tech-team profiles. |
+| `src/content/volunteer.ts`, `src/content/tech-team.ts` | Fallback volunteer openings and tech-team profiles. Live openings come from `src/lib/volunteer-roles.ts`. |
 
 ## Shared UI
 

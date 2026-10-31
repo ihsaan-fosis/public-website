@@ -7,7 +7,7 @@ young professionals with programmes across the UK and Ireland.
 It also gives parents, university partners, employers, funders, alumni, and
 volunteers public information about the organisation.
 
-Visitors can explore programmes, find resources, contact the team, and continue
+Visitors can explore programmes, read the blog, contact the team, and continue
 to an application or the member portal. Search engines and other crawlers receive
 metadata, a sitemap, Organization JSON-LD, and `llms.txt`.
 
@@ -22,10 +22,18 @@ The public site and the member portal are separate applications:
 
 Member login, programme operations, mentoring workflows, and private data belong
 to the member portal. The public site has no authenticated dashboard, admin
-tools, or Clerk or Convex runtime.
+tools, Clerk runtime, or Convex browser runtime.
 
 The applications share brand guidance, not authentication or private data.
 This separation keeps public content changes independent of member workflows.
+
+One recorded exception exists. `/volunteer` reads open volunteer roles from the
+member platform's Convex deployment with a server-side, read-only call to the
+public query `volunteerRoles:listOpen`. The query returns open roles and public
+fields only. If `CONVEX_URL` is unset or the call fails, the page falls back to
+the roles in `src/content/volunteer.ts`. Roles are managed in the member
+portal repository, tracked in
+[ihsaan-fosis/member-platform#8](https://github.com/ihsaan-fosis/member-platform/issues/8).
 
 ## Public content
 
@@ -34,7 +42,7 @@ The website includes these areas:
 - Home, the organisation's story, impact, and gallery.
 - Programme pages for conferences, internships, insight events, webinars and
   workshops, hackathons, and mentorship.
-- Events, blog articles, and career resources.
+- Events and blog articles.
 - Member entry at `/start`, professional enquiries, volunteer openings, and the
   tech team.
 - Contact, privacy, and terms.
