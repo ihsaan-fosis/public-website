@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { PhotoHero, Section, SectionHeading } from "@/components/ui";
 import { VolunteerOpenings } from "@/components/volunteer-openings";
 import { VOLUNTEER_INTRO } from "@/content/volunteer";
 import { pageMetadata } from "@/lib/metadata";
@@ -24,9 +24,7 @@ export default async function VolunteerOpeningsPage() {
         image="/media/gallery/hackathon-partners.webp"
         title="Volunteer with IHSAAN."
         intro={VOLUNTEER_INTRO.unpaidNote}
-      >
-        <ButtonLink href="#openings" tone="white">View open roles</ButtonLink>
-      </PhotoHero>
+      />
 
       <Section id="openings" labelledBy="openings-title" className="scroll-mt-24">
         <SectionHeading
