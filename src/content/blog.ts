@@ -170,6 +170,12 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
 ];
 
+/** Whole minutes to read a post at 220 words a minute, never below one. */
+export function readingMinutes(post: BlogPost): number {
+  const text = [...post.intro, ...post.sections.flatMap((section) => section.paragraphs), ...post.closing].join(" ");
+  return Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 220));
+}
+
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((post) => post.slug === slug);
 }

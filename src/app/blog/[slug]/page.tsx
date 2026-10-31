@@ -196,17 +196,13 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 <Link href="/blog" className="font-medium text-ink underline underline-offset-4">
                   Back to all writing
                 </Link>
-                {" · "}
-                <Link href="/resources" className="font-medium text-ink underline underline-offset-4">
-                  Free resources
-                </Link>
               </p>
             </div>
           </div>
         </article>
       </Section>
 
-      <ClosingCta />
+      <ClosingCta image="/media/gallery/students-at-work.webp" />
 
       <script
         type="application/ld+json"
