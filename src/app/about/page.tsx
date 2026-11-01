@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ChallengeAnswer } from "@/components/challenge-answer";
 import {
   PurposeChapter,
   StoryContinues,
@@ -25,6 +26,7 @@ export default function AboutPage() {
         title="Our story."
         intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and what we stand for."
       />
+      <ChallengeAnswer />
       <WhoChapter />
       <PurposeChapter />
       <ValuesChapter />
