@@ -283,6 +283,12 @@ Fixed tokens keep photographs consistent in both themes:
 | `ihsaan-sky` | `#4c76af` | Reserved member-portal motif C value, not used on public pages. |
 
 `ihsaan-blue`, `ihsaan-purple`, and `ihsaan-light-blue` retain their brand roles.
+
+`ihsaan-light-blue` (`#4c78b8`) is the colour of data and diagram marks on the page
+background, in both themes: ring-chart arcs and
+the full stop in a statement heading. It needs no `dark:` variant. Public pages do
+not use `ihsaan-purple` for these marks.
+
 Opacity classes derive muted tones from `ink` on the page or `cream` on photos:
 
 | Class | Use |
@@ -392,6 +398,8 @@ These components and source patterns define the public pages:
 | Statement with opening frame | `PurposeChapter` in `src/components/story.tsx` | A statement followed by a full-width `.story-slit` photo frame with cream copy. |
 | FAQ | `FaqSection` in `src/components/sections.tsx` | Expandable `details` rows under thin rules. |
 | Pinned sequence | `ImpactStory`, `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
+| Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock, with a second inner ring for a benchmark. Arcs use `ihsaan-light-blue`, tracks use `stroke-ink/10`, and the benchmark uses `stroke-ink/55`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
+| Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Ring-chart stations over their own sentences, then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
 | Media wall | `GalleryParallax`, `PartnersSection`, `PartnerWall` | Photo or logo groups. Logos keep colour in light mode and use grayscale at 65% opacity in dark mode. |
 | Photo band | `PhotoBand`, `ClosingCta` in `src/components/sections.tsx` | A photo frame within the page or a closing action. |
 
@@ -459,7 +467,7 @@ Reading pages and conversion pages have the exceptions below.
 | Landing | `/` | Tall photo hero with two actions, statement, `ImpactStory`, `ProgrammesCarousel`, photo cards, media walls, FAQ, closing action. |
 | Index | `/programmes`, `/blog`, `/gallery` | Photo hero, section heading, photo cards or an editorial list beside a sticky photo, optional supporting section, closing action. |
 | Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events and quote, related links, closing action. |
-| Story | `/about` | Photo hero, vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
+| Story | `/about` | Photo hero, ring-chart challenges and answer steps, "We are IHSAAN", vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
 | Conversion | `/start`, `/contact` | Photo hero, unboxed contact columns or next steps beside a photo, short closing line. No repeated home audience switcher, FAQ, partners, or closing photo band. |
 | Article | `/blog/[slug]` | Photo hero when a photo exists, otherwise text hero. A `max-w-3xl` column with 15px `text-ink/75` copy, breadcrumb, optional `Eyebrow`, metadata, lead, contents, author sections, and closing action. Rules use `border-ink/10`. |
 | Utility | `/privacy`, `/terms` | `LegalPage`, text hero with date, and `max-w-3xl` ruled sections. No closing action. |

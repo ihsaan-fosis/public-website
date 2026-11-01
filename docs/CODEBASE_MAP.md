@@ -87,6 +87,7 @@ The main shared components have these responsibilities:
 | `src/components/ui/` | Radix-based dialog and select components. |
 | `src/components/sections.tsx` | Shared programme, impact, involvement, partner, gallery, FAQ, and photo sections. |
 | `src/components/story.tsx`, `src/components/impact.tsx` | About and impact page sections. |
+| `src/components/challenge-answer.tsx` | About page path and bridge scene, with answer copy in `src/content/challenge-answer.ts`. |
 | `src/components/contact-form.tsx` | Client contact form and Turnstile widget. |
 | `src/components/event-list.tsx` | Event list. |
 | `src/components/volunteer-openings.tsx` | Volunteer role list and Tally application dialog. |
