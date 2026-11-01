@@ -219,7 +219,7 @@ export function TeamChapter() {
 export function WhoChapter() {
   return (
     <Section labelledBy="who-title">
-      <SectionHeading id="who-title" title="Who we are" />
+      <SectionHeading id="who-title" title="We are IHSAAN" />
       <ul className="mt-12 border-t border-ink/10">
         {WHO_WE_ARE.map((beat, index) => (
           <li

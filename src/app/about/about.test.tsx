@@ -58,7 +58,7 @@ describe("our story page", () => {
 
   it("tells who IHSAAN is and closes by inviting professionals and employers in", () => {
     render(<AboutPage />);
-    expect(screen.getByRole("heading", { name: "Who we are" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "We are IHSAAN" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Grassroots and career-focused" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Programmes built around people" })).toBeTruthy();
     expect(document.body.textContent).toContain("From bootcamps and webinars to conferences and career events");
