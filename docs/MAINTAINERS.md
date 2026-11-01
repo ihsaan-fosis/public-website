@@ -10,10 +10,11 @@ changes, and live contact checks each require approval. Contributors submit
 2. Confirm the intended Cloudflare account, Worker, and active hosting setup.
 3. Check the domain bindings and DNS records before a release.
 
-`wrangler.jsonc` targets OpenNext on Cloudflare Workers. Its `routes` array is
-empty, so this configuration attaches neither `ihsaan.network` nor
-`www.ihsaan.network`. The build target does not prove which deployment serves
-the public domain. Do not change domain bindings during routine PR work.
+`wrangler.jsonc` targets OpenNext on Cloudflare Workers. Its `routes` array
+attaches `ihsaan.network` and `www.ihsaan.network` as custom domains, so this
+Worker serves the public site. `next.config.mjs` redirects `www` to the apex.
+Verify the live host before a release. Do not change domain bindings during
+routine PR work.
 
 ## Configure an approved release
 

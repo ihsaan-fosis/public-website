@@ -61,10 +61,10 @@ The production canonical origin is `https://ihsaan.network`.
 Local development uses `http://localhost:3000`.
 
 The repository targets Cloudflare Workers through OpenNext.
-`wrangler.jsonc` currently has no custom-domain routes.
-The checkout therefore does not establish which deployment serves the public
-domain. The [maintainer procedure](MAINTAINERS.md) separates release approval
-and live verification from local development.
+`wrangler.jsonc` attaches the apex and `www` custom domains to that Worker, so
+the Worker serves the public domain. The
+[maintainer procedure](MAINTAINERS.md) separates release approval and live
+verification from local development.
 
 ## Visual identity
 

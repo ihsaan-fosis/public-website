@@ -113,7 +113,7 @@ These files define shared behavior and deployment settings:
 | `src/lib/events.ts`, `src/lib/guide-markdown.tsx` | Event dates and guide markdown rendering. |
 | `src/lib/utils.ts` | The `cn` class helper. |
 | `next.config.mjs` | Redirects, image patterns, security headers, Content Security Policy, and OpenNext development initialization. |
-| `open-next.config.ts`, `wrangler.jsonc` | Worker build target, prerendered asset cache, and runtime bindings. Custom-domain routes are empty. |
+| `open-next.config.ts`, `wrangler.jsonc` | Worker build target, prerendered asset cache, runtime bindings, and the apex and `www` custom-domain routes. |
 | `oxlint.config.mjs`, `tools/oxlint/` | Oxlint, anti-slop rules, and shadcn lint rules. |
 | `public/media/`, `public/partners/`, `public/icons/` | Photographs, video, logos, partner marks, and icons. |
 | `public/blue-icon.svg`, `public/icon-dark.svg` | Theme-specific favicons. |
@@ -166,7 +166,8 @@ These constraints affect changes and verification:
   Partner logos under `/partners/` are outside that pattern.
 - Restoring the hidden tracker requires consistent content, route, and redirect
   changes.
-- Empty Worker domain routes do not establish live hosting.
+- Worker domain routes attach the apex and `www` hostnames, so check the live host
+  rather than assuming the build target.
 - Contact credentials can trigger real email delivery.
 - Local agent files are ignored. Shared documentation is separate from those files.
 

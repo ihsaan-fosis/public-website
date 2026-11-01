@@ -39,9 +39,9 @@ Maintainers only. Follow [the release procedure](docs/MAINTAINERS.md) for
 approved secret changes and deployments. Deployment requires separate approval.
 
 Confirm the active hosting and DNS before a release. `wrangler.jsonc` targets
-Cloudflare Workers through OpenNext, but its `routes` array is empty.
-The Worker configuration attaches neither the apex nor the `www` domain.
-Do not infer live hosting from the build target.
+Cloudflare Workers through OpenNext, and its `routes` array attaches both the
+apex and the `www` domain to the Worker. `next.config.mjs` redirects `www` to the
+apex. Verify the live host before you rely on the build target.
 
 Use `bun run preview` for the local Worker preview.
 Use `bun run deploy` only for an approved build and deployment.
