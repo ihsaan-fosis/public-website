@@ -79,9 +79,14 @@ export function CountUp({ value, className }: { value: string; className?: strin
     };
   }, [value]);
 
+  // The invisible ::before holds the final value's width, so the surrounding text never reflows while the count runs.
   return (
-    <span ref={ref} className={cn("tabular-nums", className)}>
-      {display}
+    <span
+      ref={ref}
+      data-value={value}
+      className={cn("inline-grid tabular-nums before:invisible before:[grid-area:1/1] before:content-[attr(data-value)]", className)}
+    >
+      <span className="[grid-area:1/1]">{display}</span>
     </span>
   );
 }
