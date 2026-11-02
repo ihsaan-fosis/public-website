@@ -406,6 +406,8 @@ export const BAND_TITLE =
   "hero-title-editorial hero-title-photo max-sm:text-[9.5vw]! leading-[1.08] font-extrabold tracking-[-0.03em] text-cream lg:max-w-6xl lg:text-balance";
 export const BAND_ROW =
   "mt-6 flex flex-col items-start gap-6 sm:mt-8 lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0";
+/** Closing-card buttons share one width (the widest label) on larger screens and stack at the full card width on phones. */
+export const BAND_ACTIONS = "grid w-full auto-cols-fr gap-3 sm:w-auto sm:grid-flow-col";
 export const BAND_INTRO = "max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm lg:max-w-xl lg:text-[17px] lg:leading-7";
 
 /** Inset full-bleed photo band for the closing call to action. */
@@ -466,7 +468,7 @@ export function ClosingCta({ image }: { image: string }) {
         <p className={BAND_INTRO}>
           Programmes, mentors and opportunities for Muslim students across the UK and Ireland.
         </p>
-        <div className="flex flex-wrap gap-3">
+        <div className={BAND_ACTIONS}>
           <ButtonLink href={GET_INVOLVED.href} tone="white">
             Apply now
           </ButtonLink>

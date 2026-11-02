@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { CountUp } from "@/components/motion";
-import { BAND_INTRO, BAND_ROW, BAND_TITLE, GalleryParallax, PhotoBand } from "@/components/sections";
+import { BAND_ACTIONS, BAND_INTRO, BAND_ROW, BAND_TITLE, GalleryParallax, PhotoBand } from "@/components/sections";
 import { ButtonLink, PhotoFrame, PhotoHero, Section, SectionHeading, SectionTitle, revealDelay } from "@/components/ui";
 import { TRACTION } from "@/content/impact";
 import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, PROFESSIONALS_LINK, PROGRAMMES, type Photo } from "@/content/site";
@@ -176,7 +176,7 @@ export default function GetStartedPage() {
         </h2>
         <div className={BAND_ROW}>
           <p className={BAND_INTRO}>Create your account and choose where to begin.</p>
-          <div className="flex flex-wrap gap-3">
+          <div className={BAND_ACTIONS}>
             <ButtonLink href={MEMBER_PORTAL_SIGNUP.href} external tone="white">
               {SIGN_UP_LABEL}
             </ButtonLink>

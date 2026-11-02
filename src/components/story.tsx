@@ -15,7 +15,7 @@ import {
 } from "@/content/story";
 import { cn } from "@/lib/utils";
 import { CountUp } from "./motion";
-import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
+import { BAND_ACTIONS, BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   Container,
@@ -386,7 +386,7 @@ export function StoryContinues() {
           Mentor a Muslim student, speak at an event, or open doors at your organisation. Professionals and employers
           are how this work reaches further.
         </p>
-        <div className="flex flex-wrap gap-3">
+        <div className={BAND_ACTIONS}>
           <ButtonLink href="/contact?topic=partnerships" tone="white">
             Partner with us
           </ButtonLink>

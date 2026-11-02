@@ -16,7 +16,7 @@ import {
 } from "@/content/impact";
 import { cn } from "@/lib/utils";
 import { CountUp, ScrollWords } from "./motion";
-import { BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
+import { BAND_ACTIONS, BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
   ButtonLink,
   displayClass,
@@ -299,7 +299,7 @@ export function ImpactClosing() {
           </a>
           .
         </p>
-        <div className="flex flex-wrap gap-3">
+        <div className={BAND_ACTIONS}>
           <ButtonLink href="/contact" tone="white">
             Partner with us
           </ButtonLink>
