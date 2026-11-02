@@ -302,9 +302,8 @@ export function SiteHeader() {
       >
         <nav id="mobile-nav" aria-label="Mobile primary" className="overflow-hidden" inert={!open}>
           <div className="w-full px-5 pt-2 pb-5 sm:px-10">
-            {NAV_LINKS.map((item, index) => {
+            {NAV_LINKS.map((item) => {
               const children = item.children;
-              const delay = open ? `${80 + index * 50}ms` : "0ms";
               const showChildren = Boolean(children?.length) && (expanded === item.href || itemIsActive(pathname, item));
 
               if (!children?.length) {
@@ -314,11 +313,7 @@ export function SiteHeader() {
                     href={item.href}
                     scroll={false}
                     onClick={() => setOpen(false)}
-                    style={{ transitionDelay: delay }}
-                    className={cn(
-                      "block border-b border-ink/10 py-3.5 text-lg font-semibold tracking-[-0.02em] text-ink transition-all duration-500",
-                      open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0",
-                    )}
+                    className="block border-b border-ink/10 py-3.5 text-lg font-semibold tracking-[-0.02em] text-ink"
                   >
                     {item.label}
                   </Link>
@@ -326,14 +321,7 @@ export function SiteHeader() {
               }
 
               return (
-                <div
-                  key={item.href}
-                  style={{ transitionDelay: delay }}
-                  className={cn(
-                    "border-b border-ink/10 transition-all duration-500",
-                    open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0",
-                  )}
-                >
+                <div key={item.href} className="border-b border-ink/10">
                   <div className="flex items-center gap-2">
                     <Link
                       href={item.href}

@@ -272,10 +272,10 @@ export function PhotoHero({
             })}
           </h1>
           <div
-            className="mt-6 flex animate-rise flex-col items-start gap-6 sm:mt-8 lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0"
+            className="mt-4 flex animate-rise flex-col items-start gap-4 sm:mt-8 sm:gap-6 max-sm:[&_a]:min-h-9 max-sm:[&_a]:text-[10.5px] lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0"
             style={{ animationDelay: `${300 + words.length * 90}ms` }}
           >
-            {intro ? <p className="max-w-sm text-[15px] leading-6 text-cream/70 sm:text-sm lg:max-w-xl lg:text-[17px] lg:leading-7">{intro}</p> : null}
+            {intro ? <p className="max-w-sm text-[13px] leading-[18px] text-cream/70 sm:text-sm sm:leading-6 lg:max-w-xl lg:text-[17px] lg:leading-7">{intro}</p> : null}
             {children}
           </div>
         </div>
