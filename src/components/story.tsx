@@ -31,14 +31,7 @@ function vars(values: Record<`--${string}`, string>): CSSProperties {
   return values as CSSProperties;
 }
 
-/** Where small photo pills sit in the vision: after the word at each index, with a photo that is decoration only. */
-const VISION_PILLS: Record<number, string> = {
-  2: "/media/gallery/hackathon-team.webp",
-  13: "/media/gallery/hackathon-mentor.webp",
-  21: "/media/gallery/careers-fair-hall.webp",
-};
-
-/** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`), with photo pills set between them. */
+/** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`). */
 function FocusWords({ text }: { text: string }) {
   const words = text.split(" ");
   return words.map((word, index) => (
@@ -47,15 +40,6 @@ function FocusWords({ text }: { text: string }) {
         {word}
       </span>
       {index < words.length - 1 ? " " : ""}
-      {VISION_PILLS[index] ? (
-        <span
-          aria-hidden
-          className="story-pill relative mr-[0.26em] inline-block h-[0.78em] w-[1.9em] translate-y-[0.04em] overflow-hidden rounded-full bg-night-2 align-baseline"
-          style={vars({ "--p": String(index / words.length) })}
-        >
-          <Image src={VISION_PILLS[index]} alt="" fill sizes="160px" className="object-cover" />
-        </span>
-      ) : null}
     </span>
   ));
 }

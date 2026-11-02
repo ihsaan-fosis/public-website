@@ -562,12 +562,6 @@
       animation-range: cover calc(2% + var(--p) * 18%) cover calc(14% + var(--p) * 18%);
     }
 
-    .story-pill {
-      animation: story-fill-sweep linear both;
-      animation-timeline: --vision;
-      animation-range: cover calc(4% + var(--p) * 18%) cover calc(18% + var(--p) * 18%);
-    }
-
     /* Mission: the frame opens from a narrow window, then its words rise out of their masks. */
     .story-mission {
       view-timeline-name: --mission;
