@@ -219,11 +219,6 @@
   scroll-snap-align: center;
 }
 
-.why-reveal-intro,
-.why-reveal-logo {
-  display: none;
-}
-
 /* Editorial title (home hero, Why IHSAAN story and closing CTA): a headline-scale stack that sits quietly over the media instead of competing with it. */
 .hero-title-editorial {
   font-size: clamp(2.25rem, 4.4vw, 4rem);
@@ -290,103 +285,6 @@
       animation: conf-mark linear both;
       animation-timeline: view();
       animation-range: cover 18% cover 42%;
-    }
-
-    .why-reveal {
-      view-timeline-name: --why;
-      height: 220svh;
-      --why-inset: 30% 8%;
-      --why-part-start: translateY(-24svh);
-      --why-part-end: translateY(24svh);
-    }
-
-    @media (min-width: 48rem) {
-      .why-reveal {
-        height: 320svh;
-        --why-inset: 22% 33%;
-        --why-part-start: translateX(-28vw);
-        --why-part-end: translateX(28vw);
-      }
-    }
-
-    .why-reveal-sticky {
-      position: sticky;
-      top: 0;
-      height: 100svh;
-      overflow: clip;
-    }
-
-    .why-reveal-intro,
-    .why-reveal-logo {
-      display: flex;
-    }
-
-    /* The brand guide forbids changing logo opacity, so the logo panel wipes upward instead of fading. */
-    .why-reveal-logo {
-      animation: why-wipe-up linear both;
-      animation-timeline: --why;
-      animation-range: contain 12% contain 32%;
-    }
-
-    .why-reveal-frame {
-      min-height: 0;
-      animation: why-open linear both;
-      animation-timeline: --why;
-      animation-range: contain 8% contain 40%;
-    }
-
-    .why-reveal-photo {
-      animation: zoom-settle linear both;
-      animation-timeline: --why;
-      animation-range: contain 8% contain 44%;
-    }
-
-    .why-reveal-word-start,
-    .why-reveal-word-end {
-      animation: why-part linear both;
-      animation-timeline: --why;
-      animation-range: contain 8% contain 34%;
-    }
-
-    .why-reveal-word-start {
-      --why-part: var(--why-part-start);
-    }
-
-    .why-reveal-word-end {
-      --why-part: var(--why-part-end);
-    }
-
-    .why-reveal-shade {
-      animation: fade-in linear both;
-      animation-timeline: --why;
-      animation-range: contain 18% contain 44%;
-    }
-
-    .why-reveal-line,
-    .why-reveal-aside {
-      animation: why-rise linear both;
-      animation-timeline: --why;
-    }
-
-    .why-reveal-line:nth-child(1) {
-      animation-range: contain 40% contain 54%;
-    }
-
-    .why-reveal-line:nth-child(2) {
-      animation-range: contain 45% contain 59%;
-    }
-
-    .why-reveal-line:nth-child(3) {
-      animation-range: contain 50% contain 64%;
-    }
-
-    .why-reveal-aside {
-      animation-range: contain 56% contain 70%;
-    }
-
-    /* A keyboard user tabbing to the story link must never land on invisible copy. */
-    .why-reveal-aside:focus-within {
-      animation: none;
     }
 
     /* Pinning a rail on a phone fights the swipe gesture, so it starts at tablet width. */
@@ -470,42 +368,6 @@
   }
   to {
     transform: scale(1);
-  }
-}
-
-@keyframes why-open {
-  from {
-    clip-path: inset(var(--why-inset) round 24px);
-  }
-  to {
-    clip-path: inset(0 round 28px);
-  }
-}
-
-@keyframes why-part {
-  to {
-    opacity: 0;
-    transform: var(--why-part);
-  }
-}
-
-@keyframes why-wipe-up {
-  to {
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes why-rise {
-  from {
-    opacity: 0;
-    transform: translateY(48px);
-    filter: blur(8px);
   }
 }
 

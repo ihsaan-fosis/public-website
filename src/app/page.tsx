@@ -4,7 +4,6 @@ import {
   ClosingCta,
   FaqSection,
   GalleryParallax,
-  ImpactStory,
   InvolvementPanels,
   PartnersSection,
   ProgrammesCarousel,
@@ -53,8 +52,6 @@ export default function Home() {
           </h2>
         </Container>
       </section>
-
-      <ImpactStory />
 
       <ProgrammesCarousel
         action={
