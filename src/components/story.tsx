@@ -60,7 +60,7 @@ function RisingWords({ text, brightFrom = 0 }: { text: string; brightFrom?: numb
 }
 
 /**
- * The vision comes into focus word by word with three photo pills set into the line. The mission is a photo frame that
+ * The vision comes into focus word by word. The mission is a photo frame that
  * opens from a narrow window as it scrolls in, its words rising once it is open, with the three values at full
  * strength so it hands over to them. Both stay in the normal flow, so the page keeps its section, frame, section
  * rhythm, and both read as plain text and a plain frame where scroll timelines are unsupported.
