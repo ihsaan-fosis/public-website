@@ -1,17 +1,26 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { EVENTS_LINK, GET_INVOLVED, LEGAL_LINKS, NAV_LINKS, PROFESSIONALS_LINK, SOCIAL_LINKS } from "@/content/site";
+import { EVENTS_LINK, GET_INVOLVED, LEGAL_LINKS, NAV_LINKS, PROFESSIONALS_LINK, SOCIAL_LINKS, TAGLINE } from "@/content/site";
 import { ThemeToggle } from "./motion";
+import { Wordmark } from "./site-header";
 import { Container, Eyebrow } from "./ui";
 
 function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div>
       <Eyebrow dot={false}>{title}</Eyebrow>
-      <ul className="mt-2 grid grid-cols-2 gap-x-6 text-sm text-ink/75 sm:mt-4 sm:grid-cols-1 sm:gap-y-2.5">{children}</ul>
+      <ul className="mt-2 grid text-sm text-ink/75 sm:mt-4 sm:gap-y-2.5">{children}</ul>
     </div>
   );
 }
+
+const FOOTER_LINKS = new Map([...NAV_LINKS, EVENTS_LINK, GET_INVOLVED, PROFESSIONALS_LINK].map((link) => [link.label, link]));
+
+const LINK_GROUPS = [
+  { title: "About", labels: ["About", "Impact", "Blog", "Gallery"] },
+  { title: "Students", labels: ["Programmes", "Events", "Get started"] },
+  { title: "Get involved", labels: ["Volunteer", "Professionals", "Contact"] },
+];
 
 const linkClass =
   "flex min-h-11 items-center transition-transform duration-300 hover:translate-x-1 hover:text-ink sm:inline-block sm:min-h-0";
@@ -59,27 +68,37 @@ function SocialIcon({ label }: { label: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink/10 pt-14 sm:pt-20">
+    <footer className="border-t border-ink/10 pt-14 pb-8 sm:pt-20 sm:pb-10">
       <Container>
-        <div className="grid gap-10 pb-14 sm:grid-cols-3">
-          <FooterColumn title="Explore">
-            {[...NAV_LINKS, EVENTS_LINK, GET_INVOLVED, PROFESSIONALS_LINK].map((link) => (
-              <li key={link.href}>
-                {link.href.startsWith("/") ? (
-                  <Link href={link.href} className={linkClass}>
-                    {link.label}
-                  </Link>
-                ) : (
-                  <a href={link.href} className={linkClass}>
-                    {link.label}
-                  </a>
-                )}
-              </li>
-            ))}
-          </FooterColumn>
+        <div className="grid gap-10 pb-14 max-sm:grid-cols-2 sm:grid-cols-3 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
+          <div className="max-sm:col-span-2">
+            <Wordmark className="h-7 w-auto" />
+            <p className="mt-4 text-sm font-semibold text-ink">{TAGLINE}</p>
+          </div>
+          {LINK_GROUPS.map((group) => (
+            <FooterColumn key={group.title} title={group.title}>
+              {group.labels.map((label) => {
+                const link = FOOTER_LINKS.get(label);
+                if (!link) return null;
+                return (
+                  <li key={link.href}>
+                    {link.href.startsWith("/") ? (
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={link.href} className={linkClass}>
+                        {link.label}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </FooterColumn>
+          ))}
           <div>
             <Eyebrow dot={false}>Follow</Eyebrow>
-            <ul className="mt-4 flex items-center gap-4 text-ink/75 max-sm:-mx-3 max-sm:mt-1 max-sm:gap-0">
+            <ul className="mt-4 flex items-center gap-4 text-sm text-ink/75 max-sm:mt-2 max-sm:grid max-sm:gap-0">
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
@@ -87,25 +106,26 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="inline-flex items-center justify-center transition-colors duration-300 hover:text-ink max-sm:size-11"
+                    className="inline-flex items-center justify-center gap-3 transition-colors duration-300 hover:text-ink max-sm:min-h-11 max-sm:justify-start"
                   >
                     <SocialIcon label={link.label} />
+                    <span className="sm:hidden">{link.label}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          <FooterColumn title="Based in">
-            <li className="flex min-h-11 items-center sm:block sm:min-h-0">UK & Ireland</li>
-          </FooterColumn>
         </div>
 
         <div className="flex flex-col gap-3 text-xs text-ink/65 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} IHSAAN. All rights reserved. Made by{" "}
-            <Link href="/tech-team" className="font-medium text-ink underline underline-offset-4">
-              IHSAAN Tech Team
-            </Link>
+            © {new Date().getFullYear()} IHSAAN. All rights reserved.{" "}
+            <span className="block max-sm:mt-1 sm:inline">
+              Made by{" "}
+              <Link href="/tech-team" className="font-medium text-ink underline underline-offset-4">
+                IHSAAN Tech Team
+              </Link>
+            </span>
           </p>
           <div className="flex items-center gap-6 max-sm:flex-wrap max-sm:gap-y-0">
             <nav aria-label="Legal" className="flex gap-6">
@@ -119,24 +139,6 @@ export function SiteFooter() {
           </div>
         </div>
       </Container>
-      <div className="mx-auto mt-10 max-w-7xl px-5 pb-6 sm:px-10">
-        <img
-          src="/media/blue-logo-large.webp"
-          alt=""
-          width={2339}
-          height={487}
-          loading="lazy"
-          className="w-full dark:hidden"
-        />
-        <img
-          src="/media/white-logo-large.webp"
-          alt=""
-          width={1727}
-          height={375}
-          loading="lazy"
-          className="hidden w-full dark:block"
-        />
-      </div>
     </footer>
   );
 }
