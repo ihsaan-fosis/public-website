@@ -315,7 +315,7 @@ Labels are small, bold, uppercase, and widely spaced. Body copy is Regular.
 
 | Role | Classes or size | Component or use |
 | --- | --- | --- |
-| Frame title | `.hero-title-editorial`, `font-extrabold`, `leading-[1.08]`, `tracking-[-0.03em]`, `text-cream`, `clamp(2.25rem, 4.4vw, 4rem)` | `PhotoHero`, `ImpactStory`, `ClosingCta`. |
+| Frame title | `.hero-title-editorial`, `font-extrabold`, `leading-[1.08]`, `tracking-[-0.03em]`, `text-cream`, `clamp(2.25rem, 4.4vw, 4rem)` | `PhotoHero`, `ClosingCta`. |
 | Statement | `text-3xl sm:text-5xl lg:text-[3.5rem]` with `displayClass` | Home promise. |
 | Text-hero title | `text-[2.4rem] leading-[1.05] sm:text-6xl` with `displayClass` | A page without a photo hero. |
 | Section title | `text-[2rem] leading-[1.05] sm:text-5xl` with `displayClass` | `SectionHeading`, `SectionTitle`. |
@@ -397,7 +397,7 @@ These components and source patterns define the public pages:
 | Photo frame | `PhotoFrame` in `src/components/ui.tsx` | A tall photo beside an editorial list in a `lg:grid-cols-[0.8fr_1fr]` split. `sticky` keeps the photo visible beside a long list. |
 | Statement with opening frame | `PurposeChapter` in `src/components/story.tsx` | A statement followed by a full-width `.story-slit` photo frame with cream copy. |
 | FAQ | `FaqSection` in `src/components/sections.tsx` | Expandable `details` rows under thin rules. |
-| Pinned sequence | `ImpactStory`, `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
+| Pinned sequence | `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
 | Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock, with a second inner ring for a benchmark. Arcs use `ihsaan-light-blue`, tracks use `stroke-ink/10`, and the benchmark uses `stroke-ink/55`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
 | Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Ring-chart stations over their own sentences, then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
 | Media wall | `GalleryParallax`, `PartnersSection`, `PartnerWall` | Photo or logo groups. Logos keep colour in light mode and use grayscale at 65% opacity in dark mode. |
@@ -446,7 +446,6 @@ The motion contract has these constraints:
 - Looped video and marquees have pause controls under WCAG 2.2.2.
 - Logo motion can wipe or move the logo, but does not change its opacity.
 - Invisible content cannot receive keyboard focus.
-  `.why-reveal-aside:focus-within` is a source example.
 
 ### 9.8 Light and dark themes
 
@@ -464,7 +463,7 @@ Reading pages and conversion pages have the exceptions below.
 
 | Page type | Examples | Pattern |
 | --- | --- | --- |
-| Landing | `/` | Tall photo hero with two actions, statement, `ImpactStory`, `ProgrammesCarousel`, photo cards, media walls, FAQ, closing action. |
+| Landing | `/` | Tall photo hero with two actions, statement, `ProgrammesCarousel`, photo cards, media walls, FAQ, closing action. |
 | Index | `/programmes`, `/blog`, `/gallery` | Photo hero, section heading, photo cards or an editorial list beside a sticky photo, optional supporting section, closing action. |
 | Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events and quote, related links, closing action. |
 | Story | `/about` | Photo hero, ring-chart challenges and answer steps, "We are IHSAAN", vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
@@ -505,7 +504,3 @@ These website choices require brand-owner sign-off before becoming core standard
 
 As recorded in October 2026, `LegalPage` is the only text hero. A shared
 text-hero component does not yet define it.
-
-The home page renders both `ImpactStory` and `ProgrammesCarousel`.
-That implementation conflicts with the recorded one-pinned-sequence limit in
-section 9.5. The intended limit is unresolved.
