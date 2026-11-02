@@ -9,6 +9,10 @@ export default defineConfig({
     testTimeout: 30_000,
   },
   resolve: {
-    alias: { "@": path.resolve(__dirname, "src") },
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      // Match Next's server-component resolver. Browser builds still reject this marker.
+      "server-only": path.resolve(__dirname, "node_modules/next/dist/compiled/server-only/empty.js"),
+    },
   },
 });

@@ -1,56 +1,66 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleHero } from "@/components/article-hero";
+import { MarkdownBody, markdownHeadings } from "@/components/markdown-body";
 import { ClosingCta } from "@/components/sections";
-import { ButtonLink, displayClass, PhotoHero, Section } from "@/components/ui";
-import { BLOG_POSTS, getBlogPost } from "@/content/blog";
+import { PhotoHero, Section } from "@/components/ui";
+import { getPublishedBlogArticle, getPublishedBlogSlugs } from "@/lib/blog-catalog";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE_ORIGIN } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 type Params = { slug: string };
 
-export const dynamicParams = false;
+/**
+ * Posts are created and withdrawn in the member portal, so this route cannot be limited to a
+ * build-time slug list. `dynamicParams` stays at its default so a slug published after the build
+ * resolves, and the route reads the current article per request rather than a cached copy. The
+ * build still pre-lists today's published slugs through `generateStaticParams`.
+ */
+export const dynamic = "force-dynamic";
 
-export function generateStaticParams(): Params[] {
-  return BLOG_POSTS.map(({ slug }) => ({ slug }));
+export async function generateStaticParams(): Promise<Params[]> {
+  const slugs = await getPublishedBlogSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-  const post = getBlogPost((await params).slug);
+  const post = await getPublishedBlogArticle((await params).slug);
   if (!post) return {};
   return pageMetadata({
     title: post.title,
     description: post.summary,
     path: `/blog/${post.slug}`,
-    image: post.image.src,
+    image: post.cover?.src,
     type: "article",
-    publishedTime: post.published,
-    authors: [post.author.name],
+    publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+    authors: [post.authorName],
     tags: post.tags,
   });
 }
 
+const dateFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
 export default async function BlogPostPage({ params }: { params: Promise<Params> }) {
-  const post = getBlogPost((await params).slug);
+  const post = await getPublishedBlogArticle((await params).slug);
   if (!post) notFound();
 
   const path = `/blog/${post.slug}`;
+  const contents = markdownHeadings(post.bodyMd);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.summary,
-    image: [`${SITE_ORIGIN}${post.image.src}`],
+    // Absolute already when the cover came from the portal; site-relative when it is ours.
+    ...(post.cover ? { image: [new URL(post.cover.src, SITE_ORIGIN).toString()] } : {}),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_ORIGIN}${path}`,
     },
     author: {
       "@type": "Person",
-      name: post.author.name,
-      ...(post.author.linkedin ? { sameAs: [post.author.linkedin] } : {}),
-      ...(post.author.email ? { email: post.author.email } : {}),
+      name: post.authorName,
     },
     publisher: {
       "@type": "Organization",
@@ -61,14 +71,18 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         url: `${SITE_ORIGIN}/media/blue-logo.webp`,
       },
     },
-    ...(post.published ? { datePublished: post.published } : {}),
+    ...(post.publishedAt ? { datePublished: new Date(post.publishedAt).toISOString() } : {}),
     inLanguage: "en-GB",
     keywords: post.tags.join(", "),
   };
 
   return (
     <>
-      <PhotoHero image={post.image.src} title={post.title} intro={post.summary} />
+      {post.cover ? (
+        <ArticleHero cover={post.cover} remote={post.coverIsRemote} title={post.title} intro={post.summary} />
+      ) : (
+        <PhotoHero image="/media/faithful-talent-hd.webp" title={post.title} intro={post.summary} />
+      )}
 
       <Section labelledBy="article-body-title">
         <h2 id="article-body-title" className="sr-only">
@@ -89,107 +103,56 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/65">
                 <div>
                   <dt className="sr-only">Author</dt>
-                  <dd className="font-medium text-ink">By {post.author.name}</dd>
+                  <dd className="font-medium text-ink">By {post.authorName}</dd>
                 </div>
-                {post.published ? (
+                {post.publishedAt ? (
                   <div>
                     <dt className="sr-only">Published</dt>
                     <dd>
-                      <time dateTime={post.published}>
-                        {new Intl.DateTimeFormat("en-GB", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        }).format(new Date(post.published))}
+                      <time dateTime={new Date(post.publishedAt).toISOString()}>
+                        {dateFormat.format(post.publishedAt)}
                       </time>
                     </dd>
                   </div>
                 ) : null}
-                <div>
-                  <dt className="sr-only">Tags</dt>
-                  <dd>{post.tags.join(" · ")}</dd>
-                </div>
+                {post.tags.length > 0 ? (
+                  <div>
+                    <dt className="sr-only">Tags</dt>
+                    <dd>{post.tags.join(" · ")}</dd>
+                  </div>
+                ) : null}
               </dl>
-
-              {post.lead ? (
-                <p className="mt-10 text-xl leading-[1.5] font-medium tracking-[-0.01em] text-ink">{post.lead}</p>
-              ) : null}
-
-              <div className="mt-10 space-y-5 text-[15px] leading-7 text-ink/75">
-                {post.intro.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
             </div>
 
-            <nav
-              aria-label="Article sections"
-              className="mt-12 border-t border-ink/10 pt-8 lg:col-start-1 lg:row-span-2 lg:mt-0 lg:border-t-0 lg:pt-0 lg:sticky lg:top-24 lg:self-start"
-            >
-              <p className="text-sm font-medium text-ink">In this article</p>
-              <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
-                {post.sections.map((section, index) => (
-                  <li key={section.id}>
-                    <a href={`#${section.id}`} className="font-medium hover:text-ink hover:underline">
-                      <span className="mr-2 text-ink/45">{String(index + 1).padStart(2, "0")}</span>
-                      {section.title}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            {contents.length > 0 ? (
+              <nav
+                aria-label="Article sections"
+                className="mt-12 border-t border-ink/10 pt-8 lg:col-start-1 lg:row-span-2 lg:mt-0 lg:border-t-0 lg:pt-0 lg:sticky lg:top-24 lg:self-start"
+              >
+                <p className="text-sm font-medium text-ink">In this article</p>
+                <ol className="mt-4 space-y-2.5 text-sm text-ink/80">
+                  {contents.map((section, index) => (
+                    <li key={section.id}>
+                      <a href={`#${section.id}`} className="font-medium hover:text-ink hover:underline">
+                        <span className="mr-2 text-ink/45">{String(index + 1).padStart(2, "0")}</span>
+                        {section.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            ) : null}
 
             <div className="lg:col-start-2">
-              <div className="mt-4 divide-y divide-ink/10 border-t border-ink/10 lg:mt-12">
-                {post.sections.map((section) => (
-                  <section key={section.id} id={section.id} className="scroll-mt-28 py-10">
-                    <h2 className={cn("text-[1.75rem] leading-[1.1] sm:text-4xl", displayClass)}>{section.title}</h2>
-                    <div className="mt-5 space-y-4 text-[15px] leading-7 text-ink/75">
-                      {section.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-
-              <div className="mt-4 space-y-4 border-t border-ink/10 pt-10 text-[15px] leading-7 text-ink/75">
-                {post.closing.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+              <div className="mt-4 border-t border-ink/10 pt-10 lg:mt-12">
+                <MarkdownBody source={post.bodyMd} />
               </div>
 
               <aside className="mt-12 border-t border-ink/10 pt-10">
                 <p className="text-sm text-ink/65">Author</p>
                 <p className="mt-3 text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">
-                  {post.author.name}
+                  {post.authorName}
                 </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {post.author.linkedin ? (
-                    <ButtonLink href={post.author.linkedin} external>
-                      Connect on LinkedIn
-                    </ButtonLink>
-                  ) : null}
-                  {post.author.email ? (
-                    <ButtonLink href={`mailto:${post.author.email}`} external tone="ghost">
-                      {`Email ${post.author.name.split(" ")[0]}`}
-                    </ButtonLink>
-                  ) : null}
-                </div>
-                {post.originalSource ? (
-                  <p className="mt-6 text-[13px] leading-6 text-ink/65">
-                    First published as{" "}
-                    <a
-                      href={post.originalSource.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-ink underline underline-offset-4"
-                    >
-                      {post.originalSource.label}
-                    </a>
-                    . This page is the canonical IHSAAN version.
-                  </p>
-                ) : null}
               </aside>
 
               <p className="mt-10 text-[13px] leading-6 text-ink/65">

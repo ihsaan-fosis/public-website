@@ -27,13 +27,21 @@ tools, Clerk runtime, or Convex browser runtime.
 The applications share brand guidance, not authentication or private data.
 This separation keeps public content changes independent of member workflows.
 
-One recorded exception exists. `/volunteer` reads open volunteer roles from the
-member platform's Convex deployment with a server-side, read-only call to the
-public query `volunteerRoles:listOpen`. The query returns open roles and public
-fields only. If `CONVEX_URL` is unset or the call fails, the page falls back to
-the roles in `src/content/volunteer.ts`. Roles are managed in the member
-portal repository, tracked in
+Two recorded exceptions exist, and both are server-side, read-only calls to the
+member platform's Convex deployment configured by `CONVEX_URL`.
+
+`/volunteer` reads open volunteer roles with the public query
+`volunteerRoles:listOpen`. The query returns open roles and public fields only.
+If `CONVEX_URL` is unset or the call fails, the page falls back to the roles in
+`src/content/volunteer.ts`. Roles are managed in the member portal repository,
+tracked in
 [ihsaan-fosis/member-platform#8](https://github.com/ihsaan-fosis/member-platform/issues/8).
+
+`/blog`, `/blog/[slug]`, `sitemap.xml` and `llms.txt` read published posts with
+the public queries `blogPosts:listPublished` and `blogPosts:getPublished`. The
+portal is the only source. When `CONVEX_URL` is unset, or the catalogue is empty
+or failing, no post is served. The one-time migration that must happen before
+deploying is recorded in [blog publishing](BLOG-PUBLISHING.md).
 
 ## Public content
 

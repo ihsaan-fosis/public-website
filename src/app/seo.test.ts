@@ -99,23 +99,6 @@ describe("page metadata", () => {
     expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: summary, images: [image] });
   });
 
-  it("gives blog articles article Open Graph tags and a post canonical", async () => {
-    const { BLOG_POSTS } = await import("@/content/blog");
-    const post = BLOG_POSTS[0];
-    const { generateMetadata } = await import("./blog/[slug]/page");
-    const metadata = await generateMetadata({ params: Promise.resolve({ slug: post.slug }) });
-    const path = `/blog/${post.slug}`;
-    expect(metadata.alternates?.canonical).toBe(path);
-    expect(metadata.openGraph).toMatchObject({
-      type: "article",
-      url: path,
-      title: `${post.title} | IHSAAN`,
-      images: [post.image.src],
-      authors: [post.author.name],
-    });
-    expect(metadata.twitter).toMatchObject({ title: `${post.title} | IHSAAN`, description: post.summary });
-  });
-
   it("lets the homepage inherit the layout title while keeping full social tags", () => {
     const metadata = pageMetadata({ description: "Home", path: "/" });
     expect(metadata.title).toBeUndefined();

@@ -18,6 +18,7 @@ The [main README](../README.md) contains the local setup procedure.
 | --- | --- |
 | [Product context](context.md) | Understand the audience, scope, and separation from the member portal. |
 | [Codebase map](CODEBASE_MAP.md) | Locate routes, modules, package scripts, and configuration. |
+| [Blog publishing](BLOG-PUBLISHING.md) | Understand how posts reach this site, and the create-only migration that must precede setting `CONVEX_URL`. |
 | [Design reference](IHSAAN-DESIGN.md) | Look up brand values and the public website's component rules. Section 9 applies to public pages. |
 
 ## Releases and security

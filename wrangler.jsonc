@@ -27,6 +27,11 @@
   "images": {
     "binding": "IMAGES"
   },
+  // Public, non-secret URL of the member platform's production Convex deployment.
+  // The blog and /volunteer read published data from it. See docs/BLOG-PUBLISHING.md.
+  "vars": {
+    "CONVEX_URL": "https://glad-oyster-29.convex.cloud"
+  },
   "observability": {
     "enabled": true
   }

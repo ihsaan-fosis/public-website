@@ -9,7 +9,10 @@ The public website uses Next.js 16 App Router, React 19, TypeScript, Tailwind
 CSS 4, Bun, Vitest, and Oxlint.
 
 The member portal is separate. Its repository is `ihsaan-fosis/member-platform`.
-This repository has no member authentication, Clerk, or Convex runtime.
+This repository has no member authentication, Clerk, or Convex browser runtime.
+It reads published blog posts and open volunteer roles from the member
+platform's Convex deployment through server-only, read-only calls. See
+[blog publishing](BLOG-PUBLISHING.md).
 
 ## Routes
 
@@ -70,7 +73,6 @@ Shared text, records, and destinations live in these modules:
 | `src/content/impact.ts` | Impact copy and figures from the IHSAAN Partnership Proposal 2026/27. Photos resolve through `GALLERY`. |
 | `src/content/story.ts` | Organisation copy, team profiles, and conference-route data. |
 | `src/content/career-essentials.ts`, `src/content/career-essentials.catalog.json` | Career guide content. Not rendered on the public site, which leaves guides to the member portal. |
-| `src/content/blog.ts` | Blog index and article content. |
 | `src/content/links.ts` | Shared external destinations. |
 | `src/content/events.ts` | Scheduled public events. |
 | `src/content/volunteer.ts`, `src/content/tech-team.ts` | Fallback volunteer openings and tech-team profiles. Live openings come from `src/lib/volunteer-roles.ts`. |
@@ -95,6 +97,9 @@ The main shared components have these responsibilities:
 | `src/components/site-header.tsx`, `src/components/site-footer.tsx` | Floating navigation, mobile menu, and footer. |
 | `src/components/motion.tsx` | `RevealObserver`, `CountUp`, `ScrollWords`, `ThemeToggle`, `HeroVideo`, and `MarqueeGroup`. |
 | `src/components/legacy-hash-redirect.tsx` | Client redirects for legacy homepage fragments. |
+| `src/components/blog-cover.tsx` | `CoverImage`, the one cover renderer: `next/image` for this site's files, a plain `<img>` for portal-hosted addresses. |
+| `src/components/article-hero.tsx` | `ArticleHero`, the article's opening frame, for local and remote covers. |
+| `src/components/markdown-body.tsx` | Escaping Markdown renderer and heading extraction for portal article bodies. |
 | `src/components/legal-page.tsx`, `src/components/not-found-content.tsx` | Legal page layout and the 404 body. |
 
 `src/app/globals.css` defines Tailwind, brand tokens, theme tokens, photo tones,
@@ -108,6 +113,7 @@ These files define shared behavior and deployment settings:
 | Path | Responsibility |
 | --- | --- |
 | `src/lib/site.ts` | `SITE_ORIGIN` and `INDEXABLE`. Production canonicals use the apex domain. `VERCEL_ENV` controls indexing. |
+| `src/lib/blog-catalog.ts` | Server-only reading of published blog posts from Convex, with response validation. There is no checked-in fallback. |
 | `src/lib/metadata.ts` | `pageMetadata()` and `DEFAULT_TITLE` for page, Open Graph, and Twitter metadata. |
 | `src/lib/contact.ts`, `src/lib/turnstile.ts` | Contact schema, plain-text email construction, challenge verification, and hostname checks. |
 | `src/lib/events.ts`, `src/lib/guide-markdown.tsx` | Event dates and guide markdown rendering. |
@@ -161,7 +167,8 @@ and the E2E-first policy for new coverage.
 These constraints affect changes and verification:
 
 - The Content Security Policy allows Turnstile scripts, connections, and frames,
-  plus Tally frames. Other third-party embeds need an explicit review.
+  plus Tally frames. Images may load over `https:` from any host so that portal
+  covers render; other third-party embeds need an explicit review.
 - `images.localPatterns` permits optimization only under `/media/**`.
   Partner logos under `/partners/` are outside that pattern.
 - Restoring the hidden tracker requires consistent content, route, and redirect

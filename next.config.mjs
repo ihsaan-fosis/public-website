@@ -76,7 +76,10 @@ const nextConfig = {
               "default-src 'self'",
               scriptSrc,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob:",
+              // Blog covers written in the member portal are absolute https addresses on another
+              // host, and that backend rejects anything but https, so https covers them without
+              // widening this to arbitrary schemes. First-party images still come from 'self'.
+              "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
               "media-src 'self'",
               `connect-src 'self' ${TURNSTILE_ORIGIN}`,

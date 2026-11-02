@@ -1,6 +1,12 @@
 import { MISSION, SOCIAL_LINKS, TAGLINE } from "@/content/site";
+import { getPublishedBlogSummaries } from "@/lib/blog-catalog";
 
-export function GET() {
+// The article list follows the live catalogue, so a withdrawn post stops being advertised here.
+export const dynamic = "force-dynamic";
+
+export async function GET() {
+  const posts = await getPublishedBlogSummaries();
+
   return new Response(`# IHSAAN
 
 IHSAAN: ${TAGLINE} ${MISSION} Public site for Muslim students and young professionals across the UK and Ireland.
@@ -12,7 +18,7 @@ IHSAAN: ${TAGLINE} ${MISSION} Public site for Muslim students and young professi
 - [/programmes](/programmes) Programmes: career conferences, summer internships, insight events, webinars and workshops, hackathons, mentorship
 - [/impact](/impact) Impact: reach, results, how success is measured and the 2045 vision
 - [/blog](/blog) Blog: community reflections and writing
-- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship) Civil Service summer internship reflection
+${posts.map(({ slug, title }) => `- [/blog/${slug}](/blog/${slug}) ${title}`).join("\n")}
 - [/gallery](/gallery) Gallery
 - [/contact](/contact) Contact
 - [/start](/start) Get started

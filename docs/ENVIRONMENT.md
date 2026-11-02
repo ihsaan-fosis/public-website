@@ -1,8 +1,8 @@
 # Environment reference
 
 The public site reads the variables below. It has no Clerk runtime and no Convex
-browser runtime. Its only Convex use is one server-side, read-only query for
-volunteer roles.
+browser runtime. Its Convex use is server-side and read-only: published blog
+posts for the blog routes, and open volunteer roles for `/volunteer`.
 The local template is [.env.example](../.env.example). The
 [setup guide](../README.md#set-up-the-site) covers local configuration.
 
@@ -14,7 +14,7 @@ The local template is [.env.example](../.env.example). The
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | The production public widget key in `src/components/contact-form.tsx` | Selects the client widget. An empty string overrides the fallback. Public values become part of the client build. |
 | `TURNSTILE_SECRET_KEY` | Unset | Verifies contact challenges on the server. |
 | `RESEND_API_KEY` | Empty in the template | Authorizes email delivery through Resend. A valid key can send real email to the fixed IHSAAN contact inbox. |
-| `CONVEX_URL` | Unset | Server-only URL of the member platform's Convex deployment. `src/lib/volunteer-roles.ts` calls the public `volunteerRoles:listOpen` query with it. When unset, or when the request fails or times out after 3 seconds, `/volunteer` shows the fallback roles in `src/content/volunteer.ts`. The value is not secret, but it is not public build input. |
+| `CONVEX_URL` | Unset locally; `vars` in `wrangler.jsonc` sets it for the production Worker | Server-only URL of the member platform's Convex deployment. It is read by `src/lib/volunteer-roles.ts` for the public `volunteerRoles:listOpen` query, and by `src/lib/blog-catalog.ts` for the public `blogPosts:listPublished` and `blogPosts:getPublished` queries. When unset, `/volunteer` shows the fallback roles in `src/content/volunteer.ts` and `/blog` has no posts. Blog posts come only from the portal: an unset, empty or failing response means nothing is served, and there is no checked-in article. See [blog publishing](BLOG-PUBLISHING.md). The value is not secret, but it is not public build input. |
 | `VERCEL_ENV` | `production` when unset | Controls `INDEXABLE`. Any set value other than `production`, including an empty string, disables indexing. |
 | `NODE_ENV` | Managed by Next.js | Selects development or production behavior, including canonical origins and accepted challenge hostnames. |
 

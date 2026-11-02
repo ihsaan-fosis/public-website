@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { CoverImage } from "@/components/blog-cover";
 import { ClosingCta } from "@/components/sections";
 import { ButtonLink, PhotoHero, revealDelay, Section, SectionHeading } from "@/components/ui";
-import { BLOG_POSTS, readingMinutes, type BlogPost } from "@/content/blog";
+import { getPublishedBlogSummaries, type BlogPostSummary } from "@/lib/blog-catalog";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -14,30 +14,32 @@ export const metadata: Metadata = pageMetadata({
   socialDescription: "Reflections and writing from the IHSAAN community.",
 });
 
+// Published posts change in the member portal, so each request reads the current catalogue
+// rather than freezing it at build time. That is what lets a newly published slug appear and an
+// unpublished one disappear without a redeploy.
+export const dynamic = "force-dynamic";
+
 const dateFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-/** Author, date when known, and reading time on one line. */
-function Byline({ post }: { post: BlogPost }) {
+/** Author, and date when known. */
+function Byline({ post }: { post: BlogPostSummary }) {
   return (
     <p className="text-sm font-medium text-ink/65">
-      <span className="text-ink">By {post.author.name}</span>
-      {post.published ? (
+      <span className="text-ink">By {post.authorName}</span>
+      {post.publishedAt ? (
         <>
           <span aria-hidden className="mx-2 text-ink/30">
             /
           </span>
-          <time dateTime={post.published}>{dateFormat.format(new Date(post.published))}</time>
+          <time dateTime={new Date(post.publishedAt).toISOString()}>{dateFormat.format(post.publishedAt)}</time>
         </>
       ) : null}
-      <span aria-hidden className="mx-2 text-ink/30">
-        /
-      </span>
-      <span>{readingMinutes(post)} min read</span>
     </p>
   );
 }
 
-function Cover({ post, sizes, className }: { post: BlogPost; sizes: string; className: string }) {
+function Cover({ post, sizes, className }: { post: BlogPostSummary; sizes: string; className: string }) {
+  if (!post.cover) return null;
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -45,19 +47,19 @@ function Cover({ post, sizes, className }: { post: BlogPost; sizes: string; clas
       aria-hidden
       className={`group relative block overflow-hidden bg-night-2 ${className}`}
     >
-      <Image
-        src={post.image.src}
+      <CoverImage
+        cover={post.cover}
+        remote={post.coverIsRemote}
         alt=""
-        fill
         sizes={sizes}
-        className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        className="transition-transform duration-[1200ms] ease-out group-hover:scale-105"
       />
     </Link>
   );
 }
 
 /** The newest piece, set large beside its cover as the page's lead story. */
-function LeadPost({ post }: { post: BlogPost }) {
+function LeadPost({ post }: { post: BlogPostSummary }) {
   return (
     <article data-reveal className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16">
       <Cover post={post} sizes="(min-width: 1280px) 640px, (min-width: 1024px) 55vw, 100vw" className="aspect-[4/3] rounded-[28px]" />
@@ -71,7 +73,7 @@ function LeadPost({ post }: { post: BlogPost }) {
           <Byline post={post} />
         </div>
         <p className="mt-5 max-w-xl text-[15px] leading-7 text-ink/75">{post.summary}</p>
-        <p className="mt-5 text-sm text-ink/65">{post.tags.join(" · ")}</p>
+        {post.tags.length > 0 ? <p className="mt-5 text-sm text-ink/65">{post.tags.join(" · ")}</p> : null}
         <div className="mt-8">
           <ButtonLink href={`/blog/${post.slug}`}>Read article</ButtonLink>
         </div>
@@ -81,7 +83,7 @@ function LeadPost({ post }: { post: BlogPost }) {
 }
 
 /** Older pieces as unboxed rows: text on the left, a small cover on the right. */
-function PostRow({ post, index }: { post: BlogPost; index: number }) {
+function PostRow({ post, index }: { post: BlogPostSummary; index: number }) {
   return (
     <li data-reveal style={revealDelay(index % 3)} className="border-b border-ink/10 py-8">
       <article className="grid gap-5 sm:grid-cols-[1fr_14rem] sm:items-center sm:gap-10">
@@ -102,8 +104,9 @@ function PostRow({ post, index }: { post: BlogPost; index: number }) {
   );
 }
 
-export default function BlogPage() {
-  const [lead, ...earlier] = BLOG_POSTS;
+export default async function BlogPage() {
+  const posts = await getPublishedBlogSummaries();
+  const [lead, ...earlier] = posts;
 
   return (
     <>
@@ -123,7 +126,11 @@ export default function BlogPage() {
           <div className="mt-12">
             <LeadPost post={lead} />
           </div>
-        ) : null}
+        ) : (
+          <p className="mt-12 max-w-xl text-[15px] leading-7 text-ink/75">
+            Nothing is published yet. New writing appears here as soon as it goes live.
+          </p>
+        )}
         {earlier.length > 0 ? (
           <ul className="mt-16 border-t border-ink/10">
             {earlier.map((post, index) => (
