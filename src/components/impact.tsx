@@ -149,6 +149,9 @@ export function FlywheelChapter() {
 
 const LARGEST_YEAR = Math.max(...ENGAGEMENT.map((year) => year.count));
 
+/** One figure size for both columns, so the yearly counts and the headline stats read as one set. */
+const TRACTION_FIGURE = "text-3xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]";
+
 /** Year-on-year growth as two ruled rows with a thin bar each, beside the headline figures as an unboxed list. */
 export function TractionChapter() {
   return (
@@ -159,18 +162,17 @@ export function TractionChapter() {
         aside="A proven model, not a pilot. Funding scales what already works."
       />
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-        <div data-reveal>
-          <p className="text-sm text-ink/65">Students engaged at events, by academic year</p>
-          <ul className="mt-6 border-t border-ink/10">
+        <div data-reveal className="flex flex-col">
+          <ul className="flex flex-1 flex-col border-t border-ink/10">
             {ENGAGEMENT.map((year) => (
-              <li key={year.label} className="border-b border-ink/10 py-7">
+              <li key={year.label} className="flex flex-1 flex-col justify-center border-b border-ink/10 py-5">
                 <div className="flex items-baseline justify-between gap-6">
-                  <p className="text-sm text-ink/65">{year.label}</p>
-                  <p className="text-4xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
+                  <p className="text-sm leading-6 text-ink/65">{year.label}</p>
+                  <p className={TRACTION_FIGURE}>
                     <CountUp value={year.display} />
                   </p>
                 </div>
-                <div aria-hidden className="mt-5 h-1.5 w-full rounded-full bg-ink/15">
+                <div aria-hidden className="mt-4 h-1.5 w-full rounded-full bg-ink/15">
                   <div
                     className="h-full rounded-full bg-ihsaan-blue dark:bg-ihsaan-light-blue"
                     style={{ width: `${(year.count / LARGEST_YEAR) * 100}%` }}
@@ -179,17 +181,14 @@ export function TractionChapter() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 max-w-md text-[13px] leading-6 text-ink/65">
-            Annual figures count engagements across events. About 4,000 is the number of unique students across both
-            years.
-          </p>
+          <p className="mt-4 text-[13px] leading-6 text-ink/65">Students engaged at events, by academic year.</p>
         </div>
-        <div data-reveal style={revealDelay(1)}>
+        <div data-reveal style={revealDelay(1)} className="flex flex-col">
           <dl className="border-t border-ink/10">
             {TRACTION.map((stat) => (
               <div key={stat.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-5">
                 <dt className="max-w-[16rem] text-sm leading-6 text-ink/65">{stat.label}</dt>
-                <dd className="text-3xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">
+                <dd className={TRACTION_FIGURE}>
                   <CountUp value={stat.value} />
                 </dd>
               </div>
