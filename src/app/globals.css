@@ -112,6 +112,13 @@
     interpolate-size: allow-keywords;
   }
 
+  /* Tabs, the URL bar and a bookmarks bar leave some desktop windows short, and rem-based layout sized by width then reads as zoomed in. Below 45rem of height the root shrinks with the window, like a gentle browser zoom-out. */
+  @media (min-width: 64rem) and (max-height: 45rem) {
+    html {
+      font-size: clamp(87.5%, 100svh / 45, 100%);
+    }
+  }
+
   body {
     background: var(--page);
     color: var(--ink);
@@ -237,6 +244,17 @@
 @media (width >= 64rem) {
   .hero-title-photo {
     font-size: clamp(3.5rem, 5vw, 5.5rem);
+  }
+}
+
+/* The titles size by width, so on short windows the root scale alone does not shrink them. */
+@media (min-width: 64rem) and (max-height: 45rem) {
+  .hero-title-editorial {
+    font-size: clamp(2.25rem, min(4.4vw, 9svh), 4rem);
+  }
+
+  .hero-title-photo {
+    font-size: clamp(3.5rem, min(5vw, 10svh), 5.5rem);
   }
 }
 
