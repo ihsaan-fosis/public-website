@@ -205,7 +205,8 @@ export function ThemeToggle({ className }: { className?: string }) {
  * Muted autoplay is allowed by WCAG; 2.2.2 only requires a pause control. Playback starts from
  * script rather than the `autoPlay` attribute so reduced-motion visitors keep the poster and
  * never download the video. Mobile browsers often reject the first `play()` while `preload="none"`,
- * so motion-ok visitors bump preload and retry once data is ready.
+ * so motion-ok visitors bump preload and retry once data is ready. If playback stays blocked
+ * (iOS Low Power Mode), the first tap anywhere on the page starts it.
  */
 export type HeroVideoSources = {
   src: string;
@@ -229,12 +230,31 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
     let cancelled = false;
     const cleanups: Array<() => void> = [];
 
+    // iOS Low Power Mode rejects script-started autoplay for good, but accepts play() from a tap.
+    let armed = false;
+    const armTapToPlay = () => {
+      if (armed) return;
+      armed = true;
+      const events = ["click", "touchend"] as const;
+      const start = () => {
+        if (!cancelled && !prefersReducedMotion()) void play(el);
+      };
+      const disarm = () => {
+        events.forEach((name) => document.removeEventListener(name, start));
+        el.removeEventListener("play", disarm);
+      };
+      events.forEach((name) => document.addEventListener(name, start, { passive: true }));
+      el.addEventListener("play", disarm);
+      cleanups.push(disarm);
+    };
+
     const tryPlay = () => {
       if (cancelled || prefersReducedMotion()) return;
       // `preload="none"` leaves nothing buffered; iOS/Safari often reject that first play().
       if (el.preload === "none") el.preload = "auto";
       void Promise.resolve(el.play()).catch(() => {
         if (cancelled || prefersReducedMotion()) return;
+        armTapToPlay();
         const retry = () => {
           if (!cancelled && !prefersReducedMotion()) void play(el);
         };
