@@ -5,7 +5,8 @@
   "main": "src/worker.ts",
   "compatibility_date": "2026-10-08",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "workers_dev": true,
+  // Only the custom domains below serve the site, so no workers.dev copy can be crawled.
+  "workers_dev": false,
   "preview_urls": false,
   // Both custom domains are attached to this Worker. Cloudflare manages their DNS rows.
   // Apply route changes with `cf workers triggers deploy --profile techihsaan`.
