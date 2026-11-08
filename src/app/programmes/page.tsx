@@ -50,7 +50,7 @@ export default function ProgrammesPage() {
                 <p className="mt-3 max-w-sm text-sm leading-6 text-cream/80">{programme.summary}</p>
                 <div className="mt-7">
                   <ButtonLink href={`/programmes/${programme.slug}`} tone="white">
-                    Learn more
+                    Learn more<span className="sr-only"> about {programme.title}</span>
                   </ButtonLink>
                 </div>
               </article>

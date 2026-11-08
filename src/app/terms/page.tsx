@@ -5,7 +5,8 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Terms and Conditions",
-  description: "Terms for using the IHSAAN public website and its career information and resources.",
+  description:
+    "Terms for using the IHSAAN public website: acceptable use, career information, intellectual property, links to other services and our responsibility to you.",
   path: "/terms",
 });
 

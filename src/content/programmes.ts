@@ -23,6 +23,8 @@ export type ProgrammePage = {
   title: string;
   /** One sentence for the programmes index and metadata. */
   summary: string;
+  /** A longer search description, where the summary is too short for one. */
+  description?: string;
   /** Hero headline. */
   headline: string;
   intro: string;
@@ -109,6 +111,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     slug: "summer-internships",
     title: "Summer Internship Programme",
     summary: "Exclusive summer internships sourced by IHSAAN for Muslim students.",
+    description:
+      "IHSAAN's Summer Internship Programme connects Muslim students with faith-aligned internships. For 2026 it secured 100+ internships across 30+ companies.",
     headline: "Internships built with you in mind.",
     intro:
       "Not every opportunity is built with Muslim students in mind. That is why we built the IHSAAN Summer Internship Programme for 2026.",
@@ -236,6 +240,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     slug: "hackathons",
     title: "Hackathons",
     summary: "Weekend hackathons where students build solutions to real community problems.",
+    description:
+      "Weekend hackathons where Muslim students form teams, learn from mentors, prototype solutions to real community problems and pitch them to partners.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
     image: "/media/hackathon-build-wide.webp",
@@ -296,6 +302,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     slug: "mentorship",
     title: "Mentorship",
     summary: "My Muslim Mentor pairs students with professionals in their field for 1:1 mentorship.",
+    description:
+      "My Muslim Mentor pairs Muslim students with professionals in their field for 1:1 mentorship, with 140+ verified mentors across 15+ industries.",
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
     image: "/media/mmm-hd.webp",

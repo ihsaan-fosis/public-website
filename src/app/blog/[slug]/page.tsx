@@ -136,7 +136,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                   {contents.map((section, index) => (
                     <li key={section.id}>
                       <a href={`#${section.id}`} className="font-medium hover:text-ink hover:underline">
-                        <span className="mr-2 text-ink/45">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="mr-2 text-ink/65">{String(index + 1).padStart(2, "0")}</span>
                         {section.text}
                       </a>
                     </li>

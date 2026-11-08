@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
-  title: "IHSAAN Tech Team",
+  title: "Tech Team",
   description:
     "Meet the IHSAAN Tech Team - the people who build and maintain the public site and digital products.",
   path: "/tech-team",

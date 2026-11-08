@@ -88,13 +88,13 @@ describe("page metadata", () => {
     expect(metadata.twitter).toMatchObject({ title: `${metadata.title} | IHSAAN`, images: ["/media/hero-poster.webp"] });
   });
 
-  it.each(PROGRAMME_PAGES)("gives /programmes/$slug its own canonical, photo and social title", async ({ slug, title, summary, image }) => {
+  it.each(PROGRAMME_PAGES)("gives /programmes/$slug its own canonical, photo and social title", async ({ slug, title, summary, description, image }) => {
     const { generateMetadata } = await import("./programmes/[slug]/page");
     const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
     const path = `/programmes/${slug}`;
     expect(metadata.alternates?.canonical).toBe(path);
     expect(metadata.openGraph).toMatchObject({ url: path, title: `${title} | IHSAAN`, images: [image] });
-    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: summary, images: [image] });
+    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: description ?? summary, images: [image] });
   });
 
   it("lets the homepage inherit the layout title while keeping full social tags", () => {

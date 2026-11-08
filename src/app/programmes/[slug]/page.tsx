@@ -21,7 +21,7 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const page = getProgrammePage((await params).slug);
   if (!page) return {};
-  return pageMetadata({ title: page.title, description: page.summary, path: `/programmes/${page.slug}`, image: page.image });
+  return pageMetadata({ title: page.title, description: page.description ?? page.summary, path: `/programmes/${page.slug}`, image: page.image });
 }
 
 const INTRO_PHOTO = {
