@@ -7,7 +7,8 @@ import { MapChapter } from "@/components/story";
 import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
-import { pageMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/metadata";
+import { SITE_ORIGIN } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Params = { slug: string };
@@ -33,12 +34,16 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
   const page = getProgrammePage((await params).slug);
   if (!page) notFound();
 
+  const breadcrumb = breadcrumbJsonLd(SITE_ORIGIN, [
+    { name: "Programmes", path: "/programmes" },
+    { name: page.title, path: `/programmes/${page.slug}` },
+  ]);
   const isHackathon = page.slug === "hackathons";
   const isConference = page.slug === "career-conferences";
 
   return (
     <>
-      <PhotoHero image={page.image} title={page.headline} intro={page.intro}>
+      <PhotoHero image={page.image.src} title={page.headline} intro={page.intro}>
         <div className="flex flex-wrap gap-3">
           <ButtonLink href={page.primary.href} external={page.primary.external} tone="white">
             {page.primary.label}
@@ -197,6 +202,11 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
       ) : null}
 
       <ClosingCta image={page.closingImage} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb).replace(/</g, "\\u003c") }}
+      />
     </>
   );
 }

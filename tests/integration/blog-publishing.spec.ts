@@ -19,20 +19,24 @@ const article = {
 };
 let empty = false;
 let imageUrl = article.imageUrl;
+let imageAlt = article.imageAlt;
+let publishedAt: number | undefined = article.publishedAt;
 
 beforeEach(() => {
   calls.length = 0;
   empty = false;
   imageUrl = article.imageUrl;
+  imageAlt = article.imageAlt;
+  publishedAt = article.publishedAt;
   vi.stubEnv("CONVEX_URL", "https://public-content-fixture.convex.cloud");
   vi.stubGlobal("fetch", vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
     const request = JSON.parse(String(init?.body)) as { path: string; args: [{ slug?: string }] };
     calls.push(request.path);
     if (request.path === "blogPosts:listPublished") {
-      return Response.json({ status: "success", value: empty ? [] : [{ ...article, imageUrl, bodyMd: undefined }] });
+      return Response.json({ status: "success", value: empty ? [] : [{ ...article, imageUrl, imageAlt, publishedAt, bodyMd: undefined }] });
     }
     if (request.path === "blogPosts:getPublished") {
-      return Response.json({ status: "success", value: !empty && request.args[0].slug === article.slug ? { ...article, imageUrl } : null });
+      return Response.json({ status: "success", value: !empty && request.args[0].slug === article.slug ? { ...article, imageUrl, imageAlt, publishedAt } : null });
     }
     throw new Error(`Unexpected backend access: ${request.path}`);
   }));
@@ -72,7 +76,7 @@ describe("published blog data through public server routes", () => {
       url: `/blog/${article.slug}`,
       title: `${article.title} | IHSAAN`,
       description: article.summary,
-      images: [article.imageUrl],
+      images: [{ url: article.imageUrl, alt: article.imageAlt }],
       authors: [article.authorName],
       publishedTime: new Date(article.publishedAt).toISOString(),
       tags: article.tags,
@@ -147,6 +151,60 @@ describe("published blog data through public server routes", () => {
       const { default: BlogPage } = await import("../../src/app/blog/page");
       await expect(BlogPage()).rejects.toBeInstanceOf(Error);
     });
+  });
+
+  it("publishes article breadcrumbs from Home through Blog", async () => {
+    const { default: PostPage } = await import("../../src/app/blog/[slug]/page");
+    const html = renderToStaticMarkup(await PostPage({ params: Promise.resolve({ slug: article.slug }) }));
+    const document = new DOMParser().parseFromString(html, "text/html");
+    const schemas = [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .flatMap((script) => JSON.parse(script.textContent ?? "null"))
+      .flatMap((schema) => schema?.["@graph"] ?? [schema]);
+    const breadcrumb = schemas.find((schema) => schema?.["@type"] === "BreadcrumbList");
+    expect(breadcrumb, "Article BreadcrumbList").toBeDefined();
+    expect(breadcrumb?.itemListElement).toEqual([
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ihsaan.network/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://ihsaan.network/blog" },
+      { "@type": "ListItem", position: 3, name: article.title, item: `https://ihsaan.network/blog/${article.slug}` },
+    ]);
+  });
+
+  it("links the BlogPosting publisher to the site's Organization identity", async () => {
+    const { default: PostPage } = await import("../../src/app/blog/[slug]/page");
+    const html = renderToStaticMarkup(await PostPage({ params: Promise.resolve({ slug: article.slug }) }));
+    const document = new DOMParser().parseFromString(html, "text/html");
+    const schemas = [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .flatMap((script) => JSON.parse(script.textContent ?? "null"))
+      .flatMap((schema) => schema?.["@graph"] ?? [schema]);
+    expect(schemas.find((schema) => schema?.["@type"] === "BlogPosting")?.publisher?.["@id"])
+      .toBe("https://ihsaan.network/#organization");
+  });
+
+  it.each([article.imageAlt, ""])("uses the cover alt or title in article Open Graph metadata (alt=%s)", async (alt) => {
+    imageAlt = alt;
+    const { generateMetadata } = await import("../../src/app/blog/[slug]/page");
+    const metadata = await generateMetadata({ params: Promise.resolve({ slug: article.slug }) });
+    expect(metadata.openGraph).toMatchObject({ images: [{ url: article.imageUrl, alt: alt || article.title }] });
+  });
+
+  it("uses the actual publication timestamp for blog sitemap entries only", async () => {
+    const { default: sitemap } = await import("../../src/app/sitemap");
+    const entries = await sitemap();
+    const post = entries.find((entry) => entry.url === `https://ihsaan.network/blog/${article.slug}`);
+    expect(post, "Published article must occur in the sitemap").toBeDefined();
+    expect(post?.lastModified, "Published article lastModified").toBeDefined();
+    expect(new Date(post!.lastModified!).toISOString()).toBe(new Date(article.publishedAt).toISOString());
+    for (const entry of entries.filter((entry) => !entry.url.startsWith("https://ihsaan.network/blog/"))) {
+      expect(entry.lastModified, entry.url).toBeUndefined();
+    }
+  });
+
+  it("does not invent a lastModified value for an undated blog article", async () => {
+    publishedAt = undefined;
+    const { default: sitemap } = await import("../../src/app/sitemap");
+    const post = (await sitemap()).find((entry) => entry.url === `https://ihsaan.network/blog/${article.slug}`);
+    expect(post).toBeDefined();
+    expect(post?.lastModified).toBeUndefined();
   });
 
   it("honors an authoritative empty catalog and does not resurrect an unpublished legacy slug", async () => {
