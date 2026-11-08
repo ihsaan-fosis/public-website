@@ -1,4 +1,4 @@
-const PRODUCTION_ORIGIN = "https://ihsaan.network";
+export const PRODUCTION_ORIGIN = "https://ihsaan.network";
 
 const configuredOrigin = process.env.NEXT_PUBLIC_APP_URL;
 

@@ -1,14 +1,7 @@
 import { CoverImage } from "@/components/blog-cover";
-import { PhotoHero } from "@/components/ui";
 import type { BlogCover } from "@/lib/blog-catalog";
 
-/**
- * The article's opening frame.
- *
- * `PhotoHero` renders its image through `next/image`, which only accepts sources listed in
- * `images.localPatterns`; a cover added in the member portal is an absolute address on another
- * host, so it takes the same frame with a plain `<img>` instead of failing the optimiser check.
- */
+/** The article's opening frame. `CoverImage` picks the optimiser or a plain `<img>` by host. */
 export function ArticleHero({
   cover,
   remote,
@@ -20,13 +13,11 @@ export function ArticleHero({
   title: string;
   intro?: string;
 }) {
-  if (!remote) return <PhotoHero image={cover.src} title={title} intro={intro} />;
-
   return (
     <section id="hero" className="p-2 sm:p-3">
       <div className="hero-frame relative isolate flex min-h-[64svh] overflow-hidden rounded-[28px] bg-night-2">
         <div className="hero-media absolute inset-0 -z-20">
-          <CoverImage cover={cover} remote sizes="100vw" eager className="object-cover" />
+          <CoverImage cover={cover} remote={remote} sizes="100vw" eager className="object-cover" />
         </div>
         <div
           aria-hidden

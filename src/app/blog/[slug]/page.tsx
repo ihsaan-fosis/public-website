@@ -20,7 +20,9 @@ type Params = { slug: string };
 export const dynamic = "force-dynamic";
 
 export async function generateStaticParams(): Promise<Params[]> {
-  const slugs = await getPublishedBlogSlugs();
+  // Only a pre-list: an unreachable backend at build time must not fail the build, because
+  // every slug still resolves per request.
+  const slugs = await getPublishedBlogSlugs().catch(() => []);
   return slugs.map((slug) => ({ slug }));
 }
 

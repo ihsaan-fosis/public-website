@@ -15,9 +15,9 @@ describe("programme pages", () => {
     );
   });
 
-  it("keeps the opportunities tracker hidden", () => {
+  it("keeps the opportunities tracker hidden", async () => {
     expect(PROGRAMME_PAGES.map((page) => page.slug)).not.toContain("opportunities-tracker");
-    expect(sitemap().map(({ url }) => url)).not.toContain("https://ihsaan.network/programmes/opportunities-tracker");
+    expect((await sitemap()).map(({ url }) => url)).not.toContain("https://ihsaan.network/programmes/opportunities-tracker");
   });
 
   it("has a detail page for every home-page programme", () => {
@@ -113,8 +113,8 @@ describe("programme pages", () => {
     });
   });
 
-  it("lists every programme page in the sitemap", () => {
-    const urls = sitemap().map(({ url }) => url);
+  it("lists every programme page in the sitemap", async () => {
+    const urls = (await sitemap()).map(({ url }) => url);
     expect(urls).toContain("https://ihsaan.network/programmes");
     for (const { slug } of PROGRAMME_PAGES) expect(urls).toContain(`https://ihsaan.network/programmes/${slug}`);
   });
