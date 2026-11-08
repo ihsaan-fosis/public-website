@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -17,19 +18,21 @@ const article = {
   bodyMd: "## Workshop lessons\n\nA complete published story.\n\n<script>alert(1)</script>\n\n[unsafe](javascript:alert%281%29)",
 };
 let empty = false;
+let imageUrl = article.imageUrl;
 
 beforeEach(() => {
   calls.length = 0;
   empty = false;
+  imageUrl = article.imageUrl;
   vi.stubEnv("CONVEX_URL", "https://public-content-fixture.convex.cloud");
   vi.stubGlobal("fetch", vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
     const request = JSON.parse(String(init?.body)) as { path: string; args: [{ slug?: string }] };
     calls.push(request.path);
     if (request.path === "blogPosts:listPublished") {
-      return Response.json({ status: "success", value: empty ? [] : [{ ...article, bodyMd: undefined }] });
+      return Response.json({ status: "success", value: empty ? [] : [{ ...article, imageUrl, bodyMd: undefined }] });
     }
     if (request.path === "blogPosts:getPublished") {
-      return Response.json({ status: "success", value: !empty && request.args[0].slug === article.slug ? article : null });
+      return Response.json({ status: "success", value: !empty && request.args[0].slug === article.slug ? { ...article, imageUrl } : null });
     }
     throw new Error(`Unexpected backend access: ${request.path}`);
   }));
@@ -58,6 +61,8 @@ describe("published blog data through public server routes", () => {
     expect(html).not.toContain("<script>alert(1)</script>");
     expect(html).not.toContain('href="javascript:');
     expect(html).toContain(article.imageUrl);
+    const document = new DOMParser().parseFromString(html, "text/html");
+    expect(document.querySelector(`img[src="${article.imageUrl}"]`)).not.toBeNull();
     expect(html).not.toContain(`https://ihsaan.network${article.imageUrl}`);
     const metadata = await generateMetadata({ params });
     expect(metadata.title).toBe(article.title);
@@ -87,6 +92,61 @@ describe("published blog data through public server routes", () => {
       expect.objectContaining({ url: `https://ihsaan.network/blog/${article.slug}` }),
     ]));
     expect(await (await GET()).text()).toContain(`/blog/${article.slug}`);
+  });
+
+  it("optimises first-party absolute covers but keeps an absolute BlogPosting image", async () => {
+    imageUrl = "https://ihsaan.network/media/faithful-talent-hd.webp";
+    const { default: PostPage } = await import("../../src/app/blog/[slug]/page");
+    const html = renderToStaticMarkup(await PostPage({ params: Promise.resolve({ slug: article.slug }) }));
+    const document = new DOMParser().parseFromString(html, "text/html");
+    const cover = document.querySelector('img[alt="A programme session"]');
+    expect.soft(cover?.getAttribute("src")).toContain("/_next/image?url=%2Fmedia%2Ffaithful-talent-hd.webp");
+    expect.soft(cover?.getAttribute("srcset") ?? "").toContain("/_next/image?url=%2Fmedia%2Ffaithful-talent-hd.webp");
+    expect.soft(document.querySelector(`img[src="${imageUrl}"]`)).toBeNull();
+    const scripts = [...document.querySelectorAll('script[type="application/ld+json"]')];
+    // JSON is emitted by the real page and selected by schema type, not script order.
+    const schemas = scripts.map((script) => JSON.parse(script.textContent ?? "null"));
+    expect(schemas.find((schema) => schema["@type"] === "BlogPosting")?.image).toContain(imageUrl);
+  });
+
+  describe.each([
+    ["network rejection", () => Promise.reject(new Error("Convex transport unavailable"))],
+    ["HTTP 500", () => Promise.resolve(new Response("Backend unavailable", { status: 500 }))],
+    ["non-JSON success", () => Promise.resolve(new Response("not JSON", { status: 200 }))],
+    ["unexpected response shape", () => Promise.resolve(Response.json({ status: "success", value: { unexpected: true } }))],
+  ])("backend failure: %s", (_name, unavailable) => {
+    beforeEach(() => {
+      vi.stubGlobal("fetch", vi.fn(unavailable));
+    });
+
+    it("rejects article rendering with an ordinary error instead of notFound", async () => {
+      const { default: PostPage } = await import("../../src/app/blog/[slug]/page");
+      const result = PostPage({ params: Promise.resolve({ slug: article.slug }) });
+      await expect(result).rejects.toBeInstanceOf(Error);
+      await expect(result).rejects.not.toThrow(/NEXT_HTTP_ERROR_FALLBACK;404|NEXT_NOT_FOUND/);
+    });
+
+    it("rejects article metadata with an ordinary error instead of notFound", async () => {
+      const { generateMetadata } = await import("../../src/app/blog/[slug]/page");
+      const result = generateMetadata({ params: Promise.resolve({ slug: article.slug }) });
+      await expect(result).rejects.toBeInstanceOf(Error);
+      await expect(result).rejects.not.toThrow(/NEXT_HTTP_ERROR_FALLBACK;404|NEXT_NOT_FOUND/);
+    });
+
+    it("rejects the sitemap instead of silently dropping published URLs", async () => {
+      const { default: sitemap } = await import("../../src/app/sitemap");
+      await expect(sitemap()).rejects.toBeInstanceOf(Error);
+    });
+
+    it("rejects llms.txt instead of silently dropping published URLs", async () => {
+      const { GET } = await import("../../src/app/llms.txt/route");
+      await expect(GET()).rejects.toBeInstanceOf(Error);
+    });
+
+    it("rejects the blog index instead of claiming no posts are published", async () => {
+      const { default: BlogPage } = await import("../../src/app/blog/page");
+      await expect(BlogPage()).rejects.toBeInstanceOf(Error);
+    });
   });
 
   it("honors an authoritative empty catalog and does not resurrect an unpublished legacy slug", async () => {

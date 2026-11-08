@@ -5,9 +5,8 @@ import type { BlogCover } from "@/lib/blog-catalog";
 /**
  * A post cover, from either source the portal can return.
  *
- * Local covers live under `/public/media` and go through `next/image` as before. Covers added
- * in the portal are absolute addresses pointing at the member platform's deployment, which the
- * site's image configuration does not list, so they are served directly instead of being sent
+ * Covers under this site's `/media/` go through `next/image`. Covers on another host are not
+ * listed in the site's image configuration, so they are served directly instead of being sent
  * through the optimiser it would reject.
  */
 export function CoverImage({
@@ -39,5 +38,15 @@ export function CoverImage({
       />
     );
   }
-  return <Image src={cover.src} alt={altText} fill sizes={sizes} className={className} priority={eager} />;
+  return (
+    <Image
+      src={cover.src}
+      alt={altText}
+      fill
+      sizes={sizes}
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
+      className={className}
+    />
+  );
 }

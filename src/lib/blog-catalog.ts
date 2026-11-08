@@ -2,7 +2,9 @@ import "server-only";
 
 import { ConvexHttpClient } from "convex/browser";
 import { makeFunctionReference } from "convex/server";
+import { cache } from "react";
 import { z } from "zod";
+import { PRODUCTION_ORIGIN } from "./site";
 
 /**
  * The published blog catalogue, read once per request by the blog routes, the sitemap and
@@ -17,8 +19,9 @@ import { z } from "zod";
  *
  * The portal is the only source. `CONVEX_URL` must be set for any post to appear: when it is
  * unset the catalogue is empty and every article route answers 404. An empty catalogue means
- * nothing is published, and a failed request fails closed, so a withdrawn post is never served
- * from a stale copy.
+ * nothing is published. A failed or malformed response throws instead, so an outage answers 500
+ * rather than a 404 or a sitemap without its posts, and a withdrawn post is never served from a
+ * stale copy.
  */
 
 const FETCH_TIMEOUT_MS = 3000;
@@ -27,7 +30,7 @@ const FETCH_TIMEOUT_MS = 3000;
 const listPublished = makeFunctionReference<"query", Record<string, never>, unknown>("blogPosts:listPublished");
 const getPublished = makeFunctionReference<"query", { slug: string }, unknown>("blogPosts:getPublished");
 
-/** Covers are rendered in `<img>`: an absolute https address or nothing, never a data URI. */
+/** Covers are an absolute https address or nothing, never a data URI. */
 const httpsUrl = z.url({ protocol: /^https$/ });
 
 /**
@@ -70,7 +73,7 @@ export type BlogPostSummary = {
   authorName: string;
   tags: readonly string[];
   cover?: BlogCover;
-  /** True when the cover is a remote address, which is never sent through the image optimiser. */
+  /** True when the cover is on another host, which is never sent through the image optimiser. */
   coverIsRemote: boolean;
   publishedAt?: number;
 };
@@ -89,8 +92,44 @@ function client(url: string): ConvexHttpClient {
   });
 }
 
-function coverOf(src: string | null | undefined, alt: string | null | undefined): BlogCover | undefined {
-  return src ? { src, alt: alt?.trim() ?? "" } : undefined;
+/**
+ * A cover under this site's own `/media/` is served as a site-relative path, so it goes through
+ * `next/image` like every other first-party photo. Anything else stays an absolute remote address.
+ */
+function coverOf(
+  src: string | null | undefined,
+  alt: string | null | undefined,
+): Pick<BlogPostSummary, "cover" | "coverIsRemote"> {
+  if (!src) return { coverIsRemote: false };
+  const url = new URL(src);
+  const ownMedia = url.origin === PRODUCTION_ORIGIN && url.pathname.startsWith("/media/") && !url.search && !url.hash;
+  return { cover: { src: ownMedia ? url.pathname : src, alt: alt?.trim() ?? "" }, coverIsRemote: !ownMedia };
+}
+
+async function load(what: string, read: () => Promise<unknown>): Promise<unknown> {
+  try {
+    return await read();
+  } catch (error) {
+    throw new Error(`Could not load ${what} from Convex.`, { cause: error });
+  }
+}
+
+function parse<T>(schema: z.ZodType<T>, value: unknown, what: string): T {
+  const parsed = schema.safeParse(value);
+  if (!parsed.success) throw new Error(`${what} had an unexpected shape.`, { cause: parsed.error });
+  return parsed.data;
+}
+
+function summaryOf(post: z.infer<typeof summarySchema>): BlogPostSummary {
+  return {
+    slug: post.slug,
+    title: post.title,
+    summary: post.summary,
+    authorName: post.authorName,
+    tags: post.tags,
+    ...coverOf(post.imageUrl, post.imageAlt),
+    ...(post.publishedAt ? { publishedAt: post.publishedAt } : {}),
+  };
 }
 
 /**
@@ -100,63 +139,24 @@ function coverOf(src: string | null | undefined, alt: string | null | undefined)
 export async function getPublishedBlogSummaries(): Promise<readonly BlogPostSummary[]> {
   const url = configuredUrl();
   if (!url) return [];
-
-  try {
-    const parsed = listSchema.safeParse(await client(url).query(listPublished, {}));
-    if (!parsed.success) {
-      console.error("Published blog list had an unexpected shape.", parsed.error);
-      return [];
-    }
-    return parsed.data.map((post) => ({
-      slug: post.slug,
-      title: post.title,
-      summary: post.summary,
-      authorName: post.authorName,
-      tags: post.tags,
-      cover: coverOf(post.imageUrl, post.imageAlt),
-      coverIsRemote: Boolean(post.imageUrl),
-      ...(post.publishedAt ? { publishedAt: post.publishedAt } : {}),
-    }));
-  } catch (error) {
-    // Fail closed: a portal outage must not fall back to content an editor may have withdrawn.
-    console.error("Could not load published blog posts from Convex.", error);
-    return [];
-  }
+  const response = await load("published blog posts", () => client(url).query(listPublished, {}));
+  return parse(listSchema, response, "Published blog list").map(summaryOf);
 }
 
-/** One published article, or `null` so the route can answer with a 404. */
-export async function getPublishedBlogArticle(slug: string): Promise<BlogPostArticle | null> {
+/**
+ * One published article, or `null` so the route can answer with a 404. Memoised per request, so
+ * the page and its metadata share one read and one snapshot.
+ */
+export const getPublishedBlogArticle = cache(async (slug: string): Promise<BlogPostArticle | null> => {
   const url = configuredUrl();
   if (!url) return null;
-
-  try {
-    const response = await client(url).query(getPublished, { slug });
-    // `getPublished` answers `null` for a slug that was never published, or that has been
-    // withdrawn. That is an ordinary miss and the route answers 404, so it is not an error.
-    if (response === null || response === undefined) return null;
-
-    const parsed = articleSchema.safeParse(response);
-    if (!parsed.success) {
-      console.error("Published blog article had an unexpected shape.", parsed.error);
-      return null;
-    }
-    const post = parsed.data;
-    return {
-      slug: post.slug,
-      title: post.title,
-      summary: post.summary,
-      authorName: post.authorName,
-      tags: post.tags,
-      cover: coverOf(post.imageUrl, post.imageAlt),
-      coverIsRemote: Boolean(post.imageUrl),
-      ...(post.publishedAt ? { publishedAt: post.publishedAt } : {}),
-      bodyMd: post.bodyMd,
-    };
-  } catch (error) {
-    console.error("Could not load the published blog article from Convex.", error);
-    return null;
-  }
-}
+  const response = await load("the published blog article", () => client(url).query(getPublished, { slug }));
+  // `getPublished` answers `null` for a slug that was never published, or that has been
+  // withdrawn. That is an ordinary miss and the route answers 404, so it is not an error.
+  if (response === null || response === undefined) return null;
+  const post = parse(articleSchema, response, "Published blog article");
+  return { ...summaryOf(post), bodyMd: post.bodyMd };
+});
 
 /** Slugs for the sitemap, llms.txt and the article route's fallback parameters. */
 export async function getPublishedBlogSlugs(): Promise<readonly string[]> {
