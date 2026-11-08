@@ -5,9 +5,9 @@ import { Poppins } from "next/font/google";
 import { RevealObserver } from "@/components/motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { MISSION, SOCIAL_LINKS } from "@/content/site";
+import { CONTACT_EMAIL, MISSION, SOCIAL_LINKS } from "@/content/site";
 import { DEFAULT_TITLE, pageMetadata } from "@/lib/metadata";
-import { INDEXABLE, SITE_ORIGIN } from "../lib/site";
+import { INDEXABLE, ORGANIZATION_ID, SITE_ORIGIN } from "../lib/site";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
 
@@ -59,10 +59,20 @@ export const viewport = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": ORGANIZATION_ID,
   name: "IHSAAN",
   url: SITE_ORIGIN,
+  description: MISSION,
   logo: `${SITE_ORIGIN}/media/blue-logo.webp`,
-  email: "ihsaan@fosis.org.uk",
+  email: CONTACT_EMAIL,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "general enquiries",
+    email: CONTACT_EMAIL,
+    url: `${SITE_ORIGIN}/contact`,
+    areaServed: ["GB", "IE"],
+    availableLanguage: "en",
+  },
   areaServed: ["United Kingdom", "Ireland"],
   sameAs: SOCIAL_LINKS.map(({ href }) => href),
 };

@@ -6,8 +6,8 @@ import { MarkdownBody, markdownHeadings } from "@/components/markdown-body";
 import { ClosingCta } from "@/components/sections";
 import { PhotoHero, Section } from "@/components/ui";
 import { getPublishedBlogArticle, getPublishedBlogSlugs } from "@/lib/blog-catalog";
-import { pageMetadata } from "@/lib/metadata";
-import { SITE_ORIGIN } from "@/lib/site";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/metadata";
+import { ORGANIZATION_ID, SITE_ORIGIN } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: post.title,
     description: post.summary,
     path: `/blog/${post.slug}`,
-    image: post.cover?.src,
+    image: post.cover ? { src: post.cover.src, alt: post.cover.alt || post.title } : undefined,
     type: "article",
     publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
     authors: [post.authorName],
@@ -66,6 +66,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
     },
     publisher: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: "IHSAAN",
       url: SITE_ORIGIN,
       logo: {
@@ -77,6 +78,10 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
     inLanguage: "en-GB",
     keywords: post.tags.join(", "),
   };
+  const breadcrumb = breadcrumbJsonLd(SITE_ORIGIN, [
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path },
+  ]);
 
   return (
     <>
@@ -169,10 +174,13 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
       <ClosingCta image="/media/gallery/students-at-work.webp" />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      {[jsonLd, breadcrumb].map((data) => (
+        <script
+          key={data["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+        />
+      ))}
     </>
   );
 }

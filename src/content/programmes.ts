@@ -28,7 +28,8 @@ export type ProgrammePage = {
   /** Hero headline. */
   headline: string;
   intro: string;
-  image: string;
+  /** The hero photograph, also the page's link-preview image. */
+  image: Photo;
   /** The photograph behind the closing call to action, which no other page repeats. */
   closingImage: string;
   photo: Photo;
@@ -56,7 +57,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Large-scale events connecting Muslim students with leading employers, role models and career pathways.",
     headline: "Meet the employers who want you.",
     intro: "Connecting Muslim students with leading employers, role models and career pathways across the UK and Ireland.",
-    image: "/media/career-conferences-hd.webp",
+    image: { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
     closingImage: "/media/gallery/careers-fair-hall.webp",
     photo: { src: "/media/gallery/conference-hall-wide.webp", alt: "A lecture theatre of students at an IHSAAN career conference", width: 1928, height: 2560 },
     about: [
@@ -116,7 +117,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     headline: "Internships built with you in mind.",
     intro:
       "Not every opportunity is built with Muslim students in mind. That is why we built the IHSAAN Summer Internship Programme for 2026.",
-    image: "/media/gallery/employer-stands.webp",
+    image: { src: "/media/gallery/employer-stands.webp", alt: "Employer stands and students at an IHSAAN careers fair", width: 2000, height: 1126 },
     closingImage: "/media/gallery/students-studying.webp",
     photo: {
       src: "/media/gallery/students-at-work.webp",
@@ -160,7 +161,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Skills workshops, panels and networking that put Muslim students in the room with leading employers.",
     headline: "Get in the room.",
     intro: "Insight events put Muslim students in front of leading employers for skills workshops, panels and networking.",
-    image: "/media/gallery/london-conference-2024.webp",
+    image: { src: "/media/gallery/london-conference-2024.webp", alt: "A speaker addressing students at an IHSAAN career conference", width: 2560, height: 1928 },
     closingImage: "/media/gallery/manchester-conference-2026.webp",
     photo: {
       src: "/media/gallery/conference-panel.webp",
@@ -197,7 +198,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Online panels, speaker events, bootcamps and the Roast My series for CVs, interviews and assessment centres.",
     headline: "Practise before it counts.",
     intro: "Online and in-person sessions that build the skills students need for applications, interviews and assessment centres.",
-    image: "/media/gallery/workshop-tables.webp",
+    image: { src: "/media/gallery/workshop-tables.webp", alt: "Professionals and students working together at tables", width: 2560, height: 1707 },
     closingImage: "/media/gallery/heritage-hall-audience.webp",
     photo: {
       src: "/media/gallery/workshop-audience.webp",
@@ -244,7 +245,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Weekend hackathons where Muslim students form teams, learn from mentors, prototype solutions to real community problems and pitch them to partners.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
-    image: "/media/hackathon-build-wide.webp",
+    image: { src: "/media/hackathon-build-wide.webp", alt: "Students working on laptops at an IHSAAN hackathon", width: 2000, height: 1333 },
     closingImage: "/media/gallery/hackathon-rows.webp",
     photo: {
       src: "/media/gallery/hackathon-bench.webp",
@@ -306,7 +307,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "My Muslim Mentor pairs Muslim students with professionals in their field for 1:1 mentorship, with 140+ verified mentors across 15+ industries.",
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
-    image: "/media/mmm-hd.webp",
+    image: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
     closingImage: "/media/gallery/students-collaborating.webp",
     photo: { src: "/media/gallery/employer-pitch.webp", alt: "A Redwood Founders representative talking one to one with a student", width: 2000, height: 1500 },
     about: [

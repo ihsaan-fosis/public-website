@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 
 export const DEFAULT_TITLE = "IHSAAN | Faith. Excellence. Service.";
 
-const DEFAULT_IMAGE = "/media/hero-poster.webp";
+/** A link-preview image. Size it when known, so previews can lay out before the image loads. */
+export type ShareImage = { src: string; alt: string; width?: number; height?: number };
+
+const DEFAULT_IMAGE: ShareImage = {
+  src: "/media/hero-poster.webp",
+  alt: "A speaker presenting in front of IHSAAN's social media QR codes",
+  width: 1280,
+  height: 720,
+};
 
 type PageMeta = {
   /** Omit on the homepage so the layout's default title applies. */
@@ -11,7 +19,7 @@ type PageMeta = {
   path: string;
   /** Shorter copy for link previews; defaults to `description`. */
   socialDescription?: string;
-  image?: string;
+  image?: ShareImage;
   /** Defaults to website. Use article for native blog posts. */
   type?: "website" | "article";
   publishedTime?: string;
@@ -46,7 +54,13 @@ export function pageMetadata({
       title: socialTitle,
       description: socialDescription,
       url: path,
-      images: [image],
+      images: [
+        {
+          url: image.src,
+          alt: image.alt,
+          ...(image.width && image.height ? { width: image.width, height: image.height } : {}),
+        },
+      ],
       ...(type === "article"
         ? {
             ...(publishedTime ? { publishedTime } : {}),
@@ -59,7 +73,21 @@ export function pageMetadata({
       card: "summary_large_image",
       title: socialTitle,
       description: socialDescription,
-      images: [image],
+      images: [image.src],
     },
+  };
+}
+
+/** BreadcrumbList JSON-LD from Home down to the current page, each step given by its site path. */
+export function breadcrumbJsonLd(origin: string, trail: readonly { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [{ name: "Home", path: "/" }, ...trail].map(({ name, path }, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+      item: `${origin}${path}`,
+    })),
   };
 }

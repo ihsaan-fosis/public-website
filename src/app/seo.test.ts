@@ -11,7 +11,7 @@ describe("technical SEO routes", () => {
   it("publishes only canonical, indexable sitemap URLs", async () => {
     const urls = (await sitemap()).map(({ url }) => url);
 
-    expect(urls).toContain(`${ORIGIN}/`);
+    expect(urls).toContain(ORIGIN);
     expect(urls).toContain(`${ORIGIN}/privacy`);
     expect(urls).toContain(`${ORIGIN}/terms`);
     expect(urls).not.toContain(`${ORIGIN}/events`);
@@ -84,7 +84,7 @@ describe("page metadata", () => {
       expect(metadata.description).not.toMatch(/mentor|partner/i);
     }
     expect(metadata.alternates?.canonical).toBe(path);
-    expect(metadata.openGraph).toMatchObject({ url: path, siteName: "IHSAAN", images: ["/media/hero-poster.webp"] });
+    expect(metadata.openGraph).toMatchObject({ url: path, siteName: "IHSAAN", images: [{ url: "/media/hero-poster.webp", alt: expect.any(String) }] });
     expect(metadata.twitter).toMatchObject({ title: `${metadata.title} | IHSAAN`, images: ["/media/hero-poster.webp"] });
   });
 
@@ -93,14 +93,14 @@ describe("page metadata", () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
     const path = `/programmes/${slug}`;
     expect(metadata.alternates?.canonical).toBe(path);
-    expect(metadata.openGraph).toMatchObject({ url: path, title: `${title} | IHSAAN`, images: [image] });
-    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: description ?? summary, images: [image] });
+    expect(metadata.openGraph).toMatchObject({ url: path, title: `${title} | IHSAAN`, images: [{ url: image.src, alt: image.alt }] });
+    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: description ?? summary, images: [image.src] });
   });
 
   it("lets the homepage inherit the layout title while keeping full social tags", () => {
     const metadata = pageMetadata({ description: "Home", path: "/" });
     expect(metadata.title).toBeUndefined();
-    expect(metadata.openGraph).toMatchObject({ title: "IHSAAN | Faith. Excellence. Service.", url: "/", images: ["/media/hero-poster.webp"] });
+    expect(metadata.openGraph).toMatchObject({ title: "IHSAAN | Faith. Excellence. Service.", url: "/", images: [{ url: "/media/hero-poster.webp", alt: expect.any(String) }] });
     expect(metadata.twitter).toMatchObject({ title: "IHSAAN | Faith. Excellence. Service.", card: "summary_large_image" });
   });
 });
