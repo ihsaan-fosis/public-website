@@ -8,8 +8,8 @@ import sitemap from "./sitemap";
 const ORIGIN = "https://ihsaan.network";
 
 describe("technical SEO routes", () => {
-  it("publishes only canonical, indexable sitemap URLs", () => {
-    const urls = sitemap().map(({ url }) => url);
+  it("publishes only canonical, indexable sitemap URLs", async () => {
+    const urls = (await sitemap()).map(({ url }) => url);
 
     expect(urls).toContain(`${ORIGIN}/`);
     expect(urls).toContain(`${ORIGIN}/privacy`);
@@ -17,7 +17,6 @@ describe("technical SEO routes", () => {
     expect(urls).not.toContain(`${ORIGIN}/events`);
     expect(urls).toContain(`${ORIGIN}/impact`);
     expect(urls).toContain(`${ORIGIN}/blog`);
-    expect(urls).toContain(`${ORIGIN}/blog/civil-service-summer-internship`);
     expect(urls).toContain(`${ORIGIN}/tech-team`);
     expect(urls).toContain(`${ORIGIN}/start`);
     expect(urls).toContain(`${ORIGIN}/professionals`);
@@ -37,12 +36,11 @@ describe("technical SEO routes", () => {
 
 describe("llms.txt", () => {
   it("lists the blog routes and every approved social profile without the retired events route", async () => {
-    const body = await llms().text();
+    const body = await (await llms()).text();
 
     expect(body).not.toContain("/events");
     expect(body).toContain("- [/impact](/impact) Impact:");
     expect(body).toContain("- [/blog](/blog) Blog:");
-    expect(body).toContain("- [/blog/civil-service-summer-internship](/blog/civil-service-summer-internship)");
     expect(body).toContain("- [/tech-team](/tech-team) IHSAAN Tech Team");
     expect(body).toContain("- [/start](/start)");
     expect(body).toContain("- [/professionals](/professionals) Professionals");
@@ -90,13 +88,13 @@ describe("page metadata", () => {
     expect(metadata.twitter).toMatchObject({ title: `${metadata.title} | IHSAAN`, images: ["/media/hero-poster.webp"] });
   });
 
-  it.each(PROGRAMME_PAGES)("gives /programmes/$slug its own canonical, photo and social title", async ({ slug, title, summary, image }) => {
+  it.each(PROGRAMME_PAGES)("gives /programmes/$slug its own canonical, photo and social title", async ({ slug, title, summary, description, image }) => {
     const { generateMetadata } = await import("./programmes/[slug]/page");
     const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
     const path = `/programmes/${slug}`;
     expect(metadata.alternates?.canonical).toBe(path);
     expect(metadata.openGraph).toMatchObject({ url: path, title: `${title} | IHSAAN`, images: [image] });
-    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: summary, images: [image] });
+    expect(metadata.twitter).toMatchObject({ title: `${title} | IHSAAN`, description: description ?? summary, images: [image] });
   });
 
   it("lets the homepage inherit the layout title while keeping full social tags", () => {

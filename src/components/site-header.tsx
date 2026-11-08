@@ -112,7 +112,8 @@ function DesktopNavItem({
           aria-haspopup="menu"
           aria-controls={menuId}
           aria-label={`${item.label} menu`}
-          className="rounded-lg p-1 hover:bg-ink/10"
+          // A 24px target, with the extra 3px each side taken back by the margin so the row keeps its spacing.
+          className="-m-[3px] rounded-lg p-[7px] hover:bg-ink/10"
           onClick={() => setOpen(!open)}
         >
           <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden className={cn("transition-transform", open && "rotate-180")}>
