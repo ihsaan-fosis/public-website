@@ -364,7 +364,7 @@ The radius scale is:
 | --- | --- |
 | `rounded-[28px]` | Frames and tall photo cards. |
 | `rounded-[22px]` | Grid photo cards and gallery tiles. |
-| `rounded-2xl` | Small tiles, including partner logos. |
+| `rounded-2xl` | Small tiles. |
 | `rounded-xl` | Buttons and navigation items. |
 | `rounded-full` | Badges and circular controls. |
 
@@ -398,7 +398,7 @@ These components and source patterns define the public pages:
 | Pinned sequence | `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
 | Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock, with a second inner ring for a benchmark. Arcs use `ihsaan-light-blue`, tracks use `stroke-ink/10`, and the benchmark uses `stroke-ink/55`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
 | Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Ring-chart stations over their own sentences, then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
-| Media wall | `GalleryParallax`, `PartnersSection`, `HackathonPartners` | Photo or logo groups. Logos keep colour in light mode and use grayscale at 65% opacity in dark mode. |
+| Media wall | `GalleryParallax`, `PartnersSection`, `HackathonPartners` | Photo or logo groups. Partner logos keep their colour in light mode. In dark mode, they rest at 65% opacity in grayscale and reach full opacity on hover. Logos with transparent backgrounds turn white on hover. |
 | Photo band | `PhotoBand`, `ClosingCta` in `src/components/sections.tsx` | A photo frame within the page or a closing action. |
 
 Photo-backed content uses a photo hero when an image is available.
@@ -442,7 +442,7 @@ The motion contract has these constraints:
 - Content renders without JavaScript. Hidden reveal states apply only under `.js`.
 - Under `prefers-reduced-motion: reduce`, content shows the end state.
 - Looped video and marquees have pause controls under WCAG 2.2.2.
-- Logo motion can wipe or move the logo, but does not change its opacity.
+- The IHSAAN wordmark can wipe or move at constant opacity.
 - Invisible content cannot receive keyboard focus.
 
 ### 9.8 Light and dark themes
