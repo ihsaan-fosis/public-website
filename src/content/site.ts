@@ -114,8 +114,7 @@ export const OFFERS: readonly Offer[] = [
   },
 ];
 
-export type Partner = { name: string; src: string; width: number; height: number };
-export type CarouselPartner = Partner & { href: string };
+export type CarouselPartner = { name: string; href: string; src: string; width: number; height: number };
 
 export type PartnerTier = { name: string; partners: readonly CarouselPartner[] };
 
@@ -144,14 +143,6 @@ export const PARTNER_TIERS: readonly PartnerTier[] = [
       { name: "Wharf Sisters", href: "https://www.instagram.com/wharfsistersnetwork/", src: "/partners/wharf_sisters_network.png", width: 459, height: 138 },
     ],
   },
-];
-
-export const COMMUNITY_PARTNERS: readonly Partner[] = [
-  { name: "Association of Muslim Engineers", src: "/partners/AOME.png", width: 400, height: 254 },
-  { name: "Emerald", src: "/partners/Emerald.webp", width: 400, height: 152 },
-  { name: "Hogan Lovells", src: "/partners/HoganLovells.png", width: 1280, height: 1280 },
-  { name: "KPMG", src: "/partners/KPMC.png", width: 399, height: 159 },
-  { name: "MC", src: "/partners/MC.webp", width: 800, height: 800 },
 ];
 
 export type InvolvementRoute = {

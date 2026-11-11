@@ -254,8 +254,6 @@ The member portal's purple, white, and sky motif panels do not belong here.
 
 Text lists sit directly on the page background under thin rules.
 An item without its own photograph can share a section with one `PhotoFrame`.
-The white partner-logo tiles in `PartnerWall` are an exception because the logos
-need a light background.
 
 ### 9.2 Colour tokens
 
@@ -400,7 +398,7 @@ These components and source patterns define the public pages:
 | Pinned sequence | `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
 | Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock, with a second inner ring for a benchmark. Arcs use `ihsaan-light-blue`, tracks use `stroke-ink/10`, and the benchmark uses `stroke-ink/55`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
 | Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Ring-chart stations over their own sentences, then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
-| Media wall | `GalleryParallax`, `PartnersSection`, `PartnerWall` | Photo or logo groups. Logos keep colour in light mode and use grayscale at 65% opacity in dark mode. |
+| Media wall | `GalleryParallax`, `PartnersSection`, `HackathonPartners` | Photo or logo groups. Logos keep colour in light mode and use grayscale at 65% opacity in dark mode. |
 | Photo band | `PhotoBand`, `ClosingCta` in `src/components/sections.tsx` | A photo frame within the page or a closing action. |
 
 Photo-backed content uses a photo hero when an image is available.

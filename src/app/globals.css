@@ -16,7 +16,7 @@
   --color-night-2: #0b2240;
   --color-cream: #f4f1ea;
 
-  --animate-marquee: marquee 120s linear infinite;
+  --animate-marquee: marquee 40s linear infinite;
   --animate-kenburns: kenburns 22s ease-out both;
   --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-dialog-overlay: dialog-overlay 0.2s ease-out both;
@@ -104,7 +104,6 @@
   color-scheme: dark;
 }
 
-/* Partner tiles repeat dozens of times in each marquee, so their classes are named once here instead of in every tile's markup. */
 @utility partner-tile {
   @apply flex h-20 shrink-0 items-center sm:h-24;
 }
@@ -134,7 +133,7 @@
     column-gap: var(--partner-logo-gap);
   }
 
-  .partner-marquee :is(.partner-marquee-half, .partner-marquee-set)[aria-hidden="true"] {
+  .partner-marquee .partner-marquee-set[aria-hidden="true"] {
     display: none;
   }
 
@@ -149,11 +148,8 @@
       @apply flex w-max animate-marquee;
     }
 
-    .partner-marquee:not(:has(:focus-visible)) :is(.partner-marquee-half, .partner-marquee-set) {
-      @apply flex shrink-0 flex-nowrap;
-    }
-
     .partner-marquee:not(:has(:focus-visible)) .partner-marquee-set {
+      @apply flex shrink-0 flex-nowrap;
       padding-inline-end: var(--partner-logo-gap);
     }
   }

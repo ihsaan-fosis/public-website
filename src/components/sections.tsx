@@ -10,7 +10,6 @@ import {
   PARTNER_TIERS,
   type CarouselPartner,
   type Offer,
-  type Partner,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { MarqueeGroup } from "./motion";
@@ -207,7 +206,6 @@ function PartnerTile({ partner, duplicate }: { partner: CarouselPartner; duplica
       rel="noopener"
       tabIndex={duplicate ? -1 : undefined}
     >
-      {/* Most logos ship on opaque white, so blending (not a tile) is what removes the box. */}
       <img
         src={partner.src}
         alt={partner.name}
@@ -220,18 +218,11 @@ function PartnerTile({ partner, duplicate }: { partner: CarouselPartner; duplica
   );
 }
 
-/** Each half must be wider than the viewport, or the track runs out before the loop wraps and leaves a gap. */
-const MARQUEE_COPIES_PER_HALF = 3;
-
-function MarqueeHalf({ partners, duplicate }: { partners: readonly CarouselPartner[]; duplicate: boolean }) {
+function MarqueeSet({ partners, duplicate = false }: { partners: readonly CarouselPartner[]; duplicate?: boolean }) {
   return (
-    <div aria-hidden={duplicate || undefined} className="partner-marquee-half">
-      {Array.from({ length: MARQUEE_COPIES_PER_HALF }, (_, copy) => (
-        <div key={copy} aria-hidden={copy > 0 || undefined} className="partner-marquee-set">
-          {partners.map((partner) => (
-            <PartnerTile key={partner.name} partner={partner} duplicate={duplicate || copy > 0} />
-          ))}
-        </div>
+    <div aria-hidden={duplicate || undefined} className="partner-marquee-set">
+      {partners.map((partner) => (
+        <PartnerTile key={partner.name} partner={partner} duplicate={duplicate} />
       ))}
     </div>
   );
@@ -247,8 +238,9 @@ export function MarqueeRow({ partners, reverse = false }: { partners: readonly C
             reverse && "[animation-direction:reverse]",
           )}
         >
-          <MarqueeHalf partners={partners} duplicate={false} />
-          <MarqueeHalf partners={partners} duplicate />
+          {/* Each set spans the visible row so the track can loop at its midpoint. */}
+          <MarqueeSet partners={partners} />
+          <MarqueeSet partners={partners} duplicate />
         </div>
       </div>
     </Container>
@@ -277,30 +269,6 @@ export function PartnersSection() {
         </div>
       </MarqueeGroup>
     </section>
-  );
-}
-
-export function PartnerWall({ partners }: { partners: readonly Partner[] }) {
-  return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      {partners.map((partner, index) => (
-        <li
-          key={partner.name}
-          data-reveal
-          style={revealDelay(index % 5)}
-          className="flex h-24 items-center justify-center rounded-2xl bg-white px-5 ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1"
-        >
-          <img
-            src={partner.src}
-            alt={partner.name}
-            width={partner.width}
-            height={partner.height}
-            loading="lazy"
-            className="max-h-11 w-auto max-w-[85%] object-contain"
-          />
-        </li>
-      ))}
-    </ul>
   );
 }
 
