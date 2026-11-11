@@ -244,10 +244,11 @@ export function MarqueeRow({ partners, reverse = false }: { partners: readonly P
   );
 }
 
-export function PartnersSection() {
+export function PartnersSection({ showPauseControl = true }: { showPauseControl?: boolean }) {
   return (
     <section aria-labelledby="partners-title" className="relative py-14 sm:py-28">
       <MarqueeGroup
+        showPauseControl={showPauseControl}
         title={
           <div data-reveal>
             <SectionTitle id="partners-title" className="text-center [&>h2]:mx-auto">
