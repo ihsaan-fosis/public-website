@@ -5,7 +5,7 @@ import { CountUp, MarqueeGroup, ScrollWords } from "@/components/motion";
 import { MarqueeRow } from "@/components/sections";
 import { Container, displayClass, revealDelay, Section } from "@/components/ui";
 import type { ProgrammeEvent } from "@/content/programmes";
-import { GALLERY, type Partner, type Stat } from "@/content/site";
+import { GALLERY, type CarouselPartner, type Stat } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 /** The opening, set like a magazine spread: the title, the explanation and the year's numbers on the left, a tall photograph on the right. */
@@ -194,7 +194,7 @@ export function HackathonEvents({ title, events }: { title: string; events: read
 }
 
 /** Partners as a slow marquee of logos with one pause control, the same treatment as the home page. */
-export function HackathonPartners({ title, partners }: { title: string; partners: readonly Partner[] }) {
+export function HackathonPartners({ title, partners }: { title: string; partners: readonly CarouselPartner[] }) {
   return (
     <section aria-labelledby="partners-title" className="relative pb-14 sm:pb-28">
       <MarqueeGroup
