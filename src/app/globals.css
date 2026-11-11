@@ -110,10 +110,17 @@
 }
 
 @utility partner-logo {
-  @apply h-12 w-auto max-w-full object-contain mix-blend-multiply transition-opacity duration-300 sm:h-14 dark:opacity-65 dark:mix-blend-screen dark:grayscale dark:invert dark:hover:opacity-100;
+  @apply h-12 w-auto max-w-full object-contain mix-blend-multiply sm:h-14 dark:opacity-65 dark:mix-blend-screen dark:grayscale dark:invert dark:hover:opacity-100;
+  transition: opacity 250ms ease, transform 250ms ease;
 }
 
 @layer components {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .partner-tile:hover .partner-logo {
+      transform: translateY(-2px);
+    }
+  }
+
   .partner-marquee-set {
     @apply flex flex-wrap justify-center gap-3;
   }
