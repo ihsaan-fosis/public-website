@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -201,8 +201,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 }
 
 /**
- * The hero's background video and slow zoom, with a control to pause both (WCAG 2.2.2).
- * Muted autoplay is allowed by WCAG; 2.2.2 only requires a pause control. Playback starts from
+ * The hero's background video and slow zoom. Playback starts from
  * script rather than the `autoPlay` attribute so reduced-motion visitors keep the poster and
  * never download the video. Mobile browsers often reject the first `play()` while `preload="none"`,
  * so motion-ok visitors bump preload and retry once data is ready. If playback stays blocked
@@ -220,7 +219,7 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
   // The poster is the first paint of the hero (and its LCP) until the video starts, so fetch it early.
   preload(poster, { as: "image", fetchPriority: "high" });
 
-  // Blocked autoplay rejects; the poster stays and the control offers Play.
+  // Blocked autoplay rejects, leaving the poster in place.
   const play = (media: HTMLVideoElement) => Promise.resolve(media.play()).catch(() => undefined);
 
   useEffect(() => {
@@ -286,84 +285,25 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
     };
   }, []);
 
-  const toggle = () => {
-    const media = ref.current;
-    if (!media) return;
-    if (media.paused) play(media);
-    else media.pause();
-  };
-
   return (
-    <>
-      <div className="hero-media absolute inset-0 -z-20">
-        <div className={cn("h-full w-full animate-kenburns", !playing && "[animation-play-state:paused]")}>
-          <video
-            ref={ref}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            className="h-full w-full object-cover"
-            muted
-            loop
-            playsInline
-            preload="none"
-            poster={poster}
-            aria-hidden
-          >
-            <source src={video.portraitSrc} type="video/mp4" media="(max-width: 767px) and (orientation: portrait)" />
-            <source src={video.src} type="video/mp4" />
-          </video>
-        </div>
+    <div className="hero-media absolute inset-0 -z-20">
+      <div className={cn("h-full w-full animate-kenburns", !playing && "[animation-play-state:paused]")}>
+        <video
+          ref={ref}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          className="h-full w-full object-cover"
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster={poster}
+          aria-hidden
+        >
+          <source src={video.portraitSrc} type="video/mp4" media="(max-width: 767px) and (orientation: portrait)" />
+          <source src={video.src} type="video/mp4" />
+        </video>
       </div>
-      <button
-        type="button"
-        onClick={toggle}
-        aria-label={playing ? "Pause background video" : "Play background video"}
-        className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full bg-night/50 text-cream ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-night/70 sm:top-6 sm:right-6"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden className="size-3" fill="currentColor">
-          {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />}
-        </svg>
-      </button>
-    </>
-  );
-}
-
-/** Wraps the partner marquees with one control that pauses every row. With a `title`, the control sits beside it. Reduced motion already renders the rows static. */
-export function MarqueeGroup({
-  children,
-  className,
-  title,
-}: {
-  children: ReactNode;
-  className?: string;
-  title?: ReactNode;
-}) {
-  const [paused, setPaused] = useState(false);
-
-  const control = (
-    <button
-      type="button"
-      onClick={() => setPaused(!paused)}
-      aria-label={paused ? "Play partner logos" : "Pause partner logos"}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5 motion-reduce:hidden"
-    >
-      <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="currentColor">
-        {paused ? (
-          <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />
-        ) : (
-          <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" />
-        )}
-      </svg>
-    </button>
-  );
-
-  return (
-    <div data-paused={paused || undefined} className={cn("group/marquee", className)}>
-      <div className="mx-auto mb-12 flex w-full max-w-7xl flex-col items-center justify-center gap-5 px-5 sm:flex-row sm:gap-6 sm:px-10">
-        {title}
-        {control}
-      </div>
-      {children}
     </div>
   );
 }
