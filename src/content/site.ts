@@ -124,7 +124,7 @@ export const PARTNER_TIERS: readonly PartnerTier[] = [
     partners: [
       { name: "Accenture", href: "https://www.accenture.com/", src: "/partners/accenture.png", width: 960, height: 253 },
       { name: "PwC", href: "https://www.pwc.com/", src: "/partners/pwc.png", width: 500, height: 245 },
-      { name: "Cube Network", href: "https://www.cubenetwork.org/", src: "/partners/cube_network.png", width: 173, height: 168 },
+      { name: "Cube Network", href: "https://bio.site/cubenetwork", src: "/partners/cube_network.png", width: 173, height: 168 },
       { name: "Wahed", href: "https://www.wahed.com/", src: "/partners/wahed.png", width: 770, height: 133 },
       { name: "Deen Developers", href: "https://www.deendevelopers.com/", src: "/partners/deen_developers.png", width: 683, height: 340 },
       { name: "My Fridays", href: "https://myfridays.com/", src: "/partners/my_fridays.png", width: 552, height: 64 },
