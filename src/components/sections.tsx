@@ -230,17 +230,19 @@ function MarqueeHalf({ partners, decorative }: { partners: readonly Partner[]; d
 
 export function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[]; reverse?: boolean }) {
   return (
-    <div className="group flex overflow-hidden py-1 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-      <div
-        className={cn(
-          "flex w-max animate-marquee bg-page group-hover:[animation-play-state:paused] group-data-[paused]/marquee:[animation-play-state:paused]",
-          reverse && "[animation-direction:reverse]",
-        )}
-      >
-        <MarqueeHalf partners={partners} decorative={false} />
-        <MarqueeHalf partners={partners} decorative />
+    <Container>
+      <div className="group flex overflow-hidden py-1 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+        <div
+          className={cn(
+            "flex w-max animate-marquee bg-page group-hover:[animation-play-state:paused] group-data-[paused]/marquee:[animation-play-state:paused]",
+            reverse && "[animation-direction:reverse]",
+          )}
+        >
+          <MarqueeHalf partners={partners} decorative={false} />
+          <MarqueeHalf partners={partners} decorative />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 
