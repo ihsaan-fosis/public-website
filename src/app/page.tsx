@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <PartnersSection />
+      <PartnersSection showPauseControl={false} />
 
       <GalleryParallax
         action={
