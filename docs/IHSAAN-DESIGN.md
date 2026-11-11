@@ -443,7 +443,6 @@ The motion contract has these constraints:
 
 - Content renders without JavaScript. Hidden reveal states apply only under `.js`.
 - Under `prefers-reduced-motion: reduce`, content shows the end state.
-- Looped video and marquees have pause controls under WCAG 2.2.2.
 - Logo motion can wipe or move the logo, but does not change its opacity.
 - Invisible content cannot receive keyboard focus.
 
