@@ -1,5 +1,5 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
-import { HeroVideo, MarqueeGroup, RevealObserver } from "./motion";
+import { act, render, screen } from "@testing-library/react";
+import { HeroVideo, RevealObserver } from "./motion";
 import { PhotoHero, SectionHeading } from "./ui";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
@@ -132,23 +132,6 @@ describe("HeroVideo", () => {
     expect(preference.listeners.size).toBe(1);
     unmount();
     expect(preference.listeners.size).toBe(0);
-  });
-});
-
-describe("MarqueeGroup", () => {
-  it("pauses and resumes every row from one control", () => {
-    const { container } = render(
-      <MarqueeGroup>
-        <div className="animate-marquee" />
-      </MarqueeGroup>,
-    );
-    const group = container.firstElementChild;
-
-    expect(group).not.toHaveAttribute("data-paused");
-    fireEvent.click(screen.getByRole("button", { name: "Pause partner logos" }));
-    expect(group).toHaveAttribute("data-paused", "true");
-    fireEvent.click(screen.getByRole("button", { name: "Play partner logos" }));
-    expect(group).not.toHaveAttribute("data-paused");
   });
 });
 

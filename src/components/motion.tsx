@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -304,48 +304,6 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
           <source src={video.src} type="video/mp4" />
         </video>
       </div>
-    </div>
-  );
-}
-
-/** Wraps the partner marquees with one control that pauses every row. With a `title`, the control sits beside it. Reduced motion already renders the rows static. */
-export function MarqueeGroup({
-  children,
-  className,
-  title,
-  showPauseControl = true,
-}: {
-  children: ReactNode;
-  className?: string;
-  title?: ReactNode;
-  showPauseControl?: boolean;
-}) {
-  const [paused, setPaused] = useState(false);
-
-  const control = (
-    <button
-      type="button"
-      onClick={() => setPaused(!paused)}
-      aria-label={paused ? "Play partner logos" : "Pause partner logos"}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-ink ring-1 ring-ink/25 transition-colors hover:bg-ink/5 motion-reduce:hidden"
-    >
-      <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="currentColor">
-        {paused ? (
-          <path d="M8 5.5v13a.5.5 0 0 0 .77.42l10-6.5a.5.5 0 0 0 0-.84l-10-6.5A.5.5 0 0 0 8 5.5Z" />
-        ) : (
-          <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" />
-        )}
-      </svg>
-    </button>
-  );
-
-  return (
-    <div data-paused={paused || undefined} className={cn("group/marquee", className)}>
-      <div className="mx-auto mb-12 flex w-full max-w-7xl flex-col items-center justify-center gap-5 px-5 sm:flex-row sm:gap-6 sm:px-10">
-        {title}
-        {showPauseControl && control}
-      </div>
-      {children}
     </div>
   );
 }
