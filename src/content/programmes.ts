@@ -285,12 +285,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     ],
     partnersTitle: "Our hackathon partners",
     partners: [
-      { name: "ZeroPa", href: "https://zeropa.co.uk/", src: "/partners/zeropa.png", width: 1241, height: 300 },
-      { name: "Action For Humanity", href: "https://actionforhumanity.org/", src: "/partners/action_for_humanity.png", width: 474, height: 190 },
-      { name: "Redwood Founders", href: "https://redwoodfounders.org/", src: "/partners/redwood_founders.png", width: 200, height: 200 },
+      { name: "ZeroPa", href: "https://zeropa.co.uk/", src: "/partners/zeropa.png", width: 552, height: 133 },
+      { name: "Action For Humanity", href: "https://actionforhumanity.org/", src: "/partners/action_for_humanity.png", width: 419, height: 168 },
+      { name: "Redwood Founders", href: "https://redwoodfounders.org/", src: "/partners/redwood_founders.png", width: 200, height: 200, opaque: true },
       { name: "Medology", href: "https://www.medology.co.uk/", src: "/partners/medology.png", width: 1379, height: 258 },
       { name: "Cur8 Capital", href: "https://cur8.capital/", src: "/partners/cur8_capital.png", width: 464, height: 263 },
-      { name: "Manchester City Council", href: "https://www.manchester.gov.uk/", src: "/partners/manchester_city_council.png", width: 1241, height: 239 },
+      { name: "Manchester City Council", href: "https://www.manchester.gov.uk/", src: "/partners/manchester_city_council.png", width: 552, height: 106 },
     ],
     quote: {
       text: "The hackathon was an incredible experience. I learned so much from the people around me, got hands on experience with the latest AI tools and loved seeing participants build solutions to real world problems.",

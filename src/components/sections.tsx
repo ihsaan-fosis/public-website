@@ -213,6 +213,7 @@ function PartnerTile({ partner, duplicate }: { partner: CarouselPartner; duplica
         height={partner.height}
         loading="lazy"
         className="partner-logo"
+        data-opaque={partner.opaque}
       />
     </a>
   );

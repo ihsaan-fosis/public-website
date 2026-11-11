@@ -109,8 +109,18 @@
 }
 
 @utility partner-logo {
-  @apply h-auto max-h-12 w-auto max-w-36 mix-blend-multiply sm:max-h-14 sm:max-w-46 dark:opacity-65 dark:mix-blend-screen dark:grayscale dark:invert dark:hover:opacity-100;
+  @apply h-auto max-h-12 w-auto max-w-36 mix-blend-multiply sm:max-h-14 sm:max-w-46 dark:opacity-65 dark:mix-blend-screen dark:grayscale dark:invert;
   transition: opacity 250ms ease, transform 250ms ease;
+}
+
+@media (hover: hover) {
+  [data-theme="dark"] .partner-tile:hover .partner-logo {
+    opacity: 1;
+  }
+
+  [data-theme="dark"] .partner-tile:hover .partner-logo:not([data-opaque]) {
+    filter: brightness(0) invert(1);
+  }
 }
 
 @layer components {

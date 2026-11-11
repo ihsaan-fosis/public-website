@@ -114,7 +114,7 @@ export const OFFERS: readonly Offer[] = [
   },
 ];
 
-export type CarouselPartner = { name: string; href: string; src: string; width: number; height: number };
+export type CarouselPartner = { name: string; href: string; src: string; width: number; height: number; opaque?: boolean };
 
 export type PartnerTier = { name: string; partners: readonly CarouselPartner[] };
 
@@ -124,18 +124,18 @@ export const PARTNER_TIERS: readonly PartnerTier[] = [
     partners: [
       { name: "Accenture", href: "https://www.accenture.com/", src: "/partners/accenture.png", width: 960, height: 253 },
       { name: "PwC", href: "https://www.pwc.com/", src: "/partners/pwc.png", width: 500, height: 245 },
-      { name: "Cube Network", href: "https://www.cubenetwork.org/", src: "/partners/cube_network.png", width: 445, height: 432 },
+      { name: "Cube Network", href: "https://www.cubenetwork.org/", src: "/partners/cube_network.png", width: 173, height: 168 },
       { name: "Wahed", href: "https://www.wahed.com/", src: "/partners/wahed.png", width: 770, height: 133 },
       { name: "Deen Developers", href: "https://www.deendevelopers.com/", src: "/partners/deen_developers.png", width: 683, height: 340 },
-      { name: "My Fridays", href: "https://myfridays.com/", src: "/partners/my_fridays.png", width: 1241, height: 144 },
+      { name: "My Fridays", href: "https://myfridays.com/", src: "/partners/my_fridays.png", width: 552, height: 64 },
       { name: "Greentech", href: "https://gtaf.org/", src: "/partners/greentech.png", width: 842, height: 209 },
     ],
   },
   {
     name: "Gold partners",
     partners: [
-      { name: "SMBF", href: "https://smbf.global/", src: "/partners/smbf.png", width: 1929, height: 539 },
-      { name: "MIPP", href: "https://www.muslimsinpp.org/", src: "/partners/mipp.png", width: 1241, height: 528 },
+      { name: "SMBF", href: "https://smbf.global/", src: "/partners/smbf.png", width: 552, height: 154 },
+      { name: "MIPP", href: "https://www.muslimsinpp.org/", src: "/partners/mipp.png", width: 395, height: 168 },
       { name: "MIRE", href: "https://muslimsinrealestate.co.uk/", src: "/partners/mire.png", width: 1524, height: 398 },
       { name: "Muslims at Amazon", href: "https://www.aboutamazon.co.uk/", src: "/partners/muslims_at_amazon.png", width: 418, height: 361 },
       { name: "MTF Finance", href: "https://www.mtf.co.nz/", src: "/partners/mtf_finance.png", width: 738, height: 312 },
