@@ -8,6 +8,7 @@ import {
   INVOLVEMENT_ROUTES,
   OFFERS,
   PARTNER_TIERS,
+  type CarouselPartner,
   type Offer,
   type Partner,
 } from "@/content/site";
@@ -197,49 +198,57 @@ export function InvolvementPanels() {
   );
 }
 
-function PartnerTile({ partner, decorative = false }: { partner: Partner; decorative?: boolean }) {
+function PartnerTile({ partner, duplicate }: { partner: CarouselPartner; duplicate: boolean }) {
   return (
-    <div className="partner-tile">
+    <a
+      className="partner-tile cursor-pointer scroll-my-2"
+      href={partner.href}
+      target="_blank"
+      rel="noopener"
+      tabIndex={duplicate ? -1 : undefined}
+    >
       {/* Most logos ship on opaque white, so blending (not a tile) is what removes the box. */}
       <img
         src={partner.src}
-        alt={decorative ? "" : partner.name}
+        alt={partner.name}
         width={partner.width}
         height={partner.height}
         loading="lazy"
         className="partner-logo"
       />
-    </div>
+    </a>
   );
 }
 
 /** Each half must be wider than the viewport, or the track runs out before the loop wraps and leaves a gap. */
 const MARQUEE_COPIES_PER_HALF = 3;
 
-function MarqueeHalf({ partners, decorative }: { partners: readonly Partner[]; decorative: boolean }) {
+function MarqueeHalf({ partners, duplicate }: { partners: readonly CarouselPartner[]; duplicate: boolean }) {
   return (
-    <div aria-hidden={decorative || undefined} className="flex shrink-0 gap-3 pr-3">
-      {Array.from({ length: MARQUEE_COPIES_PER_HALF }, (_, copy) =>
-        partners.map((partner) => (
-          <PartnerTile key={`${copy}-${partner.name}`} partner={partner} decorative={decorative || copy > 0} />
-        )),
-      )}
+    <div aria-hidden={duplicate || undefined} className="partner-marquee-half">
+      {Array.from({ length: MARQUEE_COPIES_PER_HALF }, (_, copy) => (
+        <div key={copy} aria-hidden={copy > 0 || undefined} className="partner-marquee-set">
+          {partners.map((partner) => (
+            <PartnerTile key={partner.name} partner={partner} duplicate={duplicate || copy > 0} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
 
-export function MarqueeRow({ partners, reverse = false }: { partners: readonly Partner[]; reverse?: boolean }) {
+export function MarqueeRow({ partners, reverse = false }: { partners: readonly CarouselPartner[]; reverse?: boolean }) {
   return (
     <Container>
-      <div className="group flex overflow-hidden py-1 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+      <div className="partner-marquee group py-1">
         <div
           className={cn(
-            "flex w-max animate-marquee bg-page group-hover:[animation-play-state:paused] group-data-[paused]/marquee:[animation-play-state:paused]",
+            "partner-marquee-track bg-page group-hover:[animation-play-state:paused] group-data-[paused]/marquee:[animation-play-state:paused]",
             reverse && "[animation-direction:reverse]",
           )}
         >
-          <MarqueeHalf partners={partners} decorative={false} />
-          <MarqueeHalf partners={partners} decorative />
+          <MarqueeHalf partners={partners} duplicate={false} />
+          <MarqueeHalf partners={partners} duplicate />
         </div>
       </div>
     </Container>

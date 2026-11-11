@@ -115,32 +115,33 @@ export const OFFERS: readonly Offer[] = [
 ];
 
 export type Partner = { name: string; src: string; width: number; height: number };
+export type CarouselPartner = Partner & { href: string };
 
-export type PartnerTier = { name: string; partners: readonly Partner[] };
+export type PartnerTier = { name: string; partners: readonly CarouselPartner[] };
 
 export const PARTNER_TIERS: readonly PartnerTier[] = [
   {
     name: "Diamond partners",
     partners: [
-      { name: "Accenture", src: "/partners/accenture.webp", width: 219, height: 61 },
-      { name: "PwC", src: "/partners/PWC.webp", width: 500, height: 245 },
-      { name: "Cube Network", src: "/partners/CubeNetwork.webp", width: 225, height: 220 },
-      { name: "Wahed", src: "/partners/Wahed.webp", width: 388, height: 70 },
-      { name: "Deen Developers", src: "/partners/DeenDeveleopers.webp", width: 311, height: 156 },
-      { name: "My Fridays", src: "/partners/My-Fridays.webp", width: 400, height: 103 },
-      { name: "Greentech", src: "/partners/Greentech.webp", width: 381, height: 97 },
+      { name: "Accenture", href: "https://www.accenture.com/", src: "/partners/accenture.webp", width: 219, height: 61 },
+      { name: "PwC", href: "https://www.pwc.com/", src: "/partners/PWC.webp", width: 500, height: 245 },
+      { name: "Cube Network", href: "https://www.cubenetwork.org/", src: "/partners/CubeNetwork.webp", width: 225, height: 220 },
+      { name: "Wahed", href: "https://www.wahed.com/", src: "/partners/Wahed.webp", width: 388, height: 70 },
+      { name: "Deen Developers", href: "https://www.deendevelopers.com/", src: "/partners/DeenDeveleopers.webp", width: 311, height: 156 },
+      { name: "My Fridays", href: "https://myfridays.com/", src: "/partners/My-Fridays.webp", width: 400, height: 103 },
+      { name: "Greentech", href: "https://gtaf.org/", src: "/partners/Greentech.webp", width: 381, height: 97 },
     ],
   },
   {
     name: "Gold partners",
     partners: [
-      { name: "SMBF", src: "/partners/SMBF.webp", width: 360, height: 124 },
-      { name: "MIPP", src: "/partners/MIPP.webp", width: 200, height: 200 },
-      { name: "MIRE", src: "/partners/MIRE.webp", width: 352, height: 149 },
-      { name: "Muslims at Amazon", src: "/partners/MuslimsatAmazon.webp", width: 123, height: 107 },
-      { name: "MTF Finance", src: "/partners/MTF-Finance.webp", width: 400, height: 170 },
-      { name: "Rail", src: "/partners/Rail.webp", width: 225, height: 225 },
-      { name: "Wharf Sisters", src: "/partners/WharfSisters.webp", width: 298, height: 92 },
+      { name: "SMBF", href: "https://smbf.global/", src: "/partners/SMBF.webp", width: 360, height: 124 },
+      { name: "MIPP", href: "https://www.muslimsinpp.org/", src: "/partners/MIPP.webp", width: 200, height: 200 },
+      { name: "MIRE", href: "https://muslimsinrealestate.co.uk/", src: "/partners/MIRE.webp", width: 352, height: 149 },
+      { name: "Muslims at Amazon", href: "https://www.aboutamazon.co.uk/", src: "/partners/MuslimsatAmazon.webp", width: 123, height: 107 },
+      { name: "MTF Finance", href: "https://www.mtf.co.nz/", src: "/partners/MTF-Finance.webp", width: 400, height: 170 },
+      { name: "Rail", href: "https://www.nationalrail.co.uk/", src: "/partners/Rail.webp", width: 225, height: 225 },
+      { name: "Wharf Sisters", href: "https://www.instagram.com/wharfsistersnetwork/", src: "/partners/WharfSisters.webp", width: 298, height: 92 },
     ],
   },
 ];
