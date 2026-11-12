@@ -67,10 +67,11 @@ export function ProgrammesCarousel({ action }: { action?: ReactNode }) {
       className="hscroll relative py-14 sm:py-28 md:[--hscroll-length:360svh] lg:[--hscroll-length:300svh]"
     >
       <div className="hscroll-sticky">
-        <Container>
+        <Container className="shrink-0">
           <SectionHeading
             id="programmes-title"
             title="Explore what we offer"
+            reveal={false}
             action={
               <div className="flex flex-wrap gap-3">
                 {action}
@@ -84,7 +85,7 @@ export function ProgrammesCarousel({ action }: { action?: ReactNode }) {
             <div className="hscroll-progress h-full bg-ink/60" />
           </div>
         </Container>
-        <div data-reveal className="hscroll-viewport mt-8 md:mt-10">
+        <div className="hscroll-viewport mt-8 md:mt-10">
           <div className="hscroll-track px-5 sm:px-10 md:w-max xl:px-[calc((100vw-80rem)/2+2.5rem)]">
             <ul aria-label="Programmes" className="flex flex-col border-t border-ink/10 md:flex-row md:gap-6 md:border-t-0">
               {OFFERS.map((offer, index) => (

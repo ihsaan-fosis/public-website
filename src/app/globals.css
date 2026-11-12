@@ -314,10 +314,12 @@
       animation-range: cover 18% cover 42%;
     }
 
-    /* Pinning a rail on a phone fights the swipe gesture, so it starts at tablet width. */
-    @media (min-width: 48rem) {
+    /* Keep the native rail on short screens where the heading and cards need more room. */
+    @media (min-width: 48rem) and (min-height: 40rem) {
       .hscroll {
         view-timeline-name: --hscroll;
+        /* Match the sticky viewport edges without inheriting the page's scroll padding. */
+        view-timeline-inset: 0;
         height: var(--hscroll-length, 320svh);
         padding-block: 0;
       }
@@ -325,7 +327,8 @@
       .hscroll-sticky {
         position: sticky;
         top: 0;
-        height: 100svh;
+        height: 100dvh;
+        padding-block: 7rem;
         overflow: clip;
         display: flex;
         flex-direction: column;
@@ -333,14 +336,23 @@
       }
 
       .hscroll-viewport {
+        flex: 0 1 clamp(24rem, 62svh, 40rem);
+        min-height: 0;
         overflow: visible;
         scroll-snap-type: none;
       }
 
       .hscroll-track {
+        height: 100%;
         animation: rail linear both;
         animation-timeline: --hscroll;
         animation-range: contain 0% contain 100%;
+      }
+
+      .hscroll-track ul,
+      .hscroll-track li > a {
+        height: 100%;
+        min-height: 0;
       }
 
       .hscroll-progress {
