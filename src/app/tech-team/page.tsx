@@ -59,7 +59,7 @@ export default function TechTeamPage() {
         <SectionHeading id="tech-team-title" title="The builders" />
         <ul className="mt-12 flex flex-wrap gap-x-12 gap-y-4 sm:gap-y-6">
           {TECH_TEAM.map((member, index) => (
-            <li key={member.name} data-reveal style={revealDelay(index % 5)} className={cn(member.ownLine && "basis-full")}>
+            <li key={member.name} data-reveal style={revealDelay(index % 5)}>
               <MemberName member={member} />
             </li>
           ))}
