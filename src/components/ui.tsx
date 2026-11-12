@@ -248,19 +248,18 @@ export function PhotoHero({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
         />
-        <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
-          <h1
-            aria-label={title}
-            className={cn(
-              "hero-title-editorial hero-title-photo lg:max-w-6xl lg:text-balance leading-[1.08] font-extrabold tracking-[-0.03em] text-cream",
-              tall && "home-hero-title",
-            )}
-          >
+        <div
+          className={cn(
+            "hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12",
+            tall && "home-hero-copy",
+          )}
+        >
+          <h1 aria-label={title} className="hero-title-editorial hero-title-photo lg:max-w-6xl lg:text-balance leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
             {words.map((word, index) => {
               const endsSentence = word.endsWith(".");
               return (
                 <Fragment key={`${word}-${index}`}>
-                  <span aria-hidden className={cn("inline-block pb-[0.08em] align-bottom", !tall && "overflow-hidden")}>
+                  <span aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
                     <span className="inline-block animate-rise" style={{ animationDelay: `${150 + index * 90}ms` }}>
                       {endsSentence ? (
                         <>
@@ -281,14 +280,7 @@ export function PhotoHero({
             className="mt-4 flex animate-rise flex-col items-start gap-4 sm:mt-8 sm:gap-6 max-sm:[&_a]:min-h-9 max-sm:[&_a]:text-[10.5px] lg:mt-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:[&>*:not(p)]:shrink-0"
             style={{ animationDelay: `${300 + words.length * 90}ms` }}
           >
-            {intro ? (
-              <p className={cn(
-                "max-w-sm text-[13px] leading-[18px] text-cream/70 sm:text-sm sm:leading-6 lg:max-w-xl lg:text-[17px] lg:leading-7",
-                tall && "home-hero-intro",
-              )}>
-                {intro}
-              </p>
-            ) : null}
+            {intro ? <p className="max-w-sm text-[13px] leading-[18px] text-cream/70 sm:text-sm sm:leading-6 lg:max-w-xl lg:text-[17px] lg:leading-7">{intro}</p> : null}
             {children}
           </div>
         </div>
