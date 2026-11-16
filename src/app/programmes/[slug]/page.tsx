@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HackathonEvents, HackathonIntro, HackathonPartners, HackathonStatement, HackathonWall } from "@/components/hackathon";
 import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } from "@/components/conference";
-import { ClosingCta, PartnerWall } from "@/components/sections";
+import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
 import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
@@ -174,17 +174,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         )
       ) : null}
 
-      {page.partners && page.partnersTitle ? (
-        isHackathon ? (
-          <HackathonPartners title={page.partnersTitle} partners={page.partners} />
-        ) : (
-          <Section labelledBy="partners-title" className="pt-0 sm:pt-0">
-            <SectionTitle id="partners-title">{page.partnersTitle}</SectionTitle>
-            <div className="mt-10">
-              <PartnerWall partners={page.partners} />
-            </div>
-          </Section>
-        )
+      {isHackathon && page.partners && page.partnersTitle ? (
+        <HackathonPartners title={page.partnersTitle} partners={page.partners} />
       ) : null}
 
       {page.quote ? (
