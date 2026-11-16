@@ -156,11 +156,7 @@ const TRACTION_FIGURE = "text-3xl font-medium tracking-[-0.03em] text-ink sm:tex
 export function TractionChapter() {
   return (
     <Section labelledBy="traction-title" className="pt-0 sm:pt-0">
-      <SectionHeading
-        id="traction-title"
-        title="Student engagement tripled in a year"
-        aside="A proven model, not a pilot. Funding scales what already works."
-      />
+      <SectionHeading id="traction-title" title="Student engagement tripled in a year" />
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
         <div data-reveal className="flex flex-col">
           <ul className="flex flex-1 flex-col border-t border-ink/10">

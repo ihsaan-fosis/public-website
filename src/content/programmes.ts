@@ -147,11 +147,6 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Internship places gave students a clearer route into experience that matched both ambition and values.",
       },
     ],
-    portalInvite: {
-      title: "The Summer 2026 programme has now closed",
-      body: "To stay up to date with future programmes, apply to join IHSAAN as a member. Opportunities are released through the member portal, so you can follow them and apply in one place.",
-      label: "Apply for IHSAAN membership",
-    },
     primary: { label: "Partner with the programme", href: "/contact" },
     secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
@@ -170,7 +165,9 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       height: 1126,
     },
     about: [
-      "Insight Events are corporate events run by IHSAAN. They give students a closer look at leading employers through skills workshops, panels and networking.",
+      "Insight Events are corporate events run by IHSAAN. They give students a closer look at a leading employer.",
+      "Each event has three main parts: a panel with professionals across different seniority levels, interactive workshops on interviews, assessment centres and elevator pitches, and networking with professionals from across the firm.",
+      "Events may also include an HR talk or an introduction from the firm's Muslim network.",
       "Events vary by employer and year, and attending one does not guarantee an internship or a job offer.",
     ],
     stats: [],
@@ -185,8 +182,8 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "An example of the organisations that host or take part in our insight events.",
       },
       {
-        title: "The FCA",
-        body: "An example of the organisations that host or take part in our insight events.",
+        title: "Regulators and public bodies",
+        body: "An example is the FCA. These organisations host or take part in our insight events.",
       },
     ],
     primary: { label: "See upcoming events", href: GET_INVOLVED.href },
