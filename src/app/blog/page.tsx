@@ -117,11 +117,7 @@ export default async function BlogPage() {
       />
 
       <Section labelledBy="posts-title">
-        <SectionHeading
-          id="posts-title"
-          title="Latest writing"
-          aside="Full articles live on IHSAAN. New pieces are added as they are published."
-        />
+        <SectionHeading id="posts-title" title="Latest writing" />
         {lead ? (
           <div className="mt-12">
             <LeadPost post={lead} />

@@ -94,7 +94,7 @@ describe("programme pages", () => {
 
     it("names insight-event examples by category only, without firms or guarantees", async () => {
       const { container } = await renderProgramme("insight-events");
-      for (const category of ["Bulge bracket investment banks", "Big Four firms", "The FCA"]) {
+      for (const category of ["Bulge bracket investment banks", "Big Four firms", "Regulators and public bodies"]) {
         expect(screen.getByRole("heading", { name: category })).toBeTruthy();
       }
       expect(container.textContent).toContain("does not guarantee an internship or a job offer");
