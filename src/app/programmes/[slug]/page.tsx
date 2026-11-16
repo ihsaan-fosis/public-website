@@ -5,7 +5,7 @@ import { HackathonRecap } from "@/components/hackathon-recap";
 import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } from "@/components/conference";
 import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
-import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { Container, displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/metadata";
@@ -90,10 +90,12 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {isHackathon ? (
         <>
-          <Section id="haqqathon-recap-video" labelledBy="hackathon-recap-title" className="scroll-mt-24 py-0 sm:py-0">
-            <h2 id="hackathon-recap-title" className="sr-only">Manchester hackathon recap</h2>
-            <HackathonRecap />
-          </Section>
+          <section id="haqqathon-recap-video" aria-labelledby="hackathon-recap-title" className="scroll-mt-24 pt-2 sm:pt-3 lg:pt-5">
+            <Container>
+              <h2 id="hackathon-recap-title" className="sr-only">Manchester hackathon recap</h2>
+              <HackathonRecap />
+            </Container>
+          </section>
           <HackathonStatement />
           <HackathonWall />
         </>
