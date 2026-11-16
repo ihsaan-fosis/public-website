@@ -114,43 +114,35 @@ export const OFFERS: readonly Offer[] = [
   },
 ];
 
-export type Partner = { name: string; src: string; width: number; height: number };
+export type CarouselPartner = { name: string; href: string; src: string; width: number; height: number; opaque?: boolean };
 
-export type PartnerTier = { name: string; partners: readonly Partner[] };
+export type PartnerTier = { name: string; partners: readonly CarouselPartner[] };
 
 export const PARTNER_TIERS: readonly PartnerTier[] = [
   {
     name: "Diamond partners",
     partners: [
-      { name: "Accenture", src: "/partners/accenture.webp", width: 219, height: 61 },
-      { name: "PwC", src: "/partners/PWC.webp", width: 500, height: 245 },
-      { name: "Cube Network", src: "/partners/CubeNetwork.webp", width: 225, height: 220 },
-      { name: "Wahed", src: "/partners/Wahed.webp", width: 388, height: 70 },
-      { name: "Deen Developers", src: "/partners/DeenDeveleopers.webp", width: 311, height: 156 },
-      { name: "My Fridays", src: "/partners/My-Fridays.webp", width: 400, height: 103 },
-      { name: "Greentech", src: "/partners/Greentech.webp", width: 381, height: 97 },
+      { name: "Accenture", href: "https://www.accenture.com/", src: "/partners/accenture.png", width: 960, height: 253 },
+      { name: "PwC", href: "https://www.pwc.com/", src: "/partners/pwc.png", width: 500, height: 245 },
+      { name: "Cube Network", href: "https://bio.site/cubenetwork", src: "/partners/cube_network.png", width: 173, height: 168 },
+      { name: "Wahed", href: "https://www.wahed.com/", src: "/partners/wahed.png", width: 770, height: 133 },
+      { name: "Deen Developers", href: "https://www.deendevelopers.com/", src: "/partners/deen_developers.png", width: 683, height: 340 },
+      { name: "My Fridays", href: "https://myfridays.com/", src: "/partners/my_fridays.png", width: 552, height: 64 },
+      { name: "Greentech", href: "https://gtaf.org/", src: "/partners/greentech.png", width: 842, height: 209 },
     ],
   },
   {
     name: "Gold partners",
     partners: [
-      { name: "SMBF", src: "/partners/SMBF.webp", width: 360, height: 124 },
-      { name: "MIPP", src: "/partners/MIPP.webp", width: 200, height: 200 },
-      { name: "MIRE", src: "/partners/MIRE.webp", width: 352, height: 149 },
-      { name: "Muslims at Amazon", src: "/partners/MuslimsatAmazon.webp", width: 123, height: 107 },
-      { name: "MTF Finance", src: "/partners/MTF-Finance.webp", width: 400, height: 170 },
-      { name: "Rail", src: "/partners/Rail.webp", width: 225, height: 225 },
-      { name: "Wharf Sisters", src: "/partners/WharfSisters.webp", width: 298, height: 92 },
+      { name: "SMBF", href: "https://smbf.global/", src: "/partners/smbf.png", width: 552, height: 154 },
+      { name: "MIPP", href: "https://www.muslimsinpp.org/", src: "/partners/mipp.png", width: 395, height: 168 },
+      { name: "MIRE", href: "https://muslimsinrealestate.co.uk/", src: "/partners/mire.png", width: 1524, height: 398 },
+      { name: "Muslims at Amazon", href: "https://www.aboutamazon.co.uk/", src: "/partners/muslims_at_amazon.png", width: 418, height: 361 },
+      { name: "MTF Finance", href: "https://www.mtf.co.nz/", src: "/partners/mtf_finance.png", width: 738, height: 312 },
+      { name: "National Rail", href: "https://www.nationalrail.co.uk/", src: "/partners/national_rail.png", width: 450, height: 85 },
+      { name: "Wharf Sisters", href: "https://www.instagram.com/wharfsistersnetwork/", src: "/partners/wharf_sisters_network.png", width: 459, height: 138 },
     ],
   },
-];
-
-export const COMMUNITY_PARTNERS: readonly Partner[] = [
-  { name: "Association of Muslim Engineers", src: "/partners/AOME.png", width: 400, height: 254 },
-  { name: "Emerald", src: "/partners/Emerald.webp", width: 400, height: 152 },
-  { name: "Hogan Lovells", src: "/partners/HoganLovells.png", width: 1280, height: 1280 },
-  { name: "KPMG", src: "/partners/KPMC.png", width: 399, height: 159 },
-  { name: "MC", src: "/partners/MC.webp", width: 800, height: 800 },
 ];
 
 export type InvolvementRoute = {

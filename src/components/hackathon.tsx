@@ -5,7 +5,7 @@ import { CountUp, ScrollWords } from "@/components/motion";
 import { MarqueeRow } from "@/components/sections";
 import { Container, displayClass, revealDelay, Section } from "@/components/ui";
 import type { ProgrammeEvent } from "@/content/programmes";
-import { GALLERY, type Partner, type Stat } from "@/content/site";
+import { GALLERY, type CarouselPartner, type Stat } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 /** The opening, set like a magazine spread: the title, the explanation and the year's numbers on the left, a tall photograph on the right. */
@@ -58,18 +58,11 @@ export function HackathonIntro({
   );
 }
 
-/** One line of the statement: lit words with a small photograph set inline, in the manner of an editorial headline. */
-function StatementLine({ before, photo, after, caret = false }: { before: string; photo: string; after: string; caret?: boolean }) {
+/** One line of the statement: words that light up as it scrolls, with an optional terminal caret at the end. */
+function StatementLine({ text, caret = false }: { text: string; caret?: boolean }) {
   return (
     <span className="block">
-      <ScrollWords text={before} />{" "}
-      <span
-        aria-hidden
-        className="relative mx-[0.08em] inline-block h-[0.78em] w-[1.6em] translate-y-[0.04em] overflow-hidden rounded-full bg-night-2 align-baseline"
-      >
-        <Image src={photo} alt="" fill sizes="160px" className="object-cover" />
-      </span>{" "}
-      <ScrollWords text={after} />
+      <ScrollWords text={text} />
       {caret ? (
         <span aria-hidden className="sprint-caret ml-2 inline-block h-[0.8em] w-[0.1em] translate-y-[0.06em] bg-ihsaan-blue dark:bg-ihsaan-light-blue" />
       ) : null}
@@ -77,7 +70,7 @@ function StatementLine({ before, photo, after, caret = false }: { before: string
   );
 }
 
-/** The promise as three giant lines on the page, each with a photograph inline and a terminal caret at the end. */
+/** The promise as three giant lines on the page, with a terminal caret at the end. */
 export function HackathonStatement() {
   return (
     <section aria-labelledby="sprint-statement" className="relative py-16 sm:py-36">
@@ -86,9 +79,9 @@ export function HackathonStatement() {
           id="sprint-statement"
           className={`text-[clamp(2.6rem,8.2vw,8rem)] leading-[1.02] tracking-[-0.04em] ${displayClass}`}
         >
-          <StatementLine before="Form a" photo="/media/gallery/hackathon-team.webp" after="team." />
-          <StatementLine before="Build a" photo="/media/gallery/hackathon-coding.webp" after="prototype." />
-          <StatementLine before="Pitch it to" photo="/media/gallery/hackathon-talk-upright.webp" after="partners." caret />
+          <StatementLine text="Form a team." />
+          <StatementLine text="Build a prototype." />
+          <StatementLine text="Pitch it to partners." caret />
         </h2>
       </Container>
     </section>
@@ -109,9 +102,15 @@ const WALL = [
 
 const WALL_LABELS = ["build", "pair", "test", "debug", "review", "demo", "commit", "ship", "merge"] as const;
 
-/** Photographs from the room in three columns of three that drift at different speeds as the page scrolls. */
+function wallLabel(number: number) {
+  return `${String(number).padStart(2, "0")}_${WALL_LABELS[number - 1]}`;
+}
+
+/**
+ * Photographs from the room in three columns of three that drift at different speeds as the page scrolls. Tiles are
+ * numbered left to right across each row, so the count follows the two visible columns on a phone and all three above it.
+ */
 export function HackathonWall() {
-  let tile = 0;
   return (
     <section aria-labelledby="wall-title" className="relative overflow-clip py-14 sm:py-28">
       <h2 id="wall-title" className="sr-only">
@@ -124,9 +123,8 @@ export function HackathonWall() {
             className={cn("parallax-column flex flex-col gap-3 sm:gap-4", columnIndex === 2 && "max-sm:hidden")}
             style={{ "--drift-from": DRIFT[columnIndex].from, "--drift-to": DRIFT[columnIndex].to } as CSSProperties}
           >
-            {column.map((src) => {
+            {column.map((src, row) => {
               const photo = GALLERY.find((entry) => entry.src === src);
-              const label = WALL_LABELS[tile++];
               if (!photo) return null;
               return (
                 <li key={src} className="group relative overflow-hidden rounded-[22px] bg-night-2">
@@ -143,7 +141,8 @@ export function HackathonWall() {
                   />
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
                   <p aria-hidden className="absolute bottom-4 left-5 font-mono text-[11px] font-bold tracking-[0.08em] text-cream/90">
-                    {`${String(tile).padStart(2, "0")}_${label}`}
+                    <span className="sm:hidden">{wallLabel(row * 2 + columnIndex + 1)}</span>
+                    <span className="max-sm:hidden">{wallLabel(row * 3 + columnIndex + 1)}</span>
                   </p>
                 </li>
               );
@@ -193,7 +192,8 @@ export function HackathonEvents({ title, events }: { title: string; events: read
   );
 }
 
-export function HackathonPartners({ title, partners }: { title: string; partners: readonly Partner[] }) {
+/** Partners as a slow marquee of logos with one pause control, the same treatment as the home page. */
+export function HackathonPartners({ title, partners }: { title: string; partners: readonly CarouselPartner[] }) {
   return (
     <section aria-labelledby="partners-title" className="relative pb-14 sm:pb-28">
       <Container className="mb-12 flex justify-center">
