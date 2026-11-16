@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HackathonEvents, HackathonIntro, HackathonPartners, HackathonStatement, HackathonWall } from "@/components/hackathon";
+import { HackathonRecap } from "@/components/hackathon-recap";
 import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } from "@/components/conference";
 import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
@@ -89,6 +90,10 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {isHackathon ? (
         <>
+          <Section id="haqqathon-recap-video" labelledBy="hackathon-recap-title" className="scroll-mt-24 py-0 sm:py-0">
+            <h2 id="hackathon-recap-title" className="sr-only">Manchester hackathon recap</h2>
+            <HackathonRecap />
+          </Section>
           <HackathonStatement />
           <HackathonWall />
         </>

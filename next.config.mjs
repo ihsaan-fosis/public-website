@@ -6,6 +6,8 @@ const isDev = process.env.NODE_ENV !== "production";
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 // The volunteer application modal embeds a Tally form in an iframe.
 const TALLY_ORIGIN = "https://tally.so";
+// The Hackathons recap can be reached through client navigation from any page.
+const YOUTUBE_ORIGIN = "https://www.youtube.com";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -83,7 +85,7 @@ const nextConfig = {
               "font-src 'self' data:",
               "media-src 'self'",
               `connect-src 'self' ${TURNSTILE_ORIGIN}`,
-              `frame-src ${TURNSTILE_ORIGIN} ${TALLY_ORIGIN}`,
+              `frame-src ${TURNSTILE_ORIGIN} ${TALLY_ORIGIN} ${YOUTUBE_ORIGIN}`,
               "object-src 'none'",
               "base-uri 'none'",
               "form-action 'self'",
