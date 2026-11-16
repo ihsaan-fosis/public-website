@@ -94,14 +94,16 @@ export function SectionHeading({
   title,
   aside,
   action,
+  reveal = true,
 }: {
   id: string;
   title: ReactNode;
   aside?: ReactNode;
   action?: ReactNode;
+  reveal?: boolean;
 }) {
   return (
-    <div data-reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <div data-reveal={reveal ? "" : undefined} className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <h2 id={id} className={cn(TITLE_SIZE, displayClass)}>
         {title}
       </h2>
