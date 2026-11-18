@@ -73,7 +73,7 @@ function StatementLine({ text, caret = false }: { text: string; caret?: boolean 
 /** The promise as three giant lines on the page, with a terminal caret at the end. */
 export function HackathonStatement() {
   return (
-    <section aria-labelledby="sprint-statement" className="relative py-16 sm:py-36">
+    <section aria-labelledby="sprint-statement" className="relative pt-14 pb-16 sm:pt-28 sm:pb-36 lg:pt-29">
       <Container>
         <h2
           id="sprint-statement"
