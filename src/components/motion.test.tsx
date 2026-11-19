@@ -1,5 +1,5 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
-import { HeroVideo, MarqueeGroup, RevealObserver } from "./motion";
+import { act, render, screen } from "@testing-library/react";
+import { HeroVideo, RevealObserver } from "./motion";
 import { PhotoHero, SectionHeading } from "./ui";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
@@ -52,7 +52,7 @@ function zoomLayer(container: HTMLElement) {
 describe("HeroVideo", () => {
   afterEach(() => vi.restoreAllMocks());
 
-  it("starts playing when motion is allowed and offers a pause control", () => {
+  it("starts playing when motion is allowed", () => {
     reducedMotion(false);
     const media = mockMedia();
     const { container } = render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
@@ -60,7 +60,6 @@ describe("HeroVideo", () => {
 
     expect(media.play).toHaveBeenCalledOnce();
     expect(video?.preload).toBe("auto");
-    expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
     expect(zoomLayer(container)).not.toHaveClass("[animation-play-state:paused]");
   });
 
@@ -80,7 +79,7 @@ describe("HeroVideo", () => {
       queueMicrotask(() => this.dispatchEvent(new Event("loadeddata")));
     });
 
-    render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
+    const { container } = render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
 
     await act(async () => {
       await Promise.resolve();
@@ -88,21 +87,7 @@ describe("HeroVideo", () => {
     });
 
     expect(play).toHaveBeenCalledTimes(2);
-    expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
-  });
-
-  it("pauses the video and the zoom from the control, then resumes", () => {
-    reducedMotion(false);
-    const media = mockMedia();
-    const { container } = render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
-
-    fireEvent.click(screen.getByRole("button", { name: "Pause background video" }));
-    expect(media.pause).toHaveBeenCalledOnce();
-    expect(zoomLayer(container)).toHaveClass("[animation-play-state:paused]");
-
-    fireEvent.click(screen.getByRole("button", { name: "Play background video" }));
-    expect(media.play).toHaveBeenCalledTimes(2);
-    expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
+    expect(zoomLayer(container)).not.toHaveClass("[animation-play-state:paused]");
   });
 
   it("keeps the poster and never starts or preloads the video for reduced-motion visitors", () => {
@@ -115,7 +100,7 @@ describe("HeroVideo", () => {
     expect(video).toHaveAttribute("preload", "none");
     expect(video).toHaveAttribute("poster", "/poster.webp");
     expect(video).not.toHaveAttribute("autoplay");
-    expect(screen.getByRole("button", { name: "Play background video" })).toBeInTheDocument();
+    expect(zoomLayer(container)).toHaveClass("[animation-play-state:paused]");
   });
 
   it("offers the portrait crop to portrait phones and the full frame to everyone else", () => {
@@ -129,24 +114,14 @@ describe("HeroVideo", () => {
     ]);
   });
 
-  it("still lets reduced-motion visitors choose to play", () => {
-    reducedMotion(true);
-    const media = mockMedia();
-    render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
-
-    fireEvent.click(screen.getByRole("button", { name: "Play background video" }));
-    expect(media.play).toHaveBeenCalledOnce();
-    expect(screen.getByRole("button", { name: "Pause background video" })).toBeInTheDocument();
-  });
-
   it("pauses when reduced motion is turned on while the video plays", () => {
     const preference = reducedMotion(false);
     const media = mockMedia();
-    render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
+    const { container } = render(<HeroVideo video={VIDEO} poster="/poster.webp" />);
 
     preference.set(true);
     expect(media.pause).toHaveBeenCalledOnce();
-    expect(screen.getByRole("button", { name: "Play background video" })).toBeInTheDocument();
+    expect(zoomLayer(container)).toHaveClass("[animation-play-state:paused]");
   });
 
   it("stops listening for preference changes once unmounted", () => {
@@ -157,23 +132,6 @@ describe("HeroVideo", () => {
     expect(preference.listeners.size).toBe(1);
     unmount();
     expect(preference.listeners.size).toBe(0);
-  });
-});
-
-describe("MarqueeGroup", () => {
-  it("pauses and resumes every row from one control", () => {
-    const { container } = render(
-      <MarqueeGroup>
-        <div className="animate-marquee" />
-      </MarqueeGroup>,
-    );
-    const group = container.firstElementChild;
-
-    expect(group).not.toHaveAttribute("data-paused");
-    fireEvent.click(screen.getByRole("button", { name: "Pause partner logos" }));
-    expect(group).toHaveAttribute("data-paused", "true");
-    fireEvent.click(screen.getByRole("button", { name: "Play partner logos" }));
-    expect(group).not.toHaveAttribute("data-paused");
   });
 });
 

@@ -12,7 +12,6 @@ import {
   type Offer,
 } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { MarqueeGroup } from "./motion";
 import { Container, ButtonLink, revealDelay, Section, SectionHeading, SectionTitle } from "./ui";
 
 /** One list, two layouts: a scannable row list on phones, and from tablet width the tall cards of the pinned rail (globals.css `.hscroll`). */
@@ -252,24 +251,21 @@ export function MarqueeRow({ partners, reverse = false }: { partners: readonly C
 export function PartnersSection() {
   return (
     <section aria-labelledby="partners-title" className="relative py-14 sm:py-28">
-      <MarqueeGroup
-        title={
-          <div data-reveal>
-            <SectionTitle id="partners-title" className="text-center [&>h2]:mx-auto">
-              Professional Backgrounds Across Our Events
-            </SectionTitle>
-          </div>
-        }
-      >
-        <div data-reveal className="space-y-3">
-          {PARTNER_TIERS.map((tier, index) => (
-            <div key={tier.name}>
-              <h3 className="sr-only">{tier.name}</h3>
-              <MarqueeRow partners={tier.partners} reverse={index % 2 === 1} />
-            </div>
-          ))}
+      <Container className="mb-12 flex justify-center">
+        <div data-reveal>
+          <SectionTitle id="partners-title" className="text-center [&>h2]:mx-auto">
+            Professional Backgrounds Across Our Events
+          </SectionTitle>
         </div>
-      </MarqueeGroup>
+      </Container>
+      <div data-reveal className="space-y-3">
+        {PARTNER_TIERS.map((tier, index) => (
+          <div key={tier.name}>
+            <h3 className="sr-only">{tier.name}</h3>
+            <MarqueeRow partners={tier.partners} reverse={index % 2 === 1} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

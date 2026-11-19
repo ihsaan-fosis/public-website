@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { CODE_LABEL, PyHeading } from "@/components/hackathon-labels";
-import { CountUp, MarqueeGroup, ScrollWords } from "@/components/motion";
+import { CountUp, ScrollWords } from "@/components/motion";
 import { MarqueeRow } from "@/components/sections";
 import { Container, displayClass, revealDelay, Section } from "@/components/ui";
 import type { ProgrammeEvent } from "@/content/programmes";
@@ -196,20 +196,17 @@ export function HackathonEvents({ title, events }: { title: string; events: read
 export function HackathonPartners({ title, partners }: { title: string; partners: readonly CarouselPartner[] }) {
   return (
     <section aria-labelledby="partners-title" className="relative pb-14 sm:pb-28">
-      <MarqueeGroup
-        title={
-          <div data-reveal>
-            <PyHeading id="partners-title" title={title} className="text-center" />
-          </div>
-        }
-      >
+      <Container className="mb-12 flex justify-center">
         <div data-reveal>
-          <MarqueeRow partners={partners} />
+          <PyHeading id="partners-title" title={title} className="text-center" />
         </div>
-        <p aria-hidden className={cn(CODE_LABEL, "mt-8 text-center")}>
-          {`> ${partners.length} partners connected`}
-        </p>
-      </MarqueeGroup>
+      </Container>
+      <div data-reveal>
+        <MarqueeRow partners={partners} />
+      </div>
+      <p aria-hidden className={cn(CODE_LABEL, "mt-8 text-center")}>
+        {`> ${partners.length} partners connected`}
+      </p>
     </section>
   );
 }

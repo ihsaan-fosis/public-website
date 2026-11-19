@@ -95,7 +95,7 @@ The main shared components have these responsibilities:
 | `src/components/volunteer-openings.tsx` | Volunteer role list and Tally application dialog. |
 | `src/components/route-switcher.tsx`, `src/components/involvement-actions.tsx` | Member and professional next steps. |
 | `src/components/site-header.tsx`, `src/components/site-footer.tsx` | Floating navigation, mobile menu, and footer. |
-| `src/components/motion.tsx` | `RevealObserver`, `CountUp`, `ScrollWords`, `ThemeToggle`, `HeroVideo`, and `MarqueeGroup`. |
+| `src/components/motion.tsx` | `RevealObserver`, `CountUp`, `ScrollWords`, `ThemeToggle`, and `HeroVideo`. |
 | `src/components/legacy-hash-redirect.tsx` | Client redirects for legacy homepage fragments. |
 | `src/components/blog-cover.tsx` | `CoverImage`, the one cover renderer: `next/image` for this site's files, a plain `<img>` for portal-hosted addresses. |
 | `src/components/article-hero.tsx` | `ArticleHero`, the article's opening frame, for local and remote covers. |
