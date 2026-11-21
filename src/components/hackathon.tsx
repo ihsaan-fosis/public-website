@@ -5,7 +5,7 @@ import { CountUp, MarqueeGroup, ScrollWords } from "@/components/motion";
 import { MarqueeRow } from "@/components/sections";
 import { Container, displayClass, revealDelay, Section } from "@/components/ui";
 import type { ProgrammeEvent } from "@/content/programmes";
-import { GALLERY, type Partner, type Stat } from "@/content/site";
+import { GALLERY, type CarouselPartner, type Stat } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 /** The opening, set like a magazine spread: the title, the explanation and the year's numbers on the left, a tall photograph on the right. */
@@ -73,7 +73,7 @@ function StatementLine({ text, caret = false }: { text: string; caret?: boolean 
 /** The promise as three giant lines on the page, with a terminal caret at the end. */
 export function HackathonStatement() {
   return (
-    <section aria-labelledby="sprint-statement" className="relative py-16 sm:py-36">
+    <section aria-labelledby="sprint-statement" className="relative pt-14 pb-16 sm:pt-28 sm:pb-36 lg:pt-29">
       <Container>
         <h2
           id="sprint-statement"
@@ -193,7 +193,7 @@ export function HackathonEvents({ title, events }: { title: string; events: read
 }
 
 /** Partners as a slow marquee of logos with one pause control, the same treatment as the home page. */
-export function HackathonPartners({ title, partners }: { title: string; partners: readonly Partner[] }) {
+export function HackathonPartners({ title, partners }: { title: string; partners: readonly CarouselPartner[] }) {
   return (
     <section aria-labelledby="partners-title" className="relative pb-14 sm:pb-28">
       <MarqueeGroup

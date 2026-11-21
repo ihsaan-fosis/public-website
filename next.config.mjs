@@ -8,6 +8,8 @@ const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 const TALLY_ORIGIN = "https://tally.so";
 // The portfolio site shows a live preview of this site in an iframe. No other origin may frame it.
 const FRAME_ANCESTORS = "https://mikhailwijanarko.com https://www.mikhailwijanarko.com";
+// The Hackathons recap can be reached through client navigation from any page.
+const YOUTUBE_ORIGIN = "https://www.youtube.com";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -84,7 +86,7 @@ const nextConfig = {
               "font-src 'self' data:",
               "media-src 'self'",
               `connect-src 'self' ${TURNSTILE_ORIGIN}`,
-              `frame-src ${TURNSTILE_ORIGIN} ${TALLY_ORIGIN}`,
+              `frame-src ${TURNSTILE_ORIGIN} ${TALLY_ORIGIN} ${YOUTUBE_ORIGIN}`,
               "object-src 'none'",
               "base-uri 'none'",
               "form-action 'self'",

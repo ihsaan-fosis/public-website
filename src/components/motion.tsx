@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type FocusEvent, type ReactNode, useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -328,7 +328,7 @@ export function HeroVideo({ video, poster }: { video: HeroVideoSources; poster: 
   );
 }
 
-/** Wraps the partner marquees with one control that pauses every row. With a `title`, the control sits beside it. Reduced motion already renders the rows static. */
+/** Wraps the partner marquees with one control that pauses every row. */
 export function MarqueeGroup({
   children,
   className,
@@ -339,6 +339,17 @@ export function MarqueeGroup({
   title?: ReactNode;
 }) {
   const [paused, setPaused] = useState(false);
+
+  function revealFocusedLogo({ target }: FocusEvent<HTMLDivElement>) {
+    if (!target.matches("a.partner-tile:focus-visible")) return;
+
+    // The row wraps when a logo gets keyboard focus, which can move it after the browser's initial focus scroll.
+    requestAnimationFrame(() => {
+      if (document.activeElement === target) {
+        target.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
+      }
+    });
+  }
 
   const control = (
     <button
@@ -358,7 +369,7 @@ export function MarqueeGroup({
   );
 
   return (
-    <div data-paused={paused || undefined} className={cn("group/marquee", className)}>
+    <div data-paused={paused || undefined} className={cn("group/marquee", className)} onFocus={revealFocusedLogo}>
       <div className="mx-auto mb-12 flex w-full max-w-7xl flex-col items-center justify-center gap-5 px-5 sm:flex-row sm:gap-6 sm:px-10">
         {title}
         {control}

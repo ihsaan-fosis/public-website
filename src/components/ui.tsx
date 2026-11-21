@@ -94,14 +94,16 @@ export function SectionHeading({
   title,
   aside,
   action,
+  reveal = true,
 }: {
   id: string;
   title: ReactNode;
   aside?: ReactNode;
   action?: ReactNode;
+  reveal?: boolean;
 }) {
   return (
-    <div data-reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <div data-reveal={reveal ? "" : undefined} className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <h2 id={id} className={cn(TITLE_SIZE, displayClass)}>
         {title}
       </h2>
@@ -248,7 +250,12 @@ export function PhotoHero({
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.55)_0%,rgba(6,22,41,0.6)_40%,rgba(6,22,41,0.92)_100%)]"
         />
-        <div className="hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12">
+        <div
+          className={cn(
+            "hero-copy flex w-full flex-col justify-end px-5 pt-16 pb-8 sm:px-10 sm:pt-20 sm:pb-10 lg:px-12 lg:pb-12",
+            tall && "home-hero-copy",
+          )}
+        >
           <h1 aria-label={title} className="hero-title-editorial hero-title-photo lg:max-w-6xl lg:text-balance leading-[1.08] font-extrabold tracking-[-0.03em] text-cream">
             {words.map((word, index) => {
               const endsSentence = word.endsWith(".");
