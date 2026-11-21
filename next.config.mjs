@@ -6,6 +6,8 @@ const isDev = process.env.NODE_ENV !== "production";
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 // The volunteer application modal embeds a Tally form in an iframe.
 const TALLY_ORIGIN = "https://tally.so";
+// The portfolio site shows a live preview of this site in an iframe. No other origin may frame it.
+const FRAME_ANCESTORS = "https://mikhailwijanarko.com https://www.mikhailwijanarko.com";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -62,7 +64,6 @@ const nextConfig = {
         source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Permissions-Policy", value: "camera=(), geolocation=(), microphone=()" },
@@ -87,7 +88,7 @@ const nextConfig = {
               "object-src 'none'",
               "base-uri 'none'",
               "form-action 'self'",
-              "frame-ancestors 'none'",
+              `frame-ancestors ${FRAME_ANCESTORS}`,
               upgradeInsecureRequests,
             ].filter(Boolean).join("; "),
           },
