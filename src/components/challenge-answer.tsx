@@ -1,11 +1,11 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
-import { ANSWERS, RINGS, type RingData } from "@/content/challenge-answer";
+import { ANSWERS, DEGREE_RING, GAP_LABELS, type RingData } from "@/content/challenge-answer";
 import { GAP_STATS } from "@/content/impact";
 import { CountUp } from "./motion";
 import { Container, displayClass, revealDelay } from "./ui";
 
-/** The problem as three ring charts, then IHSAAN's answer: two sections that share one three-column grid. */
+/** The problem as three figures, then IHSAAN's answer: two sections that share one three-column grid. */
 export function ChallengeAnswer() {
   return (
     <>
@@ -24,12 +24,9 @@ function Figure({ value, children }: { value: string; children: ReactNode }) {
   );
 }
 
-/**
- * Share of a whole, drawn as rings from 12 o'clock: the outer ring is the Muslim figure and the inner ring, where there
- * is one, is the overall benchmark. Both sweep in once the station reveals (globals.css `.ring-arc`).
- */
+/** Share of a whole, drawn as a ring from 12 o'clock. It sweeps in once the station reveals (globals.css `.ring-arc`). */
 function RingChart({ ring }: { ring: RingData }) {
-  const { muslim, overall } = ring;
+  const { muslim } = ring;
   return (
     <div className="relative size-40">
       <svg viewBox="0 0 120 120" role="img" aria-label={ring.description} className="size-full -rotate-90">
@@ -45,22 +42,6 @@ function RingChart({ ring }: { ring: RingData }) {
           className="ring-arc stroke-ihsaan-light-blue"
           style={{ "--v": muslim } as CSSProperties}
         />
-        {overall === undefined ? null : (
-          <>
-            <circle cx="60" cy="60" r="38" fill="none" strokeWidth="10" className="stroke-ink/10" />
-            <circle
-              cx="60"
-              cy="60"
-              r="38"
-              fill="none"
-              strokeWidth="10"
-              strokeLinecap="round"
-              pathLength="100"
-              className="ring-arc ring-arc-inner stroke-ink/55"
-              style={{ "--v": overall } as CSSProperties}
-            />
-          </>
-        )}
       </svg>
       <span aria-hidden className="absolute inset-0 flex items-center justify-center text-xl font-extrabold tracking-[-0.03em] text-ink">
         <CountUp value={`${muslim}%`} />
@@ -69,8 +50,17 @@ function RingChart({ ring }: { ring: RingData }) {
   );
 }
 
+/** A relative gap has no whole to draw a ring from, so the figure stands alone at the ring's height. */
+function GapFigure({ value }: { value: string }) {
+  return (
+    <div className="flex h-40 items-center">
+      <CountUp value={value} className="text-8xl leading-none font-extrabold tracking-[-0.05em] text-ihsaan-light-blue" />
+    </div>
+  );
+}
+
 /**
- * The problem: three figures, each a ring chart over its own sentence.
+ * The problem: three figures. The first is a ring chart, the other two are plain figures, each over its own sentence.
  */
 function StudentChallenges() {
   return (
@@ -89,9 +79,9 @@ function StudentChallenges() {
         <ol className="mt-14 grid gap-x-12 gap-y-14 sm:mt-20 lg:grid-cols-3">
           {GAP_STATS.map((stat, index) => (
             <li key={stat.value} data-reveal style={revealDelay(index)} className="ring-station">
-              <RingChart ring={RINGS[index]} />
+              {index === 0 ? <RingChart ring={DEGREE_RING} /> : <GapFigure value={stat.value} />}
               <p className="mt-6 max-w-sm text-2xl leading-[1.2] font-medium tracking-[-0.03em] text-ink sm:text-[1.75rem]">
-                <Figure value={stat.value}>{stat.label}.</Figure>
+                {index === 0 ? <Figure value={stat.value}>{stat.label}.</Figure> : `${GAP_LABELS[index - 1]}.`}
               </p>
               <p className="mt-4 text-[13px] leading-6 text-ink/65">Source: {stat.source}</p>
             </li>

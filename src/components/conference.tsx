@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { ConferenceBanners } from "@/components/conference-day";
 import { revealDelay, Section, SectionTitle } from "@/components/ui";
 import { STORIES } from "@/content/impact";
+import { TESTIMONIALS } from "@/content/testimonials";
 import type { ProgrammeHighlight } from "@/content/programmes";
 import { GALLERY } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -105,7 +106,7 @@ export function ConferenceOutcome() {
         </div>
         <figure>
           <blockquote className="text-2xl leading-[1.4] font-semibold tracking-[-0.02em] text-ink/60 sm:text-4xl sm:leading-[1.35] lg:text-[2.5rem]">
-            &ldquo;{markUp(story.quote)}&rdquo;
+            &ldquo;{markUp(TESTIMONIALS.glasgowLaw.text)}&rdquo;
           </blockquote>
         </figure>
       </div>

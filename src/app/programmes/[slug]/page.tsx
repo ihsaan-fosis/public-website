@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { HackathonEvents, HackathonIntro, HackathonPartners, HackathonStatement, HackathonWall } from "@/components/hackathon";
 import { HackathonRecap } from "@/components/hackathon-recap";
 import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } from "@/components/conference";
+import Image from "next/image";
 import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
 import { Container, displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
@@ -73,14 +74,17 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
               </div>
             </div>
             {page.stats.length > 0 ? (
-              <dl data-reveal style={revealDelay(1)} className="self-end border-t border-ink/10">
-                {page.stats.map((stat) => (
-                  <div key={stat.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-5">
-                    <dt className="text-sm text-ink/65">{stat.label}</dt>
-                    <dd className="text-3xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">{stat.value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div data-reveal style={revealDelay(1)} className="self-end">
+                <dl className="border-t border-ink/10">
+                  {page.stats.map((stat) => (
+                    <div key={stat.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 py-5">
+                      <dt className="max-w-[16rem] text-sm leading-6 text-ink/65">{stat.label}</dt>
+                      <dd className="text-3xl font-medium tracking-[-0.03em] text-ink sm:text-[2.6rem]">{stat.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {page.statsNote ? <p className="mt-4 text-[13px] leading-6 text-ink/65">{page.statsNote}</p> : null}
+              </div>
             ) : null}
           </div>
         </Section>
@@ -139,6 +143,25 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         </>
       ) : null}
 
+      {page.examples && page.examplesTitle ? (
+        <Section labelledBy="examples-title" className="pt-0 sm:pt-0">
+          <SectionTitle id="examples-title">{page.examplesTitle}</SectionTitle>
+          <ul className="mt-10 border-t border-ink/10">
+            {page.examples.map((person, index) => (
+              <li
+                key={person.name}
+                data-reveal
+                style={revealDelay(index % 3)}
+                className="grid gap-2 border-b border-ink/10 py-6 sm:grid-cols-[minmax(0,2fr)_3fr] sm:items-baseline sm:gap-8"
+              >
+                <p className="text-2xl leading-tight font-medium tracking-[-0.03em] text-ink sm:text-3xl">{person.name}</p>
+                <p className="text-[15px] leading-7 text-ink/70">{person.role}</p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
       {page.portalInvite ? (
         <Section labelledBy="portal-title" className="pt-0 sm:pt-0">
           <div data-reveal className="grid gap-8 border-y border-ink/10 py-10 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16">
@@ -185,17 +208,35 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         <HackathonPartners title={page.partnersTitle} partners={page.partners} />
       ) : null}
 
-      {page.quote ? (
+      {page.quotes && page.quotes.length > 0 ? (
         <Section labelledBy="quote-title" className="pt-0 sm:pt-0">
           <h2 id="quote-title" className="sr-only">
-            From an attendee
+            What people say
           </h2>
-          <figure data-reveal className="max-w-4xl">
-            <blockquote className={`text-2xl leading-[1.25] sm:text-4xl ${displayClass}`}>
-              &ldquo;{page.quote.text}&rdquo;
-            </blockquote>
-            <figcaption className="mt-5 text-sm text-ink/65">{page.quote.source}</figcaption>
-          </figure>
+          <div className="max-w-4xl space-y-14">
+            {page.quotes.map((quote) => (
+              <figure key={quote.text} data-reveal>
+                <blockquote
+                  className={cn(
+                    "leading-[1.25]",
+                    quote.text.length > 220 ? "text-xl sm:text-3xl" : "text-2xl sm:text-4xl",
+                    displayClass,
+                  )}
+                >
+                  &ldquo;{quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 flex items-center gap-4">
+                  {quote.photo ? (
+                    <Image src={quote.photo} alt="" width={96} height={96} className="size-12 rounded-full object-cover" />
+                  ) : null}
+                  <span className="text-sm text-ink/65">
+                    {quote.name ? <span className="block font-medium text-ink">{quote.name}</span> : null}
+                    {quote.role}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </Section>
       ) : null}
 

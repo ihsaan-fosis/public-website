@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { PUBLIC_DESTINATIONS } from "@/content/links";
-import { MISSION, VISION } from "@/content/site";
+import { MISSION, VISION, VISION_KEY_PHRASES } from "@/content/site";
 import {
   CONFERENCE_CITIES,
   CONFERENCE_ROUTE,
@@ -13,7 +13,7 @@ import {
   VALUES,
   WHO_WE_ARE,
 } from "@/content/story";
-import { cn } from "@/lib/utils";
+import { cn, keyWordFlags } from "@/lib/utils";
 import { CountUp } from "./motion";
 import { BAND_ACTIONS, BAND_INTRO, BAND_ROW, BAND_TITLE, PhotoBand } from "./sections";
 import {
@@ -31,12 +31,16 @@ function vars(values: Record<`--${string}`, string>): CSSProperties {
   return values as CSSProperties;
 }
 
-/** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`). */
-function FocusWords({ text }: { text: string }) {
+/** Words that sharpen out of a blur as the statement scrolls in, like a lens finding focus (`.story-focus-word`). Words in `keyPhrases` stay at full strength with an underline that draws in. */
+function FocusWords({ text, keyPhrases = [] }: { text: string; keyPhrases?: readonly string[] }) {
   const words = text.split(" ");
+  const keyFlags = keyWordFlags(text, keyPhrases);
   return words.map((word, index) => (
     <span key={`${word}-${index}`}>
-      <span className="story-focus-word" style={vars({ "--p": String(index / words.length) })}>
+      <span
+        className={cn("story-focus-word", keyFlags[index] ? "vision-key" : keyPhrases.length > 0 && "text-ink/80")}
+        style={vars({ "--p": String(index / words.length) })}
+      >
         {word}
       </span>
       {index < words.length - 1 ? " " : ""}
@@ -78,7 +82,7 @@ export function PurposeChapter() {
             displayClass,
           )}
         >
-          <FocusWords text={VISION} />
+          <FocusWords text={VISION} keyPhrases={VISION_KEY_PHRASES} />
         </p>
       </Section>
       <div className="story-mission">

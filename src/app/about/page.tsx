@@ -24,7 +24,7 @@ export default function AboutPage() {
       <PhotoHero
         image="/media/gallery/networking-hall.webp"
         title="Our story."
-        intro="Empowering Muslim excellence. Here is who stands behind IHSAAN, and what we stand for."
+        intro="Talent is everywhere. Opportunity should be too. Here is who stands behind IHSAAN, and what we stand for."
       />
       <ChallengeAnswer />
       <WhoChapter />

@@ -7,6 +7,9 @@ export const TAGLINE = "Faith. Excellence. Service.";
 export const VISION =
   "We envision a world where every Muslim has the opportunity to fulfil their potential, unlock their dream career, and help build a more ethical society for all.";
 
+/** The three things the vision promises. They carry the emphasis wherever the vision is set large. */
+export const VISION_KEY_PHRASES = ["opportunity", "dream career", "ethical society"] as const;
+
 export const MISSION =
   "We equip Muslim students with the opportunities and networks to build careers rooted in faith, excellence, and service.";
 
@@ -263,7 +266,7 @@ export const FAQS: readonly FaqItem[] = [
   {
     question: "Can I get a mentor?",
     answer:
-      "Yes. Through My Muslim Mentor we offer 1:1 mentorship with professionals in your field, tailored to your goals. Since launching in June 2025 it has supported 1,307 mentees, with 140+ verified mentors across 15+ industries. If you are a working professional and would like to give back, you can sign up as a mentor there too.",
+      "Yes. Through My Muslim Mentor we offer 1:1 mentorship with professionals in your field, tailored to your goals. Since launching in June 2025 it has supported 1,307 mentees, with 150+ verified mentors across 15+ industries. If you are a working professional and would like to give back, you can sign up as a mentor there too.",
     cta: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
   },
   {

@@ -9,7 +9,7 @@ import {
   ProgrammesCarousel,
 } from "@/components/sections";
 import { Container, displayClass, PhotoHero, ButtonLink, Section, SectionHeading } from "@/components/ui";
-import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, MISSION, PROFESSIONALS_LINK, TAGLINE, VISION } from "@/content/site";
+import { GET_INVOLVED, MEMBER_PORTAL_SIGNUP, MISSION, PROFESSIONALS_LINK, TAGLINE, VISION, VISION_KEY_PHRASES } from "@/content/site";
 import { SITE_ORIGIN } from "@/lib/site";
 
 // Google reads the site name shown above search results from WebSite data on the homepage.
@@ -42,13 +42,13 @@ export default function Home() {
         </div>
       </PhotoHero>
 
-      <section aria-labelledby="vision-title" className="relative py-16 sm:py-36">
+      <section aria-labelledby="vision-title" className="relative py-20 sm:py-40">
         <Container>
           <h2
             id="vision-title"
-            className={`max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
+            className={`max-w-6xl text-[2rem] leading-[1.18] sm:text-6xl sm:leading-[1.14] lg:text-[4.5rem] lg:leading-[1.1] ${displayClass}`}
           >
-            <ScrollWords text={VISION} />
+            <ScrollWords text={VISION} keyPhrases={VISION_KEY_PHRASES} />
           </h2>
         </Container>
       </section>

@@ -70,7 +70,8 @@ Shared text, records, and destinations live in these modules:
 | --- | --- |
 | `src/content/site.ts` | Navigation, mission, facts, programme cards, partners, involvement links, FAQs, and gallery records. |
 | `src/content/programmes.ts` | Copy and records for programme detail pages. |
-| `src/content/impact.ts` | Impact copy and figures from the IHSAAN Partnership Proposal 2026/27. Photos resolve through `GALLERY`. |
+| `src/content/impact.ts` | Impact copy and figures from the IHSAAN Partnership Proposal 2026/27. Photos resolve through `GALLERY`. Each outcome links to the programme page that shows the quote. |
+| `src/content/testimonials.ts` | Every student, employer and mentor quote, once. Programme pages and the conference outcome read from it. Portraits live in `public/media/testimonials/`. |
 | `src/content/story.ts` | Organisation copy, team profiles, and conference-route data. |
 | `src/content/career-essentials.ts`, `src/content/career-essentials.catalog.json` | Career guide content. Not rendered on the public site, which leaves guides to the member portal. |
 | `src/content/links.ts` | Shared external destinations. |
@@ -117,7 +118,7 @@ These files define shared behavior and deployment settings:
 | `src/lib/metadata.ts` | `pageMetadata()` and `DEFAULT_TITLE` for page, Open Graph, and Twitter metadata. |
 | `src/lib/contact.ts`, `src/lib/turnstile.ts` | Contact schema, plain-text email construction, challenge verification, and hostname checks. |
 | `src/lib/events.ts`, `src/lib/guide-markdown.tsx` | Event dates and guide markdown rendering. |
-| `src/lib/utils.ts` | The `cn` class helper. |
+| `src/lib/utils.ts` | The `cn` class helper and `keyWordFlags`, which marks the key-phrase words of the vision. |
 | `next.config.mjs` | Redirects, image patterns, security headers, Content Security Policy, and OpenNext development initialization. |
 | `open-next.config.ts`, `wrangler.jsonc` | Worker build target, prerendered asset cache, runtime bindings, and the apex and `www` custom-domain routes. |
 | `oxlint.config.mjs`, `tools/oxlint/` | Oxlint, anti-slop rules, and shadcn lint rules. |

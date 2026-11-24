@@ -94,7 +94,7 @@ describe("programme pages", () => {
 
     it("names insight-event examples by category only, without firms or guarantees", async () => {
       const { container } = await renderProgramme("insight-events");
-      for (const category of ["Bulge bracket investment banks", "Big Four firms", "Regulators and public bodies"]) {
+      for (const category of ["Bulge bracket investment banks", "Big Four firms", "Public sector"]) {
         expect(screen.getByRole("heading", { name: category })).toBeTruthy();
       }
       expect(container.textContent).toContain("does not guarantee an internship or a job offer");
@@ -107,7 +107,11 @@ describe("programme pages", () => {
       for (const format of ["Roast My CV", "Roast My Interview", "Roast My Assessment Centre", "Online panels and speaker events", "Bootcamps"]) {
         expect(screen.getByRole("heading", { name: format })).toBeTruthy();
       }
-      expect(screen.getByText("Interview practice, which may include a mock interview.")).toBeTruthy();
+      expect(
+        screen.getByText(
+          "Interview practice with a professional, which may include a mock interview and feedback on how it went.",
+        ),
+      ).toBeTruthy();
       expect(screen.getByText(/Spring Week Academy/)).toBeTruthy();
       expect(href("See upcoming events")).toBe("/start");
     });
