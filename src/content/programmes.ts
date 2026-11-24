@@ -1,5 +1,6 @@
 import { PUBLIC_DESTINATIONS } from "./links";
 import { GET_INVOLVED, type CarouselPartner, type Photo, type Stat } from "./site";
+import { TESTIMONIALS, type Testimonial } from "./testimonials";
 
 export type ProgrammeAction = { label: string; href: string; external?: boolean };
 
@@ -9,6 +10,9 @@ export type ProgrammeHighlight = {
   /** A gallery photograph set beside the highlight. */
   image?: string;
 };
+
+/** A person and what they do, for the mentors a programme page names. */
+export type ProgrammePerson = { name: string; role: string };
 
 export type ProgrammeEvent = {
   date: string;
@@ -35,11 +39,17 @@ export type ProgrammePage = {
   photo: Photo;
   about: readonly string[];
   stats: readonly Stat[];
+  /** Where a figure in `stats` comes from, set small beneath the list. */
+  statsNote?: string;
   highlightsTitle: string;
   highlights: readonly ProgrammeHighlight[];
   eventsTitle?: string;
   events?: readonly ProgrammeEvent[];
-  quote?: { text: string; source: string };
+  /** Real people's words about this programme, each with a name or an anonymous label, shown in this order. */
+  quotes?: readonly Testimonial[];
+  examplesTitle?: string;
+  /** Named examples, such as mentors on the platform, shown as an unboxed list. */
+  examples?: readonly ProgrammePerson[];
   partnersTitle?: string;
   partners?: readonly CarouselPartner[];
   primary: ProgrammeAction;
@@ -70,27 +80,27 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     highlights: [
       {
         title: "Keynote talks",
-        body: "Professionals across finance, law, technology, healthcare, consulting and more.",
+        body: "Inspiring professionals at the top of their fields share how they built successful careers and what ihsaan looks like at work.",
         image: "/media/gallery/conference-audience.webp",
       },
       {
-        title: "Employer exhibition stands",
-        body: "Discover roles, internships and graduate schemes directly from employers.",
+        title: "Exhibition stalls",
+        body: "Three kinds of stall: employers such as Muslim businesses, charities and SMEs; professional networks, including firm Muslim networks; and industry professionals sharing their own experience of a sector.",
         image: "/media/gallery/employer-conversations.webp",
       },
       {
         title: "Panel discussions",
-        body: "Insights on navigating faith and career, social mobility and different industries.",
+        body: "Professionals talk about ihsaan in the workplace and what it takes to reach success in your career.",
         image: "/media/gallery/conference-panel.webp",
       },
       {
         title: "Practical workshops",
-        body: "CVs, interviews, networking, personal branding and other career skills.",
+        body: "Often specific to an industry, such as accounting, tech or law, covering CVs, interviews, networking and personal branding.",
         image: "/media/gallery/workshop-tables.webp",
       },
       {
         title: "Networking sessions",
-        body: "Meet professionals who understand the unique journey of Muslim graduates.",
+        body: "Meet professionals who are working in the roles you want to reach, and ask how they got there.",
         image: "/media/gallery/student-conversations.webp",
       },
     ],
@@ -126,17 +136,19 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       height: 1707,
     },
     about: [
-      "The IHSAAN Summer Internship Programme offers faith-aligned opportunities across a range of industries, connecting Muslim students to companies where they can grow without compromising their values.",
+      "IHSAAN helped create these internships with the firms, and the places were exclusive to IHSAAN's students. They were built to be faith-aligned and span a range of industries, so students can grow without compromising their values.",
     ],
     stats: [
       { value: "100+", label: "Internships secured" },
       { value: "30+", label: "Companies" },
+      { value: "78%", label: "Would not have got their internship without the programme" },
     ],
+    statsNote: "Source: IHSAAN Summer Internship Programme survey.",
     highlightsTitle: "The 2026 programme",
     highlights: [
       {
         title: "Employers",
-        body: "Students were introduced to employers actively opening internship pathways for Muslim talent.",
+        body: "IHSAAN worked with employers to open internship places that were exclusive to our students.",
       },
       {
         title: "Roles",
@@ -147,6 +159,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Internship places gave students a clearer route into experience that matched both ambition and values.",
       },
     ],
+    quotes: [TESTIMONIALS.saqhib],
     primary: { label: "Partner with the programme", href: "/contact" },
     secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
@@ -165,9 +178,10 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       height: 1126,
     },
     about: [
-      "Insight Events are corporate events run by IHSAAN. They give students a closer look at a leading employer.",
-      "Each event has three main parts: a panel with professionals across different seniority levels, interactive workshops on interviews, assessment centres and elevator pitches, and networking with professionals from across the firm.",
-      "Events may also include an HR talk or an introduction from the firm's Muslim network.",
+      "Insight Events are corporate events run by IHSAAN. They give students a closer look at a leading employer and the people who work there.",
+      "The panel brings together professionals at different levels of seniority. They talk about their roles, how they got there and what the firm looks for.",
+      "In the hands-on application workshops, students practise interviews, assessment centres and elevator pitches, and get feedback on how they did.",
+      "Networking puts students in conversation with professionals from across the firm. Events may also include an HR talk or an introduction from the firm's Muslim network.",
       "Events vary by employer and year, and attending one does not guarantee an internship or a job offer.",
     ],
     stats: [],
@@ -175,17 +189,18 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     highlights: [
       {
         title: "Bulge bracket investment banks",
-        body: "An example of the organisations that host or take part in our insight events.",
+        body: "The largest global banks open their doors to our students with panels, application workshops and networking.",
       },
       {
         title: "Big Four firms",
-        body: "An example of the organisations that host or take part in our insight events.",
+        body: "Leading accounting and consulting firms host students and share what a career with them involves.",
       },
       {
-        title: "Regulators and public bodies",
-        body: "An example is the FCA. These organisations host or take part in our insight events.",
+        title: "Public sector",
+        body: "Public bodies host or take part in our insight events. One example is the FCA.",
       },
     ],
+    quotes: [TESTIMONIALS.benjamin],
     primary: { label: "See upcoming events", href: GET_INVOLVED.href },
     secondary: { label: "Partner with us", href: "/contact" },
   },
@@ -205,6 +220,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     },
     about: [
       "Webinars & Workshops brings together the skills-building sessions IHSAAN runs through the year: online panels, online speaker events, bootcamps and the Roast My series.",
+      "Every session is practical. You prepare, practise with professionals who work in the field, and leave with feedback you can use in your next application.",
       "Our summer bootcamps and Spring Week Academy sit under this umbrella, alongside other initiatives.",
     ],
     stats: [],
@@ -212,15 +228,15 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     highlights: [
       {
         title: "Roast My CV",
-        body: "A breakout-room session where someone reviews your CV.",
+        body: "A breakout-room session where someone working in your field reviews your CV with you, one to one.",
       },
       {
         title: "Roast My Interview",
-        body: "Interview practice, which may include a mock interview.",
+        body: "Interview practice with a professional, which may include a mock interview and feedback on how it went.",
       },
       {
         title: "Roast My Assessment Centre",
-        body: "A mock assessment centre in a team, followed by a presentation and feedback.",
+        body: "A realistic mock assessment centre in a team, followed by a presentation and precise feedback you can act on.",
       },
       {
         title: "Online panels and speaker events",
@@ -231,6 +247,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
         body: "Skills-focused bootcamps, including our summer bootcamps.",
       },
     ],
+    quotes: [TESTIMONIALS.civilService, TESTIMONIALS.daniyaal, TESTIMONIALS.mahe],
     primary: { label: "See upcoming events", href: GET_INVOLVED.href },
     secondary: { label: "Get started", href: GET_INVOLVED.href },
   },
@@ -289,10 +306,12 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       { name: "Cur8 Capital", href: "https://cur8.capital/", src: "/partners/cur8_capital.png", width: 464, height: 263 },
       { name: "Manchester City Council", href: "https://www.manchester.gov.uk/", src: "/partners/manchester_city_council.png", width: 552, height: 106 },
     ],
-    quote: {
-      text: "The hackathon was an incredible experience. I learned so much from the people around me, got hands on experience with the latest AI tools and loved seeing participants build solutions to real world problems.",
-      source: "Attendee, Dublin Hackathon, 2026",
-    },
+    quotes: [
+      {
+        text: "The hackathon was an incredible experience. I learned so much from the people around me, got hands on experience with the latest AI tools and loved seeing participants build solutions to real world problems.",
+        role: "Attendee, Dublin Hackathon, 2026",
+      },
+    ],
     primary: { label: "See upcoming events", href: PUBLIC_DESTINATIONS.eventsCalendar.href, external: true },
     secondary: { label: "Become a partner", href: "/contact" },
   },
@@ -301,7 +320,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     title: "Mentorship",
     summary: "My Muslim Mentor pairs students with professionals in their field for 1:1 mentorship.",
     description:
-      "My Muslim Mentor pairs Muslim students with professionals in their field for 1:1 mentorship, with 140+ verified mentors across 15+ industries.",
+      "My Muslim Mentor pairs Muslim students with professionals in their field for 1:1 mentorship, with 150+ verified mentors across 15+ industries.",
     headline: "A mentor who understands your journey.",
     intro: "My Muslim Mentor offers 1:1 mentorship with professionals in your field, tailored to your goals.",
     image: { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
@@ -310,19 +329,36 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     about: [
       "Our mentorship programmes connect working professionals with Muslim students who are navigating their career journeys.",
       "Professionals share their experience, open doors and help shape the next generation of leaders. Students get guidance from someone who has been where they want to go.",
+      "On My Muslim Mentor, students browse verified mentors in their field, then message them or book a free 1:1 call.",
     ],
-    stats: [],
-    highlightsTitle: "Who it is for",
+    stats: [
+      { value: "150+", label: "Mentors" },
+      { value: "15+", label: "Industries" },
+    ],
+    highlightsTitle: "Three ways to work with a mentor",
     highlights: [
       {
-        title: "Students and graduates",
-        body: "Get 1:1 mentorship with professionals in your field, tailored to your goals.",
+        title: "CV review",
+        body: "Have someone working in the industry you want to enter go through your CV and tell you what to change.",
       },
       {
-        title: "Working professionals",
-        body: "Share your experience, mentor emerging Muslim talent and help students navigate their careers.",
+        title: "Mock interview",
+        body: "Practise with a professional and get honest feedback before the real thing.",
+      },
+      {
+        title: "Coffee chat or text Q&A",
+        body: "A short virtual coffee chat, or a text Q&A if you prefer to write, to ask what the job is really like.",
       },
     ],
+    examplesTitle: "Some of our mentors",
+    examples: [
+      { name: "Hassan Muhamed", role: "Senior Auditor, National Audit Office" },
+      { name: "Zeerak Aziz", role: "Data Engineering Consultant, Made Tech" },
+      { name: "Bilal Malik", role: "Diplomat, Foreign, Commonwealth and Development Office" },
+      { name: "Saada Alkateb", role: "Clinical Pharmacist, Circle Health Hospital" },
+      { name: "Shahmeer Amir", role: "Audit and Assurance Associate, Deloitte" },
+    ],
+    quotes: [TESTIMONIALS.aadam],
     primary: { label: "Visit My Muslim Mentor", href: PUBLIC_DESTINATIONS.myMuslimMentor.href, external: true },
     secondary: { label: "Become a mentor", href: PUBLIC_DESTINATIONS.myMuslimMentorSignup.href, external: true },
   },

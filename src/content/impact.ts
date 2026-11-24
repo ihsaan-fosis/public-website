@@ -35,11 +35,6 @@ export const GAP_STATS: readonly GapStat[] = [
   },
 ];
 
-export const GAP_QUOTE = {
-  text: "Muslims are excluded, discriminated against, or failed, at all stages of their transition from education to employment.",
-  source: "Social Mobility Commission report, 2017",
-};
-
 export type PathwayStep = { title: string; body: string };
 
 /** One end-to-end pathway, ordered from a student's first question to their first offer. */
@@ -66,7 +61,7 @@ export const PATHWAY: readonly PathwayStep[] = [
   },
   {
     title: "MyMuslimMentor",
-    body: "One-to-one mentoring from 140+ verified professionals across 15+ industries.",
+    body: "One-to-one mentoring from 150+ verified professionals across 15+ industries.",
   },
   {
     title: "Summer internships",
@@ -86,7 +81,7 @@ export const FLYWHEEL: readonly FlywheelStage[] = [
   {
     title: "Equip",
     body: "Networks, skills, and direct placements. MyMuslimMentor, corporate insight events, workshops, and exclusive internships.",
-    proof: "140+ mentors and 100+ internships across 30+ companies",
+    proof: "150+ mentors and 100+ internships across 30+ companies",
     photo: galleryPhoto("/media/gallery/employer-conversations.webp"),
   },
   {
@@ -110,7 +105,7 @@ export type TractionStat = { label: string; value: string };
 export const TRACTION: readonly TractionStat[] = [
   { label: "Unique students engaged in two years", value: "~4,000" },
   { label: "Mentees on MyMuslimMentor since launching in June 2025", value: "1,307" },
-  { label: "Verified mentors across 15+ industries", value: "140+" },
+  { label: "Verified mentors across 15+ industries", value: "150+" },
   { label: "Internships secured across 30+ companies", value: "100+" },
   { label: "Careers Conferences across the UK and Ireland", value: "6" },
   { label: "University Islamic societies partnered directly", value: "25" },
@@ -118,64 +113,41 @@ export const TRACTION: readonly TractionStat[] = [
 
 export const TRACTION_CITIES = "London, Birmingham, Manchester, Leeds, Glasgow and Dublin";
 
-export type Story = { outcome: string; programme: string; quote: string; attribution: string };
+/** One outcome, with the programme page where the student's words are shown in full. */
+export type Story = { outcome: string; programme: string; attribution: string; href: string };
 
 export const STORIES: readonly Story[] = [
   {
     outcome: "Trainee solicitor role",
     programme: "Glasgow Careers Conference",
-    quote:
-      "Whilst speaking to a representative from one of the firms, he had mentioned that his firm currently had postings for a trainee solicitor position… he was able to organise for me an interview for the role, and after 2 rounds of interviews I managed to get the job Alhamdulilah.",
     attribution: "Law student, November 2025",
+    href: "/programmes/career-conferences",
   },
   {
     outcome: "Spring Week at BNP Paribas",
-    programme: "Deutsche Bank Muslim Network Insight Event",
-    quote:
-      "Ultimately the real impact was feeling that the door to such careers was no longer a fantasy, nor would it involve some sort of compromise… I employed the teachings and insights from that event, and went on to secure a Spring week at BNP Paribas!",
+    programme: "Bulge bracket bank insight event",
     attribution: "Benjamin Jaderi, November 2025",
+    href: "/programmes/insight-events",
   },
   {
     outcome: "Internship secured",
     programme: "Roast My CV webinar",
-    quote:
-      "The advice I got played a crucial part in helping me secure an internship in the role I was aiming for. I got to have my CV reviewed 1 to 1 by someone already working in the field I wanted to get into… The feedback was very honest and detailed.",
     attribution: "Mahe Chowdury, October 2025",
+    href: "/programmes/webinars-workshops",
   },
   {
     outcome: "Civil Service summer internship",
     programme: "Online networking event, mock interview, and Careers Essentials Guide",
-    quote:
-      "I was able to apply the feedback from the mock interview to my real interview… And Alhamdulillah I have secured a place on the civil service summer internship! I also found IHSAAN’s Careers Essentials resources really useful during the whole application process.",
     attribution: "Anonymous student, February 2026",
-  },
-];
-
-export type Voice = { name: string; role: string; quote: string; kind: "Employer" | "Mentor" };
-
-export const VOICES: readonly Voice[] = [
-  {
-    name: "Saqhib Ali",
-    kind: "Employer",
-    role: "CEO, ZeroPA. Summer Internship Programme employer partner",
-    quote:
-      "Ihsaan is a valuable service to the community. This year I was lucky enough to secure two interns through the programme. For graduates and under grads it gives opportunities when it appears none exist and for employers we can access enthusiastic, willing often experienced individuals.",
-  },
-  {
-    name: "Aadam Ul Haq",
-    kind: "Mentor",
-    role: "GenAI Engineer, NatWest. MyMuslimMentor mentor since launch",
-    quote:
-      "Being involved with MyMuslimMentor since it launched has been a really rewarding experience. I’ve had almost 10 mentees reach out to me so far… It creates an easy and meaningful way for people to give back… I’ve been fortunate to see some of the people I’ve mentored go on to secure jobs, although the credit is entirely theirs for putting in the work.",
+    href: "/programmes/webinars-workshops",
   },
 ];
 
 export const VOICES_SUMMARY =
-  "Real demand on both sides: 30+ organisations have brought on 100+ interns, and 143 mentors give their time on MyMuslimMentor.";
+  "Real demand on both sides: 30+ organisations have brought on 100+ interns, and 150+ mentors give their time on MyMuslimMentor.";
 
 export const IMPACT_PHOTOS = {
   pathway: galleryPhoto("/media/gallery/careers-fair-hall.webp"),
   stories: galleryPhoto("/media/gallery/conference-selfie.webp"),
-  voices: galleryPhoto("/media/gallery/employer-stands.webp"),
   closing: galleryPhoto("/media/gallery/conference-panel.webp"),
 } as const;

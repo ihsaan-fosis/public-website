@@ -314,7 +314,7 @@ Labels are small, bold, uppercase, and widely spaced. Body copy is Regular.
 | Role | Classes or size | Component or use |
 | --- | --- | --- |
 | Frame title | `.hero-title-editorial`, `font-extrabold`, `leading-[1.08]`, `tracking-[-0.03em]`, `text-cream`, `clamp(2.25rem, 4.4vw, 4rem)` | `PhotoHero`, `ClosingCta`. |
-| Statement | `text-3xl sm:text-5xl lg:text-[3.5rem]` with `displayClass` | Home promise. |
+| Statement | `text-[2rem] sm:text-6xl lg:text-[4.5rem]` with `displayClass` | Home and About vision. |
 | Text-hero title | `text-[2.4rem] leading-[1.05] sm:text-6xl` with `displayClass` | A page without a photo hero. |
 | Section title | `text-[2rem] leading-[1.05] sm:text-5xl` with `displayClass` | `SectionHeading`, `SectionTitle`. |
 | Compact section title | `text-[1.75rem] leading-[1.1] sm:text-4xl` with `displayClass` | `SectionTitle compact`, article subheadings. |
@@ -352,7 +352,7 @@ Blocks use these spacing values:
 | Block | Padding |
 | --- | --- |
 | Default `Section` | `py-20 sm:py-28` |
-| Statement | `py-24 sm:py-36` |
+| Statement | `py-20 sm:py-40` |
 | Text hero | `pt-16 pb-10 sm:pt-24 sm:pb-14` |
 | Continuation of the previous section | `className="pt-0 sm:pt-0"` |
 
@@ -387,17 +387,17 @@ These components and source patterns define the public pages:
 | --- | --- | --- |
 | Photo hero | `PhotoHero` in `src/components/ui.tsx` | Opens most pages. `tall` is for home only. A short title, optional one- or two-sentence `intro`, and at most two action children. |
 | Text hero | `LegalPage` | Opens a page without its own photo. Left-aligned `h1`, a 15px lead at `text-ink/70`, and at most one action. Breadcrumbs, `Eyebrow`, and metadata are optional. |
-| Statement | `ScrollWords` in `src/components/motion.tsx` | One promise sentence inside an `h2`, at most once per page. |
+| Statement | `ScrollWords` in `src/components/motion.tsx` | One promise sentence inside an `h2`, at most once per page. `keyPhrases` keep their words at full strength with a `ihsaan-light-blue` underline (`.vision-key`) and settle the rest at 80%. |
 | Section heading | `SectionHeading` in `src/components/ui.tsx` | Full-width title with optional one-sentence `aside` and button `action`. |
 | Section title | `SectionTitle` in `src/components/ui.tsx` | Narrow-column title or title inside a `data-reveal` wrapper. `compact` applies beside other content. |
 | Photo card | `InvolvementPanels`, `OfferSlide`, programme cards | An item with its own photo. Filled image, `from-night/95 via-night/60 to-night/10` shade, top-right numeral, cream title, and `white` button. |
 | Editorial list | `TeamChapter`, programme highlights, `/start`, the `/blog` lead story and post rows, `EventList` in `src/components/event-list.tsx` | Unboxed rows with `border-t` on the list, `border-b` on each row, `border-ink/10`, and staggered `data-reveal`. Optional `text-ink/45` numerals. |
 | Photo frame | `PhotoFrame` in `src/components/ui.tsx` | A tall photo beside an editorial list in a `lg:grid-cols-[0.8fr_1fr]` split. `sticky` keeps the photo visible beside a long list. |
-| Statement with opening frame | `PurposeChapter` in `src/components/story.tsx` | A statement followed by a full-width `.story-slit` photo frame with cream copy. |
+| Statement with opening frame | `PurposeChapter` in `src/components/story.tsx` | A statement followed by a full-width `.story-slit` photo frame with cream copy. The vision's key phrases (`VISION_KEY_PHRASES`) keep full strength and draw a `.vision-key` underline after they come into focus. |
 | FAQ | `FaqSection` in `src/components/sections.tsx` | Expandable `details` rows under thin rules. |
 | Pinned sequence | `ProgrammesCarousel`, `MapChapter` | A section whose content changes while it stays in view during scroll. At most one per page. |
-| Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock, with a second inner ring for a benchmark. Arcs use `ihsaan-light-blue`, tracks use `stroke-ink/10`, and the benchmark uses `stroke-ink/55`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
-| Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Ring-chart stations over their own sentences, then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
+| Ring chart | `RingChart` in `src/components/challenge-answer.tsx` | A share out of 100 as a ring from 12 o'clock. Used only where the figure is a share of a whole. The arc uses `ihsaan-light-blue` and the track uses `stroke-ink/10`. The centre shows the figure, and `aria-label` carries every value. Arcs sweep in once the item reveals and show complete without motion. |
+| Path and answer | `ChallengeAnswer` in `src/components/challenge-answer.tsx` | Three stations over their own sentences: a ring chart for the degree share, then plain `text-8xl` figures in `ihsaan-light-blue` for the two relative gaps (`GapFigure`), which have no whole to draw. Then the answer as a closing gap: three programme photo tiles (conferences, internships, mentorship) in `rounded-[22px]` frames with the photo-card shade, a cream title and a proof figure each. On wide screens the photo windows start small and spread apart, then open out into one tight row as you scroll, so the gap between them closes. Only the window changes size, never the text, so type stays crisp. Stacked on phones. The row is already closed without motion. No framing band, line or action button. |
 | Media wall | `GalleryParallax`, `PartnersSection`, `HackathonPartners` | Photo or logo groups. Partner logos keep their colour in light mode. In dark mode, they rest at 65% opacity in grayscale and reach full opacity on hover. Logos with transparent backgrounds turn white on hover. |
 | Photo band | `PhotoBand`, `ClosingCta` in `src/components/sections.tsx` | A photo frame within the page or a closing action. |
 
@@ -463,8 +463,8 @@ Reading pages and conversion pages have the exceptions below.
 | --- | --- | --- |
 | Landing | `/` | Tall photo hero with two actions, statement, `ProgrammesCarousel`, photo cards, media walls, FAQ, closing action. |
 | Index | `/programmes`, `/blog`, `/gallery` | Photo hero, section heading, photo cards or an editorial list beside a sticky photo, optional supporting section, closing action. |
-| Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events and quote, related links, closing action. |
-| Story | `/about` | Photo hero, ring-chart challenges and answer steps, "We are IHSAAN", vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
+| Detail | `/programmes/[slug]` | Photo hero, split introduction with optional unboxed statistics, highlights beside a photo, optional events, optional named examples as an unboxed list, optional quotes with an optional round portrait, related links, closing action. A programme page owns its quotes: `/impact` links to the page instead of repeating them. |
+| Story | `/about` | Photo hero, challenge figures (one ring chart, two plain figures) and answer steps, "We are IHSAAN", vision statement, mission over an opening photo frame, photo cards, values photo band, pinned map, team list beside a photo, closing frame. |
 | Conversion | `/start`, `/contact` | Photo hero, unboxed contact columns or next steps beside a photo, short closing line. No repeated home audience switcher, FAQ, partners, or closing photo band. |
 | Article | `/blog/[slug]` | Photo hero when a photo exists, otherwise text hero. A `max-w-3xl` column with 15px `text-ink/75` copy, breadcrumb, optional `Eyebrow`, metadata, lead, contents, author sections, and closing action. Rules use `border-ink/10`. |
 | Utility | `/privacy`, `/terms` | `LegalPage`, text hero with date, and `max-w-3xl` ruled sections. No closing action. |

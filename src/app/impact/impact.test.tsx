@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ENGAGEMENT, GAP_STATS, STORIES, TRACTION, VOICES } from "@/content/impact";
+import { ENGAGEMENT, GAP_STATEMENT, STORIES, TRACTION, VOICES_SUMMARY } from "@/content/impact";
 import ImpactPage, { metadata } from "./page";
 
 describe("impact page", () => {
@@ -14,14 +14,10 @@ describe("impact page", () => {
     expect(screen.getByRole("link", { name: "Our programmes" }).getAttribute("href")).toBe("/programmes");
   });
 
-  it("states the gap with each figure and its source", () => {
+  it("states the gap as one scroll statement and leaves the figures to About", () => {
     const { container } = render(<ImpactPage />);
-    const text = container.textContent ?? "";
-    expect(GAP_STATS.map((stat) => stat.value)).toEqual(["20.8%", "44%", "40%"]);
-    for (const stat of GAP_STATS) {
-      expect(text).toContain(stat.label);
-      expect(text).toContain(`Source: ${stat.source}`);
-    }
+    expect(container.textContent).toContain(GAP_STATEMENT);
+    expect(container.textContent).not.toContain("Source:");
   });
 
   it("reports growth and the headline traction figures", () => {
@@ -32,23 +28,19 @@ describe("impact page", () => {
       ["2024/25", "1,500+"],
       ["2025/26", "4,600+"],
     ]);
-    expect(TRACTION.map((stat) => stat.value)).toEqual(["~4,000", "1,307", "140+", "100+", "6", "25"]);
-    expect(document.body.textContent).toContain("About 4,000 is the number of unique students across both years");
+    expect(TRACTION.map((stat) => stat.value)).toEqual(["~4,000", "1,307", "150+", "100+", "6", "25"]);
+    expect(document.body.textContent).toContain("About 4,000 Muslim students engaged in two years");
   });
 
-  it("shows every outcome story and employer or mentor voice with attribution", () => {
+  it("shows every outcome story with a link to its programme page", () => {
     render(<ImpactPage />);
     for (const story of STORIES) {
       expect(screen.getByRole("heading", { name: story.outcome })).toBeTruthy();
       expect(document.body.textContent).toContain(story.attribution);
+      expect(document.querySelector(`a[href="${story.href}"]`)).toBeTruthy();
     }
-    expect(screen.getByRole("heading", { name: "Employers hire. Mentors give back." })).toBeTruthy();
-    for (const voice of VOICES) {
-      expect(document.body.textContent).toContain(voice.kind);
-      expect(document.body.textContent).toContain(voice.name);
-      expect(document.body.textContent).toContain(voice.quote);
-      expect(document.body.textContent).toContain(voice.role);
-    }
+    expect(document.body.textContent).toContain(VOICES_SUMMARY);
+    expect(screen.queryByRole("heading", { name: "Employers hire. Mentors give back." })).toBeNull();
   });
 
   it("omits the measurement framework and 2045 vision chapters", () => {

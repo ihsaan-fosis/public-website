@@ -531,6 +531,15 @@
   }
 }
 
+/* Key phrases of the vision. `--u` is how much of the underline is drawn, complete by default so it needs no motion. */
+.vision-key {
+  display: inline-block;
+  padding-bottom: 0.06em;
+  color: var(--color-ink);
+  background: linear-gradient(var(--color-ihsaan-light-blue), var(--color-ihsaan-light-blue)) 0 100% / var(--u, 100%) 0.07em no-repeat;
+  transition: background-size 0.6s ease-out;
+}
+
 /* Ring arcs: `--v` is the share out of 100 (the circles set pathLength=100), so the arc is complete without motion. */
 .ring-arc {
   stroke-dasharray: var(--v) 100;
@@ -550,10 +559,6 @@
     transition:
       stroke-dasharray 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s,
       opacity 0.2s linear 0.5s;
-  }
-
-  .js .ring-station .ring-arc-inner {
-    transition-delay: 1s;
   }
 
   @supports (animation-timeline: view()) {
@@ -668,6 +673,16 @@
       animation-range: cover calc(2% + var(--p) * 18%) cover calc(14% + var(--p) * 18%);
     }
 
+    /* Key phrases draw their underline just after they come into focus. */
+    .story-focus-word.vision-key {
+      transition: none;
+      animation: story-focus linear both, vision-underline linear both;
+      animation-timeline: --vision, --vision;
+      animation-range:
+        cover calc(2% + var(--p) * 18%) cover calc(14% + var(--p) * 18%),
+        cover calc(14% + var(--p) * 18%) cover calc(26% + var(--p) * 18%);
+    }
+
     /* Mission: the frame opens from a narrow window, then its words rise out of their masks. */
     .story-mission {
       view-timeline-name: --mission;
@@ -767,6 +782,12 @@
 
 .story-word {
   display: inline-block;
+}
+
+@keyframes vision-underline {
+  from {
+    background-size: 0 0.07em;
+  }
 }
 
 @keyframes story-focus {

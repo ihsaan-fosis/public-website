@@ -1,9 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { type FocusEvent, type ReactNode, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type FocusEvent, type ReactNode, useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
-import { cn } from "@/lib/utils";
+import { cn, keyWordFlags } from "@/lib/utils";
 
 function canObserve() {
   return "IntersectionObserver" in window;
@@ -91,10 +91,22 @@ export function CountUp({ value, className }: { value: string; className?: strin
   );
 }
 
-/** Words brighten one by one as the block scrolls through the viewport. Unlit words stay at 4.5:1 contrast so the text is always readable. */
-export function ScrollWords({ text, className }: { text: string; className?: string }) {
+/**
+ * Words brighten one by one as the block scrolls through the viewport. Unlit words stay at 4.5:1 contrast so the text is
+ * always readable. Words in `keyPhrases` light to full strength and draw an underline; the rest settle at 80%.
+ */
+export function ScrollWords({
+  text,
+  className,
+  keyPhrases = [],
+}: {
+  text: string;
+  className?: string;
+  keyPhrases?: readonly string[];
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const words = text.split(" ");
+  const keyFlags = keyWordFlags(text, keyPhrases);
   const [progress, setProgress] = useState(1);
 
   useEffect(() => {
@@ -125,12 +137,16 @@ export function ScrollWords({ text, className }: { text: string; className?: str
   return (
     <span ref={ref} className={className}>
       {words.map((word, index) => (
-        <span
-          key={`${word}-${index}`}
-          className="transition-opacity duration-300"
-          style={{ opacity: index < lit ? 1 : 0.65 }}
-        >
-          {word}
+        <span key={`${word}-${index}`}>
+          <span
+            className={cn("transition-opacity duration-300", keyFlags[index] && "vision-key")}
+            style={{
+              opacity: index < lit ? (keyPhrases.length === 0 || keyFlags[index] ? 1 : 0.8) : 0.65,
+              ...(keyFlags[index] ? ({ "--u": index < lit ? "100%" : "0%" } as CSSProperties) : null),
+            }}
+          >
+            {word}
+          </span>
           {index < words.length - 1 ? " " : ""}
         </span>
       ))}
