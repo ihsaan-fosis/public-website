@@ -6,6 +6,7 @@ export const QUERY_TYPES = [
   { value: "programmes", label: "Programmes and events" },
   { value: "mentoring", label: "Mentoring" },
   { value: "volunteering", label: "Volunteering" },
+  { value: "alumni", label: "Alumni network" },
   { value: "media", label: "Press and media" },
   { value: "privacy", label: "Privacy and data requests" },
   { value: "other", label: "Something else" },

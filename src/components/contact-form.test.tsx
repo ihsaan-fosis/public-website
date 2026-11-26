@@ -55,6 +55,7 @@ describe("contact form", () => {
       "Programmes and events",
       "Mentoring",
       "Volunteering",
+      "Alumni network",
       "Press and media",
       "Privacy and data requests",
       "Something else",
