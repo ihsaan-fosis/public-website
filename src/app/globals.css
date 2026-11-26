@@ -540,27 +540,7 @@
   transition: background-size 0.6s ease-out;
 }
 
-/* Ring arcs: `--v` is the share out of 100 (the circles set pathLength=100), so the arc is complete without motion. */
-.ring-arc {
-  stroke-dasharray: var(--v) 100;
-}
-
-/*
- * Ring charts: each arc sweeps in once its station reveals.
- * Static, complete arcs by default, so content never depends on script or motion.
- */
 @media (prefers-reduced-motion: no-preference) {
-  .js .ring-station:not(.is-visible) .ring-arc {
-    stroke-dasharray: 0 100;
-    opacity: 0;
-  }
-
-  .js .ring-station .ring-arc {
-    transition:
-      stroke-dasharray 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s,
-      opacity 0.2s linear 0.5s;
-  }
-
   @supports (animation-timeline: view()) {
     /* The tiles start small and spread apart, then scroll together into one tight row. Stacked, they just rise in. */
     @media (width >= 64rem) {
