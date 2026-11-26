@@ -161,7 +161,7 @@ and the E2E-first policy for new coverage.
 | `bun run test:integration` | Runs the integration configuration. HTTP checks require `BASE_URL` and a running server. |
 | `bun run lint`, `bun run lint:oxlint` | Runs Oxlint with the repository rules. |
 | `bun run preview` | Builds and previews the OpenNext Worker locally. |
-| `bun run deploy` | Builds and deploys the Worker. Deployment is restricted to approved maintainer operations. |
+| `bun run deploy` | Builds and deploys the Worker. Runs automatically on pushes to `main` through `.github/workflows/deploy.yml`. |
 
 ## Known limits
 

@@ -64,8 +64,9 @@ check requires them and has approval.
 
 ## Deploy and verify the Worker
 
-A Git push does not run the deploy command. Stop the development server before
-the production build.
+Merging to `main` runs `.github/workflows/deploy.yml`, which runs lint, then
+deploys. For a manual deploy, stop the development server before the production
+build.
 
 1. For an approved release, build and deploy:
 
