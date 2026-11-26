@@ -7,8 +7,8 @@ export const TAGLINE = "Faith. Excellence. Service.";
 export const VISION =
   "We envision a world where every Muslim has the opportunity to fulfil their potential, unlock their dream career, and help build a more ethical society for all.";
 
-/** The three things the vision promises. They carry the emphasis wherever the vision is set large. */
-export const VISION_KEY_PHRASES = ["opportunity", "dream career", "ethical society"] as const;
+/** The phrases the vision promises. They carry the emphasis wherever the vision is set large. */
+export const VISION_KEY_PHRASES = ["potential", "opportunity", "dream career", "ethical society"] as const;
 
 export const MISSION =
   "We equip Muslim students with the opportunities and networks to build careers rooted in faith, excellence, and service.";
