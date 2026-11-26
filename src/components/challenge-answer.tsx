@@ -1,8 +1,7 @@
 import Image from "next/image";
-import type { CSSProperties, ReactNode } from "react";
-import { ANSWERS, DEGREE_RING, GAP_LABELS, type RingData } from "@/content/challenge-answer";
-import { GAP_STATS } from "@/content/impact";
-import { CountUp } from "./motion";
+import { ANSWERS } from "@/content/challenge-answer";
+import { GAP_QUOTE, GAP_STATS } from "@/content/impact";
+import { CountUp, ScrollWords } from "./motion";
 import { Container, displayClass, revealDelay } from "./ui";
 
 /** The problem as three figures, then IHSAAN's answer: two sections that share one three-column grid. */
@@ -15,52 +14,15 @@ export function ChallengeAnswer() {
   );
 }
 
-/** A figure set inside its own sentence, so the number reads as part of the claim instead of a stat tile. */
-function Figure({ value, children }: { value: string; children: ReactNode }) {
-  return (
-    <>
-      <CountUp value={value} className="font-extrabold" /> {children}
-    </>
-  );
-}
-
-/** Share of a whole, drawn as a ring from 12 o'clock. It sweeps in once the station reveals (globals.css `.ring-arc`). */
-function RingChart({ ring }: { ring: RingData }) {
-  const { muslim } = ring;
-  return (
-    <div className="relative size-40">
-      <svg viewBox="0 0 120 120" role="img" aria-label={ring.description} className="size-full -rotate-90">
-        <circle cx="60" cy="60" r="52" fill="none" strokeWidth="10" className="stroke-ink/10" />
-        <circle
-          cx="60"
-          cy="60"
-          r="52"
-          fill="none"
-          strokeWidth="10"
-          strokeLinecap="round"
-          pathLength="100"
-          className="ring-arc stroke-ihsaan-light-blue"
-          style={{ "--v": muslim } as CSSProperties}
-        />
-      </svg>
-      <span aria-hidden className="absolute inset-0 flex items-center justify-center text-xl font-extrabold tracking-[-0.03em] text-ink">
-        <CountUp value={`${muslim}%`} />
-      </span>
-    </div>
-  );
-}
-
-/** A relative gap has no whole to draw a ring from, so the figure stands alone at the ring's height. */
+/** A relative gap has no whole to draw from, so each figure stands alone as the lead of its own stat. */
 function GapFigure({ value }: { value: string }) {
   return (
-    <div className="flex h-40 items-center">
-      <CountUp value={value} className="text-8xl leading-none font-extrabold tracking-[-0.05em] text-ihsaan-light-blue" />
-    </div>
+    <CountUp value={value} className="block text-8xl leading-none font-extrabold tracking-[-0.05em] text-ihsaan-light-blue" />
   );
 }
 
 /**
- * The problem: three figures. The first is a ring chart, the other two are plain figures, each over its own sentence.
+ * The problem: three figures, each with its claim, the comparison behind it, and its source, then the quote that names the pattern.
  */
 function StudentChallenges() {
   return (
@@ -78,15 +40,24 @@ function StudentChallenges() {
         </h2>
         <ol className="mt-14 grid gap-x-12 gap-y-14 sm:mt-20 lg:grid-cols-3">
           {GAP_STATS.map((stat, index) => (
-            <li key={stat.value} data-reveal style={revealDelay(index)} className="ring-station">
-              {index === 0 ? <RingChart ring={DEGREE_RING} /> : <GapFigure value={stat.value} />}
+            <li key={stat.value} data-reveal style={revealDelay(index)}>
+              <GapFigure value={stat.value} />
               <p className="mt-6 max-w-sm text-2xl leading-[1.2] font-medium tracking-[-0.03em] text-ink sm:text-[1.75rem]">
-                {index === 0 ? <Figure value={stat.value}>{stat.label}.</Figure> : `${GAP_LABELS[index - 1]}.`}
+                {stat.label}.
               </p>
+              <p className="mt-4 max-w-sm text-base leading-7 text-ink/80">{stat.note}</p>
               <p className="mt-4 text-[13px] leading-6 text-ink/65">Source: {stat.source}</p>
             </li>
           ))}
         </ol>
+        <figure className="mt-20 sm:mt-32">
+          <blockquote
+            className={`text-[clamp(2.1rem,5.4vw,5.25rem)] leading-[1.06] tracking-[-0.04em] ${displayClass}`}
+          >
+            <ScrollWords text={`\u201C${GAP_QUOTE.text}\u201D`} />
+          </blockquote>
+          <figcaption className="mt-8 text-sm leading-6 text-ink/65 sm:text-base">{GAP_QUOTE.source}</figcaption>
+        </figure>
       </Container>
     </section>
   );

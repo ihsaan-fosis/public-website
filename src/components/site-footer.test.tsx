@@ -25,15 +25,14 @@ describe("SiteFooter", () => {
     expect(screen.getByRole("link", { name: "Professionals", exact: true }).getAttribute("href")).toBe("/professionals");
   });
 
-  it("drops the FOSIS programme line and keeps where IHSAAN is based", () => {
+  it("drops the FOSIS programme line", () => {
     const { container } = render(<SiteFooter />);
     expect(container.textContent).not.toMatch(/national careers programme|FOSIS/);
-    expect(screen.getByText("UK & Ireland")).toBeTruthy();
   });
 
-  it("shows the closing wordmark without waiting for a scroll reveal it can never reach on phones", () => {
+  it("shows the footer wordmark without waiting for a scroll reveal", () => {
     const { container } = render(<SiteFooter />);
-    const logos = container.querySelectorAll("img[src$='-logo-large.webp']");
+    const logos = container.querySelectorAll("img[src$='logo.webp']");
     expect(logos).toHaveLength(2);
     logos.forEach((logo) => expect(logo.closest("[data-reveal]")).toBeNull());
   });

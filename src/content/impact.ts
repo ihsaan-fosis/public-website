@@ -16,10 +16,10 @@ export const GAP_STATEMENT =
 
 export const GAP_STATS: readonly GapStat[] = [
   {
-    value: "20.8%",
-    label: "of Muslims aged 16 to 24 hold degrees",
-    note: "Attainment has nearly doubled since 2001 and now exceeds the national average.",
-    source: "Muslim Council of Britain, Census analysis",
+    value: "7.2%",
+    label: "higher degree attainment for young Muslims",
+    note: "20.8% of Muslims aged 16 to 24 hold degrees, vs 19.4% of young people overall.",
+    source: "MCB analysis of Census 2021 (England and Wales)",
   },
   {
     value: "44%",
@@ -34,6 +34,11 @@ export const GAP_STATS: readonly GapStat[] = [
     source: "Social Mobility Commission (2017)",
   },
 ];
+
+export const GAP_QUOTE = {
+  text: "Muslims are excluded, discriminated against, or failed, at all stages of their transition from education to employment.",
+  source: "Social Mobility Commission Report (2017)",
+} as const;
 
 export type PathwayStep = { title: string; body: string };
 
