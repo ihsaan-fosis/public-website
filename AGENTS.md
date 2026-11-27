@@ -45,7 +45,9 @@ apex. Verify the live host before you rely on the build target.
 
 Use `bun run preview` for the local Worker preview.
 Use `bun run deploy` only for an approved build and deployment.
-A push to `main` runs it through `.github/workflows/deploy.yml`.
+Merging to `main` counts as approval to deploy. A push to `main`
+runs the required workflow checks and, if successful, deploys
+through `.github/workflows/deploy.yml`.
 
 ## Git commit author
 

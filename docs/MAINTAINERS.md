@@ -64,9 +64,11 @@ check requires them and has approval.
 
 ## Deploy and verify the Worker
 
-Merging to `main` runs `.github/workflows/deploy.yml`, which runs lint, then
-deploys. For a manual deploy, stop the development server before the production
-build.
+Merging a pull request to `main` counts as approval to deploy.
+`.github/workflows/deploy.yml` runs lint, the contact security suite and the
+OpenNext build on every pull request, then runs them again and deploys when
+the pull request merges. For a manual deploy, stop the development server
+before the production build.
 
 1. For an approved release, build and deploy:
 
