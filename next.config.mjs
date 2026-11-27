@@ -6,8 +6,13 @@ const isDev = process.env.NODE_ENV !== "production";
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 // The volunteer application modal embeds a Tally form in an iframe.
 const TALLY_ORIGIN = "https://tally.so";
-// The portfolio site shows a live preview of this site in an iframe. No other origin may frame it.
-const FRAME_ANCESTORS = "https://mikhailwijanarko.com https://www.mikhailwijanarko.com";
+// Portfolio sites show a live preview of this site in an iframe. No other origin may frame it.
+const FRAME_ANCESTORS = [
+  "https://mikhailwijanarko.com",
+  "https://www.mikhailwijanarko.com",
+  "https://meitechnologies.co.uk",
+  "https://www.meitechnologies.co.uk",
+].join(" ");
 // The Hackathons recap can be reached through client navigation from any page.
 const YOUTUBE_ORIGIN = "https://www.youtube.com";
 
