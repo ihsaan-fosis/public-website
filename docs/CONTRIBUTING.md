@@ -83,6 +83,8 @@ Report failed or skipped checks and their reasons.
 Claim a pass only for checks you ran.
 Before you commit, run `git diff --check` and review the full diff.
 
+Pull requests also run lint, the contact security suite and the OpenNext build automatically.
+
 ## Write focused commits
 
 Keep each commit complete and limited to one problem.
