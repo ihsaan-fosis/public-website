@@ -64,7 +64,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         <ConferenceIntro title={page.title} about={page.about} />
       ) : (
         <Section labelledBy="about-title">
-          <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
+          <div className={cn("grid gap-10", (page.stats.length > 0 || page.aboutPhoto) && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
             <div data-reveal>
               <SectionTitle id="about-title">{page.title}</SectionTitle>
               <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-7 text-ink/70">
@@ -85,6 +85,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
                 </dl>
                 {page.statsNote ? <p className="mt-4 text-[13px] leading-6 text-ink/65">{page.statsNote}</p> : null}
               </div>
+            ) : page.aboutPhoto ? (
+              <PhotoFrame src={page.aboutPhoto.src} alt={page.aboutPhoto.alt} />
             ) : null}
           </div>
         </Section>
