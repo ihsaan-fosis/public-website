@@ -267,7 +267,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Weekend hackathons where Muslim students form teams, learn from mentors, prototype solutions to real community problems and pitch them to partners.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
-    image: { src: "/media/hackathon-build-wide.webp", alt: "Students working on laptops at an IHSAAN hackathon", width: 2000, height: 1333 },
+    image: { src: "/media/gallery/hackathon-coding-focus.webp", alt: "A student coding on a laptop with teammates working beside him at an IHSAAN hackathon", width: 2000, height: 1333 },
     closingImage: "/media/gallery/hackathon-rows.webp",
     photo: {
       src: "/media/gallery/hackathon-bench.webp",

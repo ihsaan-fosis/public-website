@@ -14,7 +14,7 @@ const FRAME_ANCESTORS = [
   "https://www.meitechnologies.co.uk",
 ].join(" ");
 // The Hackathons recap can be reached through client navigation from any page.
-const YOUTUBE_ORIGIN = "https://www.youtube.com";
+const YOUTUBE_ORIGIN = "https://www.youtube-nocookie.com";
 
 const nextConfig = {
   reactStrictMode: true,

@@ -6,7 +6,7 @@ import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } fro
 import Image from "next/image";
 import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
-import { Container, displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/metadata";
@@ -96,12 +96,6 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {isHackathon ? (
         <>
-          <section id="haqqathon-recap-video" aria-labelledby="hackathon-recap-title" className="scroll-mt-24 pt-2 sm:pt-3 lg:pt-5">
-            <Container>
-              <h2 id="hackathon-recap-title" className="sr-only">Manchester hackathon recap</h2>
-              <HackathonRecap />
-            </Container>
-          </section>
           <HackathonStatement />
           <HackathonWall />
         </>
@@ -182,7 +176,9 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {page.events && page.eventsTitle ? (
         isHackathon ? (
-          <HackathonEvents title={page.eventsTitle} events={page.events} />
+          <HackathonEvents title={page.eventsTitle} events={page.events}>
+            <HackathonRecap />
+          </HackathonEvents>
         ) : (
           <Section labelledBy="events-title" className="pt-0 sm:pt-0">
             <SectionTitle id="events-title">{page.eventsTitle}</SectionTitle>

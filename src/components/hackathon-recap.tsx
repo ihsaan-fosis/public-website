@@ -2,30 +2,104 @@
 
 import { Play } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
+const PLAYER_ORIGIN = "https://www.youtube-nocookie.com";
+const EMBED_SRC = `${PLAYER_ORIGIN}/embed/vzyYxaOxQ5w?enablejsapi=1&rel=0&playsinline=1`;
+
+/**
+ * The recap as a poster. The player loads behind the poster once the section is near the screen, so a click plays at
+ * once instead of waiting for the embed to load. Privacy-enhanced mode keeps YouTube from setting cookies until the
+ * video plays. Visitors who ask to save data load nothing until they click.
+ */
 export function HackathonRecap() {
   const [playing, setPlaying] = useState(false);
+  const [loadPlayer, setLoadPlayer] = useState(false);
+  const frame = useRef<HTMLIFrameElement>(null);
+  const wrapper = useRef<HTMLDivElement>(null);
+  const ready = useRef(false);
+  const wantsPlay = useRef(false);
+
+  const send = useCallback((message: object) => {
+    frame.current?.contentWindow?.postMessage(JSON.stringify(message), PLAYER_ORIGIN);
+  }, []);
+
+  const play = useCallback(() => send({ event: "command", func: "playVideo", args: [] }), [send]);
+
+  useEffect(() => {
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    if (saveData || !wrapper.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setLoadPlayer(true);
+        observer.disconnect();
+      },
+      { rootMargin: "800px 0px" },
+    );
+    observer.observe(wrapper.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== PLAYER_ORIGIN || event.source !== frame.current?.contentWindow) return;
+      ready.current = true;
+      if (wantsPlay.current) {
+        wantsPlay.current = false;
+        play();
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [play]);
+
+  useEffect(() => {
+    if (playing) frame.current?.focus();
+  }, [playing]);
+
+  /** The player only answers once it has been told someone is listening, so ask until it replies. */
+  const onFrameLoad = () => {
+    let attempts = 0;
+    const poll = window.setInterval(() => {
+      attempts += 1;
+      if (ready.current || attempts > 40) {
+        window.clearInterval(poll);
+        return;
+      }
+      send({ event: "listening", id: "hackathon-recap", channel: "widget" });
+    }, 250);
+  };
+
+  const start = () => {
+    setPlaying(true);
+    setLoadPlayer(true);
+    if (ready.current) play();
+    else wantsPlay.current = true;
+  };
 
   return (
     <>
-      <div className="relative aspect-video min-h-60 w-full overflow-hidden rounded-[28px] bg-night-2">
-        {playing ? (
+      <div ref={wrapper} className="relative aspect-video min-h-60 w-full overflow-hidden rounded-[28px] bg-night-2">
+        {loadPlayer ? (
           <iframe
-            ref={(player) => { player?.focus(); }}
+            ref={frame}
             className="absolute inset-0 size-full"
-            src="https://www.youtube.com/embed/vzyYxaOxQ5w?autoplay=1&rel=0&playsinline=1"
+            src={EMBED_SRC}
             title="IHSAAN Manchester Hackathon Recap"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
+            tabIndex={playing ? 0 : -1}
+            onLoad={onFrameLoad}
           />
-        ) : (
+        ) : null}
+        {playing ? null : (
           <button
             type="button"
             aria-label="Play IHSAAN Manchester Hackathon Recap"
             aria-describedby="hackathon-recap-caption"
             className="group absolute inset-0 size-full cursor-pointer text-left focus-visible:outline-3 focus-visible:-outline-offset-4 focus-visible:outline-cream"
-            onClick={() => setPlaying(true)}
+            onClick={start}
           >
             <Image
               src="/media/hackathon-recap-cover.webp"

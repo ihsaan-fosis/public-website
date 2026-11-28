@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { CODE_LABEL, PyHeading } from "@/components/hackathon-labels";
 import { CountUp, MarqueeGroup, ScrollWords } from "@/components/motion";
 import { MarqueeRow } from "@/components/sections";
@@ -22,25 +22,25 @@ export function HackathonIntro({
 }) {
   return (
     <Section labelledBy="about-title">
-      <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-        <div>
+      <div className="grid gap-12 lg:min-h-[calc(100svh-14rem)] lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+        <div className="flex flex-col justify-between gap-14">
           <div data-reveal>
-            <PyHeading id="about-title" title={title}>
+            <PyHeading id="about-title" title={title} large>
               {about.join(" ")}
             </PyHeading>
           </div>
-          <dl className="mt-14 grid grid-cols-3 gap-x-4 sm:gap-x-8 lg:mt-20">
+          <dl className="grid grid-cols-3 gap-x-4 [container-type:inline-size] sm:gap-x-8">
             {stats.map((stat, index) => (
-              <div key={stat.label} data-reveal style={revealDelay(index)} className="border-t border-ink/15 pt-4">
-                <dd className="text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] font-extrabold tracking-[-0.06em] text-ink">
+              <div key={stat.label} data-reveal style={revealDelay(index)} className="border-t border-ink/15 pt-5">
+                <dd className="text-[clamp(2rem,10.5cqw,5rem)] leading-[0.95] font-extrabold tracking-[-0.06em] text-ink">
                   <CountUp value={stat.value} />
                 </dd>
-                <dt className="mt-3 text-[13px] leading-5 text-ink/65">{stat.label}</dt>
+                <dt className="mt-3 text-sm leading-5 text-ink/65 sm:text-base sm:leading-6">{stat.label}</dt>
               </div>
             ))}
           </dl>
         </div>
-        <div data-reveal style={revealDelay(2)} className="group relative aspect-[4/5] overflow-hidden rounded-[28px] bg-night-2 lg:aspect-auto lg:min-h-[36rem]">
+        <div data-reveal style={revealDelay(2)} className="group relative aspect-[4/5] overflow-hidden rounded-[28px] bg-night-2 lg:aspect-auto">
           <Image
             src={photo.src}
             alt={photo.alt}
@@ -154,11 +154,16 @@ export function HackathonWall() {
   );
 }
 
-/** Past events as a build log. Each event's headline number is set large on the right. */
-export function HackathonEvents({ title, events }: { title: string; events: readonly ProgrammeEvent[] }) {
+/** Past events as a build log, opened by any recap in `children`. Each event's headline number is set large on the right. */
+export function HackathonEvents({ title, events, children }: { title: string; events: readonly ProgrammeEvent[]; children?: ReactNode }) {
   return (
     <Section labelledBy="events-title" className="pt-0 sm:pt-0">
       <PyHeading id="events-title" title={title} />
+      {children ? (
+        <div id="haqqathon-recap-video" className="mt-10 scroll-mt-24">
+          {children}
+        </div>
+      ) : null}
       <ul className="mt-10 border-t border-ink/10">
         {events.map((event, index) => (
           <li
