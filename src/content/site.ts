@@ -337,6 +337,11 @@ export const GALLERY: readonly Photo[] = [
   { src: "/media/opp-tracker-hd.webp", alt: "Students working together on a laptop", width: 2741, height: 3713 },
   { src: "/media/mmm-hd.webp", alt: "My Muslim Mentor stickers on a purple table", width: 2206, height: 3713 },
   { src: "/media/career-conferences-hd.webp", alt: "Students at an IHSAAN career conference", width: 3840, height: 3275 },
+  { src: "/media/gallery/conference-hall-networking.webp", alt: "Students and employers mingling in a venue hall at an IHSAAN career conference", width: 2000, height: 1126 },
+  { src: "/media/gallery/conference-stalls-hall.webp", alt: "Students gathered around employer stalls in a venue hall at an IHSAAN career conference", width: 2000, height: 1126 },
+  { src: "/media/gallery/conference-lecture-panel.webp", alt: "A panel of speakers in front of students in a lecture theatre at an IHSAAN career conference", width: 2000, height: 1126 },
+  { src: "/media/gallery/conference-workshop-brief.webp", alt: "A speaker leading a workshop for students at an IHSAAN career conference", width: 1500, height: 2000 },
+  { src: "/media/gallery/conference-workshop-presenter.webp", alt: "A workshop leader talking students through a brief at an IHSAAN career conference", width: 1500, height: 2000 },
   { src: "/media/impact-wide.webp", alt: "A wide view of an IHSAAN programme", width: 2560, height: 900 },
 ];
 

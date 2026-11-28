@@ -18,19 +18,19 @@ export const GAP_STATS: readonly GapStat[] = [
   {
     value: "7.2%",
     label: "higher degree attainment for young Muslims",
-    note: "20.8% of Muslims aged 16 to 24 hold degrees, vs 19.4% of young people overall.",
-    source: "MCB analysis of Census 2021 (England and Wales)",
+    note: "20.8% of Muslims aged 16 to 24 hold degrees, vs 19.4% overall. Nearly double since 2001 (11.3%).",
+    source: "MCB analysis of ONS Census 2021 data",
   },
   {
     value: "44%",
     label: "higher unemployment for young Muslims",
     note: "13% of Muslims aged 20 to 24 are unemployed, vs 9% of young people overall.",
-    source: "The Guardian, based on ONS Census 2021 analysis",
+    source: "ONS Census 2021 (as reported by The Guardian)",
   },
   {
     value: "40%",
-    label: "less likely to reach senior roles",
-    note: "Only 6% of Muslims reach senior professional roles, vs 10% overall.",
+    label: "less likely for Muslims to hold senior professional roles",
+    note: "Only 6% of Muslims work in higher managerial and professional roles, vs 10% overall.",
     source: "Social Mobility Commission (2017)",
   },
 ];

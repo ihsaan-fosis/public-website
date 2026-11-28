@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 export const CODE_LABEL = "font-mono text-[11px] font-bold tracking-[0.08em] text-ink/65";
 
@@ -25,19 +26,25 @@ export function PyHeading({
   title,
   children,
   className,
+  large = false,
 }: {
   id: string;
   title: string;
   /** The description, shown as a `print` call in the function body. */
   children?: ReactNode;
   className?: string;
+  /** Opening-section scale: a larger title and a description set at reading size. */
+  large?: boolean;
 }) {
   return (
     <div className={className}>
       <h2
         id={id}
         aria-label={title}
-        className="font-mono text-[clamp(1.1rem,4.2vw,2.5rem)] leading-[1.15] font-bold tracking-[-0.03em] break-words text-ink"
+        className={cn(
+          "font-mono leading-[1.15] font-bold tracking-[-0.03em] break-words text-ink",
+          large ? "text-[clamp(1.5rem,5.2vw,4rem)]" : "text-[clamp(1.1rem,4.2vw,2.5rem)]",
+        )}
       >
         <span aria-hidden>
           <span className={KEYWORD}>def </span>
@@ -46,7 +53,14 @@ export function PyHeading({
         </span>
       </h2>
       {children ? (
-        <div className="mt-5 max-w-xl space-y-4 border-l border-ink/15 pl-5 font-mono text-[13px] leading-6 text-ink/70 sm:pl-6">
+        <div
+          className={cn(
+            "space-y-4 border-l border-ink/15 pl-5 font-mono text-ink/70 sm:pl-6",
+            large
+              ? "mt-8 max-w-3xl text-base leading-7 sm:text-xl sm:leading-8 lg:mt-10 lg:text-[1.6rem] lg:leading-[1.5]"
+              : "mt-5 max-w-xl text-[13px] leading-6",
+          )}
+        >
           <p>
             <span aria-hidden className={KEYWORD}>
               print

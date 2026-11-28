@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ANSWERS } from "@/content/challenge-answer";
-import { GAP_QUOTE, GAP_STATS } from "@/content/impact";
+import { GAP_QUOTE, GAP_STATEMENT, GAP_STATS } from "@/content/impact";
 import { CountUp, ScrollWords } from "./motion";
 import { Container, displayClass, revealDelay } from "./ui";
 
@@ -36,11 +36,12 @@ function StudentChallenges() {
           data-reveal
           className={`max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
         >
-          Degrees are up. Doors are still closed.
+          {GAP_STATEMENT}
         </h2>
-        <ol className="mt-14 grid gap-x-12 gap-y-14 sm:mt-20 lg:grid-cols-3">
+        <ol className="mt-14 grid gap-x-12 gap-y-14 sm:mt-20 lg:grid-cols-3 lg:gap-y-0">
           {GAP_STATS.map((stat, index) => (
-            <li key={stat.value} data-reveal style={revealDelay(index)}>
+            <li key={stat.value} data-reveal style={revealDelay(index)} className="lg:row-span-4 lg:grid lg:grid-rows-subgrid">
+              {/* Subgrid rows keep the figure, claim, comparison and source on shared lines across the three columns. */}
               <GapFigure value={stat.value} />
               <p className="mt-6 max-w-sm text-2xl leading-[1.2] font-medium tracking-[-0.03em] text-ink sm:text-[1.75rem]">
                 {stat.label}.
@@ -76,7 +77,7 @@ function IhsaanAnswer() {
           data-reveal
           className={`max-w-5xl text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1] lg:text-[3.5rem] ${displayClass}`}
         >
-          IHSAAN closes the gap<span className="text-ihsaan-light-blue">.</span>
+          IHSAAN closes the gap
         </h2>
 
         <ol className="tiles mt-12 grid gap-3 sm:mt-16 lg:grid-cols-3">

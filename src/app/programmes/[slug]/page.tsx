@@ -6,7 +6,7 @@ import { ConferenceDay, ConferenceIntro, ConferenceOutcome, ConferenceWall } fro
 import Image from "next/image";
 import { ClosingCta } from "@/components/sections";
 import { MapChapter } from "@/components/story";
-import { Container, displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
+import { displayClass, PhotoFrame, PhotoHero, ButtonLink, revealDelay, Section, SectionTitle } from "@/components/ui";
 import { PROGRAMME_PAGES, getProgrammePage } from "@/content/programmes";
 import { MEMBER_PORTAL_SIGNUP } from "@/content/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/metadata";
@@ -64,7 +64,7 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
         <ConferenceIntro title={page.title} about={page.about} />
       ) : (
         <Section labelledBy="about-title">
-          <div className={cn("grid gap-10", page.stats.length > 0 && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
+          <div className={cn("grid gap-10", (page.stats.length > 0 || page.aboutPhoto) && "lg:grid-cols-[1.2fr_1fr] lg:gap-16")}>
             <div data-reveal>
               <SectionTitle id="about-title">{page.title}</SectionTitle>
               <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-7 text-ink/70">
@@ -85,6 +85,8 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
                 </dl>
                 {page.statsNote ? <p className="mt-4 text-[13px] leading-6 text-ink/65">{page.statsNote}</p> : null}
               </div>
+            ) : page.aboutPhoto ? (
+              <PhotoFrame src={page.aboutPhoto.src} alt={page.aboutPhoto.alt} />
             ) : null}
           </div>
         </Section>
@@ -94,12 +96,6 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {isHackathon ? (
         <>
-          <section id="haqqathon-recap-video" aria-labelledby="hackathon-recap-title" className="scroll-mt-24 pt-2 sm:pt-3 lg:pt-5">
-            <Container>
-              <h2 id="hackathon-recap-title" className="sr-only">Manchester hackathon recap</h2>
-              <HackathonRecap />
-            </Container>
-          </section>
           <HackathonStatement />
           <HackathonWall />
         </>
@@ -180,7 +176,9 @@ export default async function ProgrammePage({ params }: { params: Promise<Params
 
       {page.events && page.eventsTitle ? (
         isHackathon ? (
-          <HackathonEvents title={page.eventsTitle} events={page.events} />
+          <HackathonEvents title={page.eventsTitle} events={page.events}>
+            <HackathonRecap />
+          </HackathonEvents>
         ) : (
           <Section labelledBy="events-title" className="pt-0 sm:pt-0">
             <SectionTitle id="events-title">{page.eventsTitle}</SectionTitle>

@@ -37,6 +37,8 @@ export type ProgrammePage = {
   /** The photograph behind the closing call to action, which no other page repeats. */
   closingImage: string;
   photo: Photo;
+  /** A photograph set beside the about text, for a page with no `stats` to put there. */
+  aboutPhoto?: Photo;
   about: readonly string[];
   stats: readonly Stat[];
   /** Where a figure in `stats` comes from, set small beneath the list. */
@@ -86,22 +88,22 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       {
         title: "Exhibition stalls",
         body: "Three kinds of stall: employers such as Muslim businesses, charities and SMEs; professional networks, including firm Muslim networks; and industry professionals sharing their own experience of a sector.",
-        image: "/media/gallery/employer-conversations.webp",
+        image: "/media/gallery/conference-stalls-hall.webp",
       },
       {
         title: "Panel discussions",
         body: "Professionals talk about ihsaan in the workplace and what it takes to reach success in your career.",
-        image: "/media/gallery/conference-panel.webp",
+        image: "/media/gallery/conference-lecture-panel.webp",
       },
       {
         title: "Practical workshops",
         body: "Often specific to an industry, such as accounting, tech or law, covering CVs, interviews, networking and personal branding.",
-        image: "/media/gallery/workshop-tables.webp",
+        image: "/media/gallery/conference-workshop-brief.webp",
       },
       {
         title: "Networking sessions",
         body: "Meet professionals who are working in the roles you want to reach, and ask how they got there.",
-        image: "/media/gallery/student-conversations.webp",
+        image: "/media/gallery/conference-hall-networking.webp",
       },
     ],
     events: [
@@ -169,13 +171,19 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
     summary: "Skills workshops, panels and networking that put Muslim students in the room with leading employers.",
     headline: "Get in the room.",
     intro: "Insight events put Muslim students in front of leading employers for skills workshops, panels and networking.",
-    image: { src: "/media/gallery/london-conference-2024.webp", alt: "A speaker addressing students at an IHSAAN career conference", width: 2560, height: 1928 },
-    closingImage: "/media/gallery/manchester-conference-2026.webp",
+    image: { src: "/media/gallery/insight-event-presenting.webp", alt: "An IHSAAN speaker presenting to students seated at round tables at an employer insight event", width: 2000, height: 1125 },
+    closingImage: "/media/gallery/insight-event-audience.webp",
     photo: {
-      src: "/media/gallery/conference-panel.webp",
-      alt: "Students in a lecture theatre watching a panel at an IHSAAN careers conference",
-      width: 2000,
-      height: 1126,
+      src: "/media/gallery/insight-event-panel-room.webp",
+      alt: "Students gathered around tables listening to an employer panel at an insight event",
+      width: 1500,
+      height: 2000,
+    },
+    aboutPhoto: {
+      src: "/media/gallery/insight-event-panel.webp",
+      alt: "A panel of four employer professionals speaking to students at an insight event",
+      width: 1500,
+      height: 2000,
     },
     about: [
       "Insight Events are corporate events run by IHSAAN. They give students a closer look at a leading employer and the people who work there.",
@@ -259,7 +267,7 @@ export const PROGRAMME_PAGES: readonly ProgrammePage[] = [
       "Weekend hackathons where Muslim students form teams, learn from mentors, prototype solutions to real community problems and pitch them to partners.",
     headline: "Build with purpose.",
     intro: "Weekend hackathons for students who want their skills to solve real community problems.",
-    image: { src: "/media/hackathon-build-wide.webp", alt: "Students working on laptops at an IHSAAN hackathon", width: 2000, height: 1333 },
+    image: { src: "/media/gallery/hackathon-coding-focus.webp", alt: "A student coding on a laptop with teammates working beside him at an IHSAAN hackathon", width: 2000, height: 1333 },
     closingImage: "/media/gallery/hackathon-rows.webp",
     photo: {
       src: "/media/gallery/hackathon-bench.webp",
