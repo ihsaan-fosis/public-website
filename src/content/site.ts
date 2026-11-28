@@ -217,8 +217,8 @@ const INVOLVEMENT_ACTIONS: readonly InvolvementAction[] = [
   {
     id: "alumni",
     title: "Alumni network",
-    body: "Alumni who want to stay connected with IHSAAN can get in touch and ask how to take part in the alumni network.",
-    cta: { href: "/contact", label: "Ask about the alumni network" },
+    body: "Alumni who want to stay connected with IHSAAN can register their interest, and the team may get in touch about it.",
+    cta: { href: "/contact?topic=alumni", label: "Register alumni interest" },
   },
   {
     id: "volunteer",
